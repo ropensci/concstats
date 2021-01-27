@@ -18,7 +18,7 @@ Measures of concentration and competition are important and give a first
 insight of a given market structure and conduct in a particular market.
 They are important to determine public policies. However, in research
 and in practice the most widely used measure is the Herfindahl-Hirschman
-Index or better knwon as HHI. The goal of `concstats` is to offer a set
+Index or better known as HHI. The goal of `concstats` is to offer a set
 of alternative and/or additional measures to better determine a given
 market structure.
 
