@@ -10,12 +10,11 @@ output: html_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
   out.width = "100%"
 )
 ```
 
-# Introduction
+## Introduction
 
 <!-- badges: start -->
 [![R build status](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)]
