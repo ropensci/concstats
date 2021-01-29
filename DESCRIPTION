@@ -1,0 +1,24 @@
+Package: concstats
+Title: Market Structure and Concentration Measures
+Version: 0.1.0
+Authors@R: 
+    person(given = "Andreas",
+           family = "Schneider",
+           role = c("aut", "cre"),
+           email = "schneiderconsultingpy@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0001-5630-1097"))
+Description: Based on individual market shares of all participants in a market or space, the function calculates a set of
+    different structural and concentration measures frequently - and not so frequently - used in research and in practice.
+    The resulting vector in table format should help practitioners make more informed decisions.
+License: MIT + file LICENSE
+Imports: knitr
+Suggests: 
+    tidyverse,
+    rmarkdown
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+VignetteBuilder: knitr
