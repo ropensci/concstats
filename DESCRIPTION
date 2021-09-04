@@ -1,24 +1,39 @@
+Type: Package
 Package: concstats
-Title: Market structure and concentration measures
-Version: 0.0.0.9000
+Title: Market Structure, Concentration and Inequality Measures
+Version: 0.0.2
 Authors@R: 
     person(given = "Andreas",
            family = "Schneider",
            role = c("aut", "cre"),
            email = "schneiderconsultingpy@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0001-5630-1097"))
-Description: Based on individual market shares the function calculates a set of
-    different structural and concentration measures, e.g. k-firm ratios, HHI, dual of HHI,
-    Stenbacka index, Berry index, Entropy and others. The result is a vector in table format.
+Description: Based on individual market shares of all participants in a
+    market or space or their respective sales figures, the package offers
+    a set of different structural and concentration measures frequently -
+    and not so frequently - used in research and in practice. Measures can
+    be calculated in groups or individually. The calculated measure or the
+    resulting vector in table format should help practitioners make more
+    informed decisions.
 License: MIT + file LICENSE
-Imports: knitr
+URL: https://github.com/schneiderpy/concstats
+BugReports: https://github.com/schneiderpy/concstats/issues
+Depends:
+    R (>= 2.10)
+Imports:
+    dplyr (>= 1.0.7),
+    readr,
 Suggests: 
-    tidyverse,
+    rmarkdown,
+    knitr,
+    devtools,
+    kableExtra,
+    ggplot2
+VignetteBuilder:
+    knitr,
     rmarkdown
 Encoding: UTF-8
+Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Depends: 
-    R (>= 2.10)
-VignetteBuilder: knitr
