@@ -2,30 +2,45 @@
 % Please edit documentation in R/concstats.R
 \name{concstats}
 \alias{concstats}
-\title{Market structure and concentration measures.}
+\title{A set of Market Structure, Concentration, and Inequality Measures}
 \usage{
 concstats(x, na.rm = TRUE)
 }
 \arguments{
-\item{x}{A numeric vector}
+\item{x}{a numeric vector.}
 
-\item{na.rm}{logical vector that indicates whether NA values should be excluded}
+\item{na.rm}{a logical vector that indicates whether \code{NA} values should
+be excluded or not.
+If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-returns a vector of calculated measures in table format.
+returns a data frame of calculated measures
+.
 }
 \description{
-A convenience function which calculates a set of different
-market structure and concentration measures, e.g. k-firm ratios, HHI, dual of HHI,
-Stenbacka index, Entropy and others.
+a convenience function which calculates a selected set of
+different market structure, inequality and concentration measures more or
+less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio, and others
+in a one step procedure to provide a first overview.
+}
+\details{
+\code{concstats} computes a set of different and selected structural,
+inequality, and concentration measures in a one step procedure, however, all
+measures can be computed individually or in groups.
 }
 \note{
-the vector of market shares should be in a decimal format corresponding to total
-share of indivudual firms/units (e.g. share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04 )).
-The sum of the vector/share should sum up to 1. The results are presented in a table
+the vector of market shares should be in a decimal form corresponding
+total share of individual firms/units.The vector should sum up to 1.
+You can also use sales figures to compute the respective measure.
 }
 \examples{
-share <- c(0.4, 0.266, 0.334, 0, 0) # a vector of market shares
-con_share <- concstats(share)  # concentration measures of the vector
+# a vector of market shares
+# share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+# a selected set of different structural, concentration, and inequality
+# measures
+# share_conc <- concstats(share)
 
+}
+\seealso{
+{\code{\link{mstruct}}, \code{\link{comp}}, \code{\link{inequ}}}
 }
