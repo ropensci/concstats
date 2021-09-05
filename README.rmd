@@ -1,3 +1,29 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/",
+  out.width = "100%"
+)
+```
+
+```{R,echo=FALSE,results='hide',message=FALSE,include=FALSE, eval=TRUE}
+## Packages
+pkgs <- c(
+  "knitr",
+  "dplyr"
+)
+
+## Install uninstalled packages
+lapply(pkgs[!(pkgs %in% installed.packages())], install.packages)
+## Load all packages to library
+lapply(pkgs, library, character.only = TRUE)
+```
+
 
 # concstats <img src='man/figures/logo.png' align="right" height="150" />
 
@@ -26,17 +52,23 @@ or groups of functions are available to achieve the desired goal.
 
 \-`concstats` calculates a set of preselected concentration and
 diversity measures in a one-step procedure.  
-\-`mstruct` offers market structure measures, e.g. the sum of Top3 or
+\-`mstruct` offers market structure measures, e.g. the sum of Top3 or
 Top5 market shares.  
 \-`comp` is a wrapper for concentration measures, e.g.the Herfindahl
 Hirschman Index.  
-\-`inequ` offers diversity or inequality measures, e.g. the Entropy or
-the Palma ratio.
+\-`inequ` offers diversity or inequality measures, e.g. the Entropy or the
+Palma ratio.
+
 
 ## Installation
 
 You can install the development version from
 [GitHub](https://github.com/schneiderpy/concstats) or:
+
+```{r install-prep, include=FALSE, eval=FALSE}
+install.packages("devtools") # a package for developing R packages
+devtools::install_github("schneiderpy/concstats")
+```
 
 ## How to use `concstats`
 
@@ -68,7 +100,7 @@ coefficient, Palma ratio.
 This is a basic example which shows you how to calculate an individual
 measure or a set of market structure and concentration measures:
 
-``` r
+```{r examples, eval=FALSE}
 library(concstats)
 ## Create some simple data
 share1 <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
@@ -104,11 +136,9 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
 
 ## References
 
-1.  Chang, E. J., Guerra, S. M., de Souza PeÃ±aloza, R. A. & Tabak, B.
-    M.
-    2005) Banking concentration: the Brazilian case. In Financial
-          Stability Report. Brasilia: Banco Central do Brasil, 4:
-          109-129.
+1.  Chang, E. J., Guerra, S. M., de Souza PeÃ±aloza, R. A. & Tabak, B. M.
+    (2005) Banking concentration: the Brazilian case. In Financial
+    Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
