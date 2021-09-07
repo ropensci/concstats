@@ -1,0 +1,8 @@
+pandoc: 2.7.2
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  concstats-intro: concstats-intro.html
+  concstats-start: concstats-start.html
+last_built: 2021-09-07T00:13Z
+
