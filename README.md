@@ -38,6 +38,11 @@ the Palma ratio.
 You can install the development version from
 [GitHub](https://github.com/schneiderpy/concstats) or:
 
+``` r
+install.packages("devtools") # a package for developing R packages
+devtools::install_github("schneiderpy/concstats")
+```
+
 ## How to use `concstats`
 
 ### `concstats`
@@ -60,7 +65,7 @@ dual of the HHI, the Dominance or the Stenbacka index.
 
 ### `inequ`
 
-is a group of inequality and diversity measures, e.g.Â Entropy, Gini
+is a group of inequality and diversity measures, e.g. Entropy, Gini
 coefficient, Palma ratio.
 
 ## Examples
@@ -104,22 +109,21 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
 
 ## References
 
-1.  Chang, E. J., Guerra, S. M., de Souza PeÃ±aloza, R. A. & Tabak, B.
-    M.
+1.  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M.
     2005) Banking concentration: the Brazilian case. In Financial
           Stability Report. Brasilia: Banco Central do Brasil, 4:
           109-129.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
-3.  Garcia Alba IduÃ±ate, P. (1994). Un Indice de dominacia para el
+3.  Garcia Alba Idunate, P. (1994). Un Indice de dominacia para el
     analisis de la estructura de los mercados. El Trimestre Economico,
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
     concentration, Journal of Business Economics and Management, 10(3),
     191-198. [DOI](https://doi.org/10.3846/1611-1699.2009.10.191-198)
-5.  Palma, J. G. (2006). Globalizing Inequality: âCentrifugalâ and
-    âCentripetalâ Forces at Work, DESA Working Paper No.Â 35.
+5.  Palma, J. G. (2006). Globalizing Inequality: ‘Centrifugal’ and
+    ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The
     Bell System Technical Journal (Nokia Bell Labs).
 
