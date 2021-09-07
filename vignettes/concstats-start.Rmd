@@ -1,10 +1,10 @@
 ---
-title: "Introduction"
+title: "Getting started"
 description: >
   Learn what concstats is about
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction}
+  %\VignetteIndexEntry{Getting started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
