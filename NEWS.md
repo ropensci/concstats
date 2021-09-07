@@ -40,11 +40,11 @@ the following functions:
 
 * Added `vignettes`
 
+* Added `web page`
+
 * Added `creditcoops`, a small data set 
 
 * Added a `NEWS.md` file to track changes to the package.
  
-
-
 ---
 # concstats 0.0.1
