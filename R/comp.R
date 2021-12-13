@@ -109,8 +109,7 @@ hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
   hhi_2 <- hhi_1^2
   hhi <- sum(hhi_2)
   if (unbiased == TRUE) hhi <- (hhi - (1/sum(x > 0)))/(1 - (1/sum(x > 0)))
-  hhi
-  print(hhi)
+  return(hhi)
 }
 
 #' @export
@@ -145,8 +144,7 @@ hhi_min <- function(x, na.rm = TRUE)
   x <- as.numeric(stats::na.omit(x))
   n <- sum(x > 0)
   hhi_min <- 1/n
-  hhi_min
-  print(hhi_min)
+  retrun(hhi_min)
 }
 
 #' @export
@@ -186,8 +184,7 @@ hhi_d <- function(x, unbiased = FALSE, na.rm = TRUE)
   hhi <- sum(hhi_2)
   hhi_d <- 1 - 1/(sum(x > 0)*hhi)
   if (unbiased) hhi_d <- 1 - 1/(sum(x > 0)*(hhi - (1/(sum(x > 0))))/(1 - (1/(sum(x > 0)))))
-  hhi_d
-  print(hhi_d)
+  retrun(hhi_d)
 }
 
 #' @export
@@ -229,8 +226,7 @@ dom <- function(x, unbiased = FALSE, na.rm = TRUE)
   dom <- sum(dom)
   if (unbiased) dom <- sum((hhi_2/((hhi - (1/(sum(x > 0))))/(1 - (1/(sum(
     x > 0))))))^2)
-  dom
-  print(dom)
+  return(dom)
 }
 
 #' @export
@@ -269,8 +265,7 @@ sten <- function(x, na.rm = TRUE)
   sten2 <- x[2]
   sten <- 0.5*(1 - 1*(sten1^2 - sten2^2))
   sten <- if (sum(sten < 1) || sum(sten == 1)) (sten * 100)
-  sten
-  print(sten)
+  return(sten)
 }
 
 all_comp <- function(x, na.rm = TRUE)
@@ -285,5 +280,5 @@ all_comp <- function(x, na.rm = TRUE)
                                        "Dominance", "Stenbacka(%)"),
                              Value = c(hhi, hhi_min, hhi_d, dom, sten))
 
-  print(format(results_comp, scientific = F, digits = 2, justify = "right"))
+  return(format(results_comp, scientific = F, digits = 2, justify = "right"))
 }

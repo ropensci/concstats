@@ -82,8 +82,7 @@ firm <- function(x, na.rm = TRUE)
   x <- as.numeric(stats::na.omit(x))
   x <- sort(x, decreasing = TRUE)
   firm <- sum(x > 0)
-  firm
-  print(firm)
+  return(firm)
 }
 
 #' @export
@@ -120,8 +119,7 @@ nrs_equ <- function(x, na.rm = TRUE)
   hhi_2 <- hhi_1^2
   hhi <- sum(hhi_2)
   nrs_equ <- 1/hhi
-  nrs_equ
-  print(nrs_equ)
+  return(nrs_equ)
 }
 
 #' @export
@@ -158,8 +156,7 @@ top <- function(x, na.rm = TRUE)
   x <- x/sum(x)
   x <- x[1]
   top <- sum(x * 100, na.rm = TRUE)
-  top
-  print(top)
+  return(top)
 }
 
 #' @export
@@ -196,8 +193,7 @@ top3 <- function(x, na.rm = TRUE)
   x <- x/sum(x)
   x <- x[1:3]
   top3 <- sum(x * 100, na.rm = TRUE)
-  top3
-  print(top3)
+  return(top3)
 }
 
 #' @export
@@ -234,8 +230,7 @@ top5 <- function(x, na.rm = TRUE)
   x <- x/sum(x)
   x <- x[1:5]
   top5 <- sum(x * 100, na.rm = TRUE)
-  top5
-  print(top5)
+  return(top5)
 }
 
 all_mstruct <- function(x, na.rm = TRUE)
@@ -250,5 +245,5 @@ all_mstruct <- function(x, na.rm = TRUE)
                                           "Top3(%)", "Top5(%)"),
                               value = c(firm, nrs_equ, top, top3, top5))
 
-  print(format(results_struc, scientific = F, digits = 3, justify = "right"))
+  return(format(results_struc, scientific = F, digits = 3, justify = "right"))
 }

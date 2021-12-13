@@ -104,6 +104,6 @@ concstats <- function(x, na.rm = TRUE) {
                         Values = c(Firm, Nrs_equ, Top, Top3, Top5, HHI, Entropy,
                                    Palma))
 
-  print(format(results_all, scientific = F, digits = 2, justify = "right"))
+  return(format(results_all, scientific = F, digits = 2, justify = "right"))
 
 }

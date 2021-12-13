@@ -106,8 +106,7 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
   k <- sum(x > 0)
   entropy <- sum(-x/sum(x)*log(x/sum(x), base = 2))
   if (unbiased == TRUE) entropy <- entropy/log(k, base = 2)
-  entropy
-  print(entropy)
+  return(entropy)
 }
 
 #' @export
@@ -146,8 +145,7 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE)
   n <- length(x)
   gini <- 2 * sum(x * 1:n) / (n*sum(x)) - 1 - (1/n)
   if (unbiased) gini <- n / (n - 1) * gini
-  gini
-  print(gini)
+  return(gini)
 }
 
 #' @export
@@ -187,8 +185,7 @@ berry <- function(x, unbiased = FALSE, na.rm = TRUE)
   h <- sum(h)
   berry <- 1 - h
   if (unbiased) berry <- 1 - h/(sum(x/sum(x)))^2
-  berry
-  print(berry)
+  return(berry)
 }
 
 #' @export
@@ -227,8 +224,7 @@ palma <- function(x, na.rm = TRUE)
   x_bottom <- sum(x[x_cut <= 4])
   x_top <- sum(x[x_cut > 9])
   palma <- x_top/x_bottom
-  palma
-  print(palma)
+  return(palma)
 }
 
 #' @export
@@ -267,8 +263,7 @@ grs <- function(x, na.rm = TRUE)
   firm <- sum(x > 0)
   firm2 <- firm^2
   grs <- sum((firm2*top + 0.3*x^2)/(firm2 + firm*0.3*top*x)*x)
-  grs
-  print(grs)
+  return(grs)
 }
 
 all_inequ <- function(x, na.rm = TRUE)
@@ -283,6 +278,6 @@ all_inequ <- function(x, na.rm = TRUE)
                                              "Palma Ratio", "GRS"),
                               Value = c(entropy, gini, berry, palma, grs))
 
-  print(format(results_inequ, scientific = F, digits = 2, justify = "right"))
+  return(format(results_inequ, scientific = F, digits = 2, justify = "right"))
 
 }
