@@ -144,7 +144,7 @@ hhi_min <- function(x, na.rm = TRUE)
   x <- as.numeric(stats::na.omit(x))
   n <- sum(x > 0)
   hhi_min <- 1/n
-  retrun(hhi_min)
+  return(hhi_min)
 }
 
 #' @export
@@ -184,7 +184,7 @@ hhi_d <- function(x, unbiased = FALSE, na.rm = TRUE)
   hhi <- sum(hhi_2)
   hhi_d <- 1 - 1/(sum(x > 0)*hhi)
   if (unbiased) hhi_d <- 1 - 1/(sum(x > 0)*(hhi - (1/(sum(x > 0))))/(1 - (1/(sum(x > 0)))))
-  retrun(hhi_d)
+  return(hhi_d)
 }
 
 #' @export

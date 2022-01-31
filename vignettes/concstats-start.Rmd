@@ -20,9 +20,9 @@ b) calculating a group of measures, e.g. structural measures, or
 c) a selected set of measures in a one-step procedure.
 
 
-## <i class="far fa-download"></i> How can you install it?
+## <i class="fas fa-download"></i> How can you install it?
 
-To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) use: 
+To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) or use: 
 
 ```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
 library(devtools)
