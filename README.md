@@ -6,12 +6,17 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
+[![Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![PRs
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/schneiderpy/concstats)
 [![GitHub
 Stars](https://img.shields.io/github/stars/schneiderpy/concstats.svg?style=social)](https://github.com/schneiderpy/concstats)
+[![Codecov test
+coverage](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg)](https://app.codecov.io/gh/schneiderpy/concstats?branch=master)
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
@@ -26,11 +31,11 @@ or groups of functions are available to achieve the desired goal.
 
 \-`concstats` calculates a set of preselected concentration and
 diversity measures in a one-step procedure.  
-\-`mstruct` offers market structure measures, e.g. the sum of Top3 or
+-`mstruct` offers market structure measures, e.g. the sum of Top3 or
 Top5 market shares.  
-\-`comp` is a wrapper for concentration measures, e.g.the Herfindahl
+-`comp` is a wrapper for concentration measures, e.g.the Herfindahl
 Hirschman Index.  
-\-`inequ` offers diversity or inequality measures, e.g. the Entropy or
+-`inequ` offers diversity or inequality measures, e.g. the Entropy or
 the Palma ratio.
 
 ## Installation
@@ -88,7 +93,7 @@ share2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
                                               # the market (should sum up to 1)
 
 ## Calculate a selected set of market structure and concentration measures
-share2_con <- concstats(share2) # creates share2_con, a select set of measures
+share2_con <- concstats(share2) # creates share2_con, a selected set of measures
 #>         Measures Values
 #> 1          Firms   6.00
 #> 2 Nrs_equivalent   3.33
@@ -141,4 +146,4 @@ to open an issue or pull request.
 
 ## Development
 
-Contributions are welcome\!
+Contributions are welcome!

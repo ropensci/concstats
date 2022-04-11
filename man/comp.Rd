@@ -16,9 +16,9 @@ hhi(x, unbiased = FALSE, na.rm = TRUE)
 
 hhi_min(x, na.rm = TRUE)
 
-hhi_d(x, unbiased = FALSE, na.rm = TRUE)
+hhi_d(x, na.rm = TRUE)
 
-dom(x, unbiased = FALSE, na.rm = TRUE)
+dom(x, na.rm = TRUE)
 
 sten(x, na.rm = TRUE)
 }
@@ -62,13 +62,13 @@ to 1. You can also use sales figures to compute the respective measure.
 }
 \examples{
 # a vector of market shares
-share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # the Herfindahl-Hirschman index of the vector
-share_hhi <- comp(share, type = "hhi")
+shares_hhi <- comp(x, type = "hhi")
 # individual measure
-share_sten <- sten(share)
+shares_sten <- sten(x)
 # complete group measures
-share_comp <- comp(share, type = "all")
+shares_comp <- comp(x, type = "all")
 
 }
 \references{

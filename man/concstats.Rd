@@ -20,13 +20,14 @@ returns a data frame of calculated measures
 \description{
 a convenience function which calculates a selected set of
 different market structure, inequality and concentration measures more or
-less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio, and others
+less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
+and others
 in a one step procedure to provide a first overview.
 }
 \details{
-\code{concstats} computes a set of different and selected structural,
-inequality, and concentration measures in a one step procedure, however, all
-measures can be computed individually or in groups.
+\code{concstats} computes a set of different and selected
+structural, inequality, and concentration measures in a one step procedure,
+however, all measures can be computed individually or in groups.
 }
 \note{
 the vector of market shares should be in a decimal form corresponding

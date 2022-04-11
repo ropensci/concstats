@@ -3,7 +3,7 @@
 \name{mstruct}
 \alias{mstruct}
 \alias{firm}
-\alias{nrs_equ}
+\alias{nrs_eq}
 \alias{top}
 \alias{top3}
 \alias{top5}
@@ -14,7 +14,7 @@ mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5", "all"),
 
 firm(x, na.rm = TRUE)
 
-nrs_equ(x, na.rm = TRUE)
+nrs_eq(x, na.rm = TRUE)
 
 top(x, na.rm = TRUE)
 
@@ -39,10 +39,11 @@ Set of different measures to reflect a given market structure.
 }
 \details{
 \code{mstruct} is a wrapper for the proposed structual measures \code{firm},
-returns the number of firms with a given market share, \code{nrs_eq} computes
-the numbers equivalent, \code{top}, \code{top3}, and \code{top5} calculate
-the share of the top (top 3 and top 5) firm(s). \code{all} computes all
-measures in a one step procedure. All measures can be computed individually.
+returns the number of firms with a given market share, \code{nrs_eq}
+computes the numbers equivalent, \code{top}, \code{top3}, and \code{top5}
+calculate the share of the top (top 3 and top 5) firm(s). \code{all}
+computes all measures in a one step procedure. All measures can be computed
+individually.
 }
 \note{
 the vector of market shares should be in a decimal form corresponding

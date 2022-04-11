@@ -4,19 +4,19 @@
 \alias{inequ}
 \alias{entropy}
 \alias{gini}
-\alias{berry}
+\alias{simpson}
 \alias{palma}
 \alias{grs}
 \title{Inequality and Diversity Measures}
 \usage{
-inequ(x, unbiased = FALSE, type = c("entropy", "gini", "berry", "palma",
+inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
  "grs", "all"), na.rm = TRUE)
 
 entropy(x, unbiased = FALSE, na.rm = TRUE)
 
 gini(x, unbiased = FALSE, na.rm = TRUE)
 
-berry(x, unbiased = FALSE, na.rm = TRUE)
+simpson(x, unbiased = FALSE, na.rm = TRUE)
 
 palma(x, na.rm = TRUE)
 
@@ -41,12 +41,13 @@ prints the calculated measure
 A set of different inequality and diversity measures.
 }
 \details{
-\code{inequ} is a wrapper for the proposed inequality measures \code{entropy},
-\code{gini}, \code{berry}, \code{palma}, \code{grs}, \code{all}.
+\code{inequ} is a wrapper for the proposed inequality measures
+\code{entropy}, \code{gini}, \code{simpson}, \code{palma}, \code{grs},
+\code{all}.
 If no measure is specified, "entropy" is the default.
 
 \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
-Gini coefficient, \code{berry} is the inverse of the Herfindahl-Hirschman
+Gini coefficient, \code{simpson} is the complement of the Herfindahl-Hirschman
 Index. You can normalize each of these three measures by setting
 \code{unbiased = TRUE}
 

@@ -1,7 +1,15 @@
+# concstats 0.0.3
+
+* added code coverage for the package.
+* added tests for various functions and group of functions.
+* streamlined some functions
+
+
+---
 # concstats 0.0.2.999
 
-This development version of the ``concstats`` package has been completly
-restructed. The one-step funtion has been recomposed in three main groups and
+This development version of the ``concstats`` package has been completely
+restructured. The one-step function has been recomposed in three main groups and
 the following functions (measures) were added:
 
 * the group wrapper for the concentration/competition measures (comp.R) contains
