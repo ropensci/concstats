@@ -3,25 +3,26 @@
 #' @description A set of different inequality and diversity measures.
 #'
 #' @usage
-#'  inequ(x, unbiased = FALSE, type = c("entropy", "gini", "berry", "palma",
+#'  inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
 #'  "grs", "all"), na.rm = TRUE)
 #'
 #' @param x a numeric vector of non-negative values.
-#' @param unbiased Logical. Argument of the function \code{entropy}, \code{gini},
-#'  and \code{berry} specifying whether or not a finite sample correction should
-#'  be applied.
+#' @param unbiased Logical. Argument of the function \code{entropy},
+#'  \code{gini}, and \code{berry} specifying whether or not a finite sample
+#'   correction should be applied.
 #' @param type a character string of the measure to be calculated, defaults to
 #'  "entropy".
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 #'
 #' @details
-#'  \code{inequ} is a wrapper for the proposed inequality measures \code{entropy},
-#'  \code{gini}, \code{berry}, \code{palma}, \code{grs}, \code{all}.
+#'  \code{inequ} is a wrapper for the proposed inequality measures
+#'  \code{entropy}, \code{gini}, \code{simpson}, \code{palma}, \code{grs},
+#'  \code{all}.
 #'  If no measure is specified, "entropy" is the default.
 #'
 #' \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
-#'  Gini coefficient, \code{berry} is the inverse of the Herfindahl-Hirschman
+#'  Gini coefficient, \code{simpson} is the complement of the Herfindahl-Hirschman
 #'  Index. You can normalize each of these three measures by setting
 #'  \code{unbiased = TRUE}
 #'
@@ -58,14 +59,14 @@
 #' share_inequ <- inequ(share, type = "all")
 #'
 #' @export inequ
-inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "berry",
+inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
                                                 "palma", "grs", "all"),
                   na.rm = TRUE)
 {
   switch(match.arg(type),
          entropy = entropy(x, unbiased = unbiased, na.rm = na.rm),
          gini = gini(x, unbiased = unbiased, na.rm = na.rm),
-         berry = berry(x, unbiased = unbiased, na.rm = na.rm),
+         simpson = simpson(x, unbiased = unbiased, na.rm = na.rm),
          palma = palma(x, na.rm = na.rm),
          grs = grs(x, na.rm = na.rm),
          all = all_inequ(x, na.rm = na.rm))
@@ -80,32 +81,32 @@ inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "berry",
 #'   be excluded or not.
 entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
   k <- sum(x > 0)
-  entropy <- sum(-x/sum(x)*log(x/sum(x), base = 2))
-  if (unbiased == TRUE) entropy <- entropy/log(k, base = 2)
+  entropy <- sum(-x / sum(x) * log(x / sum(x), base = 2))
+  if (unbiased == TRUE) entropy <- entropy / log(k, base = 2)
   return(entropy)
 }
 
@@ -118,33 +119,32 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   be excluded or not.
 gini <- function(x, unbiased = FALSE, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+         'You have provided an object of class:', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
   x <- sort(x)
-  n <- length(x)
-  gini <- 2 * sum(x * 1:n) / (n*sum(x)) - 1 - (1/n)
-  if (unbiased) gini <- n / (n - 1) * gini
+  gini <- 2 * sum(x * 1:length(x)) / (length(x) * sum(x)) - 1 - (1/length(x))
+  if (unbiased) gini <- length(x) / (length(x) - 1) * gini
   return(gini)
 }
 
@@ -155,37 +155,34 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   correction should be applied.The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not.
-berry <- function(x, unbiased = FALSE, na.rm = TRUE)
+simpson <- function(x, unbiased = FALSE, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+         'You have provided an object of class:', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  h <- x/sum(x)
-  h <- h^2
-  h <- sum(h)
-  berry <- 1 - h
-  if (unbiased) berry <- 1 - h/(sum(x/sum(x)))^2
-  return(berry)
+  simpson <- 1 - sum(x ^ 2)
+  if (unbiased) simpson <- 1 - sum(x ^ 2)/(sum(x / sum(x))) ^ 2
+  return(simpson)
 }
 
 #' @export
@@ -195,35 +192,35 @@ berry <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   be excluded or not.
 palma <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+         'You have provided an object of class:', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  x <- sort(x, decreasing = FALSE)
+  x <- sort(x)
   x_cut <-  cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
                 include.lowest = TRUE, labels = FALSE)
   x_bottom <- sum(x[x_cut <= 4])
   x_top <- sum(x[x_cut > 9])
-  palma <- x_top/x_bottom
+  palma <- x_top / x_bottom
   return(palma)
 }
 
@@ -234,50 +231,52 @@ palma <- function(x, na.rm = TRUE)
 #'   be excluded or not.
 grs <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+         'You have provided an object of class:', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
   x <- sort(x, decreasing = TRUE)
-  x <- x/sum(x)
-  top <- x[1]
-  firm <- sum(x > 0)
-  firm2 <- firm^2
-  grs <- sum((firm2*top + 0.3*x^2)/(firm2 + firm*0.3*top*x)*x)
+  grs <- sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
+               (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) * x)
   return(grs)
 }
 
-all_inequ <- function(x, na.rm = TRUE)
-{
+all_inequ <- function(x, na.rm = TRUE) {
+
   invisible(utils::capture.output(
     entropy <- entropy(x, unbiased = FALSE, na.rm = TRUE),
     gini <- gini(x, unbiased = FALSE, na.rm = TRUE),
-    berry <- berry(x, unbiased = FALSE, na.rm = TRUE),
+    simpson <- simpson(x, unbiased = FALSE, na.rm = TRUE),
     palma <- palma(x, na.rm = TRUE),
     grs <- grs(x, na.rm = TRUE)))
-  results_inequ <- data.frame(Measure = c("Entropy", "Gini", "Berry Index",
-                                             "Palma Ratio", "GRS"),
-                              Value = c(entropy, gini, berry, palma, grs))
 
-  return(format(results_inequ, scientific = F, digits = 2, justify = "right"))
+  results_inequ <- data.frame(Measure = c("Entropy", "Gini Index", "Simpson Index",
+                                             "Palma Ratio", "GRS"),
+                              Value = format(c(entropy, gini, simpson, palma,
+                                               grs),
+                                             scientific = FALSE,
+                                             digits = 2,
+                                             justify = "right"))
+
+  return(results_inequ)
 
 }

@@ -2,7 +2,8 @@
 #'
 #' @description a convenience function which calculates a selected set of
 #'  different market structure, inequality and concentration measures more or
-#'  less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio, and others
+#'  less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
+#'  and others
 #'  in a one step procedure to provide a first overview.
 #'
 #' @usage concstats(x, na.rm = TRUE)
@@ -11,9 +12,9 @@
 #'  be excluded or not.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 #'
-#' @details \code{concstats} computes a set of different and selected structural,
-#'  inequality, and concentration measures in a one step procedure, however, all
-#'  measures can be computed individually or in groups.
+#' @details \code{concstats} computes a set of different and selected
+#'  structural, inequality, and concentration measures in a one step procedure,
+#'  however, all measures can be computed individually or in groups.
 #'
 #' @return returns a data frame of calculated measures
 #' .
@@ -33,77 +34,64 @@
 #' @export
 concstats <- function(x, na.rm = TRUE) {
 
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop("'x' must be in decimal format")
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
-  }
-
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-    if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   x <- sort(x, decreasing = TRUE)
-  Firm <- sum(x > 0)
-  Firm
 
-  Nrs_equ <- x/sum(x)
-  Nrs_equ <- Nrs_equ^2
-  Nrs_equ <- sum(Nrs_equ)
-  Nrs_equ <- 1/Nrs_equ
+  firm <- sum(x > 0)
 
-  Top <- sort(x, decreasing = TRUE)
-  Top <- x/sum(x)
-  Top <- Top[1]
-  Top <- sum(Top * 100, na.rm = TRUE)
-  Top
+  nrs_eq <- 1 / sum(x ^ 2)
 
-  Top3 <- x/sum(x)
-  Top3 <- Top3[1:3]
-  Top3 <- sum(Top3 * 100, na.rm = TRUE)
-  Top3
+  top <- x[1] * 100
 
-  Top5 <- x/sum(x)
-  Top5 <- Top5[1:5]
-  Top5 <- sum(Top5 * 100, na.rm = TRUE)
-  Top5
+  top3 <- sum(x[1:3] * 100)
 
-  hhi_1 <- x/sum(x)
-  hhi_2 <- hhi_1^2
-  HHI <- sum(hhi_2)
-  HHI
+  top5 <- sum(x[1:5]) * 100
 
-  Entropy <- sum(-x/sum(x)*log(x/sum(x), base = 2))
-  Entropy <- Entropy/log(Firm, base = 2)
-  Entropy
+  hhi <- sum(x ^ 2)
+
+  entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
+    / log(sum(x > 0), base = 2))
 
   Palma <- as.numeric(stats::na.omit(x))
-  Palma <- sort(x, decreasing = FALSE)
-  Palma_cut <- cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+  Palma <- sort(x)
+  Palma_cut <- cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                    include.lowest = TRUE, labels = FALSE)
   Palma_bottom <- sum(x[Palma_cut <= 4])
   Palma_top <- sum(x[Palma_cut > 9])
-  Palma <- Palma_top/Palma_bottom
-  Palma
+  palma <- Palma_top / Palma_bottom
 
-  results_all <- data.frame(Measures = c("Firms", "Nrs_equivalent", "Top (%)",
-                                       "Top3 (%)", "Top5 (%)", "HHI", "Entropy(RE)",
-                                       "Palma ratio"),
-                        Values = c(Firm, Nrs_equ, Top, Top3, Top5, HHI, Entropy,
-                                   Palma))
 
-  return(format(results_all, scientific = F, digits = 2, justify = "right"))
+  results_all <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
+                                       "Top3 (%)", "Top5 (%)", "HHI",
+                                       "Entropy(RE)", "Palma ratio"),
+                        Value = format(c(firm, nrs_eq, top, top3, top5, hhi,
+                                          entropy, palma),
+                                   scientific = FALSE,
+                                   digits = 2,
+                                   justify = "right"))
+
+  return(results_all)
 
 }

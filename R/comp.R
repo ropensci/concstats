@@ -52,13 +52,13 @@
 #'
 #' @examples
 #' # a vector of market shares
-#' share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+#' x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 #' # the Herfindahl-Hirschman index of the vector
-#' share_hhi <- comp(share, type = "hhi")
+#' shares_hhi <- comp(x, type = "hhi")
 #' # individual measure
-#' share_sten <- sten(share)
+#' shares_sten <- sten(x)
 #' # complete group measures
-#' share_comp <- comp(share, type = "all")
+#' shares_comp <- comp(x, type = "all")
 #'
 #' @export comp
 comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
@@ -66,9 +66,9 @@ comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
 {
   switch(match.arg(type),
          hhi = hhi(x, unbiased = unbiased, na.rm = na.rm),
-         hhi_d = hhi_d(x, unbiased = unbiased, na.rm = na.rm),
+         hhi_d = hhi_d(x, na.rm = na.rm),
          hhi_min = hhi_min(x, na.rm = na.rm),
-         dom = dom(x, unbiased = unbiased, na.rm = na.rm),
+         dom = dom(x, na.rm = na.rm),
          sten = sten(x, na.rm = na.rm),
          all = all_comp(x, na.rm = na.rm))
 }
@@ -82,32 +82,23 @@ comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
 #'   be excluded or not.
 hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check sum of vector. Must sum to 1 or 100
+  if (!(sum(x) == 1 | sum(x) == 100)) {
+    stop("vector does not sum to 1 or 100")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  hhi_1 <- x/sum(x)
-  hhi_2 <- hhi_1^2
-  hhi <- sum(hhi_2)
+  hhi <- sum(x^2)
   if (unbiased == TRUE) hhi <- (hhi - (1/sum(x > 0)))/(1 - (1/sum(x > 0)))
   return(hhi)
 }
@@ -119,31 +110,23 @@ hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   be excluded or not.
 hhi_min <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check sum of vector. Must sum to 1 or 100
+  if (!(sum(x) == 1 | sum(x) == 100)) {
+    stop("vector does not sum to 1 or 100")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  n <- sum(x > 0)
-  hhi_min <- 1/n
+  hhi_min <- 1/sum(x > 0)
   return(hhi_min)
 }
 
@@ -154,36 +137,33 @@ hhi_min <- function(x, na.rm = TRUE)
 #'   correction should be applied.The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-hhi_d <- function(x, unbiased = FALSE, na.rm = TRUE)
+hhi_d <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+   } else {
+    stop('"x" must be in decimal format')
+   }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  hhi_1 <- x/sum(x)
-  hhi_2 <- hhi_1^2
-  hhi <- sum(hhi_2)
-  hhi_d <- 1 - 1/(sum(x > 0)*hhi)
-  if (unbiased) hhi_d <- 1 - 1/(sum(x > 0)*(hhi - (1/(sum(x > 0))))/(1 - (1/(sum(x > 0)))))
+  hhi <- sum(x^2)
+  hhi_d <- 1 - 1/(sum(x > 0) * hhi)
   return(hhi_d)
 }
 
@@ -194,38 +174,35 @@ hhi_d <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   correction should be applied.The default is FALSE.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-dom <- function(x, unbiased = FALSE, na.rm = TRUE)
+dom <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
-  x <- as.numeric(stats::na.omit(x))
-  hhi_1 <- x/sum(x)
-  hhi_2 <- hhi_1^2
-  hhi <- sum(hhi_2)
-  dom <- (hhi_2/hhi)^2
+  hhi_1 <- x^2
+  hhi <- sum(x^2)
+  dom <- (hhi_1/hhi)^2
   dom <- sum(dom)
-  if (unbiased) dom <- sum((hhi_2/((hhi - (1/(sum(x > 0))))/(1 - (1/(sum(
-    x > 0))))))^2)
   return(dom)
 }
 
@@ -236,31 +213,32 @@ dom <- function(x, unbiased = FALSE, na.rm = TRUE)
 #'   be excluded or not.
 sten <- function(x, na.rm = TRUE)
 {
-  x <- replace(x, x == 0, NA)
-
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
+  # check if x is a positive decimal vector
+  if (all(round(x) == 0)) {
+    x
+  } else {
+    stop('"x" must be in decimal format')
+  }
+
+  # check sum of vector. Must sum to 1
+  if (!(sum(x) == 1)) {
+    stop("vector does not sum to 1")
+  }
+
   if (!is.numeric(x)) {
     stop('"x" must be a numeric vector\n',
          'You have provided an object of class: ', class(x)[1])
   }
 
-  if (sum(is.na(x))) {
-    stop('"x" is an empty vector\n',
-         'All values will be 0')
-  }
-
-  if (sum(x == 1)) {
-    stop('"x" is a monopolistic market')
-  }
-  if (!na.rm && any(is.na(x))) return(NA_real_)
   x <- as.numeric(stats::na.omit(x))
   x <- sort(x, decreasing = TRUE)
-  x <- x/sum(x)
+
   sten1 <- x[1]
   sten2 <- x[2]
   sten <- 0.5*(1 - 1*(sten1^2 - sten2^2))
@@ -268,17 +246,21 @@ sten <- function(x, na.rm = TRUE)
   return(sten)
 }
 
-all_comp <- function(x, na.rm = TRUE)
-{
+all_comp <- function(x, na.rm = TRUE) {
+
   invisible(utils::capture.output(
     hhi <- hhi(x, unbiased = FALSE, na.rm = TRUE),
-    hhi_d <- hhi_d(x, unbiased = FALSE, na.rm = TRUE),
+    hhi_d <- hhi_d(x, na.rm = TRUE),
     hhi_min <- hhi_min(x, na.rm = TRUE),
-    dom <- dom(x, unbiased = FALSE, na.rm = TRUE),
+    dom <- dom(x, na.rm = TRUE),
     sten <- sten(x, na.rm = TRUE)))
+
   results_comp <- data.frame(Measure = c("HHI", "HHI(min)", "HHI(dual)",
                                        "Dominance", "Stenbacka(%)"),
-                             Value = c(hhi, hhi_min, hhi_d, dom, sten))
+                             Value = format(c(hhi, hhi_min, hhi_d, dom, sten),
+                                            scientific = FALSE,
+                                            digits = 2,
+                                            justify = "right"))
 
-  return(format(results_comp, scientific = F, digits = 2, justify = "right"))
+  return(results_comp)
 }
