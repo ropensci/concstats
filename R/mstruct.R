@@ -117,7 +117,7 @@ nrs_eq <- function(x, na.rm = TRUE) {
   }
 
   x <- as.numeric(stats::na.omit(x))
-  nrs_eq <- 1/sum(x^2)
+  nrs_eq <- 1 / sum(x^2)
   return(nrs_eq)
 }
 
@@ -235,7 +235,7 @@ all_mstruct <- function(x, na.rm = TRUE) {
     top3 <- top3(x, na.rm = TRUE),
     top5 <- top5(x, na.rm = TRUE)))
   results_struc <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
-                                          "Top3(%)", "Top5(%)"),
+                                          "Top3 (%)", "Top5 (%)"),
                               Value = format(c(firm, nrs_eq, top, top3, top5),
                               scientific = FALSE,
                               digits = 2,

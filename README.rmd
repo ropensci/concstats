@@ -43,14 +43,14 @@ Stars](https://img.shields.io/github/stars/schneiderpy/concstats.svg?style=socia
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
-insight of a given market structure in a particular market. They are
-important to determine public policies and strategic corporate
-decisions. However, in research and in practice the most commonly used
-measure is the Herfindahl Hirschman Index. The goal of the `concstats`
-package is to offer a set of alternative and/or additional measures to
-better determine a given market structure and therefore reduce
-uncertainty with respect to a given market situation. Various functions
-or groups of functions are available to achieve the desired goal.
+insight of a given market structure in a particular market. They are important
+to determine public policies and strategic corporate decisions.
+However, in research and in practice the most commonly used measure is the
+Herfindahl Hirschman Index. The goal of the `concstats` package is to offer a
+set of alternative and/or additional measures to better determine a given market structure and therefore reduce uncertainty with respect to a given market
+situation.
+Various functions or groups of functions are available to achieve the desired
+goal.
 
 \-`concstats` calculates a set of preselected concentration and
 diversity measures in a one-step procedure.  
