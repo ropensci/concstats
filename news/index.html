@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -61,14 +61,65 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.0.3" id="concstats-003">concstats 0.0.3<a class="anchor" aria-label="anchor" href="#concstats-003"></a></h2>
-<ul><li>added code coverage for the package.</li>
-<li>added tests for various functions and group of functions.</li>
-<li>streamlined some functions</li>
+<h2 class="page-header" data-toc-text="0.1.0" id="concstats-010">concstats 0.1.0<a class="anchor" aria-label="anchor" href="#concstats-010"></a></h2>
+<p>This version of <code>concstats</code> has been updated:</p>
+<ul><li><p>added code coverage for the package.</p></li>
+<li><p>added <code>tests</code> for various functions and group of functions.</p></li>
+</ul><p>Most of the functions were streamlined with less lines of code.</p>
+</div>
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.0.2.999" id="concstats-002999">concstats 0.0.2.999<a class="anchor" aria-label="anchor" href="#concstats-002999"></a></h2>
+<p>This development version of the <code>concstats</code> package has been completely restructured. The one-step function has been recomposed in three main groups and the following functions (measures) were added:</p>
+<ul><li>
+<p>the group wrapper for the concentration/competition measures (comp.R) contains the following functions:</p>
+<ul><li><code>hhi</code></li>
+<li><code>hhi_d</code></li>
+<li><code>hhi_min</code></li>
+<li><code>dom</code></li>
+<li><code>sten</code></li>
+<li>
+<code>all_comp</code>
+<ul><li>calculates all the measures of the wrapper in a one-step procedure</li>
+</ul></li>
+</ul></li>
+<li>
+<p>the inequality wrapper (inequ.R) added the following functions:</p>
+<ul><li><code>entropy</code></li>
+<li><code>gini</code></li>
+<li><code>berry</code></li>
+<li><code>palma</code></li>
+<li><code>grs</code></li>
+<li>
+<code>all_inequ</code>
+<ul><li>calculates all the measures of the wrapper in a one-step procedure</li>
+</ul></li>
+</ul></li>
+<li>
+<p>the market structure wrapper (mstruct.R) contains the following functions:</p>
+<ul><li><code>firm</code></li>
+<li><code>nrs_eq</code></li>
+<li><code>top</code></li>
+<li><code>top3</code></li>
+<li><code>top5</code></li>
+<li>
+<code>all_mstruct</code>
+<ul><li>calculates all the measures of the wrapper in a one-step procedure</li>
+</ul></li>
+</ul></li>
+<li>
+<p><code>concstats</code></p>
+<ul><li>calculates a set of eight preselected concentration and diversity measures in a one-step procedure</li>
+</ul></li>
+<li><p>Updated <code>Description</code> and <code>Readme</code> file</p></li>
+<li><p>Added <code>vignettes</code></p></li>
+<li><p>Added <code>web page</code></p></li>
+<li><p>Added <code>creditcoops</code>, a small data set</p></li>
+<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.1" id="concstats-001">concstats 0.0.1<a class="anchor" aria-label="anchor" href="#concstats-001"></a></h2>
-</div>
+<ul><li>initial version</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
