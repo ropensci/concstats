@@ -44,7 +44,7 @@ test_that("firm returns number of firms ", {
 
 ## nrs_eq
 
-test_that("nrs_equ function operates properly", {
+test_that("nrs_eq function operates properly", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4, -0.1)
@@ -60,7 +60,7 @@ test_that("nrs_equ function operates properly", {
                label = "vector does not sum to 1 or 100")
 })
 
-test_that("nrs_equ returns numbers equivalent", {
+test_that("nrs_eq returns numbers equivalent", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
 

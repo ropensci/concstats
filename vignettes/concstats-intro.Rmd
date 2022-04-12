@@ -140,7 +140,7 @@ A single function which calculates a set of eight preselected measures in a
 one step procedure for a first overview of a given market structure.
 
 ```{r examples-concstats, echo=TRUE}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+test_share <- c(0.2, 0.3, 0.5)
 test_share_conc <- concstats(test_share)
 ```
 
@@ -176,8 +176,9 @@ Now, we will filter out data for the year 2016.
 coops_2016 <- creditcoops %>% dplyr::filter(year == 2016)
 head(coops_2016)
 
-coops_2016 <-  coops_2016[["total_loans"]]
-# atomic vector of total loans
+coops_2016 <-  coops_2016[["total_loans"]] # atomic vector of total loans
+coops_2016 <- coops_2016/sum(coops_2016)   # convert the vector in decimal form
+                                           # of market shares
 
 # We then use the new object `coops_2016` to calculate the market structure measures
 # as a group in a one-step-procedure:
