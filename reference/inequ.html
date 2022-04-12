@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -66,14 +66,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">inequ</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"entropy"</span>, <span class="st">"gini"</span>, <span class="st">"berry"</span>, <span class="st">"palma"</span>,
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">inequ</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"entropy"</span>, <span class="st">"gini"</span>, <span class="st">"simpson"</span>, <span class="st">"palma"</span>,
  <span class="st">"grs"</span>, <span class="st">"all"</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu">entropy</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu">gini</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu">berry</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">simpson</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu">palma</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -100,11 +100,12 @@ be excluded or not.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p><code>inequ</code> is a wrapper for the proposed inequality measures <code>entropy</code>,
-<code>gini</code>, <code>berry</code>, <code>palma</code>, <code>grs</code>, <code>all</code>.
+    <p><code>inequ</code> is a wrapper for the proposed inequality measures
+<code>entropy</code>, <code>gini</code>, <code>simpson</code>, <code>palma</code>, <code>grs</code>,
+<code>all</code>.
 If no measure is specified, "entropy" is the default.</p>
 <p><code>entropy</code> returns the (Shannon) Entropy, <code>gini</code> is the
-Gini coefficient, <code>berry</code> is the inverse of the Herfindahl-Hirschman
+Gini coefficient, <code>simpson</code> is the complement of the Herfindahl-Hirschman
 Index. You can normalize each of these three measures by setting
 <code>unbiased = TRUE</code></p>
 <p><code>Palma</code> measures the ratio of inequality (used with income inequality)

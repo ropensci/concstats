@@ -50,7 +50,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -92,7 +92,7 @@
       <h1 data-toc-skip>Introduction to Concstats</h1>
                         <h4 data-toc-skip class="author">Andreas Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-01-31</h4>
+            <h4 data-toc-skip class="date">2022-04-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -188,7 +188,7 @@
 </h3>
 <p>A single function which calculates a set of eight preselected measures in a one step procedure for a first overview of a given market structure.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span>
 <span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats.html">concstats</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
@@ -228,8 +228,9 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       5 2016     96<span style="text-decoration: underline;">999</span>617      5            18.4</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       6 2016   <span style="text-decoration: underline;">2</span>550<span style="text-decoration: underline;">869</span>607      6            21.7</span>
 
-<span class="va">coops_2016</span> <span class="op">&lt;-</span>  <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span>
-<span class="co"># atomic vector of total loans</span>
+<span class="va">coops_2016</span> <span class="op">&lt;-</span>  <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span>
+<span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>   <span class="co"># convert the vector in decimal form</span>
+                                           <span class="co"># of market shares</span>
 
 <span class="co"># We then use the new object `coops_2016` to calculate the market structure measures</span>
 <span class="co"># as a group in a one-step-procedure:</span>
@@ -248,7 +249,7 @@ Market structure 2016
 Measure
 </th>
 <th style="text-align:right;">
-value
+Value
 </th>
 </tr></thead>
 <tbody>
@@ -257,7 +258,7 @@ value
 Firms
 </td>
 <td style="text-align:right;">
-22.00
+22.0
 </td>
 </tr>
 <tr>
@@ -265,7 +266,7 @@ Firms
 Nrs_equivalent
 </td>
 <td style="text-align:right;">
-8.22
+8.2
 </td>
 </tr>
 <tr>
@@ -273,7 +274,7 @@ Nrs_equivalent
 Top (%)
 </td>
 <td style="text-align:right;">
-22.07
+22.1
 </td>
 </tr>
 <tr>
@@ -281,7 +282,7 @@ Top (%)
 Top3(%)
 </td>
 <td style="text-align:right;">
-54.98
+55.0
 </td>
 </tr>
 <tr>
@@ -289,7 +290,7 @@ Top3(%)
 Top5(%)
 </td>
 <td style="text-align:right;">
-68.77
+68.8
 </td>
 </tr>
 </tbody>
