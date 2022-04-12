@@ -1,13 +1,15 @@
-# concstats 0.0.3
+concstats 0.1.0
+================================================================
+This version of ``concstats`` has been updated:
 
-* added code coverage for the package.
-* added tests for various functions and group of functions.
-* streamlined some functions
+- added code coverage for the package.
 
+- added `tests` for various functions and group of functions.
 
----
-# concstats 0.0.2.999
+Most of the functions were streamlined with less lines of code.
 
+concstats 0.0.2.999
+=================================================
 This development version of the ``concstats`` package has been completely
 restructured. The one-step function has been recomposed in three main groups and
 the following functions (measures) were added:
@@ -54,5 +56,6 @@ the following functions:
 
 * Added a `NEWS.md` file to track changes to the package.
  
----
-# concstats 0.0.1
+concstats 0.0.1
+========================================================================
+- initial version 

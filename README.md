@@ -1,5 +1,5 @@
 
-# concstats <img src='man/figures/logo.png' align="right" height="150" />
+# concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
 ## Introduction
 
@@ -33,7 +33,7 @@ or groups of functions are available to achieve the desired goal.
 diversity measures in a one-step procedure.  
 -`mstruct` offers market structure measures, e.g. the sum of Top3 or
 Top5 market shares.  
--`comp` is a wrapper for concentration measures, e.g.the Herfindahl
+-`comp` is a wrapper for concentration measures, e.g. the Herfindahl
 Hirschman Index.  
 -`inequ` offers diversity or inequality measures, e.g. the Entropy or
 the Palma ratio.

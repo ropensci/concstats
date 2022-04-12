@@ -1,7 +1,7 @@
 Type: Package
 Package: concstats
 Title: Market Structure, Concentration and Inequality Measures
-Version: 0.0.3
+Version: 0.1.0
 Authors@R: 
     person(given = "Andreas",
            family = "Schneider",
