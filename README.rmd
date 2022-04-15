@@ -82,16 +82,15 @@ a one-step procedure.
 
 ### `mstruct`
 
-is a wrapper to calculate different structural measures. Within this
-group are measures like the number of firms, numbers equivalent,
-cumulative Top 3 and Top 5 market share. The measures might be
-calculated as a group or individually.
+is a wrapper to calculate different structural measures. Within this group are
+measures like the number of firms, numbers equivalent, cumulative Top 3 and
+Top 5 market share. The measures might be calculated as a group or individually.
 
 ### `comp`
 
-is a group wrapper to calculate different concentration measures. Within
-this group are measures like the Herfindahl-Hirschman index (HHI), the
-dual of the HHI, the Dominance or the Stenbacka index.
+is a group wrapper to calculate different concentration measures. Within this
+group are measures like the Herfindahl-Hirschman index (HHI), the dual of the
+HHI, the Dominance or the Stenbacka index.
 
 ### `inequ`
 
@@ -145,12 +144,12 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
-3.  Garcia Alba Idunate, P. (1994). Un Indice de dominacia para el
+3.  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
     analisis de la estructura de los mercados. El Trimestre Economico,
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
     concentration, Journal of Business Economics and Management, 10(3),
-    191-198. [DOI](https://doi.org/10.3846/1611-1699.2009.10.191-198)
+    191-198. <doi:10.3846/1611-1699.2009.10.191-198>.
 5.  Palma, J. G. (2006). Globalizing Inequality: 'Centrifugal' and
     'Centripetal' Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The
