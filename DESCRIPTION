@@ -21,8 +21,7 @@ BugReports: https://github.com/schneiderpy/concstats/issues
 Depends:
     R (>= 2.10)
 Imports:
-    dplyr (>= 1.0.7),
-    readr,
+    dplyr (>= 1.0.7)
 Suggests: 
     rmarkdown,
     knitr,
