@@ -92,7 +92,7 @@
       <h1 data-toc-skip>Introduction to Concstats</h1>
                         <h4 data-toc-skip class="author">Andreas Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-04-13</h4>
+            <h4 data-toc-skip class="date">2022-04-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -195,7 +195,7 @@
 <div class="section level2">
 <h2 id="visualization">Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
 </h2>
-<p>The scope of the package is to calculate market structure and concentration measures to get a quick and more informed overview of a given market situation. However, it is good practice to visualize your data in an exploratory step or in reporting your results. The package <code>concstats</code> works fine with other EDA or data visualization packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>, <a href="https://CRAN.R-project.org/package=DataExplorer" class="external-link"><code>dataexplorer</code></a>, <a href="https://CRAN.R-project.org/package=kableExtra" class="external-link"><code>kableExtra</code></a> or <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link"><code>ggplot2</code></a> to name a view.</p>
+<p>The scope of the package is to calculate market structure and concentration measures to get a quick and more informed overview of a given market situation. However, it is good practice to visualize your data in an exploratory step or in reporting your results. The package <code>concstats</code> works fine with other EDA or data visualization packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>, <a href="https://CRAN.R-project.org/package=DataExplorer" class="external-link"><code>dataexplorer</code></a>, <a href="https://CRAN.R-project.org/package=kableExtra" class="external-link"><code>kableExtra</code></a> or <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link"><code>ggplot2</code></a> to name a few.</p>
 <p>Some examples how you can accomplish this. Let us assume one would like to use the group measure for e.g. market structure, and keep the resulting table. We can refine the table using <code>kableExtra</code> which works nice with <code>knitr</code>.</p>
 <p>This time, we will use our <code>creditcoops</code> data set, which comes with the package.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
