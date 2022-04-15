@@ -46,7 +46,7 @@ test_that("entropy returns the entropy measure ", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
 
-  expect_equal(entropy(x), sum(-x/sum(x) * log(x/sum(x), base = 2)))
+  expect_equal(entropy(x), sum(-x / sum(x) * log(x / sum(x), base = 2)))
 })
 
 test_that("entropy returns the unbiased entropy measure ", {
@@ -54,7 +54,7 @@ test_that("entropy returns the unbiased entropy measure ", {
   x <- c(0.2, 0.3, 0.4, 0.1)
 
   expect_equal(entropy(x, unbiased = TRUE),
-               (sum(-x/sum(x) * log(x/sum(x), base = 2))
+               (sum(-x / sum(x) * log(x / sum(x), base = 2))
                 / log(sum(x > 0), base = 2)))
 })
 
@@ -81,8 +81,8 @@ test_that("gini returns the gini measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
 
-  expect_equal(gini(x), 2 * sum(x * 1:length(x)
-                                / length(x) * sum(x)) - 1 - (1/length(x)))
+  expect_equal(gini(x), 2 * sum(x * seq_len(x)
+                                / length(x) * sum(x)) - 1 - (1 / length(x)))
 })
 
 test_that("gini returns the unbiased gini measure", {
@@ -90,8 +90,8 @@ test_that("gini returns the unbiased gini measure", {
   x <- c(0.1, 0.2, 0.3, 0.4)
 
   expect_equal(gini(x, unbiased = TRUE), length(x) / (length(x) - 1) *
-                 (2 * sum(x * 1:length(x)
-                                / length(x) * sum(x)) - 1 - (1/length(x))))
+                 (2 * sum(x * seq_len(x)
+                                / length(x) * sum(x)) - 1 - (1 / length(x))))
 })
 
 
@@ -116,7 +116,7 @@ test_that("berry returns the gini measure", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
 
-  expect_equal(simpson(x),1 - sum(x^2))
+  expect_equal(simpson(x), 1 - sum(x ^ 2))
 })
 
 ## palma
@@ -144,10 +144,10 @@ test_that("palma returns the alternative palma inequality measure", {
 
   expect_equal(palma(x),
                sum(x
-                   [cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+                   [cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                         include.lowest = TRUE, labels = FALSE) > 9]) /
                  sum(x
-                     [cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+                     [cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                           include.lowest = TRUE, labels = FALSE) <= 4]))
 })
 
@@ -175,7 +175,8 @@ test_that("grs returns the alternative grs measure", {
   x <- c(0.4, 0.3, 0.2, 0.1)
 
   expect_equal(grs(x), sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
-                             (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) * x))
+                             (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) *
+                             x))
 })
 
 test_that("all_inequ returns a data frame", {

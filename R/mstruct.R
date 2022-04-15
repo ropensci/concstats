@@ -24,7 +24,7 @@
 #' @return returns the calculated measure
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to total share of individual firms/units.The sum of the vector should sum up
-#'  to 1. You can also use sales figures to compute the respective measure.
+#'  to 1.
 #'
 #' @seealso {\code{\link{concstats}}, \code{\link{comp}}, \code{\link{inequ}}}
 #'
@@ -117,7 +117,7 @@ nrs_eq <- function(x, na.rm = TRUE) {
   }
 
   x <- as.numeric(stats::na.omit(x))
-  nrs_eq <- 1 / sum(x^2)
+  nrs_eq <- 1 / sum(x ^ 2)
   return(nrs_eq)
 }
 
@@ -226,6 +226,11 @@ top5 <- function(x, na.rm = TRUE) {
   return(top5)
 }
 
+#' @export
+#' @rdname mstruct
+#' @param x A non-negative numeric vector.
+#' @param na.rm A logical vector that indicates whether \code{NA} values should
+#'   be excluded or not.
 all_mstruct <- function(x, na.rm = TRUE) {
 
   invisible(utils::capture.output(

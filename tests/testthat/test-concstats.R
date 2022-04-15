@@ -76,10 +76,10 @@ test_that("palma returns the alternative palma inequality measure", {
 
   expect_equal(palma(x),
                sum(x
-                   [cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+                   [cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                         include.lowest = TRUE, labels = FALSE) > 9]) /
                  sum(x
-                     [cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+                     [cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                           include.lowest = TRUE, labels = FALSE) <= 4]))
 })
 

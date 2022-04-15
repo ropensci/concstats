@@ -64,7 +64,7 @@ test_that("nrs_eq returns numbers equivalent", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
 
-  expect_equal(nrs_eq(x), 1/sum(x^2))
+  expect_equal(nrs_eq(x), 1 / sum(x ^ 2))
 })
 
 ## top

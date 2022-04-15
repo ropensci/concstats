@@ -1,5 +1,6 @@
 #' @title Creditcoops
-#' @description dataset with 22 paired paraguayan credit cooperatives (2016, 2018)
+#' @description data set with 22 paired Paraguayan credit cooperatives
+#'  (2016, 2018)
 #' @format A data frame with 44 rows and 5 variables:
 #' \describe{
 #'   \item{\code{coop_id}}{double, ID of the credit cooperative}
@@ -11,7 +12,8 @@
 #'}
 #' @importFrom dplyr "%>%" mutate filter
 #' @importFrom utils data head
-#' @source \url{http://www.incoop.gov.py/v2}
+#' @importFrom readr read_csv
+#' @source \url{http://www.incoop.gov.py/v2/}
 #' @author Andreas Schneider
 #'
 #' @note real names of the cooperatives have been purposely omitted, but are

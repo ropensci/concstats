@@ -3,11 +3,10 @@
 #' @description a convenience function which calculates a selected set of
 #'  different market structure, inequality and concentration measures more or
 #'  less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
-#'  and others
-#'  in a one step procedure to provide a first overview.
+#'  and others in a one step procedure to provide a first overview.
 #'
 #' @usage concstats(x, na.rm = TRUE)
-#' @param x a numeric vector.
+#' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
@@ -19,8 +18,7 @@
 #' @return returns a data frame of calculated measures
 #' .
 #' @note the vector of market shares should be in a decimal form corresponding
-#'  total share of individual firms/units.The vector should sum up to 1.
-#'  You can also use sales figures to compute the respective measure.
+#'  total share of individual firms/units. The vector should sum up to 1.
 #'
 #' @seealso {\code{\link{mstruct}}, \code{\link{comp}}, \code{\link{inequ}}}
 #'
@@ -74,13 +72,13 @@ concstats <- function(x, na.rm = TRUE) {
   entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
     / log(sum(x > 0), base = 2))
 
-  Palma <- as.numeric(stats::na.omit(x))
-  Palma <- sort(x)
-  Palma_cut <- cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
+  palma <- as.numeric(stats::na.omit(x))
+  palma <- sort(x)
+  palma_cut <- cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                    include.lowest = TRUE, labels = FALSE)
-  Palma_bottom <- sum(x[Palma_cut <= 4])
-  Palma_top <- sum(x[Palma_cut > 9])
-  palma <- Palma_top / Palma_bottom
+  palma_bottom <- sum(x[palma_cut <= 4])
+  palma_top <- sum(x[palma_cut > 9])
+  palma <- palma_top / palma_bottom
 
 
   results_all <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",

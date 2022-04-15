@@ -8,7 +8,7 @@
 #'
 #' @param x A numeric vector of non-negative values.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'  correction should be applied.The default is FALSE.
+#'  correction should be applied. The default is FALSE.
 #
 #' @param type A character string of the measure to be calculated,
 #'  can be abbreviated with the first letter. Defaults to "hhi".
@@ -33,22 +33,22 @@
 #'
 #' @return prints the calculated measure
 #' @note the vector of market shares should be in a decimal form corresponding
-#'  to total share of individual firms/units.The sum of the vector should sum up
-#'  to 1. You can also use sales figures to compute the respective measure.
-#'
+#'  to total share of individual firms/units. The sum of the vector should sum
+#'  up to 1. You can also use sales figures to compute the respective measure.
 #' @references
-#'  Chang, E. J., Guerra, S. M., de Souza Peñaloza, R. A. & Tabak, B. M. (2005)
+#'  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M. (2005)
 #'  Measuring Banking concentration: the Brazilian case. In Financial Stability
 #'  Report. Brasilia: Banco Central do Brasil, 4: 109-129
 #' @references
-#'  García Alba Iduñate, P. (1994). Un índice de dominación para el análisis de
-#'  la estructura de los mercados. El Trimestre Económico, 61: 499-524
+#'  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+#'  analisis de la estructura de los mercados. El Trimestre Economico,
+#'  61: 499-524.
 #' @references
 #'  Melnik, A., Shy, O. & Stenbacka, R. (2008). Assessing market dominance.
 #'  Journal of Economic Behavior & Organization 68: 63-72
 #'
-#' @seealso {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{inequ}}}
-#'
+#' @seealso {\code{\link{concstats}}, \code{\link{mstruct}},
+#'  \code{\link{inequ}}}
 #'
 #' @examples
 #' # a vector of market shares
@@ -62,8 +62,7 @@
 #'
 #' @export comp
 comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
-                                               "sten", "all"), na.rm = TRUE)
-{
+                                               "sten", "all"), na.rm = TRUE) {
   switch(match.arg(type),
          hhi = hhi(x, unbiased = unbiased, na.rm = na.rm),
          hhi_d = hhi_d(x, na.rm = na.rm),
@@ -77,12 +76,12 @@ comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
 #' @rdname comp
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
-{
-  if (na.rm == TRUE) {
+hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
+
+    if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
 
@@ -94,12 +93,12 @@ hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   hhi <- sum(x^2)
-  if (unbiased == TRUE) hhi <- (hhi - (1/sum(x > 0)))/(1 - (1/sum(x > 0)))
+  if (unbiased == TRUE) hhi <- (hhi - (1 / sum(x > 0))) / (1 - (1 / sum(x > 0)))
   return(hhi)
 }
 
@@ -108,8 +107,8 @@ hhi <- function(x, unbiased = FALSE, na.rm = TRUE)
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-hhi_min <- function(x, na.rm = TRUE)
-{
+hhi_min <- function(x, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -122,11 +121,11 @@ hhi_min <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
-  hhi_min <- 1/sum(x > 0)
+  hhi_min <- 1 / sum(x > 0)
   return(hhi_min)
 }
 
@@ -134,11 +133,11 @@ hhi_min <- function(x, na.rm = TRUE)
 #' @rdname comp
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-hhi_d <- function(x, na.rm = TRUE)
-{
+hhi_d <- function(x, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -149,7 +148,7 @@ hhi_d <- function(x, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
    } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
    }
 
   # check sum of vector. Must sum to 1
@@ -158,12 +157,12 @@ hhi_d <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
-  hhi <- sum(x^2)
-  hhi_d <- 1 - 1/(sum(x > 0) * hhi)
+  hhi <- sum(x ^ 2)
+  hhi_d <- 1 - 1 / (sum(x > 0) * hhi)
   return(hhi_d)
 }
 
@@ -171,11 +170,11 @@ hhi_d <- function(x, na.rm = TRUE)
 #' @rdname comp
 #' @param x A non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-dom <- function(x, na.rm = TRUE)
-{
+dom <- function(x, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -186,7 +185,7 @@ dom <- function(x, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -195,13 +194,13 @@ dom <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
-  hhi_1 <- x^2
-  hhi <- sum(x^2)
-  dom <- (hhi_1/hhi)^2
+  hhi_1 <- x ^ 2
+  hhi <- sum(x ^ 2)
+  dom <- (hhi_1 / hhi) ^ 2
   dom <- sum(dom)
   return(dom)
 }
@@ -211,8 +210,8 @@ dom <- function(x, na.rm = TRUE)
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-sten <- function(x, na.rm = TRUE)
-{
+sten <- function(x, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -223,7 +222,7 @@ sten <- function(x, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -232,8 +231,8 @@ sten <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   x <- as.numeric(stats::na.omit(x))
@@ -241,11 +240,16 @@ sten <- function(x, na.rm = TRUE)
 
   sten1 <- x[1]
   sten2 <- x[2]
-  sten <- 0.5*(1 - 1*(sten1^2 - sten2^2))
+  sten <- 0.5 * (1 - 1 * (sten1 ^ 2 - sten2 ^ 2))
   sten <- if (sum(sten < 1) || sum(sten == 1)) (sten * 100)
   return(sten)
 }
 
+#' @export
+#' @rdname comp
+#' @param x A non-negative numeric vector.
+#' @param na.rm A logical vector that indicates whether \code{NA} values should
+#'   be excluded or not.
 all_comp <- function(x, na.rm = TRUE) {
 
   invisible(utils::capture.output(

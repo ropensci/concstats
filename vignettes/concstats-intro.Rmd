@@ -150,7 +150,7 @@ measures to get a quick and more informed overview of a given market situation.
 However, it is good practice to visualize your data in an exploratory step or in
 reporting your results. The package ```concstats``` works fine with other EDA or 
 data visualization packages e.g. [```overviewR```](https://CRAN.R-project.org/package=overviewR),
-[```dataexplorer```](https://CRAN.R-project.org/package=DataExplorer), [```kableExtra```](https://CRAN.R-project.org/package=kableExtra) or [```ggplot2```](https://CRAN.R-project.org/package=ggplot2) to name a view.
+[```dataexplorer```](https://CRAN.R-project.org/package=DataExplorer), [```kableExtra```](https://CRAN.R-project.org/package=kableExtra) or [```ggplot2```](https://CRAN.R-project.org/package=ggplot2) to name a few.
 
 Some examples how you can accomplish this.
 Let us assume one would like to use the group measure for e.g. market structure,

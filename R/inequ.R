@@ -22,9 +22,9 @@
 #'  If no measure is specified, "entropy" is the default.
 #'
 #' \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
-#'  Gini coefficient, \code{simpson} is the complement of the Herfindahl-Hirschman
-#'  Index. You can normalize each of these three measures by setting
-#'  \code{unbiased = TRUE}
+#'  Gini coefficient, \code{simpson} is the complement of the
+#'  Herfindahl-Hirschman Index. You can normalize each of these three measures
+#'  by setting \code{unbiased = TRUE}
 #'
 #' \code{Palma} measures the ratio of inequality (used with income inequality)
 #'  of the top 10 percent to the bottom 40 percent. \code{grs} is an alternative
@@ -44,7 +44,7 @@
 #'  Washington, DC.
 #' @references R. Ginevicius and S. Cirba (2009). Additive measurement of
 #'  market concentration, Journal of Business Economics and Management,
-#'   10(3), 191-198. \url{https://doi.org/10.3846/1611-1699.2009.10.191-198}.
+#'   10(3), 191-198. <doi:10.3846/1611-1699.2009.10.191-198>.
 #'
 #' @seealso {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}
 #'
@@ -61,8 +61,8 @@
 #' @export inequ
 inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
                                                 "palma", "grs", "all"),
-                  na.rm = TRUE)
-{
+                  na.rm = TRUE) {
+
   switch(match.arg(type),
          entropy = entropy(x, unbiased = unbiased, na.rm = na.rm),
          gini = gini(x, unbiased = unbiased, na.rm = na.rm),
@@ -76,11 +76,11 @@ inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
-{
+entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -91,7 +91,7 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -100,8 +100,8 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class: ', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   k <- sum(x > 0)
@@ -114,11 +114,11 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE)
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-gini <- function(x, unbiased = FALSE, na.rm = TRUE)
-{
+gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -129,7 +129,7 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -138,12 +138,12 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class:', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   x <- sort(x)
-  gini <- 2 * sum(x * 1:length(x)) / (length(x) * sum(x)) - 1 - (1/length(x))
+  gini <- 2 * sum(x * seq_len(x)) / (length(x) * sum(x)) - 1 - (1 / length(x))
   if (unbiased) gini <- length(x) / (length(x) - 1) * gini
   return(gini)
 }
@@ -152,11 +152,11 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE)
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finit sample
-#'   correction should be applied.The default is FALSE.
+#'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not.
-simpson <- function(x, unbiased = FALSE, na.rm = TRUE)
-{
+simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -167,7 +167,7 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -176,12 +176,12 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class:', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   simpson <- 1 - sum(x ^ 2)
-  if (unbiased) simpson <- 1 - sum(x ^ 2)/(sum(x / sum(x))) ^ 2
+  if (unbiased) simpson <- 1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2
   return(simpson)
 }
 
@@ -190,8 +190,7 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE)
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-palma <- function(x, na.rm = TRUE)
-{
+palma <- function(x, na.rm = TRUE) {
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -202,7 +201,7 @@ palma <- function(x, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -211,12 +210,12 @@ palma <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class:', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   x <- sort(x)
-  x_cut <-  cut(x, stats::quantile(x, probs = seq(0,1, 0.1)),
+  x_cut <-  cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                 include.lowest = TRUE, labels = FALSE)
   x_bottom <- sum(x[x_cut <= 4])
   x_top <- sum(x[x_cut > 9])
@@ -229,8 +228,8 @@ palma <- function(x, na.rm = TRUE)
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-grs <- function(x, na.rm = TRUE)
-{
+grs <- function(x, na.rm = TRUE) {
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -241,7 +240,7 @@ grs <- function(x, na.rm = TRUE)
   if (all(round(x) == 0)) {
     x
   } else {
-    stop('"x" must be in decimal format')
+    stop("'x' must be in decimal format")
   }
 
   # check sum of vector. Must sum to 1
@@ -250,8 +249,8 @@ grs <- function(x, na.rm = TRUE)
   }
 
   if (!is.numeric(x)) {
-    stop('"x" must be a numeric vector\n',
-         'You have provided an object of class:', class(x)[1])
+    stop("'x' must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
 
   x <- sort(x, decreasing = TRUE)
@@ -260,6 +259,11 @@ grs <- function(x, na.rm = TRUE)
   return(grs)
 }
 
+#' @export
+#' @rdname inequ
+#' @param x a non-negative numeric vector.
+#' @param na.rm a logical vector that indicates whether \code{NA} values should
+#'   be excluded or not.
 all_inequ <- function(x, na.rm = TRUE) {
 
   invisible(utils::capture.output(
@@ -269,8 +273,9 @@ all_inequ <- function(x, na.rm = TRUE) {
     palma <- palma(x, na.rm = TRUE),
     grs <- grs(x, na.rm = TRUE)))
 
-  results_inequ <- data.frame(Measure = c("Entropy", "Gini Index", "Simpson Index",
-                                             "Palma Ratio", "GRS"),
+  results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
+                                          "Simpson Index", "Palma Ratio",
+                                          "GRS"),
                               Value = format(c(entropy, gini, simpson, palma,
                                                grs),
                                              scientific = FALSE,
