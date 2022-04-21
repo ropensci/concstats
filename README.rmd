@@ -27,6 +27,8 @@ lapply(pkgs, library, character.only = TRUE)
 
 # concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
+#  Market Structure, Concentration and Inequality Measures
+
 ## Introduction
 
 <!-- badges: start -->
@@ -48,7 +50,8 @@ insight of a given market structure in a particular market. They are important
 to determine public policies and strategic corporate decisions.
 However, in research and in practice the most commonly used measure is the
 Herfindahl Hirschman Index. The goal of the `concstats` package is to offer a
-set of alternative and/or additional measures to better determine a given market structure and therefore reduce uncertainty with respect to a given market
+set of alternative and/or additional measures to better determine a given market
+structure and therefore reduce uncertainty with respect to a given market
 situation.
 Various functions or groups of functions are available to achieve the desired
 goal.
@@ -149,7 +152,7 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
     concentration, Journal of Business Economics and Management, 10(3),
-    191-198. <doi:10.3846/1611-1699.2009.10.191-198>.
+    191-198. \doi{10.3846/1611-1699.2009.10.191-198}
 5.  Palma, J. G. (2006). Globalizing Inequality: 'Centrifugal' and
     'Centripetal' Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The

@@ -1,6 +1,8 @@
 
 # concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
+# Market Structure, Concentration and Inequality Measures
+
 ## Introduction
 
 <!-- badges: start -->
@@ -122,12 +124,12 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
-3.  Garcia Alba Idunate, P. (1994). Un Indice de dominacia para el
+3.  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
     analisis de la estructura de los mercados. El Trimestre Economico,
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
     concentration, Journal of Business Economics and Management, 10(3),
-    191-198. <doi:10.3846/1611-1699.2009.10.191-198>.
+    191-198.
 5.  Palma, J. G. (2006). Globalizing Inequality: ‘Centrifugal’ and
     ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The

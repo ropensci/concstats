@@ -16,12 +16,14 @@ Description: Based on individual market shares of all participants in a
     resulting vector in table format should help practitioners make more
     informed decisions.
 License: MIT + file LICENSE
-URL: https://github.com/schneiderpy/concstats
+URL: https://github.com/schneiderpy/concstats,
+    https//schneiderpy.github.io/constats (website)
 BugReports: https://github.com/schneiderpy/concstats/issues
 Depends:
     R (>= 2.10)
 Imports:
-    dplyr (>= 1.0.7)
+    dplyr (>= 1.0.7),
+    readr
 Suggests: 
     rmarkdown,
     knitr,
