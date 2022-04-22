@@ -18,7 +18,7 @@
 #' @return returns a data frame of calculated measures
 #' .
 #' @note the vector of market shares should be in a decimal form corresponding
-#'  total share of individual firms/units. The vector should sum up to 1.
+#'  to the total share of individual firms/units. The vector should sum up to 1.
 #'
 #' @seealso {\code{\link{mstruct}}, \code{\link{comp}}, \code{\link{inequ}}}
 #'

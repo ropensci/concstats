@@ -7,6 +7,7 @@
 \alias{simpson}
 \alias{palma}
 \alias{grs}
+\alias{all_inequ}
 \title{Inequality and Diversity Measures}
 \usage{
 inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
@@ -21,12 +22,14 @@ simpson(x, unbiased = FALSE, na.rm = TRUE)
 palma(x, na.rm = TRUE)
 
 grs(x, na.rm = TRUE)
+
+all_inequ(x, na.rm = TRUE)
 }
 \arguments{
 \item{x}{a non-negative numeric vector.}
 
 \item{unbiased}{Logical. Argument specifying whether or not a finit sample
-correction should be applied.The default is FALSE.}
+correction should be applied. The default is FALSE.}
 
 \item{type}{a character string of the measure to be calculated, defaults to
 "entropy".}
@@ -47,9 +50,9 @@ A set of different inequality and diversity measures.
 If no measure is specified, "entropy" is the default.
 
 \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
-Gini coefficient, \code{simpson} is the complement of the Herfindahl-Hirschman
-Index. You can normalize each of these three measures by setting
-\code{unbiased = TRUE}
+Gini coefficient, \code{simpson} is the complement of the
+Herfindahl-Hirschman Index. You can normalize each of these three measures
+by setting \code{unbiased = TRUE}
 
 \code{Palma} measures the ratio of inequality (used with income inequality)
 of the top 10 percent to the bottom 40 percent. \code{grs} is an alternative
@@ -84,7 +87,7 @@ Washington, DC.
 
 R. Ginevicius and S. Cirba (2009). Additive measurement of
 market concentration, Journal of Business Economics and Management,
-10(3), 191-198. \url{https://doi.org/10.3846/1611-1699.2009.10.191-198}.
+10(3), 191-198. \doi{10.3846/1611-1699.2009.10.191-198}
 }
 \seealso{
 {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}

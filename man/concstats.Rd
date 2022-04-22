@@ -7,7 +7,7 @@
 concstats(x, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a numeric vector.}
+\item{x}{a non-negative numeric vector.}
 
 \item{na.rm}{a logical vector that indicates whether \code{NA} values should
 be excluded or not.
@@ -21,8 +21,7 @@ returns a data frame of calculated measures
 a convenience function which calculates a selected set of
 different market structure, inequality and concentration measures more or
 less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
-and others
-in a one step procedure to provide a first overview.
+and others in a one step procedure to provide a first overview.
 }
 \details{
 \code{concstats} computes a set of different and selected
@@ -31,8 +30,7 @@ however, all measures can be computed individually or in groups.
 }
 \note{
 the vector of market shares should be in a decimal form corresponding
-total share of individual firms/units.The vector should sum up to 1.
-You can also use sales figures to compute the respective measure.
+to the total share of individual firms/units. The vector should sum up to 1.
 }
 \examples{
 # a vector of market shares

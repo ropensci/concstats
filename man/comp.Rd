@@ -7,6 +7,7 @@
 \alias{hhi_d}
 \alias{dom}
 \alias{sten}
+\alias{all_comp}
 \title{Concentration Measures}
 \usage{
 comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
@@ -21,12 +22,14 @@ hhi_d(x, na.rm = TRUE)
 dom(x, na.rm = TRUE)
 
 sten(x, na.rm = TRUE)
+
+all_comp(x, na.rm = TRUE)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{unbiased}{Logical. Argument specifying whether or not a finit sample
-correction should be applied.The default is FALSE.}
+correction should be applied. The default is FALSE.}
 
 \item{type}{A character string of the measure to be calculated,
 can be abbreviated with the first letter. Defaults to "hhi".}
@@ -57,8 +60,8 @@ computes all measures in a one step procedure.
 }
 \note{
 the vector of market shares should be in a decimal form corresponding
-to total share of individual firms/units.The sum of the vector should sum up
-to 1. You can also use sales figures to compute the respective measure.
+to total share of individual firms/units. The sum of the vector should sum
+up to 1. You can also use sales figures to compute the respective measure.
 }
 \examples{
 # a vector of market shares
@@ -72,16 +75,18 @@ shares_comp <- comp(x, type = "all")
 
 }
 \references{
-Chang, E. J., Guerra, S. M., de Souza Peñaloza, R. A. & Tabak, B. M. (2005)
+Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M. (2005)
 Measuring Banking concentration: the Brazilian case. In Financial Stability
 Report. Brasilia: Banco Central do Brasil, 4: 109-129
 
-García Alba Iduñate, P. (1994). Un índice de dominación para el análisis de
-la estructura de los mercados. El Trimestre Económico, 61: 499-524
+Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+analisis de la estructura de los mercados. El Trimestre Economico,
+61: 499-524.
 
 Melnik, A., Shy, O. & Stenbacka, R. (2008). Assessing market dominance.
 Journal of Economic Behavior & Organization 68: 63-72
 }
 \seealso{
-{\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{inequ}}}
+{\code{\link{concstats}}, \code{\link{mstruct}},
+\code{\link{inequ}}}
 }

@@ -7,6 +7,7 @@
 \alias{top}
 \alias{top3}
 \alias{top5}
+\alias{all_mstruct}
 \title{Market Structure Measures}
 \usage{
 mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5", "all"),
@@ -21,6 +22,8 @@ top(x, na.rm = TRUE)
 top3(x, na.rm = TRUE)
 
 top5(x, na.rm = TRUE)
+
+all_mstruct(x, na.rm = TRUE)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
@@ -48,7 +51,7 @@ individually.
 \note{
 the vector of market shares should be in a decimal form corresponding
 to total share of individual firms/units.The sum of the vector should sum up
-to 1. You can also use sales figures to compute the respective measure.
+to 1.
 }
 \examples{
 # a vector of market shares
