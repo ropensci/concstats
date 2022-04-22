@@ -77,7 +77,9 @@
 
 <span class="fu">palma</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-<span class="fu">grs</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<span class="fu">grs</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu">all_inequ</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -86,7 +88,7 @@
 <dd><p>a non-negative numeric vector.</p></dd>
 <dt>unbiased</dt>
 <dd><p>Logical. Argument specifying whether or not a finit sample
-correction should be applied.The default is FALSE.</p></dd>
+correction should be applied. The default is FALSE.</p></dd>
 <dt>type</dt>
 <dd><p>a character string of the measure to be calculated, defaults to
 "entropy".</p></dd>
@@ -105,9 +107,9 @@ be excluded or not.</p></dd>
 <code>all</code>.
 If no measure is specified, "entropy" is the default.</p>
 <p><code>entropy</code> returns the (Shannon) Entropy, <code>gini</code> is the
-Gini coefficient, <code>simpson</code> is the complement of the Herfindahl-Hirschman
-Index. You can normalize each of these three measures by setting
-<code>unbiased = TRUE</code></p>
+Gini coefficient, <code>simpson</code> is the complement of the
+Herfindahl-Hirschman Index. You can normalize each of these three measures
+by setting <code>unbiased = TRUE</code></p>
 <p><code>Palma</code> measures the ratio of inequality (used with income inequality)
 of the top 10 percent to the bottom 40 percent. <code>grs</code> is an alternative
 inequality measure (Ginevicius, 2009), <code>all</code> returns all measures in
@@ -129,7 +131,7 @@ The Palma Measure of Income Inequality, Center for Global Development,
 Washington, DC.</p>
 <p>R. Ginevicius and S. Cirba (2009). Additive measurement of
 market concentration, Journal of Business Economics and Management,
-10(3), 191-198. <a href="https://doi.org/10.3846/1611-1699.2009.10.191-198" class="external-link">https://doi.org/10.3846/1611-1699.2009.10.191-198</a>.</p>
+10(3), 191-198. doi: <a href="https://doi.org/10.3846/1611-1699.2009.10.191-198" class="external-link">10.3846/1611-1699.2009.10.191-198</a></p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
