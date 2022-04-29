@@ -35,17 +35,6 @@
 #' @note the non- negative vector might be sales figures or market shares of
 #'  individual firms/units. In the latter case the vector should sum up to 1.
 #'
-#' @references C.E. Shannon (1948). A Mathematical Theory of Communication,
-#'  The Bell System Technical Journal (Nokia Bell Labs)
-#' @references J.G. Palma (2006). Globalizing Inequality:
-#'  'Centrifugal' and 'Centripetal' Forces at Work, DESA Working Paper No. 35.
-#' @references A. Cobham / A. Summer (2013). Is It All About the Tails?
-#'  The Palma Measure of Income Inequality, Center for Global Development,
-#'  Washington, DC.
-#' @references R. Ginevicius and S. Cirba (2009). Additive measurement of
-#'  market concentration, Journal of Business Economics and Management,
-#'   10(3), 191-198. \doi{10.3846/1611-1699.2009.10.191-198}
-#'
 #' @seealso {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}
 #'
 #' @examples

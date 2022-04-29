@@ -35,17 +35,7 @@
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to total share of individual firms/units. The sum of the vector should sum
 #'  up to 1. You can also use sales figures to compute the respective measure.
-#' @references
-#'  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M. (2005)
-#'  Measuring Banking concentration: the Brazilian case. In Financial Stability
-#'  Report. Brasilia: Banco Central do Brasil, 4: 109-129
-#' @references
-#'  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
-#'  analisis de la estructura de los mercados. El Trimestre Economico,
-#'  61: 499-524.
-#' @references
-#'  Melnik, A., Shy, O. & Stenbacka, R. (2008). Assessing market dominance.
-#'  Journal of Economic Behavior & Organization 68: 63-72
+#'
 #'
 #' @seealso {\code{\link{concstats}}, \code{\link{mstruct}},
 #'  \code{\link{inequ}}}

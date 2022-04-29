@@ -14,7 +14,24 @@ Description: Based on individual market shares of all participants in a
     and not so frequently - used in research and in practice. Measures can
     be calculated in groups or individually. The calculated measure or the
     resulting vector in table format should help practitioners make more
-    informed decisions.
+    informed decisions. Methods used in this package are from:
+    O. C. Herfindahl (1950), "Concentration in the steel industry (PhD thesis)";
+    A. O. Hirschmann (1945), "National power and structure of foreign trade";
+    C. E. Shannon (1948), "A Mathematical Theory of Communication";
+    J. G. Palma (2006), "Globalizing Inequality: 'Centrifugal' and 'Centripetal'
+    Forces at Work" <https://www.un.org/esa/desa/papers/2006/wp35_2006.pdf>;
+    A. Cobham and A. Summer (2013), "Is It All About the Tails? The Palma
+    Measure of Income Inequality"
+    <https://www.cgdev.org/sites/default/files/it-all-about-tails-palma-measure-income-inequality.pdf>;
+    R. Ginevicius and S. Cirba (2009), "Additive measurement of market
+    concentration" <doi:10.3846/1611-1699.2009.10.191-198>;
+    E. J. Chang, S. M. Guerra, R. A. de Souza Penaloza, and B. M. Tabak (2005)
+    "Measuring Banking concentration: the Brazilian case";
+    P. Garcia Alba Idunate, P. (1994), "Un Indice de dominancia para el
+    analisis de la estructura de los mercados"
+    <https://www.jstor.org/stable/20856736>;
+    A. Melnik, O. Shy, and R. Stenbacka (2008), "Assessing market dominance"
+    <doi:10.1016/j.jebo.2008.03.010>
 License: MIT + file LICENSE
 URL: https://github.com/schneiderpy/concstats,
     https//schneiderpy.github.io/constats (website)
