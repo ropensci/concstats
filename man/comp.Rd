@@ -49,9 +49,9 @@ A set of different concentration measures.
 If no measure is specified "hhi" will be the default.
 
 \code{hhi}, \code{hhi_min}, \code{hhi_d} calculate the Herfindahl-Hirschman
-index, its minimum, and its dual, respectivly. \code{dom} calculates a
+index, its minimum, and its dual, respectively. \code{dom} calculates a
 dominance index and \code{sten} calculates the Stenbacka index. The index
-indicates the market share of a dominante position.
+indicates the market share of a dominant position.
 
 All measures can be accessed individually.
 \code{hhi}, \code{hhi_d}, and \code{dom} can be calculated individually as a
@@ -66,25 +66,13 @@ up to 1. You can also use sales figures to compute the respective measure.
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-# the Herfindahl-Hirschman index of the vector
+# the Herfindahl-Hirschmann index of the vector
 shares_hhi <- comp(x, type = "hhi")
 # individual measure
 shares_sten <- sten(x)
 # complete group measures
 shares_comp <- comp(x, type = "all")
 
-}
-\references{
-Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M. (2005)
-Measuring Banking concentration: the Brazilian case. In Financial Stability
-Report. Brasilia: Banco Central do Brasil, 4: 109-129
-
-Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
-analisis de la estructura de los mercados. El Trimestre Economico,
-61: 499-524.
-
-Melnik, A., Shy, O. & Stenbacka, R. (2008). Assessing market dominance.
-Journal of Economic Behavior & Organization 68: 63-72
 }
 \seealso{
 {\code{\link{concstats}}, \code{\link{mstruct}},

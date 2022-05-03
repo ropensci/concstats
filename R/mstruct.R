@@ -14,7 +14,7 @@
 #'  be excluded or not.If set to \code{FALSE} the computation yields \code{NA}.
 #'
 #' @details
-#'  \code{mstruct} is a wrapper for the proposed structual measures \code{firm},
+#'  \code{mstruct} is a wrapper for the proposed structural measures \code{firm},
 #'  returns the number of firms with a given market share, \code{nrs_eq}
 #'  computes the numbers equivalent, \code{top}, \code{top3}, and \code{top5}
 #'  calculate the share of the top (top 3 and top 5) firm(s). \code{all}

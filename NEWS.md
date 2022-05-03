@@ -1,3 +1,12 @@
+concstats 0.1.0 (Resubmission to CRAN)
+================================================================
+For the resubmission to CRAN the author fixed the following issues:
+
+- All references regarding methods were moved from their respective script files
+to the DESCRIPTION file.
+
+-  Fixed issue with (unnecessary) instances of install.packages() in vignette.
+
 concstats 0.1.0
 ================================================================
 This version of ``concstats`` has been updated:

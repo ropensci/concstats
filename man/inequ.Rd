@@ -51,7 +51,7 @@ If no measure is specified, "entropy" is the default.
 
 \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
 Gini coefficient, \code{simpson} is the complement of the
-Herfindahl-Hirschman Index. You can normalize each of these three measures
+Herfindahl-Hirschmann Index. You can normalize each of these three measures
 by setting \code{unbiased = TRUE}
 
 \code{Palma} measures the ratio of inequality (used with income inequality)
@@ -73,21 +73,6 @@ share_ent <- entropy(share, unbiased = TRUE)
 # Calculate the group measures
 share_inequ <- inequ(share, type = "all")
 
-}
-\references{
-C.E. Shannon (1948). A Mathematical Theory of Communication,
-The Bell System Technical Journal (Nokia Bell Labs)
-
-J.G. Palma (2006). Globalizing Inequality:
-'Centrifugal' and 'Centripetal' Forces at Work, DESA Working Paper No. 35.
-
-A. Cobham / A. Summer (2013). Is It All About the Tails?
-The Palma Measure of Income Inequality, Center for Global Development,
-Washington, DC.
-
-R. Ginevicius and S. Cirba (2009). Additive measurement of
-market concentration, Journal of Business Economics and Management,
-10(3), 191-198. \doi{10.3846/1611-1699.2009.10.191-198}
 }
 \seealso{
 {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}

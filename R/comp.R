@@ -7,7 +7,7 @@
 #'  "sten", "all"),na.rm = TRUE)
 #'
 #' @param x A numeric vector of non-negative values.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'  correction should be applied. The default is FALSE.
 #
 #' @param type A character string of the measure to be calculated,
@@ -21,9 +21,9 @@
 #'  If no measure is specified "hhi" will be the default.
 #'
 #'  \code{hhi}, \code{hhi_min}, \code{hhi_d} calculate the Herfindahl-Hirschman
-#'  index, its minimum, and its dual, respectivly. \code{dom} calculates a
+#'  index, its minimum, and its dual, respectively. \code{dom} calculates a
 #'  dominance index and \code{sten} calculates the Stenbacka index. The index
-#'  indicates the market share of a dominante position.
+#'  indicates the market share of a dominant position.
 #'
 #' All measures can be accessed individually.
 #'  \code{hhi}, \code{hhi_d}, and \code{dom} can be calculated individually as a
@@ -43,7 +43,7 @@
 #' @examples
 #' # a vector of market shares
 #' x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-#' # the Herfindahl-Hirschman index of the vector
+#' # the Herfindahl-Hirschmann index of the vector
 #' shares_hhi <- comp(x, type = "hhi")
 #' # individual measure
 #' shares_sten <- sten(x)

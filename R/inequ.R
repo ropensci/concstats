@@ -8,7 +8,7 @@
 #'
 #' @param x a numeric vector of non-negative values.
 #' @param unbiased Logical. Argument of the function \code{entropy},
-#'  \code{gini}, and \code{berry} specifying whether or not a finite sample
+#'  \code{gini}, and \code{simpson} specifying whether or not a finite sample
 #'   correction should be applied.
 #' @param type a character string of the measure to be calculated, defaults to
 #'  "entropy".
@@ -23,7 +23,7 @@
 #'
 #' \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
 #'  Gini coefficient, \code{simpson} is the complement of the
-#'  Herfindahl-Hirschman Index. You can normalize each of these three measures
+#'  Herfindahl-Hirschmann Index. You can normalize each of these three measures
 #'  by setting \code{unbiased = TRUE}
 #'
 #' \code{Palma} measures the ratio of inequality (used with income inequality)
@@ -64,7 +64,7 @@ inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
 #' @export
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
