@@ -59,7 +59,7 @@ to provide a first insight of the market.
 calculates all measures as a group.
 - **comp** is a group wrapper for the following concentration measures: **hhi**,
 the **dual of the hhi**, the **min. of the hhi**, the **dominance index**, the
-**stenbacka indeX**, and finally **all** which calculates all measures as a group.
+**stenbacka index**, and finally **all** which calculates all measures as a group.
 - **inequ** is a wrapper for inequality and diversity measures and contains:
-**entropy**, **gini coefficient**, **berry index**, the **palma ratio** and the
+**entropy**, **gini coefficient**, **simpson index**, the **palma ratio** and the
 alternative **grs** measure, **all** calculates the group measures.

@@ -21,19 +21,6 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```
 
 
-```{R,echo=FALSE,results='hide',message=FALSE,include=FALSE, eval=TRUE}
-if (!require(knitr))
-  install.packages("knitr", repos = "http://cran.us.r-project.org")
-if (!require(devtools))
-  install.packages("devtools", repos = "http://cran.us.r-project.org")
-if (!require(dplyr))
-  install.packages("dplyr", repos = "http://cran.us.r-project.org")
-if (!require(kableExtra))
-  install.packages("kableExtra", repos = "http://cran.us.r-project.org")
-if (!require(ggplot2))
-  install.packages("ggplot2", repos = "http://cran.us.r-project.org")
-```
-
 The goal of the ``concstats`` package is to offer a set of alternative and/or
 additional measures to better determine a given market structure and therefore
 reduce uncertainty with respect to a given market situation. Various functions
@@ -43,7 +30,7 @@ or groups of functions are available to achieve the desired goal.
 To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) use: 
 
 ```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
-library(devtools) #  Tools to Make Developing R Packages Easier 
+library(devtools) # Tools to Make Developing R Packages Easier 
 devtools::install_github("schneiderpy/concstats")
 ```
 
@@ -55,24 +42,35 @@ library(concstats)
 ## Data
 The following examples use mainly fictitious data to present the functions.
 However, if you want to test the functionality in more detail, the package comes
-with a small data set of real paraguayan credit cooperatives (creditcoops). There
-are 22 paired observations for real paraguayan credit cooperatives 
+with a small data set of real Paraguayan credit cooperatives (creditcoops). There
+are 22 paired observations for real Paraguayan credit cooperatives 
 (with assets > 11 Mio. USD) for 2016 and 2018 with their respective total loans 
 granted. For a better visualization there is an additional column with the 
 transformed total loans. For further information on the data please see the
 `data` help file.
 
-```{r data, echo=FALSE}
+```{r}
 data("creditcoops")
 head(creditcoops)
 ```
+<!--```-->
+<!--  # A tibble: 6 x 5                                   -->
+<!--  coop_id   year  total_loans paired total_loans_log  -->
+<!--    <dbl>   <fct>       <dbl>  <int>           <dbl>  -->
+<!--       1    2016    173892358      1            19.0  -->
+<!--       1    2018    199048199      1            19.1  -->
+<!--       2    2016    323892456      2            19.6  -->
+<!--       2    2018    461609439      2            20.0  -->
+<!--       3    2016    179981404      3            19.0  -->
+<!--       3    2018    227232008      3            19.2  -->
+<!--```-->
 
 ## Group wrapper overview
 At the moment, there are the following groups of functions available:    
 - `mstruct` is a wrapper for market structure measures    
 - `inequ` is a wrapper for inequality and diversity measures    
 - `comp` is a wrapper with different concentration measures    
-- `concstats` is a function which calculates a set of preselected measures in a 
+- `concstats` is a function which calculates a set of pre-selected measures in a 
     one step procedure to get a quick overview of a given market structure    
 
 The functions will be presented in more details in the following short
@@ -85,25 +83,30 @@ market shares (in decimal form):
 ### mstruct
 The wrapper includes the following individual functions: ```firm```, ```nrs_eq```,
 ```top```, ```top3```, ```top5```, and ```all```
-```{r examples-top5, echo=TRUE}
+```{r example-1}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_top5 <- top5(test_share) # top 5 market share
+test_share_top5
 ```
+
+
 You should have noticed that the market shares are in decimal form. There are 
 eight market participants, however, two have no market shares, by default 
 ```concstats``` treats 0 as NA. The result is a top 5 market share of 96 %.
 You can also access each function through their respective argument in the 
 group wrapper:
 
-```{r examples-top, echo=TRUE}
+```{r example-2}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_top <- mstruct(test_share, type = "top") # top market share
+test_share_top
 ```
 
 Or, just calculate all measures of the group wrapper.
-```{r examples-mstruct-all, echo=TRUE}
+```{r examples-mstruct-all}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_mstruct <- mstruct(test_share, type = "all")
+test_share_mstruct
 ```
 
 The result is a table with the market structure measures.
@@ -113,11 +116,13 @@ The inequality and diversity group includes the functions ```entropy```,
 ```gini```, ```berry```, ```palma```, ```grs```, and ```all```.
 
 ```{r examples-entropy, echo=TRUE}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 test_share_entropy <- entropy(test_share)
+test_share_entropy
 
 # and as a standardized value
 test_share_entropy2 <- entropy(test_share, unbiased = TRUE)
+test_share_entropy2
 ```
 
 ### comp
@@ -127,21 +132,25 @@ The group wrapper for competition measures includes the functions ```hhi```,
 ```{r examples-hhi, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_hhi <- hhi(test_share)
+test_share_hhi
 
 # a standardized value
 test_share_hhi2 <- hhi(test_share, unbiased = TRUE)
+test_share_hhi2
 
 # the min average of the hhi
 test_share_hhi3 <- comp(test_share, unbiased = TRUE, type = "hhi_min")
+test_share_hhi3
 ```
 
 ### concstats
-A single function which calculates a set of eight preselected measures in a 
+A single function which calculates a set of eight pre-selected measures in a 
 one step procedure for a first overview of a given market structure.
 
 ```{r examples-concstats, echo=TRUE}
 test_share <- c(0.2, 0.3, 0.5)
 test_share_conc <- concstats(test_share)
+test_share_conc
 ```
 
 ## Visualization
@@ -157,22 +166,34 @@ Let us assume one would like to use the group measure for e.g. market structure,
 and keep the resulting table. We can refine the table using ```kableExtra``` 
 which works nice with ```knitr```.
 
-This time, we will use our ```creditcoops``` data set, which comes with the 
+This time, we will use our ```creditcoops``` data set again, which comes with the 
 package.
 
-```{r visualization-data, message=FALSE, echo=TRUE}
+```{r}
 data("creditcoops")
 head(creditcoops)
 ```
+<!--```-->
+<!--  # A tibble: 6 x 5                                   -->
+<!--  coop_id   year  total_loans paired total_loans_log  -->
+<!--    <dbl>   <fct>       <dbl>  <int>           <dbl>  -->
+<!--       1    2016    173892358      1            19.0  -->
+<!--       1    2018    199048199      1            19.1  -->
+<!--       2    2016    323892456      2            19.6  -->
+<!--       2    2018    461609439      2            20.0  -->
+<!--       3    2016    179981404      3            19.0  -->
+<!--       3    2018    227232008      3            19.2  -->
+<!--```-->
 
-You will need the following two packages.
-```{r visualization-prep}
+You will need the following two packages. Make sure you have these packages
+installed.
+```{r visualization-prep, message=FALSE, eval=FALSE}
 library(dplyr)
 library(kableExtra)
 ```
 
 Now, we will filter out data for the year 2016.
-```{r visualization-tab, echo=TRUE}
+```{r visualization-tab, echo=TRUE, eval=FALSE}
 coops_2016 <- creditcoops %>% dplyr::filter(year == 2016)
 head(coops_2016)
 
@@ -188,34 +209,33 @@ coops_2016_mstruct_tab <- coops_2016_mstruct %>%
                   booktabs = T, align = "r") %>% 
   kableExtra::kable_classic(full_width = F, html_font = "Arial")
 coops_2016_mstruct_tab
+
 ```
 
 The result is a nice reusable table.
 
+```{r, echo=FALSE}
+knitr::include_graphics("mstruct_tab.png")
+```
+
 Now, let's go a step further. We will compare the two samples for 2016 and 2018.
 For this purpose, we will select from our `creditcoops` data set the relevant
 columns (coop_id, year, paired, and total_loans_log) and make a new data frame.
-```{r visualization-sample-prep, echo=FALSE}
+```{r visualization-sample-prep, echo=FALSE, eval=FALSE}
 df_shares <- creditcoops %>% dplyr::select(coop_id, year, paired, total_loans_log)
 ```
 Make sure you have installed the `ggplot2` package. Load the package.
-```{r visualization-ggplot}
-library(ggplot2) # Create Elegant Data Visualisations Using the Grammar of Graphics
+```{r}
+library(ggplot2) # Create Elegant Data Visualizations Using the Grammar of Graphics
 ```
+<center>
 
-```{r visualization-sample-plot, echo=FALSE, fig.height=5, fig.width=5}
-df_shares_plot <- df_shares %>%
-  ggplot2::ggplot(aes(year, total_loans_log, fill = year)) +
-  ggplot2::geom_boxplot() +
-  ggplot2::geom_point() +
-  ggplot2::geom_line(aes(group = paired)) +
-  ggplot2::labs(title = "Credit cooperatives (type A)", y = "Total loans (log)",
-       caption = "Source: Andreas Schneider with data from INCOOP") +
-  ggplot2::theme(legend.position = "none")
-df_shares_plot
-```
+![](coops_paired.png){width="469" height="521"}
 
-Having a look a the output, we see a box plot with paired values (cooperatives)
-for the two sample years 2016 and 2018.
+</center>
+
+Having a look a the output, we see a box plot with paired values of the
+cooperatives and the evolution of their respective total loans over time for the
+two sample years 2016 and 2018.
 
 
