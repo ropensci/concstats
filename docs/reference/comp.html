@@ -106,9 +106,9 @@ be excluded or not.</p></dd>
 <code>hhi_d</code>, <code>hhi_min</code>, <code>dom</code>, <code>sten</code>, <code>all</code>.
 If no measure is specified "hhi" will be the default.</p>
 <p><code>hhi</code>, <code>hhi_min</code>, <code>hhi_d</code> calculate the Herfindahl-Hirschman
-index, its minimum, and its dual, respectivly. <code>dom</code> calculates a
+index, its minimum, and its dual, respectively. <code>dom</code> calculates a
 dominance index and <code>sten</code> calculates the Stenbacka index. The index
-indicates the market share of a dominante position.</p>
+indicates the market share of a dominant position.</p>
 <p>All measures can be accessed individually.
 <code>hhi</code>, <code>hhi_d</code>, and <code>dom</code> can be calculated individually as a
 normalized measure changing the default setting to <code>TRUE</code>. <code>all</code>
@@ -120,17 +120,6 @@ computes all measures in a one step procedure.</p>
 to total share of individual firms/units. The sum of the vector should sum
 up to 1. You can also use sales figures to compute the respective measure.</p>
     </div>
-    <div id="references">
-    <h2>References</h2>
-    <p>Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. &amp; Tabak, B. M. (2005)
-Measuring Banking concentration: the Brazilian case. In Financial Stability
-Report. Brasilia: Banco Central do Brasil, 4: 109-129</p>
-<p>Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
-analisis de la estructura de los mercados. El Trimestre Economico,
-61: 499-524.</p>
-<p>Melnik, A., Shy, O. &amp; Stenbacka, R. (2008). Assessing market dominance.
-Journal of Economic Behavior &amp; Organization 68: 63-72</p>
-    </div>
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="concstats.html">concstats</a></code>, <code><a href="mstruct.html">mstruct</a></code>,
@@ -141,7 +130,7 @@ Journal of Economic Behavior &amp; Organization 68: 63-72</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># a vector of market shares</span></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># the Herfindahl-Hirschman index of the vector</span></span>
+<span class="r-in"><span class="co"># the Herfindahl-Hirschmann index of the vector</span></span>
 <span class="r-in"><span class="va">shares_hhi</span> <span class="op">&lt;-</span> <span class="fu">comp</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"hhi"</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># individual measure</span></span>
 <span class="r-in"><span class="va">shares_sten</span> <span class="op">&lt;-</span> <span class="fu">sten</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
