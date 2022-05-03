@@ -14,7 +14,7 @@ vignette: >
 concstats is a small package that helps you to **calculate the structure,
 concentration or diversity measures of a given market.** You can reach that goal
 in different ways:  
-a) calculating an individual measure, e.g. the Herfindahl Hirschman Index (HHI)
+a) calculating an individual measure, e.g. the Herfindahl Hirschmann Index (HHI)
    or its dual.  
 b) calculating a group of measures, e.g. structural measures, or  
 c) a selected set of measures in a one-step procedure.
@@ -45,7 +45,7 @@ reducing uncertainty.** **It can be used by practitioners and academics alike.**
 
 `concstats` should be used by practitioners and academics **who are concerned about
 a given market situation regarding its structure, concentration, diversity or
-inequality**. **A single standard measure like the Herfindahl Hirschman Index
+inequality**. **A single standard measure like the Herfindahl Hirschmann Index
 (HHI) may lead to erroneous conclusions.** The `concstats` package offers a
 **straightforward way to calculate standard and alternative measures** given a
 data set of market participants and their participation (in absolute or relative
@@ -55,7 +55,7 @@ concstats provides currently the following basic functions:
 - **concstats** calculates eight pre-selected measures in a one-step procedure
 to provide a first insight of the market.
 - **mstruct** is a wrapper for the following measures: **firm**, **nrs_eq**
-(Numbers equivalant), **top**, **top 3** and **top 5** market share, and **all**
+(Numbers equivalent), **top**, **top 3** and **top 5** market share, and **all**
 calculates all measures as a group.
 - **comp** is a group wrapper for the following concentration measures: **hhi**,
 the **dual of the hhi**, the **min. of the hhi**, the **dominance index**, the
