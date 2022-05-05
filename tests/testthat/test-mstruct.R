@@ -54,8 +54,7 @@ test_that("nrs_eq function operates properly", {
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(nrs_eq(x2, na.rm = FALSE), NA_integer_)
-  expect_error(nrs_eq(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(nrs_eq(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("nrs_eq returns numbers equivalent", {
@@ -80,8 +79,7 @@ test_that("top function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(top(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-  expect_error(top(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(top(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("top returns top market share", {
@@ -106,8 +104,7 @@ test_that("top3 function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(top3(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-  expect_error(top3(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(top3(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("top3 returns sum of top 3 market shares", {
@@ -132,8 +129,7 @@ test_that("top5 function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(top5(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-  expect_error(top5(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(top5(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("top5 returns sum of top 5 market shares", {

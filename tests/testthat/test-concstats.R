@@ -15,8 +15,7 @@ test_that("concstats function operates properly", {
   expect_true(is.numeric(x3), label = "numeric values returned")
   expect_equal(concstats(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-  expect_error(concstats(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(concstats(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("firm returns number of firms", {

@@ -68,11 +68,11 @@ test_that("hhi_min function operates properly", {
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_vector(1:10, ptype = integer(), size = 10)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x2, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1")
-  expect_error(hhi(x)(!(sum(x) == 100)),
-               label = "vector does not sum to 100")
+  expect_equal(hhi_min(x2, na.rm = FALSE), NA_integer_)
+  expect_error(hhi_min(x1)(!(sum(x1) == 1 | sum(x1) == 100)),
+               "vector does not sum to 1 or 100")
+  expect_error(hhi_min(x)(!(sum(x) == 1 | sum(x) == 100)),
+               "vector does not sum to 1 or 100")
 })
 
 test_that("hhi_min returns min of squared shares", {
@@ -101,9 +101,8 @@ test_that("hhi_d function operates properly", {
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x2, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_equal(hhi_d(x2, na.rm = FALSE), NA_integer_)
+  expect_error(hhi_d(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("hhi_d returns dual of hhi", {
@@ -125,9 +124,8 @@ test_that("dom function operates properly", {
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x2, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_equal(dom(x2, na.rm = FALSE), NA_integer_)
+  expect_error(dom(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("dom returns dominance index", {
@@ -151,9 +149,8 @@ test_that("sten function operates properly", {
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x3, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_equal(sten(x3, na.rm = FALSE), NA_integer_)
+  expect_error(sten(x1)(!(sum(x1) == 1)), "vector does not sum to 1")
 })
 
 test_that("sten returns stenbacka index", {

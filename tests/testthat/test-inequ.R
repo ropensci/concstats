@@ -16,7 +16,7 @@ test_that("inequ function operates / switches properly", {
                gini(x1, unbiased = TRUE))
   expect_equal(inequ(x, type = "simpson"), simpson(x))
   expect_equal(inequ(x, unbiased = TRUE, type = "simpson"),
-               simpson(x1, unbiased = TRUE))
+               simpson(x, unbiased = TRUE))
   expect_equal(inequ(x1, type = "palma"), palma(x1))
   expect_equal(inequ(x2, type = "grs"), grs(x2))
 
@@ -35,8 +35,8 @@ test_that("entropy function operates properly", {
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x2, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
+  expect_equal(entropy(x2, na.rm = FALSE), NA_integer_)
+  expect_error(entropy(x1)(!(sum(x1) == 1)),
                label = "vector does not sum to 1 or 100")
 })
 
@@ -69,17 +69,17 @@ test_that("gini function operates properly", {
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
-  expect_equal(hhi(x2, na.rm = FALSE), NA_integer_)
+  expect_equal(gini(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x), x3)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(gini(x1)(!(sum(x1) == 1)),
+               label = "vector does not sum to 1")
 })
 
 test_that("gini returns the gini measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
 
-  expect_equal(gini(x), 2 * sum(x * seq_len(x)
+  expect_equal(gini(x), 2 * sum(x * seq_len(length(x))
                                 / length(x) * sum(x)) - 1 - (1 / length(x)))
 })
 
@@ -88,7 +88,7 @@ test_that("gini returns the unbiased gini measure", {
   x <- c(0.1, 0.2, 0.3, 0.4)
 
   expect_equal(gini(x, unbiased = TRUE), length(x) / (length(x) - 1) *
-                 (2 * sum(x * seq_len(x)
+                 (2 * sum(x * seq_len(length(x))
                                 / length(x) * sum(x)) - 1 - (1 / length(x))))
 })
 
@@ -106,7 +106,7 @@ test_that("simpson function operates properly", {
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(simpson(x2, na.rm = FALSE), NA_integer_)
-  expect_error(hhi(x1)(!(sum(x1) == 1)),
+  expect_error(simpson(x1)(!(sum(x1) == 1)),
                label = "vector does not sum to 1 or 100")
 })
 
