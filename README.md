@@ -85,7 +85,7 @@ measure or a set of market structure and concentration measures:
 library(concstats)
 ## Create some simple data
 share1 <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
-share_hhi <- hhi(share1) # the Herfindahl-Hirschman Index
+share_hhi <- hhi(share1) # the Herfindahl-Hirschmann Index
 #> [1] 0.275
 
 share_dom <- dom(share1) # the Dominance Index
