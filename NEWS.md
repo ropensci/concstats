@@ -1,3 +1,11 @@
+concstats 0.1.1 (Resubmission to CRAN)
+================================================================
+For the resubmission to CRAN the author fixed the following issues:
+
+- increased version number.
+
+- Fixed issues with unit testing.
+
 concstats 0.1.0 (Resubmission to CRAN)
 ================================================================
 For the resubmission to CRAN the author fixed the following issues:
