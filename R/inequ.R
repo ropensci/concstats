@@ -132,7 +132,7 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   x <- sort(x)
-  gini <- 2 * sum(x * seq_len(x)) / (length(x) * sum(x)) - 1 - (1 / length(x))
+  gini <- 2 * sum(x * seq_len(length(x))) / (length(x) * sum(x)) - 1 - (1 / length(x))
   if (unbiased) gini <- length(x) / (length(x) - 1) * gini
   return(gini)
 }
