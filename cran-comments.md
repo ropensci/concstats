@@ -1,3 +1,8 @@
+## Resubmission (v.0.1.1)
+
+- increased version number for this submission
+- fixed issues with unit tests
+
 ## Resubmission
 
 - Moved references from script files to DESCRIPTION.
