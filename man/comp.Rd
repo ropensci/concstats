@@ -28,7 +28,7 @@ all_comp(x, na.rm = TRUE)
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
-\item{unbiased}{Logical. Argument specifying whether or not a finit sample
+\item{unbiased}{Logical. Argument specifying whether or not a finite sample
 correction should be applied. The default is FALSE.}
 
 \item{type}{A character string of the measure to be calculated,

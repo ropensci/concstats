@@ -1,3 +1,12 @@
+concstats 0.1.2 (submission to CRAN)
+================================================================
+For the submission to CRAN the author fixed the following issues:
+
+- increased version number to v.0.1.2.
+
+- Fixed issues with unit testing regarding floating doubles
+
+
 concstats 0.1.1 (Resubmission to CRAN)
 ================================================================
 For the resubmission to CRAN the author fixed the following issues:

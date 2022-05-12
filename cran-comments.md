@@ -1,3 +1,9 @@
+## Submission (v.0.1.2)
+
+- increased version number for this submission to v.0.1.2
+- fixed issues with unit tests regarding floating doubles
+- now passed all test environments, including MacOS
+
 ## Resubmission (v.0.1.1)
 
 - increased version number for this submission

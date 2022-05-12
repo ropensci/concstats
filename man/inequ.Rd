@@ -28,14 +28,14 @@ all_inequ(x, na.rm = TRUE)
 \arguments{
 \item{x}{a non-negative numeric vector.}
 
-\item{unbiased}{Logical. Argument specifying whether or not a finit sample
+\item{unbiased}{Logical. Argument specifying whether or not a finite sample
 correction should be applied. The default is FALSE.}
 
 \item{type}{a character string of the measure to be calculated, defaults to
 "entropy".}
 
 \item{na.rm}{a logical vector that indicates whether \code{NA} values should
-be excluded or not.}
+be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
 prints the calculated measure
@@ -60,8 +60,8 @@ inequality measure (Ginevicius, 2009), \code{all} returns all measures in
 a one step procedure.
 }
 \note{
-the non- negative vector might be sales figures or market shares of
-individual firms/units. In the latter case the vector should sum up to 1.
+the non- negative vector might market shares of individual firms/units.
+In the latter case the vector should sum up to 1.
 }
 \examples{
 # a vector of market shares

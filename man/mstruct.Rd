@@ -29,7 +29,7 @@ all_mstruct(x, na.rm = TRUE)
 \item{x}{A non-negative numeric vector.}
 
 \item{type}{A character string of the measure to be calculated,
-can be abbreviated with the first letter. Defaults to "Firm".}
+can be abbreviated with the first letter. Defaults to "firm".}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not.}

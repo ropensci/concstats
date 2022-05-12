@@ -39,8 +39,6 @@ lapply(pkgs, library, character.only = TRUE)
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/schneiderpy/concstats)
-[![GitHub
-Stars](https://img.shields.io/github/stars/schneiderpy/concstats.svg?style=social)](https://github.com/schneiderpy/concstats)
 [![Codecov test coverage](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg)](https://app.codecov.io/gh/schneiderpy/concstats?branch=master)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456537.svg)](https://doi.org/10.5281/zenodo.6456537)
 <!-- badges: end -->
