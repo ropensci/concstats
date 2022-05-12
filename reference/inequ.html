@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -87,14 +87,14 @@
     <dl><dt>x</dt>
 <dd><p>a non-negative numeric vector.</p></dd>
 <dt>unbiased</dt>
-<dd><p>Logical. Argument specifying whether or not a finit sample
+<dd><p>Logical. Argument specifying whether or not a finite sample
 correction should be applied. The default is FALSE.</p></dd>
 <dt>type</dt>
 <dd><p>a character string of the measure to be calculated, defaults to
 "entropy".</p></dd>
 <dt>na.rm</dt>
 <dd><p>a logical vector that indicates whether <code>NA</code> values should
-be excluded or not.</p></dd>
+be excluded or not. If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -117,8 +117,8 @@ a one step procedure.</p>
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>the non- negative vector might be sales figures or market shares of
-individual firms/units. In the latter case the vector should sum up to 1.</p>
+    <p>the non- negative vector might market shares of individual firms/units.
+In the latter case the vector should sum up to 1.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
