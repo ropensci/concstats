@@ -77,9 +77,9 @@ hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
-  # check sum of vector. Must sum to 1 or 100
-  if (!(sum(x) == 1 | sum(x) == 100)) {
-    stop("vector does not sum to 1 or 100")
+  # check sum of vector. Must sum to 1
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
+    stop("vector does not sum to 1")
   }
 
   if (!is.numeric(x)) {
@@ -105,9 +105,9 @@ hhi_min <- function(x, na.rm = TRUE) {
 
   if (!na.rm && any(is.na(x))) return(NA_real_)
 
-  # check sum of vector. Must sum to 1 or 100
-  if (!(sum(x) == 1 | sum(x) == 100)) {
-    stop("vector does not sum to 1 or 100")
+  # check sum of vector. Must sum to 1
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
+    stop("vector does not sum to 1")
   }
 
   if (!is.numeric(x)) {
@@ -122,7 +122,7 @@ hhi_min <- function(x, na.rm = TRUE) {
 #' @export
 #' @rdname comp
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
@@ -142,7 +142,7 @@ hhi_d <- function(x, na.rm = TRUE) {
    }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -159,7 +159,7 @@ hhi_d <- function(x, na.rm = TRUE) {
 #' @export
 #' @rdname comp
 #' @param x A non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
@@ -179,7 +179,7 @@ dom <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -216,7 +216,7 @@ sten <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 

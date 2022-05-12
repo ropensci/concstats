@@ -46,7 +46,7 @@ concstats <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 

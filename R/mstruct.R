@@ -9,9 +9,9 @@
 #'
 #' @param x A non-negative numeric vector.
 #' @param type A character string of the measure to be calculated,
-#'  can be abbreviated with the first letter. Defaults to "Firm".
+#'  can be abbreviated with the first letter. Defaults to "firm".
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'  be excluded or not.If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 #'
 #' @details
 #'  \code{mstruct} is a wrapper for the proposed structural measures \code{firm},
@@ -72,7 +72,7 @@ firm <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -107,7 +107,7 @@ nrs_eq <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -142,7 +142,7 @@ top <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -177,7 +177,7 @@ top3 <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -212,7 +212,7 @@ top5 <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 

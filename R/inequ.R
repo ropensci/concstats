@@ -7,7 +7,7 @@
 #'  "grs", "all"), na.rm = TRUE)
 #'
 #' @param x a numeric vector of non-negative values.
-#' @param unbiased Logical. Argument of the function \code{entropy},
+#' @param unbiased Logical. Argument of the functions \code{entropy},
 #'  \code{gini}, and \code{simpson} specifying whether or not a finite sample
 #'   correction should be applied.
 #' @param type a character string of the measure to be calculated, defaults to
@@ -32,8 +32,8 @@
 #'  a one step procedure.
 #'
 #' @return prints the calculated measure
-#' @note the non- negative vector might be sales figures or market shares of
-#'  individual firms/units. In the latter case the vector should sum up to 1.
+#' @note the non- negative vector might market shares of individual firms/units.
+#'  In the latter case the vector should sum up to 1.
 #'
 #' @seealso {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}
 #'
@@ -84,7 +84,7 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -102,10 +102,10 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @export
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
@@ -122,7 +122,7 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -140,10 +140,10 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @export
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finit sample
+#' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
@@ -160,7 +160,7 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -178,7 +178,7 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 palma <- function(x, na.rm = TRUE) {
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -194,7 +194,7 @@ palma <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -216,7 +216,7 @@ palma <- function(x, na.rm = TRUE) {
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 grs <- function(x, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
@@ -233,7 +233,7 @@ grs <- function(x, na.rm = TRUE) {
   }
 
   # check sum of vector. Must sum to 1
-  if (!(sum(x) == 1)) {
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
     stop("vector does not sum to 1")
   }
 
@@ -252,7 +252,7 @@ grs <- function(x, na.rm = TRUE) {
 #' @rdname inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 all_inequ <- function(x, na.rm = TRUE) {
 
   invisible(utils::capture.output(

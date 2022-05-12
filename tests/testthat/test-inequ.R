@@ -36,8 +36,9 @@ test_that("entropy function operates properly", {
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(entropy(x2, na.rm = FALSE), NA_integer_)
-  expect_error(entropy(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(firm(x1, !isTRUE(all.equal(1, sum(x),
+                                          tolerance = .Machine$double.eps^0.25))),
+               "vector does not sum to 1")
 })
 
 test_that("entropy returns the entropy measure ", {
@@ -71,8 +72,9 @@ test_that("gini function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(gini(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x), x3)
-  expect_error(gini(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1")
+  expect_error(firm(x1, !isTRUE(all.equal(1, sum(x),
+                                          tolerance = .Machine$double.eps^0.25))),
+               "vector does not sum to 1")
 })
 
 test_that("gini returns the gini measure", {
@@ -106,8 +108,9 @@ test_that("simpson function operates properly", {
   expect_vector(x, ptype = double(), size = 4)
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(simpson(x2, na.rm = FALSE), NA_integer_)
-  expect_error(simpson(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(firm(x1, !isTRUE(all.equal(1, sum(x),
+                                          tolerance = .Machine$double.eps^0.25))),
+               "vector does not sum to 1")
 })
 
 test_that("berry returns the gini measure", {
@@ -132,8 +135,9 @@ test_that("palma function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(palma(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x), x3)
-  expect_error(palma(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(firm(x1, !isTRUE(all.equal(1, sum(x),
+                                          tolerance = .Machine$double.eps^0.25))),
+               "vector does not sum to 1")
 })
 
 test_that("palma returns the alternative palma inequality measure", {
@@ -164,8 +168,9 @@ test_that("grs function operates properly", {
   expect_true(is.numeric(x), label = "numeric values returned")
   expect_equal(grs(x2, na.rm = FALSE), NA_integer_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-  expect_error(grs(x1)(!(sum(x1) == 1)),
-               label = "vector does not sum to 1 or 100")
+  expect_error(firm(x1, !isTRUE(all.equal(1, sum(x),
+                                          tolerance = .Machine$double.eps^0.25))),
+               "vector does not sum to 1")
 })
 
 test_that("grs returns the alternative grs measure", {
