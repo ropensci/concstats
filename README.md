@@ -8,6 +8,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -18,6 +19,9 @@ badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://gi
 [![Codecov test
 coverage](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg)](https://app.codecov.io/gh/schneiderpy/concstats?branch=master)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456537.svg)](https://doi.org/10.5281/zenodo.6456537)
+<!-- [![metacran downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats) -->
+<!-- [![cran checks](https://cranchecks.info/badges/summary/concstats)](https://cran.r-project.org/web/checks/check_results_concstats.html) -->
+<!-- [![](https://cranlogs.r-pkg.org/badges/version/concstats)](https://www.r-pkg.org/badges/version/concstats) -->
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
