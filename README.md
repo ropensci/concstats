@@ -45,6 +45,13 @@ the Palma ratio.
 
 ## Installation
 
+A stable version of concstats is available on CRAN:
+
+``` r
+install.packages("concstats") # Market structure, concentration and inequality
+                              # measures
+```
+
 You can install the development version from
 [GitHub](https://github.com/schneiderpy/concstats) or:
 
