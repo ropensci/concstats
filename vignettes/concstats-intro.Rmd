@@ -27,6 +27,15 @@ reduce uncertainty with respect to a given market situation. Various functions
 or groups of functions are available to achieve the desired goal. 
 
 ## Installation
+You can install `concstats` directly from CRAN
+
+```{r, eval=FALSE}
+install.packages("concstats") # Market Structure, Concentration and Inequality
+                              # Measures
+library(concstats)
+
+```
+
 To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) use: 
 
 ```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
@@ -224,7 +233,7 @@ columns (coop_id, year, paired, and total_loans_log) and make a new data frame.
 ```{r visualization-sample-prep, echo=FALSE, eval=FALSE}
 df_shares <- creditcoops %>% dplyr::select(coop_id, year, paired, total_loans_log)
 ```
-Make sure you have installed the `ggplot2` package. Load the package.
+Make sure you have  the `ggplot2` package installed. Load the package.
 ```{r}
 library(ggplot2) # Create Elegant Data Visualizations Using the Grammar of Graphics
 ```
@@ -237,5 +246,4 @@ library(ggplot2) # Create Elegant Data Visualizations Using the Grammar of Graph
 Having a look a the output, we see a box plot with paired values of the
 cooperatives and the evolution of their respective total loans over time for the
 two sample years 2016 and 2018.
-
 
