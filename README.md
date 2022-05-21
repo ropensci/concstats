@@ -28,7 +28,7 @@ Measures of concentration and competition are important and give a first
 insight of a given market structure in a particular market. They are
 important to determine public policies and strategic corporate
 decisions. However, in research and in practice the most commonly used
-measure is the Herfindahl Hirschmann Index. The goal of the `concstats`
+measure is the Herfindahl Hirschman Index. The goal of the `concstats`
 package is to offer a set of alternative and/or additional measures to
 better determine a given market structure and therefore reduce
 uncertainty with respect to a given market situation. Various functions
@@ -39,7 +39,7 @@ diversity measures in a one-step procedure.
 -`mstruct` offers market structure measures, e.g. the sum of Top3 or
 Top5 market shares.  
 -`comp` is a wrapper for concentration measures, e.g. the Herfindahl
-Hirschmann Index.  
+Hirschman Index.  
 -`inequ` offers diversity or inequality measures, e.g. the Entropy or
 the Palma ratio.
 
@@ -48,8 +48,8 @@ the Palma ratio.
 A stable version of concstats is available on CRAN:
 
 ``` r
-install.packages("concstats") # Market structure, concentration and inequality
-                              # measures
+install.packages("concstats") # Market structure, concentration and inequality measures
+library(concstats)
 ```
 
 You can install the development version from
@@ -77,7 +77,7 @@ calculated as a group or individually.
 ### `comp`
 
 is a group wrapper to calculate different concentration measures. Within
-this group are measures like the Herfindahl-Hirschmann index (HHI), the
+this group are measures like the Herfindahl-Hirschman index (HHI), the
 dual of the HHI, the Dominance or the Stenbacka index.
 
 ### `inequ`
@@ -94,13 +94,13 @@ measure or a set of market structure and concentration measures:
 library(concstats)
 ## Create some simple data
 share1 <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
-share_hhi <- hhi(share1) # the Herfindahl-Hirschmann Index
+share_hhi <- hhi(share1) # the Herfindahl-Hirschman Index
 #> [1] 0.275
 
 share_dom <- dom(share1) # the Dominance Index
 #> [1] 0.4127273
 
-## Create some other simple data
+## Our simple data
 share2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
                                               # the market (should sum up to 1)
 
@@ -120,8 +120,8 @@ share2_con <- concstats(share2) # creates share2_con, a selected set of measures
 In this case, the result is a table with eight selected measures: 1)
 Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in
 %, 4) Top 3 firms, share in %, 5) Top 5 firms, share in %, 6) The
-Herfindahl-Hirschmann Index, in decimal form, 7) Normalized Entropy
-(RE), a value between 0 and 1, 8) Palma ratio, an inequality score which
+Herfindahl-Hirschman Index, in decimal form, 7) Normalized Entropy (RE),
+a value between 0 and 1, 8) Palma ratio, an inequality score which
 measures the ratio of the top 10 percent to the bottom 40 percent.
 
 ## References
@@ -133,7 +133,7 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
-3.  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+3.  Garcia Alba Idunate, P. (1994). Un Indice de dominacion para el
     analisis de la estructura de los mercados. El Trimestre Economico,
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
