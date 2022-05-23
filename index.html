@@ -118,10 +118,10 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <!-- badges: start -->
-<p>Measures of concentration and competition are important and give a first insight of a given market structure in a particular market. They are important to determine public policies and strategic corporate decisions. However, in research and in practice the most commonly used measure is the Herfindahl Hirschmann Index. The goal of the <code>concstats</code> package is to offer a set of alternative and/or additional measures to better determine a given market structure and therefore reduce uncertainty with respect to a given market situation. Various functions or groups of functions are available to achieve the desired goal.</p>
+<p>Measures of concentration and competition are important and give a first insight of a given market structure in a particular market. They are important to determine public policies and strategic corporate decisions. However, in research and in practice the most commonly used measure is the Herfindahl Hirschman Index. The goal of the <code>concstats</code> package is to offer a set of alternative and/or additional measures to better determine a given market structure and therefore reduce uncertainty with respect to a given market situation. Various functions or groups of functions are available to achieve the desired goal.</p>
 <p>-<code>concstats</code> calculates a set of pre-selected concentration and diversity measures in a one-step procedure.<br>
 -<code>mstruct</code> offers market structure measures, e.g. the sum of Top3 or Top5 market shares.<br>
--<code>comp</code> is a wrapper for concentration measures, e.g. the Herfindahl Hirschmann Index.<br>
+-<code>comp</code> is a wrapper for concentration measures, e.g. the Herfindahl Hirschman Index.<br>
 -<code>inequ</code> offers diversity or inequality measures, e.g. the Entropy or the Palma ratio.</p>
 </div>
 <div class="section level2">
@@ -129,8 +129,8 @@
 </h2>
 <p>A stable version of concstats is available on CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"concstats"</span><span class="op">)</span> <span class="co"># Market structure, concentration and inequality</span>
-                              <span class="co"># measures</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"concstats"</span><span class="op">)</span> <span class="co"># Market structure, concentration and inequality measures</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></code></pre></div>
 <p>You can install the development version from <a href="https://github.com/schneiderpy/concstats" class="external-link">GitHub</a> or:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span> <span class="co"># a package for developing R packages</span>
@@ -156,7 +156,7 @@
 <h3 id="comp">
 <code>comp</code><a class="anchor" aria-label="anchor" href="#comp"></a>
 </h3>
-<p>is a group wrapper to calculate different concentration measures. Within this group are measures like the Herfindahl-Hirschmann index (HHI), the dual of the HHI, the Dominance or the Stenbacka index.</p>
+<p>is a group wrapper to calculate different concentration measures. Within this group are measures like the Herfindahl-Hirschman index (HHI), the dual of the HHI, the Dominance or the Stenbacka index.</p>
 </div>
 <div class="section level3">
 <h3 id="inequ">
@@ -173,13 +173,13 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span>
 <span class="co">## Create some simple data</span>
 <span class="va">share1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comp.html">hhi</a></span><span class="op">(</span><span class="va">share1</span><span class="op">)</span> <span class="co"># the Herfindahl-Hirschmann Index</span>
+<span class="va">share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comp.html">hhi</a></span><span class="op">(</span><span class="va">share1</span><span class="op">)</span> <span class="co"># the Herfindahl-Hirschman Index</span>
 <span class="co">#&gt; [1] 0.275</span>
 
 <span class="va">share_dom</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/comp.html">dom</a></span><span class="op">(</span><span class="va">share1</span><span class="op">)</span> <span class="co"># the Dominance Index</span>
 <span class="co">#&gt; [1] 0.4127273</span>
 
-<span class="co">## Create some other simple data</span>
+<span class="co">## Our simple data</span>
 <span class="va">share2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span> <span class="co"># market shares of each firm in</span>
                                               <span class="co"># the market (should sum up to 1)</span>
 
@@ -194,7 +194,7 @@
 <span class="co">#&gt; 6            HHI   0.30</span>
 <span class="co">#&gt; 7    Entropy(RE)   0.79</span>
 <span class="co">#&gt; 8    Palma ratio   2.67</span></code></pre></div>
-<p>In this case, the result is a table with eight selected measures: 1) Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in %, 4) Top 3 firms, share in %, 5) Top 5 firms, share in %, 6) The Herfindahl-Hirschmann Index, in decimal form, 7) Normalized Entropy (RE), a value between 0 and 1, 8) Palma ratio, an inequality score which measures the ratio of the top 10 percent to the bottom 40 percent.</p>
+<p>In this case, the result is a table with eight selected measures: 1) Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in %, 4) Top 3 firms, share in %, 5) Top 5 firms, share in %, 6) The Herfindahl-Hirschman Index, in decimal form, 7) Normalized Entropy (RE), a value between 0 and 1, 8) Palma ratio, an inequality score which measures the ratio of the top 10 percent to the bottom 40 percent.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -203,7 +203,7 @@
 <li>Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. &amp; Tabak, B. M.<ol start="2005" style="list-style-type: decimal"><li>Banking concentration: the Brazilian case. In Financial Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.</li></ol>
 </li>
 <li>Cobham, A. and A. Summer (2013). Is It All About the Tails? The Palma Measure of Income Inequality, Center for Global Development, Washington, DC.</li>
-<li>Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el analisis de la estructura de los mercados. El Trimestre Economico, 61: 499-524.</li>
+<li>Garcia Alba Idunate, P. (1994). Un Indice de dominacion para el analisis de la estructura de los mercados. El Trimestre Economico, 61: 499-524.</li>
 <li>Ginevicius, R. and S. Cirba (2009). Additive measurement of market concentration, Journal of Business Economics and Management, 10(3), 191-198.</li>
 <li>Palma, J. G. (2006). Globalizing Inequality: ‘Centrifugal’ and ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.</li>
 <li>Shannon, C. E. (1948). A Mathematical Theory of Communication, The Bell System Technical Journal (Nokia Bell Labs).</li>
