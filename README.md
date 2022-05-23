@@ -49,7 +49,6 @@ A stable version of concstats is available on CRAN:
 
 ``` r
 install.packages("concstats") # Market structure, concentration and inequality measures
-library(concstats)
 ```
 
 You can install the development version from

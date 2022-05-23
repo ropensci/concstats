@@ -43,7 +43,7 @@
 #' @examples
 #' # a vector of market shares
 #' x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-#' # the Herfindahl-Hirschmann index of the vector
+#' # the Herfindahl-Hirschman index of the vector
 #' shares_hhi <- comp(x, type = "hhi")
 #' # individual measure
 #' shares_sten <- sten(x)
