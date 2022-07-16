@@ -76,11 +76,12 @@ head(creditcoops)
 
 ## Group wrapper overview
 At the moment, there are the following groups of functions available:    
-- `mstruct` is a wrapper for market structure measures    
-- `inequ` is a wrapper for inequality and diversity measures    
-- `comp` is a wrapper with different concentration measures    
-- `concstats` is a function which calculates a set of pre-selected measures in a 
-    one step procedure to get a quick overview of a given market structure    
+- `concstats_mstruct` is a wrapper for market structure measures    
+- `concstats_inequ` is a wrapper for inequality and diversity measures    
+- `concstats_comp` is a wrapper with different concentration measures    
+- `concstats_concstats` is a function which calculates a set of pre-selected
+                      measures in a one step procedure to get a quick overview
+                      of a given market structure    
 
 The functions will be presented in more details in the following short
 step-by-step guide. 
@@ -89,15 +90,15 @@ step-by-step guide.
 We will use a vector which represents market participants with their respective 
 market shares (in decimal form): 
 
-### mstruct
+### concstats_mstruct
 The wrapper includes the following individual functions: ```firm```, ```nrs_eq```,
-```top```, ```top3```, ```top5```, and ```all```
+```top```, ```top3```, ```top5```, and ```all```. All individual functions
+can be accessed directly with the prefix "concstats_", e.g. "concstats_firm".
 ```{r example-1}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_top5 <- top5(test_share) # top 5 market share
+test_share_top5 <- concstats_top5(test_share) # top 5 market share
 test_share_top5
 ```
-
 
 You should have noticed that the market shares are in decimal form. There are 
 eight market participants, however, two have no market shares, by default 
@@ -107,48 +108,48 @@ group wrapper:
 
 ```{r example-2}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_top <- mstruct(test_share, type = "top") # top market share
+test_share_top <- concstats_mstruct(test_share, type = "top") # top market share
 test_share_top
 ```
 
 Or, just calculate all measures of the group wrapper.
 ```{r examples-mstruct-all}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_mstruct <- mstruct(test_share, type = "all")
+test_share_mstruct <- concstats_mstruct(test_share, type = "all")
 test_share_mstruct
 ```
 
 The result is a table with the market structure measures.
 
-### inequ
+### concstats_inequ
 The inequality and diversity group includes the functions ```entropy```, 
 ```gini```, ```berry```, ```palma```, ```grs```, and ```all```.
 
 ```{r examples-entropy, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-test_share_entropy <- entropy(test_share)
+test_share_entropy <- concstats_entropy(test_share)
 test_share_entropy
 
 # and as a standardized value
-test_share_entropy2 <- entropy(test_share, unbiased = TRUE)
+test_share_entropy2 <- concstats_entropy(test_share, unbiased = TRUE)
 test_share_entropy2
 ```
 
-### comp
+### concstats_comp
 The group wrapper for competition measures includes the functions ```hhi```, 
-```hhi_d```, ```hhi_min```, ```dom```, ```sten```, and ```all```
+```hhi_d```, ```hhi_min```, ```dom```, ```sten```, and ```all```.
 
 ```{r examples-hhi, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_hhi <- hhi(test_share)
+test_share_hhi <- concstats_hhi(test_share)
 test_share_hhi
 
 # a standardized value
-test_share_hhi2 <- hhi(test_share, unbiased = TRUE)
+test_share_hhi2 <- concstats_hhi(test_share, unbiased = TRUE)
 test_share_hhi2
 
 # the min average of the hhi
-test_share_hhi3 <- comp(test_share, unbiased = TRUE, type = "hhi_min")
+test_share_hhi3 <- concstats_comp(test_share, type = "hhi_min")
 test_share_hhi3
 ```
 
@@ -158,7 +159,7 @@ one step procedure for a first overview of a given market structure.
 
 ```{r examples-concstats, echo=TRUE}
 test_share <- c(0.2, 0.3, 0.5)
-test_share_conc <- concstats(test_share)
+test_share_conc <- concstats_concstats(test_share)
 test_share_conc
 ```
 
@@ -212,7 +213,7 @@ coops_2016 <- coops_2016/sum(coops_2016)   # convert the vector in decimal form
 
 # We then use the new object `coops_2016` to calculate the market structure measures
 # as a group in a one-step-procedure:
-coops_2016_mstruct <- mstruct(coops_2016, type = "all")
+coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all")
 coops_2016_mstruct_tab <- coops_2016_mstruct %>% 
   kableExtra::kbl(caption = "Market structure 2016", digits = 2,
                   booktabs = T, align = "r") %>% 

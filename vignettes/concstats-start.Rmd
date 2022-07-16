@@ -22,6 +22,15 @@ c) a selected set of measures in a one-step procedure.
 
 ## <i class="fas fa-download"></i> How can you install it?
 
+You can install `concstats` directly from CRAN
+
+```{r, eval=FALSE}
+install.packages("concstats") # Market Structure, Concentration and Inequality
+                              # Measures
+library(concstats)
+
+```
+
 To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) or use: 
 
 ```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
@@ -43,23 +52,27 @@ reducing uncertainty.** **It can be used by practitioners and academics alike.**
 
 ## <i class="fas fa-code"></i> How can it be used?
 
-`concstats` should be used by practitioners and academics **who are concerned about
-a given market situation regarding its structure, concentration, diversity or
-inequality**. **A single standard measure like the Herfindahl Hirschman Index
+`concstats` should be used by practitioners and academics **who are concerned
+about a given market situation regarding its structure, concentration, diversity
+or inequality**. **A single standard measure like the Herfindahl Hirschman Index
 (HHI) may lead to erroneous conclusions.** The `concstats` package offers a
 **straightforward way to calculate standard and alternative measures** given a
 data set of market participants and their participation (in absolute or relative
 values) in a particular market at a given point of time or over time.
 concstats provides currently the following basic functions:
 
-- **concstats** calculates eight pre-selected measures in a one-step procedure
-to provide a first insight of the market.
-- **mstruct** is a wrapper for the following measures: **firm**, **nrs_eq**
-(Numbers equivalent), **top**, **top 3** and **top 5** market share, and **all**
+- **concstats_concstats** calculates eight pre-selected measures in a one-step
+procedure to provide a first insight of the market.
+- **concstats_mstruct** is a wrapper for the following measures: **firm**,
+**nrs_eq** (Numbers equivalent), **top**, **top 3** and **top 5** market share,
+and **all** calculates all measures as a group. Each of the measures within a
+group can be accessed directly using the prefix **concstats_**, e.g.
+**concstats_firm**.
+- **concstats_comp** is a group wrapper for the following concentration measures:
+**hhi**, the **dual of the hhi**, the **min. of the hhi**, the
+**dominance index**, the **stenbacka index**, and finally **all** which
 calculates all measures as a group.
-- **comp** is a group wrapper for the following concentration measures: **hhi**,
-the **dual of the hhi**, the **min. of the hhi**, the **dominance index**, the
-**stenbacka index**, and finally **all** which calculates all measures as a group.
-- **inequ** is a wrapper for inequality and diversity measures and contains:
-**entropy**, **gini coefficient**, **simpson index**, the **palma ratio** and the
-alternative **grs** measure, **all** calculates the group measures.
+- **concstats_inequ** is a wrapper for inequality and diversity measures and
+contains: **entropy**, **gini coefficient**, **simpson index**, the
+**palma ratio** and the alternative **grs** measure, **all** calculates the
+group measures.
