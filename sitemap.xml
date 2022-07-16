@@ -31,21 +31,21 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/comp.html</loc>
+    <loc>/reference/concstats_comp.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats.html</loc>
+    <loc>/reference/concstats_concstats.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_inequ.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_mstruct.html</loc>
   </url>
   <url>
     <loc>/reference/creditcoops.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/inequ.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mstruct.html</loc>
   </url>
 </urlset>

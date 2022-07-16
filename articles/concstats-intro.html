@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Introduction to Concstats</h1>
                         <h4 data-toc-skip class="author">Andreas Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-06-17</h4>
+            <h4 data-toc-skip class="date">2022-07-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -106,33 +106,33 @@
 </h2>
 <p>You can install <code>concstats</code> directly from CRAN</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"concstats"</span><span class="op">)</span> <span class="co"># Market Structure, Concentration and Inequality</span>
-                              <span class="co"># Measures</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"concstats"</span><span class="op">)</span> <span class="co"># Market Structure, Concentration and Inequality</span></span>
+<span>                              <span class="co"># Measures</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></span></code></pre></div>
 <p>To install the latest development version of <code>concstats</code> directly from <a href="https://github.com/schneiderpy/concstats" class="external-link">GitHub</a> use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier </span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"schneiderpy/concstats"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier </span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"schneiderpy/concstats"</span><span class="op">)</span></span></code></pre></div>
 <p>Then, load the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
 <p>The following examples use mainly fictitious data to present the functions. However, if you want to test the functionality in more detail, the package comes with a small data set of real Paraguayan credit cooperatives (creditcoops). There are 22 paired observations for real Paraguayan credit cooperatives (with assets &gt; 11 Mio. USD) for 2016 and 2018 with their respective total loans granted. For a better visualization there is an additional column with the transformed total loans. For further information on the data please see the <code>data</code> help file.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span>
-<span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span>
-<span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
+<span><span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span></span>
+<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></span></code></pre></div>
 <!--```-->
 <!--  # A tibble: 6 x 5                                   -->
 <!--  coop_id   year  total_loans paired total_loans_log  -->
@@ -149,10 +149,10 @@
 <h2 id="group-wrapper-overview">Group wrapper overview<a class="anchor" aria-label="anchor" href="#group-wrapper-overview"></a>
 </h2>
 <p>At the moment, there are the following groups of functions available:<br>
-- <code>mstruct</code> is a wrapper for market structure measures<br>
-- <code>inequ</code> is a wrapper for inequality and diversity measures<br>
-- <code>comp</code> is a wrapper with different concentration measures<br>
-- <code>concstats</code> is a function which calculates a set of pre-selected measures in a one step procedure to get a quick overview of a given market structure</p>
+- <code>concstats_mstruct</code> is a wrapper for market structure measures<br>
+- <code>concstats_inequ</code> is a wrapper for inequality and diversity measures<br>
+- <code>concstats_comp</code> is a wrapper with different concentration measures<br>
+- <code>concstats_concstats</code> is a function which calculates a set of pre-selected measures in a one step procedure to get a quick overview of a given market structure</p>
 <p>The functions will be presented in more details in the following short step-by-step guide.</p>
 </div>
 <div class="section level2">
@@ -160,85 +160,85 @@
 </h2>
 <p>We will use a vector which represents market participants with their respective market shares (in decimal form):</p>
 <div class="section level3">
-<h3 id="mstruct">mstruct<a class="anchor" aria-label="anchor" href="#mstruct"></a>
+<h3 id="concstats_mstruct">concstats_mstruct<a class="anchor" aria-label="anchor" href="#concstats_mstruct"></a>
 </h3>
-<p>The wrapper includes the following individual functions: <code>firm</code>, <code>nrs_eq</code>, <code>top</code>, <code>top3</code>, <code>top5</code>, and <code>all</code></p>
+<p>The wrapper includes the following individual functions: <code>firm</code>, <code>nrs_eq</code>, <code>top</code>, <code>top3</code>, <code>top5</code>, and <code>all</code>. All individual functions can be accessed directly with the prefix “concstats_”, e.g. “concstats_firm”.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mstruct.html">top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share</span>
-<span class="va">test_share_top5</span>
-<span class="co">#&gt; [1] 96</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share</span></span>
+<span><span class="va">test_share_top5</span></span>
+<span><span class="co">#&gt; [1] 96</span></span></code></pre></div>
 <p>You should have noticed that the market shares are in decimal form. There are eight market participants, however, two have no market shares, by default <code>concstats</code> treats 0 as NA. The result is a top 5 market share of 96 %. You can also access each function through their respective argument in the group wrapper:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">test_share_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mstruct.html">mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="co"># top market share</span>
-<span class="va">test_share_top</span>
-<span class="co">#&gt; [1] 40</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">test_share_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="co"># top market share</span></span>
+<span><span class="va">test_share_top</span></span>
+<span><span class="co">#&gt; [1] 40</span></span></code></pre></div>
 <p>Or, just calculate all measures of the group wrapper.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mstruct.html">mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
-<span class="va">test_share_mstruct</span>
-<span class="co">#&gt;          Measure Value</span>
-<span class="co">#&gt; 1          Firms   6.0</span>
-<span class="co">#&gt; 2 Nrs_equivalent   3.3</span>
-<span class="co">#&gt; 3        Top (%)  40.0</span>
-<span class="co">#&gt; 4       Top3 (%)  85.0</span>
-<span class="co">#&gt; 5       Top5 (%)  96.0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">test_share_mstruct</span></span>
+<span><span class="co">#&gt;          Measure Value</span></span>
+<span><span class="co">#&gt; 1          Firms   6.0</span></span>
+<span><span class="co">#&gt; 2 Nrs_equivalent   3.3</span></span>
+<span><span class="co">#&gt; 3        Top (%)  40.0</span></span>
+<span><span class="co">#&gt; 4       Top3 (%)  85.0</span></span>
+<span><span class="co">#&gt; 5       Top5 (%)  96.0</span></span></code></pre></div>
 <p>The result is a table with the market structure measures.</p>
 </div>
 <div class="section level3">
-<h3 id="inequ">inequ<a class="anchor" aria-label="anchor" href="#inequ"></a>
+<h3 id="concstats_inequ">concstats_inequ<a class="anchor" aria-label="anchor" href="#concstats_inequ"></a>
 </h3>
 <p>The inequality and diversity group includes the functions <code>entropy</code>, <code>gini</code>, <code>berry</code>, <code>palma</code>, <code>grs</code>, and <code>all</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span>
-<span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/inequ.html">entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span>
-<span class="va">test_share_entropy</span>
-<span class="co">#&gt; [1] 2.036449</span>
-
-<span class="co"># and as a standardized value</span>
-<span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/inequ.html">entropy</a></span><span class="op">(</span><span class="va">test_share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">test_share_entropy2</span>
-<span class="co">#&gt; [1] 0.787806</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy</span></span>
+<span><span class="co">#&gt; [1] 2.036449</span></span>
+<span></span>
+<span><span class="co"># and as a standardized value</span></span>
+<span><span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy2</span></span>
+<span><span class="co">#&gt; [1] 0.787806</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="comp">comp<a class="anchor" aria-label="anchor" href="#comp"></a>
+<h3 id="concstats_comp">concstats_comp<a class="anchor" aria-label="anchor" href="#concstats_comp"></a>
 </h3>
-<p>The group wrapper for competition measures includes the functions <code>hhi</code>, <code>hhi_d</code>, <code>hhi_min</code>, <code>dom</code>, <code>sten</code>, and <code>all</code></p>
+<p>The group wrapper for competition measures includes the functions <code>hhi</code>, <code>hhi_d</code>, <code>hhi_min</code>, <code>dom</code>, <code>sten</code>, and <code>all</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
-<span class="va">test_share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comp.html">hhi</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span>
-<span class="va">test_share_hhi</span>
-<span class="co">#&gt; [1] 0.3002</span>
-
-<span class="co"># a standardized value</span>
-<span class="va">test_share_hhi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comp.html">hhi</a></span><span class="op">(</span><span class="va">test_share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">test_share_hhi2</span>
-<span class="co">#&gt; [1] 0.16024</span>
-
-<span class="co"># the min average of the hhi</span>
-<span class="va">test_share_hhi3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/comp.html">comp</a></span><span class="op">(</span><span class="va">test_share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span>, type <span class="op">=</span> <span class="st">"hhi_min"</span><span class="op">)</span>
-<span class="va">test_share_hhi3</span>
-<span class="co">#&gt; [1] 0.1666667</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_comp.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi</span></span>
+<span><span class="co">#&gt; [1] 0.3002</span></span>
+<span></span>
+<span><span class="co"># a standardized value</span></span>
+<span><span class="va">test_share_hhi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_comp.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi2</span></span>
+<span><span class="co">#&gt; [1] 0.16024</span></span>
+<span></span>
+<span><span class="co"># the min average of the hhi</span></span>
+<span><span class="va">test_share_hhi3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_comp.html">concstats_comp</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"hhi_min"</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi3</span></span>
+<span><span class="co">#&gt; [1] 0.1666667</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="concstats">concstats<a class="anchor" aria-label="anchor" href="#concstats"></a>
 </h3>
 <p>A single function which calculates a set of eight pre-selected measures in a one step procedure for a first overview of a given market structure.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span>
-<span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats.html">concstats</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span>
-<span class="va">test_share_conc</span>
-<span class="co">#&gt;          Measure  Value</span>
-<span class="co">#&gt; 1          Firms   3.00</span>
-<span class="co">#&gt; 2 Nrs_equivalent   2.63</span>
-<span class="co">#&gt; 3        Top (%)  50.00</span>
-<span class="co">#&gt; 4       Top3 (%) 100.00</span>
-<span class="co">#&gt; 5       Top5 (%)     NA</span>
-<span class="co">#&gt; 6            HHI   0.38</span>
-<span class="co">#&gt; 7    Entropy(RE)   0.94</span>
-<span class="co">#&gt; 8    Palma ratio   2.50</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span><span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_conc</span></span>
+<span><span class="co">#&gt;          Measure  Value</span></span>
+<span><span class="co">#&gt; 1          Firms   3.00</span></span>
+<span><span class="co">#&gt; 2 Nrs_equivalent   2.63</span></span>
+<span><span class="co">#&gt; 3        Top (%)  50.00</span></span>
+<span><span class="co">#&gt; 4       Top3 (%) 100.00</span></span>
+<span><span class="co">#&gt; 5       Top5 (%)     NA</span></span>
+<span><span class="co">#&gt; 6            HHI   0.38</span></span>
+<span><span class="co">#&gt; 7    Entropy(RE)   0.94</span></span>
+<span><span class="co">#&gt; 8    Palma ratio   2.50</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -248,17 +248,17 @@
 <p>Some examples how you can accomplish this. Let us assume one would like to use the group measure for e.g. market structure, and keep the resulting table. We can refine the table using <code>kableExtra</code> which works nice with <code>knitr</code>.</p>
 <p>This time, we will use our <code>creditcoops</code> data set again, which comes with the package.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span>
-<span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span>
-<span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
+<span><span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span></span>
+<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></span></code></pre></div>
 <!--```-->
 <!--  # A tibble: 6 x 5                                   -->
 <!--  coop_id   year  total_loans paired total_loans_log  -->
@@ -272,31 +272,31 @@
 <!--```-->
 <p>You will need the following two packages. Make sure you have these packages installed.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://haozhu233.github.io/kableExtra/" class="external-link">kableExtra</a></span><span class="op">)</span></span></code></pre></div>
 <p>Now, we will filter out data for the year 2016.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">creditcoops</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>
-
-<span class="va">coops_2016</span> <span class="op">&lt;-</span>  <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span>
-<span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>   <span class="co"># convert the vector in decimal form</span>
-                                           <span class="co"># of market shares</span>
-
-<span class="co"># We then use the new object `coops_2016` to calculate the market structure measures</span>
-<span class="co"># as a group in a one-step-procedure:</span>
-<span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mstruct.html">mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
-<span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,
-                  booktabs <span class="op">=</span> <span class="cn">T</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span>
-<span class="va">coops_2016_mstruct_tab</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">creditcoops</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">coops_2016</span> <span class="op">&lt;-</span>  <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span></span>
+<span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>   <span class="co"># convert the vector in decimal form</span></span>
+<span>                                           <span class="co"># of market shares</span></span>
+<span></span>
+<span><span class="co"># We then use the new object `coops_2016` to calculate the market structure measures</span></span>
+<span><span class="co"># as a group in a one-step-procedure:</span></span>
+<span><span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                  booktabs <span class="op">=</span> <span class="cn">T</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
+<span><span class="va">coops_2016_mstruct_tab</span></span></code></pre></div>
 <p>The result is a nice reusable table.</p>
 <p><img src="mstruct_tab.png" style="display: block; margin: auto;"></p>
 <p>Now, let’s go a step further. We will compare the two samples for 2016 and 2018. For this purpose, we will select from our <code>creditcoops</code> data set the relevant columns (coop_id, year, paired, and total_loans_log) and make a new data frame.</p>
 <p>Make sure you have the <code>ggplot2</code> package installed. Load the package.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># Create Elegant Data Visualizations Using the Grammar of Graphics</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># Create Elegant Data Visualizations Using the Grammar of Graphics</span></span></code></pre></div>
 <center>
 <p><img src="coops_paired.png" width="469" height="521"></p>
 </center>
@@ -321,7 +321,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>
