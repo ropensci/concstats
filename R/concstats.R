@@ -5,13 +5,13 @@
 #'  less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
 #'  and others in a one step procedure to provide a first overview.
 #'
-#' @usage concstats(x, na.rm = TRUE)
+#' @usage concstats_concstats(x, na.rm = TRUE)
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 #'
-#' @details \code{concstats} computes a set of different and selected
+#' @details \code{concstats_concstats} computes a set of different and selected
 #'  structural, inequality, and concentration measures in a one step procedure,
 #'  however, all measures can be computed individually or in groups.
 #'
@@ -20,17 +20,18 @@
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to the total share of individual firms/units. The vector should sum up to 1.
 #'
-#' @seealso {\code{\link{mstruct}}, \code{\link{comp}}, \code{\link{inequ}}}
+#' @seealso {\code{\link{concstats_mstruct}}, \code{\link{concstats_comp}},
+#'  \code{\link{concstats_inequ}}}
 #'
 #' @examples
 #' # a vector of market shares
 #' # share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 #' # a selected set of different structural, concentration, and inequality
 #' # measures
-#' # share_conc <- concstats(share)
+#' # share_conc <- concstats_concstats(share)
 #'
 #' @export
-concstats <- function(x, na.rm = TRUE) {
+concstats_concstats <- function(x, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -57,19 +58,19 @@ concstats <- function(x, na.rm = TRUE) {
 
   x <- sort(x, decreasing = TRUE)
 
-  firm <- sum(x > 0)
+  concstats_firm <- sum(x > 0)
 
-  nrs_eq <- 1 / sum(x ^ 2)
+  concstats_nrs_eq <- 1 / sum(x ^ 2)
 
-  top <- x[1] * 100
+  concstats_top <- x[1] * 100
 
-  top3 <- sum(x[1:3] * 100)
+  concstats_top3 <- sum(x[1:3] * 100)
 
-  top5 <- sum(x[1:5]) * 100
+  concstats_top5 <- sum(x[1:5]) * 100
 
-  hhi <- sum(x ^ 2)
+  concstats_hhi <- sum(x ^ 2)
 
-  entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
+  concstats_entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
     / log(sum(x > 0), base = 2))
 
   palma <- as.numeric(stats::na.omit(x))
@@ -78,14 +79,16 @@ concstats <- function(x, na.rm = TRUE) {
                    include.lowest = TRUE, labels = FALSE)
   palma_bottom <- sum(x[palma_cut <= 4])
   palma_top <- sum(x[palma_cut > 9])
-  palma <- palma_top / palma_bottom
+  concstats_palma <- palma_top / palma_bottom
 
 
   results_all <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
                                        "Top3 (%)", "Top5 (%)", "HHI",
                                        "Entropy(RE)", "Palma ratio"),
-                        Value = format(c(firm, nrs_eq, top, top3, top5, hhi,
-                                          entropy, palma),
+                        Value = format(c(concstats_firm, concstats_nrs_eq,
+                                         concstats_top, concstats_top3,
+                                         concstats_top5, concstats_hhi,
+                                         concstats_entropy, concstats_palma),
                                    scientific = FALSE,
                                    digits = 2,
                                    justify = "right"))

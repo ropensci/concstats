@@ -3,72 +3,75 @@
 #' @description A set of different inequality and diversity measures.
 #'
 #' @usage
-#'  inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
+#'  concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
 #'  "grs", "all"), na.rm = TRUE)
 #'
 #' @param x a numeric vector of non-negative values.
-#' @param unbiased Logical. Argument of the functions \code{entropy},
-#'  \code{gini}, and \code{simpson} specifying whether or not a finite sample
-#'   correction should be applied.
+#' @param unbiased Logical. Argument of the functions \code{concstats_entropy},
+#'  \code{concstats_gini}, and \code{concstats_simpson} specifying whether or
+#'  not a finite sample correction should be applied.
 #' @param type a character string of the measure to be calculated, defaults to
-#'  "entropy".
+#'  "concstats_entropy".
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
 #'
 #' @details
-#'  \code{inequ} is a wrapper for the proposed inequality measures
-#'  \code{entropy}, \code{gini}, \code{simpson}, \code{palma}, \code{grs},
-#'  \code{all}.
-#'  If no measure is specified, "entropy" is the default.
+#'  \code{concstats_inequ} is a wrapper for the proposed inequality measures
+#'  \code{concstats_entropy}, \code{concstats_gini}, \code{concstats_simpson},
+#'  \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
+#'  If no measure is specified, "concstats_entropy" is the default.
 #'
-#' \code{entropy} returns the (Shannon) Entropy, \code{gini} is the
-#'  Gini coefficient, \code{simpson} is the complement of the
-#'  Herfindahl-Hirschmann Index. You can normalize each of these three measures
+#' \code{concstats_entropy} returns the (Shannon) Entropy, \code{concstats_gini}
+#'  is the Gini coefficient, \code{concstats_simpson} is the complement of the
+#'  Herfindahl-Hirschman Index. You can normalize each of these three measures
 #'  by setting \code{unbiased = TRUE}
 #'
-#' \code{Palma} measures the ratio of inequality (used with income inequality)
-#'  of the top 10 percent to the bottom 40 percent. \code{grs} is an alternative
-#'  inequality measure (Ginevicius, 2009), \code{all} returns all measures in
-#'  a one step procedure.
+#' \code{concstats_palma} measures the ratio of inequality (used with income
+#'  inequality) of the top 10 percent to the bottom 40 percent.
+#'  \code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009),
+#'  \code{concstats_all} returns all measures in a one step procedure.
 #'
 #' @return prints the calculated measure
-#' @note the non- negative vector might market shares of individual firms/units.
-#'  In the latter case the vector should sum up to 1.
+#' @note the non-negative vector of market shares should be in a decimal form
+#'  corresponding to the total shares of individual firms/units.The vector
+#'  should sum up to 1.
 #'
-#' @seealso {\code{\link{concstats}}, \code{\link{mstruct}}, \code{\link{comp}}}
+#' @seealso {\code{\link{concstats_concstats}}, \code{\link{concstats_mstruct}},
+#'  \code{\link{concstats_comp}}}
 #'
 #' @examples
 #' # a vector of market shares
 #' share <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 #' # Calculate the Palma ratio
-#' share_p <- inequ(share, type = "palma")
+#' share_p <- concstats_inequ(share, type = "palma")
 #' # Calculate the entropy measure directly
-#' share_ent <- entropy(share, unbiased = TRUE)
+#' share_ent <- concstats_entropy(share, unbiased = TRUE)
 #' # Calculate the group measures
-#' share_inequ <- inequ(share, type = "all")
+#' share_inequ <- concstats_inequ(share, type = "all")
 #'
-#' @export inequ
-inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
-                                                "palma", "grs", "all"),
+#' @export concstats_inequ
+concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
+                                                          "simpson", "palma",
+                                                          "grs", "all"),
                   na.rm = TRUE) {
 
   switch(match.arg(type),
-         entropy = entropy(x, unbiased = unbiased, na.rm = na.rm),
-         gini = gini(x, unbiased = unbiased, na.rm = na.rm),
-         simpson = simpson(x, unbiased = unbiased, na.rm = na.rm),
-         palma = palma(x, na.rm = na.rm),
-         grs = grs(x, na.rm = na.rm),
-         all = all_inequ(x, na.rm = na.rm))
+         entropy = concstats_entropy(x, unbiased = unbiased, na.rm = na.rm),
+         gini = concstats_gini(x, unbiased = unbiased, na.rm = na.rm),
+         simpson = concstats_simpson(x, unbiased = unbiased, na.rm = na.rm),
+         palma = concstats_palma(x, na.rm = na.rm),
+         grs = concstats_grs(x, na.rm = na.rm),
+         all = concstats_all_inequ(x, na.rm = na.rm))
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not.
-entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
+concstats_entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -100,13 +103,13 @@ entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'  correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
-gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
+concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -132,19 +135,20 @@ gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   x <- sort(x)
-  gini <- 2 * sum(x * seq_len(length(x))) / (length(x) * sum(x)) - 1 - (1 / length(x))
+  gini <- 2 * sum(x * seq_len(length(x))) /
+    (length(x) * sum(x)) - 1 - (1 / length(x))
   if (unbiased) gini <- length(x) / (length(x) - 1) * gini
   return(gini)
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
 #'   correction should be applied. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
-simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
+concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -175,11 +179,11 @@ simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
-palma <- function(x, na.rm = TRUE) {
+concstats_palma <- function(x, na.rm = TRUE) {
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -213,11 +217,11 @@ palma <- function(x, na.rm = TRUE) {
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
-grs <- function(x, na.rm = TRUE) {
+concstats_grs <- function(x, na.rm = TRUE) {
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -249,18 +253,18 @@ grs <- function(x, na.rm = TRUE) {
 }
 
 #' @export
-#' @rdname inequ
+#' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
-all_inequ <- function(x, na.rm = TRUE) {
+concstats_all_inequ <- function(x, na.rm = TRUE) {
 
   invisible(utils::capture.output(
-    entropy <- entropy(x, unbiased = FALSE, na.rm = TRUE),
-    gini <- gini(x, unbiased = FALSE, na.rm = TRUE),
-    simpson <- simpson(x, unbiased = FALSE, na.rm = TRUE),
-    palma <- palma(x, na.rm = TRUE),
-    grs <- grs(x, na.rm = TRUE)))
+    entropy <- concstats_entropy(x, unbiased = FALSE, na.rm = TRUE),
+    gini <- concstats_gini(x, unbiased = FALSE, na.rm = TRUE),
+    simpson <- concstats_simpson(x, unbiased = FALSE, na.rm = TRUE),
+    palma <- concstats_palma(x, na.rm = TRUE),
+    grs <- concstats_grs(x, na.rm = TRUE)))
 
   results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
                                           "Simpson Index", "Palma Ratio",
