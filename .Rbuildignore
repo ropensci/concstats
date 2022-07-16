@@ -8,4 +8,6 @@
 ^docs$
 ^pkgdown$
 ^cran-comments\.md$
+^CONTRIBUTING\.md$
+^codemeta\.json$
 ^CRAN-SUBMISSION$

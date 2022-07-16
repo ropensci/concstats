@@ -1,3 +1,9 @@
+# concstats 0.1.3
+
+-   All functions have been consistently prefixed with "concstats_"
+
+-   Updated documentation and web page
+
 # concstats 0.1.2 (submission to CRAN)
 
 For the submission to CRAN the author fixed the following issues:
@@ -30,7 +36,7 @@ This version of `concstats` has been updated:
 
 -   added `tests` for various functions and group of functions.
 
-Most of the functions were streamlined with less lines of code.
+Most of the functions have been streamlined with less lines of code.
 
 # concstats 0.0.2.999
 
