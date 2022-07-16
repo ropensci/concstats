@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Andreas
 Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-07-14</h4>
+            <h4 data-toc-skip class="date">2022-07-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -337,12 +337,12 @@ packages installed.</p>
 <span><span class="co"># as a group in a one-step-procedure:</span></span>
 <span><span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span><span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu">kbl</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>                  booktabs <span class="op">=</span> <span class="cn">T</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
 <span><span class="va">coops_2016_mstruct_tab</span></span></code></pre></div>
 <p>The result is a nice reusable table.</p>
-<p><img src="mstruct_tab.png" style="display: block; margin: auto;"></p>
+<p><img src="mstruct_tab.png" width="188" style="display: block; margin: auto;"></p>
 <p>Now, let’s go a step further. We will compare the two samples for
 2016 and 2018. For this purpose, we will select from our
 <code>creditcoops</code> data set the relevant columns (coop_id, year,
@@ -377,7 +377,7 @@ time for the two sample years 2016 and 2018.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -31,15 +31,6 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/paper.html</loc>
-  </url>
-  <url>
-    <loc>/reference/comp.html</loc>
-  </url>
-  <url>
-    <loc>/reference/concstats.html</loc>
-  </url>
-  <url>
     <loc>/reference/concstats_comp.html</loc>
   </url>
   <url>
@@ -56,11 +47,5 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/inequ.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mstruct.html</loc>
   </url>
 </urlset>
