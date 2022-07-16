@@ -1,7 +1,7 @@
 
 # concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
-# Market Structure, Concentration and Inequality Measures
+# Market Structure, Concentration, and Inequality Measures
 
 ## Introduction
 
