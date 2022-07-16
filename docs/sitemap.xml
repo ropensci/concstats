@@ -16,6 +16,9 @@
     <loc>/authors.html</loc>
   </url>
   <url>
+    <loc>/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
   </url>
   <url>
@@ -35,6 +38,18 @@
   </url>
   <url>
     <loc>/reference/concstats.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_comp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_concstats.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_inequ.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_mstruct.html</loc>
   </url>
   <url>
     <loc>/reference/creditcoops.html</loc>
