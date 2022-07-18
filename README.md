@@ -18,7 +18,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/schneiderpy/concstats)
-[![codecov](https://img.shields.io/codecov/c/gh/schneiderpy/concstats?label=codecov&logo=codecov)](https://codecov.io/gh/schneiderpy/concstats)
+\[[![codecov](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://codecov.io/gh/schneiderpy/concstats)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456536.svg)](https://doi.org/10.5281/zenodo.6456536)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
