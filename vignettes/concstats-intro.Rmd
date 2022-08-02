@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Concstats"
+title: "Introduction to concstats"
 author: "Andreas Schneider"
 date: "`r Sys.Date()`"
 output: 
@@ -7,7 +7,7 @@ output:
     toc: TRUE
     toc_depth: 3
 vignette: >
-  %\VignetteIndexEntry{Introduction to Concstats}
+  %\VignetteIndexEntry{Introduction to concstats}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,7 +30,7 @@ or groups of functions are available to achieve the desired goal.
 You can install `concstats` directly from CRAN
 
 ```{r, eval=FALSE}
-install.packages("concstats") # Market Structure, Concentration and Inequality
+install.packages("concstats") # Market Structure, Concentration, and Inequality
                               # Measures
 library(concstats)
 
@@ -119,7 +119,7 @@ test_share_mstruct <- concstats_mstruct(test_share, type = "all")
 test_share_mstruct
 ```
 
-The result is a table with the market structure measures.
+The result is a data frame of market structure measures.
 
 ### concstats_inequ
 The inequality and diversity group includes the functions ```entropy```, 
@@ -173,7 +173,7 @@ data visualization packages e.g. [```overviewR```](https://CRAN.R-project.org/pa
 
 Some examples how you can accomplish this.
 Let us assume one would like to use the group measure for e.g. market structure,
-and keep the resulting table. We can refine the table using ```kableExtra``` 
+and keep the resulting data frame. We can refine the table using ```kableExtra``` 
 which works nice with ```knitr```.
 
 This time, we will use our ```creditcoops``` data set again, which comes with the 
@@ -207,12 +207,11 @@ Now, we will filter out data for the year 2016.
 coops_2016 <- creditcoops %>% dplyr::filter(year == 2016)
 head(coops_2016)
 
-coops_2016 <-  coops_2016[["total_loans"]] # atomic vector of total loans
-coops_2016 <- coops_2016/sum(coops_2016)   # convert the vector in decimal form
-                                           # of market shares
+coops_2016 <- coops_2016[["total_loans"]] # atomic vector of total loans
+coops_2016 <- coops_2016/sum(coops_2016)   # market shares in decimal form
 
-# We then use the new object `coops_2016` to calculate the market structure measures
-# as a group in a one-step-procedure:
+# We then use the new object `coops_2016` to calculate the market structure
+# measures as a group in a one-step-procedure:
 coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all")
 coops_2016_mstruct_tab <- coops_2016_mstruct %>% 
   kableExtra::kbl(caption = "Market structure 2016", digits = 2,

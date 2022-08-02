@@ -25,7 +25,7 @@ c) a selected set of measures in a one-step procedure.
 You can install `concstats` directly from CRAN
 
 ```{r, eval=FALSE}
-install.packages("concstats") # Market Structure, Concentration and Inequality
+install.packages("concstats") # Market Structure, Concentration, and Inequality
                               # Measures
 library(concstats)
 
