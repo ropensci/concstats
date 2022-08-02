@@ -10,8 +10,8 @@
 \alias{concstats_all_mstruct}
 \title{Market Structure Measures}
 \usage{
-concstats_mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5", "all"),
- na.rm = TRUE)
+concstats_mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5",
+ "all"), na.rm = TRUE)
 
 concstats_firm(x, na.rm = TRUE)
 
@@ -29,16 +29,21 @@ concstats_all_mstruct(x, na.rm = TRUE)
 \item{x}{A non-negative numeric vector.}
 
 \item{type}{A character string of the measure to be calculated,
-can be abbreviated with the first letter. Defaults to "firm".}
+can be abbreviated with the first letter. Defaults to "firm". Input is not
+case-sensitive.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not.}
+be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-returns the calculated measure
+prints the calculated measure.
+
+a data.frame of market structure measures with default settings.
 }
 \description{
-Set of different measures to reflect a given market structure.
+Set of different market structure measures to reflect a given
+market structure.
 }
 \details{
 \code{concstats_mstruct} is a wrapper for the proposed structural measures

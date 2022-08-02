@@ -10,10 +10,10 @@
 \alias{concstats_all_inequ}
 \title{Inequality and Diversity Measures}
 \usage{
-concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
- "grs", "all"), na.rm = TRUE)
+concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
+ "palma", "grs", "all"), na.rm = TRUE)
 
-concstats_entropy(x, unbiased = FALSE, na.rm = TRUE)
+concstats_entropy(x, unbiased = TRUE, na.rm = TRUE)
 
 concstats_gini(x, unbiased = FALSE, na.rm = TRUE)
 
@@ -29,16 +29,20 @@ concstats_all_inequ(x, na.rm = TRUE)
 \item{x}{a non-negative numeric vector.}
 
 \item{unbiased}{Logical. Argument specifying whether or not a finite sample
-correction should be applied. The default is FALSE.}
+correction should be applied. Must be either TRUE or FALSE. The default is
+FALSE.}
 
 \item{type}{a character string of the measure to be calculated, defaults to
-"concstats_entropy".}
+"concstats_entropy". Input is not case-sensitive.}
 
 \item{na.rm}{a logical vector that indicates whether \code{NA} values should
-be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.}
+be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
 prints the calculated measure
+
+a data.frame of inequality measures with default settings.
 }
 \description{
 A set of different inequality and diversity measures.

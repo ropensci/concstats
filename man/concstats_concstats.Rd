@@ -10,11 +10,11 @@ concstats_concstats(x, na.rm = TRUE)
 \item{x}{a non-negative numeric vector.}
 
 \item{na.rm}{a logical vector that indicates whether \code{NA} values should
-be excluded or not.
-If set to \code{FALSE} the computation yields \code{NA}.}
+be excluded or not. Must be either TRUE or FALSE. Defaults to TRUE. If set
+to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-returns a data frame of calculated measures
+returns a data frame of calculated measures with default settings.
 .
 }
 \description{

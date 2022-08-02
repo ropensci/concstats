@@ -10,8 +10,8 @@
 \alias{concstats_all_comp}
 \title{Concentration Measures}
 \usage{
-concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
- "sten", "all"),na.rm = TRUE)
+concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min",
+ "dom", "sten", "all"),na.rm = TRUE)
 
 concstats_hhi(x, unbiased = FALSE, na.rm = TRUE)
 
@@ -29,16 +29,21 @@ concstats_all_comp(x, na.rm = TRUE)
 \item{x}{A non-negative numeric vector.}
 
 \item{unbiased}{Logical. Argument specifying whether or not a finite sample
-correction should be applied. The default is FALSE.}
+correction should be applied. Must be either TRUE or FALSE. The default is
+FALSE.}
 
 \item{type}{A character string of the measure to be calculated,
-can be abbreviated with the first letter. Defaults to "hhi".}
+can be abbreviated with the first letter. Defaults to "hhi". Input is not
+case-sensitive.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not.}
+be excluded or not. Must be either TRUE or FALSE. The default is FALSE.}
 }
 \value{
-prints the calculated measure
+prints the calculated measure.
+
+a data.frame of concentration and competition measures with default
+settings.
 }
 \description{
 A set of different concentration measures.
