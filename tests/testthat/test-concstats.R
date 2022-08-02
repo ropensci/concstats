@@ -66,11 +66,11 @@ test_that("concstats_entropy returns the entropy measure", {
 
   x <- c(0.4, 0.2, 0.15, 0.1, 0.05, 0.07, 0.03)
 
-  expect_equal(concstats_entropy(x), sum(-x / sum(x) * log(x / sum(x),
-                                                           base = 2)))
+  expect_equal(concstats_entropy(x), (sum(-x / sum(x) * log(x / sum(x), base = 2))
+                                      / log(sum(x > 0), base = 2)))
 })
 
-test_that("concstats_palma returns the alternative palma inequality measure", {
+  test_that("concstats_palma returns the alternative palma inequality measure", {
 
   x <- c(0.2, 0.3, 0.5)
 

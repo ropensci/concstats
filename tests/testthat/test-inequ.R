@@ -8,7 +8,8 @@ test_that("concstats_inequ function operates / switches properly", {
   x1 <- c(0.1, 0.2, 0.3, 0.4)
   x2 <- c(0.4, 0.3, 0.2, 0.1)
 
-  expect_equal(concstats_inequ(x, type = "entropy"), concstats_entropy(x))
+  expect_equal(concstats_inequ(x,type = "entropy"),
+               concstats_entropy(x, unbiased = FALSE))
   expect_equal(concstats_inequ(x, unbiased = TRUE, type = "entropy"),
                concstats_entropy(x, unbiased = TRUE))
   expect_equal(concstats_inequ(x1, type = "gini"), concstats_gini(x1))
@@ -45,7 +46,8 @@ test_that("concstats_entropy returns the entropy measure ", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
 
-  expect_equal(concstats_entropy(x), sum(-x / sum(x) * log(x / sum(x), base = 2)))
+  expect_equal(concstats_entropy(x),(sum(-x / sum(x) * log(x / sum(x), base = 2))
+                                     / log(sum(x > 0), base = 2)))
 })
 
 test_that("concstats_entropy returns the unbiased entropy measure ", {

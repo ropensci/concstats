@@ -5,6 +5,8 @@ local_edition(3)
 test_that("concstats_comp function operates / switches properly", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
+  x2 <- concstats_comp(x, unbiased = FALSE, type = "hhi")
+
 
   expect_equal(concstats_comp(x, type = "hhi"), concstats_hhi(x))
   expect_equal(concstats_comp(x, unbiased = TRUE, type = "hhi"),
@@ -25,6 +27,7 @@ test_that("concstats_hhi function operates properly", {
   x1 <- c(0.2, 0.3, 0.4, -0.1)
   x2 <- c(0.2, 0.3, 0.4, 0.1, 0, NA)
 
+
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_vector(1:10, ptype = integer(), size = 10)
   expect_true(is.numeric(x), label = "numeric values returned")
@@ -32,6 +35,8 @@ test_that("concstats_hhi function operates properly", {
   expect_error(concstats_hhi(x1, !isTRUE(all.equal(1, sum(x),
                                           tolerance = .Machine$double.eps^0.25))),
                "vector does not sum to 1")
+  expect_equal(concstats_hhi(x2, na.rm = FALSE), NA_real_)
+
 })
 
 test_that("concstats_hhi returns sum of squared shares as decimal", {
@@ -64,6 +69,7 @@ test_that("concstats_hhi_min function operates properly", {
   expect_error(concstats_hhi_min(x1, !isTRUE(all.equal(1, sum(x),
                                           tolerance = .Machine$double.eps^0.25))),
                "vector does not sum to 1")
+  expect_equal(concstats_hhi(x2, na.rm = FALSE), NA_real_)
 })
 
 test_that("concstats_hhi_min returns min of squared shares", {
@@ -89,6 +95,7 @@ test_that("concstats_hhi_d function operates properly", {
   expect_error(concstats_hhi_d(x1, !isTRUE(all.equal(1, sum(x),
                                           tolerance = .Machine$double.eps^0.25))),
                "vector does not sum to 1")
+  expect_equal(concstats_hhi(x2, na.rm = FALSE), NA_real_)
 })
 
 test_that("concstats_hhi_d returns dual of hhi", {
@@ -114,6 +121,7 @@ test_that("concstats_dom function operates properly", {
   expect_error(concstats_dom(x1, !isTRUE(all.equal(1, sum(x),
                                           tolerance = .Machine$double.eps^0.25))),
                "vector does not sum to 1")
+  expect_equal(concstats_hhi(x2, na.rm = FALSE), NA_real_)
 })
 
 test_that("concstats_dom returns dominance index", {
@@ -141,6 +149,7 @@ test_that("concstats_sten function operates properly", {
   expect_error(concstats_sten(x1, !isTRUE(all.equal(1, sum(x),
                                           tolerance = .Machine$double.eps^0.25))),
                "vector does not sum to 1")
+  expect_equal(concstats_hhi(x3, na.rm = FALSE), NA_real_)
 })
 
 test_that("concstats_sten returns stenbacka index", {
@@ -152,7 +161,10 @@ test_that("concstats_sten returns stenbacka index", {
 
 test_that("concstats_all_comp returns a data frame", {
 
-  x <- c(0.4, 0.2, 0.15, 0.1, 0.05, 0.07, 0.03)
+  x <- c(0.4, 0.2, 0.15, 0.1, 0.05, 0.07, 0.03, 0, 0)
+  x3 <- c(0.2, 0.3, 0.4, 0.1, NA)
 
+  expect_true(any(is.na(x3)), all(!is.na(x3)))
   expect_true(is.data.frame(concstats_all_comp(x)), "data.frame")
 })
+
