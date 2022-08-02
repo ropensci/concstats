@@ -9,12 +9,12 @@ Authors@R:
            email = "schneiderconsultingpy@gmail.com",
            comment = c(ORCID = "https://orcid.org/0000-0001-5630-1097"))
 Description: Based on individual market shares of all participants in a
-    market or space or their respective sales figures, the package offers
-    a set of different structural and concentration measures frequently -
-    and not so frequently - used in research and in practice. Measures can
-    be calculated in groups or individually. The calculated measure or the
-    resulting vector in table format should help practitioners make more
-    informed decisions. Methods used in this package are from:
+    market or space, the package offers a set of different structural and
+    concentration measures frequently - and not so frequently - used in research
+    and in practice. Measures can be calculated in groups or individually.
+    The calculated measure or the resulting vector in table format should help
+    practitioners make more informed decisions. Methods used in this package are
+    from:
     1.  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M.
     (2005) "Banking concentration: the Brazilian case".
     2.  Cobham, A. and A. Summer (2013). "Is It All About the Tails? The
@@ -23,7 +23,8 @@ Description: Based on individual market shares of all participants in a
     analisis de la estructura de los mercados".
     4.  Ginevicius, R. and S. Cirba (2009). "Additive measurement of market
     concentration" <doi:10.3846/1611-1699.2009.10.191-198>.
-    5.  Herfindahl, O. C. (1950), "Concentration in the steel industry (PhD thesis)".
+    5.  Herfindahl, O. C. (1950), "Concentration in the steel industry
+    (PhD thesis)".
     6.  Hirschmann, A. O. (1945), "National power and structure of foreign trade".
     7.  Melnik, A., O. Shy, and R. Stenbacka (2008), "Assessing market dominance"
     <doi:10.1016/j.jebo.2008.03.010>.
@@ -53,6 +54,6 @@ VignetteBuilder:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+Roxygen: list(markdown = TRUE, roclets = c ("namespace", "rd", "srr::srr_stats_roclet"))
+RoxygenNote: 7.2.1
 Config/testthat/edition: 3
