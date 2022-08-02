@@ -1,17 +1,19 @@
 #' @title Market Structure Measures
 #'
-#' @description Set of different measures to reflect a given market structure.
+#' @description Set of different market structure measures to reflect a given
+#'  market structure.
 #'
 #' @usage
-#'  concstats_mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5", "all"),
-#'  na.rm = TRUE)
-#'
+#'  concstats_mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5",
+#'  "all"), na.rm = TRUE)
 #'
 #' @param x A non-negative numeric vector.
 #' @param type A character string of the measure to be calculated,
-#'  can be abbreviated with the first letter. Defaults to "firm".
+#'  can be abbreviated with the first letter. Defaults to "firm". Input is not
+#'  case-sensitive.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 #'
 #' @details
 #'  \code{concstats_mstruct} is a wrapper for the proposed structural measures
@@ -21,7 +23,7 @@
 #'  top (top 3 and top 5) firm(s). \code{concstats_all} computes all measures in
 #'  a one step procedure. All measures can be computed individually.
 #'
-#' @return returns the calculated measure
+#' @return prints the calculated measure.
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to total share of individual firms/units.The sum of the vector should sum up
 #'  to 1.
@@ -43,6 +45,17 @@
 concstats_mstruct <- function(x,
                     type = c("firm", "nrs_eq", "top", "top3", "top5", "all"),
                     na.rm = TRUE) {
+  type <- tolower(as.character(type))
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be of type logical")
+  }
+
+  if (na.rm == TRUE) {
+    x <- x[!is.na(x)]
+  }
+
+  if (!na.rm && any(is.na(x))) return(NA_real_)
 
   switch(match.arg(type),
          firm = concstats_firm(x, na.rm = na.rm),
@@ -57,8 +70,14 @@ concstats_mstruct <- function(x,
 #' @rdname concstats_mstruct
 #' @param x a non-negative numeric vector.
 #' @param na.rm Logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_firm <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must a be logical value")
+  }
+
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
   }
@@ -91,8 +110,13 @@ concstats_firm <- function(x, na.rm = TRUE) {
 #' @rdname concstats_mstruct
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_nrs_eq <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must a be logical value")
+  }
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -126,8 +150,13 @@ concstats_nrs_eq <- function(x, na.rm = TRUE) {
 #' @rdname concstats_mstruct
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_top <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -161,8 +190,13 @@ concstats_top <- function(x, na.rm = TRUE) {
 #' @rdname concstats_mstruct
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_top3 <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -196,8 +230,13 @@ concstats_top3 <- function(x, na.rm = TRUE) {
 #' @rdname concstats_mstruct
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_top5 <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
@@ -231,8 +270,14 @@ concstats_top5 <- function(x, na.rm = TRUE) {
 #' @rdname concstats_mstruct
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
+#' @return a data.frame of market structure measures with default settings.
 concstats_all_mstruct <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
 
   invisible(utils::capture.output(
     firm <- concstats_firm(x, na.rm = TRUE),
@@ -240,12 +285,12 @@ concstats_all_mstruct <- function(x, na.rm = TRUE) {
     top <- concstats_top(x, na.rm = TRUE),
     top3 <- concstats_top3(x, na.rm = TRUE),
     top5 <- concstats_top5(x, na.rm = TRUE)))
-  results_struc <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
+  results_mstruct <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
                                           "Top3 (%)", "Top5 (%)"),
                               Value = format(c(firm, nrs_eq, top, top3, top5),
                                             scientific = FALSE,
                                             digits = 2,
                                             justify = "right"))
 
-  return(results_struc)
+  return(results_mstruct)
 }

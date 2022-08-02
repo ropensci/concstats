@@ -3,17 +3,20 @@
 #' @description A set of different concentration measures.
 #'
 #' @usage
-#'  concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
-#'  "sten", "all"),na.rm = TRUE)
+#'  concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min",
+#'  "dom", "sten", "all"),na.rm = TRUE)
 #'
 #' @param x A numeric vector of non-negative values.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'  correction should be applied. The default is FALSE.
+#'  correction should be applied. Must be either TRUE or FALSE. The default is
+#'  FALSE.
 #
 #' @param type A character string of the measure to be calculated,
-#'  can be abbreviated with the first letter. Defaults to "hhi".
+#'  can be abbreviated with the first letter. Defaults to "hhi". Input is not
+#'  case-sensitive.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  Must be either TRUE or FALSE. Defaults to TRUE.
 #'
 #' @details
 #'  \code{concstats_comp} is a wrapper for the proposed concentration measures
@@ -33,8 +36,7 @@
 #'  setting to \code{TRUE}. \code{concstats_all} computes all measures in a one
 #'  step procedure.
 #'
-#'
-#' @return prints the calculated measure
+#' @return prints the calculated measure.
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to total shares of individual firms/units. The sum of the vector should sum
 #'  up to 1.
@@ -54,8 +56,30 @@
 #' shares_comp <- concstats_comp(x, type = "all")
 #'
 #' @export concstats_comp
-concstats_comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min", "dom",
+concstats_comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d",
+                                                         "hhi_min", "dom",
                                                "sten", "all"), na.rm = TRUE) {
+
+  type <- tolower(as.character(type))
+
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
+    x <- x[!is.na(x)]
+  }
+
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
+
   switch(match.arg(type),
          hhi = concstats_hhi(x, unbiased = unbiased, na.rm = na.rm),
          hhi_d = concstats_hhi_d(x, na.rm = na.rm),
@@ -69,16 +93,30 @@ concstats_comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_mi
 #' @rdname concstats_comp
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'   correction should be applied. Must be either TRUE or FALSE. The default is
+#'   FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
-    if (na.rm == TRUE) {
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
@@ -100,14 +138,23 @@ concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_hhi_min <- function(x, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
@@ -127,16 +174,25 @@ concstats_hhi_min <- function(x, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'   correction should be applied. Must be either TRUE or FALSE. The default is
+#'   FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 concstats_hhi_d <- function(x, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm)  == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -164,16 +220,26 @@ concstats_hhi_d <- function(x, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'   correction should be applied. Must be either TRUE or FALSE. The default is
+#'   FALSE.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_dom <- function(x, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm)  == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -203,14 +269,23 @@ concstats_dom <- function(x, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is FALSE.
+#'   If set to \code{FALSE} the computation yields \code{NA}.
 concstats_sten <- function(x, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm)  == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -243,8 +318,24 @@ concstats_sten <- function(x, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
+#'   be excluded or not. Must be either TRUE or FALSE. The default is FALSE.
+#' @return a data.frame of concentration and competition measures with default
+#'   settings.
 concstats_all_comp <- function(x, na.rm = TRUE) {
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm)  == TRUE) {
+    x <- x[!is.na(x)]
+  }
+
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   invisible(utils::capture.output(
     hhi <- concstats_hhi(x, unbiased = FALSE, na.rm = TRUE),

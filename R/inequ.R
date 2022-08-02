@@ -3,17 +3,19 @@
 #' @description A set of different inequality and diversity measures.
 #'
 #' @usage
-#'  concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson", "palma",
-#'  "grs", "all"), na.rm = TRUE)
+#'  concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
+#'  "palma", "grs", "all"), na.rm = TRUE)
 #'
 #' @param x a numeric vector of non-negative values.
 #' @param unbiased Logical. Argument of the functions \code{concstats_entropy},
 #'  \code{concstats_gini}, and \code{concstats_simpson} specifying whether or
-#'  not a finite sample correction should be applied.
+#'  not a finite sample correction should be applied. Must be either TRUE or
+#'  FALSE. The default is FALSE.
 #' @param type a character string of the measure to be calculated, defaults to
-#'  "concstats_entropy".
+#'  "concstats_entropy". Input is not case-sensitive.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  Must be either TRUE or FALSE. The default is TRUE.
 #'
 #' @details
 #'  \code{concstats_inequ} is a wrapper for the proposed inequality measures
@@ -55,29 +57,62 @@ concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
                                                           "grs", "all"),
                   na.rm = TRUE) {
 
-  switch(match.arg(type),
-         entropy = concstats_entropy(x, unbiased = unbiased, na.rm = na.rm),
-         gini = concstats_gini(x, unbiased = unbiased, na.rm = na.rm),
-         simpson = concstats_simpson(x, unbiased = unbiased, na.rm = na.rm),
-         palma = concstats_palma(x, na.rm = na.rm),
-         grs = concstats_grs(x, na.rm = na.rm),
-         all = concstats_all_inequ(x, na.rm = na.rm))
+  type <- tolower(as.character(type))
+
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (na.rm == TRUE) {
+    x <- x[!is.na(x)]
+  }
+
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
+
+    switch(match.arg(type),
+           entropy = concstats_entropy(x, unbiased = unbiased, na.rm = na.rm),
+           gini = concstats_gini(x, unbiased = unbiased, na.rm = na.rm),
+           simpson = concstats_simpson(x, unbiased = unbiased, na.rm = na.rm),
+           palma = concstats_palma(x, na.rm = na.rm),
+           grs = concstats_grs(x, na.rm = na.rm),
+           all = concstats_all_inequ(x, na.rm = na.rm))
 }
 
 #' @export
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'   correction should be applied. Must be either TRUE or FALSE. The default is
+#'   TRUE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not.
-concstats_entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
+#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+concstats_entropy <- function(x, unbiased = TRUE, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -96,9 +131,9 @@ concstats_entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
          "You have provided an object of class:", class(x)[1])
   }
 
-  k <- sum(x > 0)
-  entropy <- sum(-x / sum(x) * log(x / sum(x), base = 2))
-  if (unbiased == TRUE) entropy <- entropy / log(k, base = 2)
+  entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
+               / log(sum(x > 0), base = 2))
+  if (unbiased == FALSE) entropy <- sum(-x / sum(x) * log(x / sum(x), base = 2))
   return(entropy)
 }
 
@@ -106,16 +141,30 @@ concstats_entropy <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'  correction should be applied. The default is FALSE.
+#'  correction should be applied. Must be either TRUE or FALSE. The default is
+#'  FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -145,16 +194,30 @@ concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. The default is FALSE.
+#'   correction should be applied. Must be either TRUE or FALSE. The default is
+#'   FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!isTRUE(length(unbiased) == 1L)) {
+    stop("`unbiased` must be of length 1")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(unbiased) | !is.logical(na.rm)) {
+    warning(" Either`unbiased` or `na.rm` is not a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -182,13 +245,23 @@ concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_palma <- function(x, na.rm = TRUE) {
-  if (na.rm == TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -220,14 +293,23 @@ concstats_palma <- function(x, na.rm = TRUE) {
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_grs <- function(x, na.rm = TRUE) {
 
-  if (na.rm == TRUE) {
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
   if (all(round(x) == 0)) {
@@ -256,11 +338,27 @@ concstats_grs <- function(x, na.rm = TRUE) {
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
+#' @return a data.frame of inequality measures with default settings.
 concstats_all_inequ <- function(x, na.rm = TRUE) {
 
+  if (!isTRUE(length(na.rm) == 1L)) {
+    stop("`na.rm` must be of length 1")
+  }
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
+
+  if (as.logical(na.rm) == TRUE) {
+    x <- x[!is.na(x)]
+  }
+
+  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
+
   invisible(utils::capture.output(
-    entropy <- concstats_entropy(x, unbiased = FALSE, na.rm = TRUE),
+    entropy <- concstats_entropy(x, unbiased = TRUE, na.rm = TRUE),
     gini <- concstats_gini(x, unbiased = FALSE, na.rm = TRUE),
     simpson <- concstats_simpson(x, unbiased = FALSE, na.rm = TRUE),
     palma <- concstats_palma(x, na.rm = TRUE),

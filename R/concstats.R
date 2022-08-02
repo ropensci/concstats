@@ -8,14 +8,13 @@
 #' @usage concstats_concstats(x, na.rm = TRUE)
 #' @param x a non-negative numeric vector.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'  be excluded or not.
-#'  If set to \code{FALSE} the computation yields \code{NA}.
-#'
+#'  be excluded or not. Must be either TRUE or FALSE. Defaults to TRUE. If set
+#'  to \code{FALSE} the computation yields \code{NA}.
 #' @details \code{concstats_concstats} computes a set of different and selected
 #'  structural, inequality, and concentration measures in a one step procedure,
 #'  however, all measures can be computed individually or in groups.
 #'
-#' @return returns a data frame of calculated measures
+#' @return returns a data frame of calculated measures with default settings.
 #' .
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to the total share of individual firms/units. The vector should sum up to 1.
@@ -32,6 +31,10 @@
 #'
 #' @export
 concstats_concstats <- function(x, na.rm = TRUE) {
+
+  if (!is.logical(na.rm)) {
+    warning("`na.rm` must be a logical value")
+  }
 
   if (na.rm == TRUE) {
     x <- x[!is.na(x)]
