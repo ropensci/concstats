@@ -1,12 +1,14 @@
 #' @title Inequality and Diversity Measures
 #'
+#' @srrstats {G1.4} roxygen2 used to document functions
+#'
 #' @description A set of different inequality and diversity measures.
 #'
 #' @usage
 #'  concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
 #'  "palma", "grs", "all"), na.rm = TRUE)
-#'
-#' @param x a numeric vector of non-negative values.
+#' @srrstats {G2.0a, G2.1a, EA1.1, EA1.3} accepted as input, length and type
+#' @param x a numeric vector of length 1 with non-negative values.
 #' @param unbiased Logical. Argument of the functions \code{concstats_entropy},
 #'  \code{concstats_gini}, and \code{concstats_simpson} specifying whether or
 #'  not a finite sample correction should be applied. Must be either TRUE or
@@ -33,7 +35,7 @@
 #'  \code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009),
 #'  \code{concstats_all} returns all measures in a one step procedure.
 #'
-#' @return prints the calculated measure
+#' @return the calculated numeric measure
 #' @note the non-negative vector of market shares should be in a decimal form
 #'  corresponding to the total shares of individual firms/units.The vector
 #'  should sum up to 1.
@@ -56,27 +58,11 @@ concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
                                                           "simpson", "palma",
                                                           "grs", "all"),
                   na.rm = TRUE) {
-
   type <- tolower(as.character(type))
+#' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
+#' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
 
-  if (!isTRUE(length(unbiased) == 1L)) {
-    stop("`unbiased` must be of length 1")
-  }
-
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
-  }
-
-  if (!is.logical(unbiased) | !is.logical(na.rm)) {
-    warning(" Either`unbiased` or `na.rm` is not a logical value")
-  }
-
-  if (na.rm == TRUE) {
-    x <- x[!is.na(x)]
-  }
-
-  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
-
+#' @srrstats {G2.3, G2.3a} Used `match.arg()` on line#65
     switch(match.arg(type),
            entropy = concstats_entropy(x, unbiased = unbiased, na.rm = na.rm),
            gini = concstats_gini(x, unbiased = unbiased, na.rm = na.rm),
@@ -84,6 +70,7 @@ concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
            palma = concstats_palma(x, na.rm = na.rm),
            grs = concstats_grs(x, na.rm = na.rm),
            all = concstats_all_inequ(x, na.rm = na.rm))
+
 }
 
 #' @export
@@ -95,45 +82,51 @@ concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 concstats_entropy <- function(x, unbiased = TRUE, na.rm = TRUE) {
-
-  if (!isTRUE(length(unbiased) == 1L)) {
-    stop("`unbiased` must be of length 1")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_entropy cannot be empty.")
   }
 
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
-  }
-
-  if (!is.logical(unbiased) | !is.logical(na.rm)) {
-    warning(" Either`unbiased` or `na.rm` is not a logical value")
-  }
-
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
-  }
-
-  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
-
-  # check if x is a positive decimal vector
-  if (all(round(x) == 0)) {
-    x
-  } else {
-    stop("'x' must be in decimal format")
-  }
-
-  # check sum of vector. Must sum to 1
-  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
-    stop("vector does not sum to 1")
-  }
-
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
   if (!is.numeric(x)) {
-    stop("'x' must be a numeric vector\n",
+    stop("'x' in `concstats_entropy` must be a numeric vector\n",
          "You have provided an object of class:", class(x)[1])
   }
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
+  }
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+    warning("`unbiased` in `concstats_entropy` must be either TRUE or FALSE")
+  }
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("`na.rm` in `concstats_entropy` must be either TRUE or FALSE")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
+  }
 
-  entropy <- (sum(-x / sum(x) * log(x / sum(x), base = 2))
-               / log(sum(x > 0), base = 2))
-  if (unbiased == FALSE) entropy <- sum(-x / sum(x) * log(x / sum(x), base = 2))
+  if (!na.rm && any(is.na(x))) return(NA_real_)
+
+  # check if x is a positive decimal vector
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_entropy` must be a positive vector")
+  }
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
+  # check sum of vector. Must sum to 1
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
+    stop("vector x in `concstats_entropy` does not sum to 1")
+  }
+
+  entropy <- as.numeric((sum(-x / sum(x) * log(x / sum(x), base = 2))
+               / log(sum(x > 0), base = 2)))
+  if (unbiased == FALSE) entropy <- as.numeric(sum(-x / sum(x) * log(x / sum(x),
+                                                                     base = 2)))
   return(entropy)
 }
 
@@ -147,46 +140,51 @@ concstats_entropy <- function(x, unbiased = TRUE, na.rm = TRUE) {
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
-
-  if (!isTRUE(length(unbiased) == 1L)) {
-    stop("`unbiased` must be of length 1")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_gini cannot be empty.")
   }
 
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
+  if (!is.numeric(x)) {
+    stop("'x' in `concstats_gini`must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
-
-  if (!is.logical(unbiased) | !is.logical(na.rm)) {
-    warning(" Either`unbiased` or `na.rm` is not a logical value")
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <- as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
   }
-
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+    warning("`unbiased` in `concstats_gini` must be either TRUE or FALSE")
+  }
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("`na.rm` in `concstats_gini` must be either TRUE or FALSE")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
   }
 
   if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
-  if (all(round(x) == 0)) {
-    x
-  } else {
-    stop("'x' must be in decimal format")
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_gini` must be a positive vector")
   }
-
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
-    stop("vector does not sum to 1")
-  }
-
-  if (!is.numeric(x)) {
-    stop("'x' must be a numeric vector\n",
-         "You have provided an object of class:", class(x)[1])
+    stop("vector x in `concstats_gini` does not sum to 1")
   }
 
   x <- sort(x)
-  gini <- 2 * sum(x * seq_len(length(x))) /
-    (length(x) * sum(x)) - 1 - (1 / length(x))
-  if (unbiased) gini <- length(x) / (length(x) - 1) * gini
+  gini <- as.numeric(2 * sum(x * seq_len(length(x))) /
+    (length(x) * sum(x)) - 1 - (1 / length(x)))
+  if (unbiased) gini <- as.numeric(length(x) / (length(x) - 1) * gini)
   return(gini)
 }
 
@@ -200,44 +198,49 @@ concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
-
-  if (!isTRUE(length(unbiased) == 1L)) {
-    stop("`unbiased` must be of length 1")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_simpson cannot be empty.")
   }
 
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
-  }
-
-  if (!is.logical(unbiased) | !is.logical(na.rm)) {
-    warning(" Either`unbiased` or `na.rm` is not a logical value")
-  }
-
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
-  }
-
-  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
-
-  # check if x is a positive decimal vector
-  if (all(round(x) == 0)) {
-    x
-  } else {
-    stop("'x' must be in decimal format")
-  }
-
-  # check sum of vector. Must sum to 1
-  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
-    stop("vector does not sum to 1")
-  }
-
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
   if (!is.numeric(x)) {
-    stop("'x' must be a numeric vector\n",
+    stop("'x' in `concstats_simpson` must be a numeric vector\n",
          "You have provided an object of class:", class(x)[1])
   }
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
+  }
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+    warning("`unbiased` in `concstats_simpson` must be either TRUE or FALSE")
+  }
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("`na.rm` in `concstats_simpson` must be either TRUE or FALSE")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
+  }
 
-  simpson <- 1 - sum(x ^ 2)
-  if (unbiased) simpson <- 1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2
+  if (!na.rm && any(is.na(x))) return(NA_real_)
+
+  # check if x is a positive decimal vector
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_simpson` must be a positive vector")
+  }
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
+  # check sum of vector. Must sum to 1
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
+    stop("vector x in `concstats_simpson` does not sum to 1")
+  }
+
+  simpson <- as.numeric(1 - sum(x ^ 2))
+  if (unbiased) simpson <- as.numeric(1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2)
   return(simpson)
 }
 
@@ -248,36 +251,41 @@ concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_palma <- function(x, na.rm = TRUE) {
-
-  if (!is.logical(na.rm)) {
-    warning("`na.rm` must be a logical value")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_palma cannot be empty.")
   }
-
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
+  if (!is.numeric(x)) {
+    stop("'x' in `concstats_palma` must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
-
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
+  }
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("*na.rm* in `concstats_palma` is not a logical value")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
   }
 
   if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
-  if (all(round(x) == 0)) {
-    x
-  } else {
-    stop("'x' must be in decimal format")
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_palma` must be a positive vector")
   }
-
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
-    stop("vector does not sum to 1")
-  }
-
-  if (!is.numeric(x)) {
-    stop("'x' must be a numeric vector\n",
-         "You have provided an object of class:", class(x)[1])
+    stop("vector x in `concstats_palma` does not sum to 1")
   }
 
   x <- sort(x)
@@ -285,7 +293,7 @@ concstats_palma <- function(x, na.rm = TRUE) {
                 include.lowest = TRUE, labels = FALSE)
   x_bottom <- sum(x[x_cut <= 4])
   x_top <- sum(x[x_cut > 9])
-  palma <- x_top / x_bottom
+  palma <- as.numeric(x_top / x_bottom)
   return(palma)
 }
 
@@ -296,41 +304,47 @@ concstats_palma <- function(x, na.rm = TRUE) {
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_grs <- function(x, na.rm = TRUE) {
-
-  if (!is.logical(na.rm)) {
-    warning("`na.rm` must be a logical value")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_grs cannot be empty.")
   }
 
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
+  if (!is.numeric(x)) {
+    stop("'x' in `concstats_grs` must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
   }
-
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
+  }
+  #' @srrstats {G2.0, G2.1}
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("*na.rm* in `concstats_grs` must be either TRUE or FALSE")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
   }
 
   if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
 
   # check if x is a positive decimal vector
-  if (all(round(x) == 0)) {
-    x
-  } else {
-    stop("'x' must be in decimal format")
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_grs` must be a positive vector")
   }
-
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
-    stop("vector does not sum to 1")
-  }
-
-  if (!is.numeric(x)) {
-    stop("'x' must be a numeric vector\n",
-         "You have provided an object of class:", class(x)[1])
+    stop("vector x in `concstats_grs` does not sum to 1")
   }
 
   x <- sort(x, decreasing = TRUE)
-  grs <- sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
-               (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) * x)
+  grs <- as.numeric(sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
+               (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) * x))
   return(grs)
 }
 
@@ -340,22 +354,46 @@ concstats_grs <- function(x, na.rm = TRUE) {
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
-#' @return a data.frame of inequality measures with default settings.
+#' @return a `data.frame` of inequality measures with default settings.
+#' @srrstats {EA2.6}
 concstats_all_inequ <- function(x, na.rm = TRUE) {
-
-  if (!isTRUE(length(na.rm) == 1L)) {
-    stop("`na.rm` must be of length 1")
+#' @srrstats {G5.8a} Zero-length data
+  if (length(x) == 0) {
+    stop("x in concstats_all_inequ cannot be empty.")
   }
 
-  if (!is.logical(na.rm)) {
-    warning("`na.rm` must be a logical value")
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  # convert x in a positive decimal vector
+  if (!is.numeric(x)) {
+    stop("'x' in `concstats_all_inequ` must be a numeric vector\n",
+         "You have provided an object of class:", class(x)[1])
+  }
+#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  else if (sum(x, na.rm = TRUE) > 1) {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
+    x
+  }
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+    warning("*na.rm* in `concstats_all_inequ` must be either TRUE or FALSE")
+  }
+#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  if (as.logical(na.rm == TRUE)) {
+    x <- as.numeric(x[!is.na(x)])
   }
 
-  if (as.logical(na.rm) == TRUE) {
-    x <- x[!is.na(x)]
+  if (!na.rm && any(is.na(x))) return(NA_real_)
+#' @srrstats {G3.0, EA6.0e} Testing values of single-valued objects.
+  if (!isTRUE(all.equal(1, sum(x), tolerance = .Machine$double.eps^0.25))) {
+    stop("vector x in `concstats_all_inequ` does not sum to 1")
   }
 
-  if (isFALSE(na.rm) && any(is.na(x))) return(NA_real_)
+  # check if x is a positive decimal vector
+  if (as.logical(all(x < 0))) {
+    stop("x in `concstats_all_inequ` must be a positive vector")
+  }
+  x <- as.numeric(x)
 
   invisible(utils::capture.output(
     entropy <- concstats_entropy(x, unbiased = TRUE, na.rm = TRUE),
@@ -363,15 +401,16 @@ concstats_all_inequ <- function(x, na.rm = TRUE) {
     simpson <- concstats_simpson(x, unbiased = FALSE, na.rm = TRUE),
     palma <- concstats_palma(x, na.rm = TRUE),
     grs <- concstats_grs(x, na.rm = TRUE)))
-
+#' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of
+#'  screen-based output.
   results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
                                           "Simpson Index", "Palma Ratio",
                                           "GRS"),
-                              Value = format(c(entropy, gini, simpson, palma,
-                                               grs),
+                              Value = as.numeric(format(c(entropy, gini,
+                                                          simpson, palma, grs),
                                              scientific = FALSE,
                                              digits = 2,
-                                             justify = "right"))
+                                             justify = "right")))
 
   return(results_inequ)
 
