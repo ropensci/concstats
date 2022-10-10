@@ -14,27 +14,31 @@ checks](https://cranchecks.info/badges/summary/concstats)](https://cran.r-projec
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![PRs
-Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
+[![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/schneiderpy/concstats)
 [![codecov](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://codecov.io/gh/schneiderpy/concstats)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456536.svg)](https://doi.org/10.5281/zenodo.6456536)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
-
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
 insight of a given market structure in a particular market. They are
 important to determine public policies and strategic corporate
 decisions. However, in research and in practice the most commonly used
-measure is the Herfindahl Hirschman Index. The goal of the `concstats`
-package is to offer a set of alternative and/or additional measures to
-better determine a given market structure and therefore reduce
-uncertainty with respect to a given market situation. Various functions
-or groups of functions are available to achieve the desired goal.
+measure is the Herfindahl Hirschman Index. Various complementary or
+alternative measures exist, which - used as a set - might reduce
+uncertainty. The goal of the `concstats` package is to offer a set of
+alternative and/or additional measures for researchers in social
+sciences and practitioners in institutions concerned with competition on
+a regular basis to better determine a given market structure and
+therefore reduce uncertainty with respect to a given market situation.
+Various functions or groups of functions are available to achieve the
+desired goal.
 
 \-`concstats_concstats` calculates a set of pre-selected concentration
 and diversity measures in a one-step procedure.  
@@ -65,8 +69,10 @@ devtools::install_github("schneiderpy/concstats")
 
 ### `concstats_concstats`
 
-has one main function which calculates a set of pre-selected measures in
-a one-step procedure.
+In general, `concstats` takes numeric vectors as input, that is,
+relative market shares in decimal format. `concstats_constats` has one
+main function which calculates a set of pre-selected measures in a
+one-step procedure.
 
 ### `concstats_mstruct`
 
@@ -84,7 +90,8 @@ dual of the HHI, the Dominance or the Stenbacka index.
 ### `concstats_inequ`
 
 is a group of inequality and diversity measures, e.g. Entropy, Gini
-coefficient, Palma ratio.
+coefficient, Palma ratio. Most functions offer a finite sample
+correction.
 
 ## Examples
 
@@ -126,6 +133,33 @@ Herfindahl-Hirschman Index, in decimal form, 7) Normalized Entropy (RE),
 a value between 0 and 1, 8) Palma ratio, an inequality score which
 measures the ratio of the top 10 percent to the bottom 40 percent.
 
+## *Prior Art*
+
+Some functions are already implemented in other R packages. The
+non-exhaustive summary below is by no means a description of each
+package.
+
+-   The Herfindahl Hirschman Index can be found in the
+    [hhi](https://joss.theoj.org/papers/10.21105/joss.00828) and the
+    [divseg](https://github.com/christopherkenny/divseg) packages. While
+    the *hhi* package has just one function, neither of both packages
+    offer a finite sample correction.
+
+-   The latter offers as well functions for the Entropy, Gini and
+    Simpson measures.
+
+-   The [acid](https://cran.r-project.org/package=acid) and the
+    [ineq](https://cran.r-project.org/package=ineq) packages offer
+    functions for inequality and competition measures, e.g. for the
+    Entropy and Gini metric.
+
+However, almost none of these packages offer finite sample correction,
+with the exception of the
+[ineq](https://cran.r-project.org/package=ineq) package. Other functions
+are new implementations in R, e.g. Dominance Index, Palma ratio,
+Stenbacka Index, GRS measure, and the dual of the Herfindahl Hirschman
+Index.
+
 ## References
 
 1.  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M.
@@ -140,7 +174,7 @@ measures the ratio of the top 10 percent to the bottom 40 percent.
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
     concentration, Journal of Business Economics and Management, 10(3),
-    191-198.
+    191-198. <https://doi.org/10.3846/1611-1699.2009.10.191-198>
 5.  Palma, J. G. (2006). Globalizing Inequality: ‘Centrifugal’ and
     ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The

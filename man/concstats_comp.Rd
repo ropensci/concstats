@@ -40,9 +40,9 @@ case-sensitive.}
 be excluded or not. Must be either TRUE or FALSE. The default is FALSE.}
 }
 \value{
-prints the calculated measure.
+the calculated numeric measure.
 
-a data.frame of concentration and competition measures with default
+\code{data.frame} of concentration and competition measures with default
 settings.
 }
 \description{
@@ -67,7 +67,7 @@ setting to \code{TRUE}. \code{concstats_all} computes all measures in a one
 step procedure.
 }
 \note{
-the vector of market shares should be in a decimal form corresponding
+The vector of market shares should be in a decimal form corresponding
 to total shares of individual firms/units. The sum of the vector should sum
 up to 1.
 }

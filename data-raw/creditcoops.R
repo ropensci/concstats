@@ -1,4 +1,4 @@
-## code to prepare `creditcoops` dataset goes here
+## code to prepare `creditcoops` data set goes here
 creditcoops <- readr::read_csv("data-raw/creditcoops_USD_paired.csv") %>%
   dplyr::mutate(paired = rep(1:(n() / 2), each = 2)) %>%
   dplyr::mutate(total_loans_log = log(total_loans)) %>%

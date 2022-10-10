@@ -96,7 +96,7 @@ The wrapper includes the following individual functions: ```firm```, ```nrs_eq``
 can be accessed directly with the prefix "concstats_", e.g. "concstats_firm".
 ```{r example-1}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_top5 <- concstats_top5(test_share) # top 5 market share
+test_share_top5 <- concstats_top5(test_share) # top 5 market share in percentage
 test_share_top5
 ```
 
@@ -123,7 +123,7 @@ The result is a data frame of market structure measures.
 
 ### concstats_inequ
 The inequality and diversity group includes the functions ```entropy```, 
-```gini```, ```berry```, ```palma```, ```grs```, and ```all```.
+```gini```, ```simpson```, ```palma```, ```grs```, and ```all```.
 
 ```{r examples-entropy, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
@@ -153,7 +153,7 @@ test_share_hhi3 <- concstats_comp(test_share, type = "hhi_min")
 test_share_hhi3
 ```
 
-### concstats
+### concstats_concstats
 A single function which calculates a set of eight pre-selected measures in a 
 one step procedure for a first overview of a given market structure.
 
@@ -208,10 +208,11 @@ coops_2016 <- creditcoops %>% dplyr::filter(year == 2016)
 head(coops_2016)
 
 coops_2016 <- coops_2016[["total_loans"]] # atomic vector of total loans
-coops_2016 <- coops_2016/sum(coops_2016)   # market shares in decimal form
+coops_2016 <- coops_2016/sum(coops_2016)  # market shares in decimal form
 
 # We then use the new object `coops_2016` to calculate the market structure
-# measures as a group in a one-step-procedure:
+# measures as a group in a one-step-procedure and capture the results in a
+# printed table:
 coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all")
 coops_2016_mstruct_tab <- coops_2016_mstruct %>% 
   kableExtra::kbl(caption = "Market structure 2016", digits = 2,
@@ -235,7 +236,7 @@ df_shares <- creditcoops %>% dplyr::select(coop_id, year, paired, total_loans_lo
 ```
 Make sure you have  the `ggplot2` package installed. Load the package.
 ```{r}
-library(ggplot2) # Create Elegant Data Visualizations Using the Grammar of Graphics
+library(ggplot2) # Data Visualizations Using the Grammar of Graphics
 ```
 <center>
 

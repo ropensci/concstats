@@ -1,3 +1,14 @@
+# concstats 0.1.4
+
+-   Added more tests
+
+-   Added standards for ropensci peer-review
+
+DOCUMENTATION
+
+-   Updated README with *Prior Arts* 
+
+
 # concstats 0.1.3
 
 -   All functions have been consistently prefixed with "concstats_"

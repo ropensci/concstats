@@ -37,9 +37,9 @@ be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-prints the calculated measure.
+Returns the calculated numeric measure.
 
-a data.frame of market structure measures with default settings.
+A \code{data.frame} of market structure measures with default settings.
 }
 \description{
 Set of different market structure measures to reflect a given
@@ -48,13 +48,14 @@ market structure.
 \details{
 \code{concstats_mstruct} is a wrapper for the proposed structural measures
 \code{concstats_firm}, returns the number of firms with a given market share
-\code{concstats_nrs_eq} computes the numbers equivalent, \code{concstats_top},
-\code{concstats_top3}, and \code{concstats_top5}calculate the share of the
-top (top 3 and top 5) firm(s). \code{concstats_all} computes all measures in
-a one step procedure. All measures can be computed individually.
+\code{concstats_nrs_eq} computes the numbers equivalent,
+\code{concstats_top}, \code{concstats_top3}, and \code{concstats_top5}
+calculate the share of the top (top 3 and top 5) firm(s) and returns the
+value in percentage. \code{concstats_all} computes all measures in a
+one step procedure. All measures can be computed individually.
 }
 \note{
-the vector of market shares should be in a decimal form corresponding
+The vector of market shares should be in a decimal form corresponding
 to total share of individual firms/units.The sum of the vector should sum up
 to 1.
 }

@@ -7,14 +7,14 @@
 concstats_concstats(x, na.rm = TRUE)
 }
 \arguments{
-\item{x}{a non-negative numeric vector.}
+\item{x}{a numeric vector of length 1 with non-negative values.}
 
 \item{na.rm}{a logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either TRUE or FALSE. Defaults to TRUE. If set
 to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-returns a data frame of calculated measures with default settings.
+returns a data frame of numeric measures with default settings.
 .
 }
 \description{
@@ -41,6 +41,6 @@ to the total share of individual firms/units. The vector should sum up to 1.
 
 }
 \seealso{
-{\code{\link{concstats_mstruct}}, \code{\link{concstats_comp}},
-\code{\link{concstats_inequ}}}
+\code{\link{concstats_mstruct}}, \code{\link{concstats_comp}},
+\code{\link{concstats_inequ}}
 }

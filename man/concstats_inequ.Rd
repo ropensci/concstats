@@ -40,9 +40,9 @@ be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 If set to \code{FALSE} the computation yields \code{NA}.}
 }
 \value{
-prints the calculated measure
+the calculated numeric measure
 
-a data.frame of inequality measures with default settings.
+a \code{data.frame} of inequality measures with default settings.
 }
 \description{
 A set of different inequality and diversity measures.
