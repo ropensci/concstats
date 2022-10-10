@@ -18,7 +18,7 @@ market structure."><meta property="og:image" content="/logo.png"><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -106,23 +106,24 @@ If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
     <h2>Value</h2>
     
 
-<p>prints the calculated measure.</p>
+<p>Returns the calculated numeric measure.</p>
 
 
-<p>a data.frame of market structure measures with default settings.</p>
+<p>A <code>data.frame</code> of market structure measures with default settings.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p><code>concstats_mstruct</code> is a wrapper for the proposed structural measures
 <code>concstats_firm</code>, returns the number of firms with a given market share
-<code>concstats_nrs_eq</code> computes the numbers equivalent, <code>concstats_top</code>,
-<code>concstats_top3</code>, and <code>concstats_top5</code>calculate the share of the
-top (top 3 and top 5) firm(s). <code>concstats_all</code> computes all measures in
-a one step procedure. All measures can be computed individually.</p>
+<code>concstats_nrs_eq</code> computes the numbers equivalent,
+<code>concstats_top</code>, <code>concstats_top3</code>, and <code>concstats_top5</code>
+calculate the share of the top (top 3 and top 5) firm(s) and returns the
+value in percentage. <code>concstats_all</code> computes all measures in a
+one step procedure. All measures can be computed individually.</p>
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>the vector of market shares should be in a decimal form corresponding
+    <p>The vector of market shares should be in a decimal form corresponding
 to total share of individual firms/units.The sum of the vector should sum up
 to 1.</p>
     </div>

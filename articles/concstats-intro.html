@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Introduction to concstats</h1>
                         <h4 data-toc-skip class="author">Andreas Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-08-02</h4>
+            <h4 data-toc-skip class="date">2022-10-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -165,7 +165,7 @@
 <p>The wrapper includes the following individual functions: <code>firm</code>, <code>nrs_eq</code>, <code>top</code>, <code>top3</code>, <code>top5</code>, and <code>all</code>. All individual functions can be accessed directly with the prefix “concstats_”, e.g. “concstats_firm”.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share</span></span>
+<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share in percentage</span></span>
 <span><span class="va">test_share_top5</span></span>
 <span><span class="co">#&gt; [1] 96</span></span></code></pre></div>
 <p>You should have noticed that the market shares are in decimal form. There are eight market participants, however, two have no market shares, by default <code>concstats</code> treats 0 as NA. The result is a top 5 market share of 96 %. You can also access each function through their respective argument in the group wrapper:</p>
@@ -180,17 +180,17 @@
 <span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span><span class="va">test_share_mstruct</span></span>
 <span><span class="co">#&gt;          Measure Value</span></span>
-<span><span class="co">#&gt; 1          Firms   6.0</span></span>
-<span><span class="co">#&gt; 2 Nrs_equivalent   3.3</span></span>
-<span><span class="co">#&gt; 3        Top (%)  40.0</span></span>
-<span><span class="co">#&gt; 4       Top3 (%)  85.0</span></span>
-<span><span class="co">#&gt; 5       Top5 (%)  96.0</span></span></code></pre></div>
+<span><span class="co">#&gt; 1          Firms  6.00</span></span>
+<span><span class="co">#&gt; 2 Nrs_equivalent  3.33</span></span>
+<span><span class="co">#&gt; 3        Top (%) 40.00</span></span>
+<span><span class="co">#&gt; 4       Top3 (%) 85.00</span></span>
+<span><span class="co">#&gt; 5       Top5 (%) 96.00</span></span></code></pre></div>
 <p>The result is a data frame of market structure measures.</p>
 </div>
 <div class="section level3">
 <h3 id="concstats_inequ">concstats_inequ<a class="anchor" aria-label="anchor" href="#concstats_inequ"></a>
 </h3>
-<p>The inequality and diversity group includes the functions <code>entropy</code>, <code>gini</code>, <code>berry</code>, <code>palma</code>, <code>grs</code>, and <code>all</code>.</p>
+<p>The inequality and diversity group includes the functions <code>entropy</code>, <code>gini</code>, <code>simpson</code>, <code>palma</code>, <code>grs</code>, and <code>all</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
 <span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
@@ -223,7 +223,7 @@
 <span><span class="co">#&gt; [1] 0.1666667</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="concstats">concstats<a class="anchor" aria-label="anchor" href="#concstats"></a>
+<h3 id="concstats_concstats">concstats_concstats<a class="anchor" aria-label="anchor" href="#concstats_concstats"></a>
 </h3>
 <p>A single function which calculates a set of eight pre-selected measures in a one step procedure for a first overview of a given market structure.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -235,7 +235,7 @@
 <span><span class="co">#&gt; 2 Nrs_equivalent   2.63</span></span>
 <span><span class="co">#&gt; 3        Top (%)  50.00</span></span>
 <span><span class="co">#&gt; 4       Top3 (%) 100.00</span></span>
-<span><span class="co">#&gt; 5       Top5 (%)     NA</span></span>
+<span><span class="co">#&gt; 5       Top5 (%) 100.00</span></span>
 <span><span class="co">#&gt; 6            HHI   0.38</span></span>
 <span><span class="co">#&gt; 7    Entropy(RE)   0.94</span></span>
 <span><span class="co">#&gt; 8    Palma ratio   2.50</span></span></code></pre></div>
@@ -280,10 +280,11 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span></span>
-<span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>   <span class="co"># market shares in decimal form</span></span>
+<span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>  <span class="co"># market shares in decimal form</span></span>
 <span></span>
 <span><span class="co"># We then use the new object `coops_2016` to calculate the market structure</span></span>
-<span><span class="co"># measures as a group in a one-step-procedure:</span></span>
+<span><span class="co"># measures as a group in a one-step-procedure and capture the results in a</span></span>
+<span><span class="co"># printed table:</span></span>
 <span><span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
 <span><span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
@@ -295,7 +296,7 @@
 <p>Now, let’s go a step further. We will compare the two samples for 2016 and 2018. For this purpose, we will select from our <code>creditcoops</code> data set the relevant columns (coop_id, year, paired, and total_loans_log) and make a new data frame.</p>
 <p>Make sure you have the <code>ggplot2</code> package installed. Load the package.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># Create Elegant Data Visualizations Using the Grammar of Graphics</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span> <span class="co"># Data Visualizations Using the Grammar of Graphics</span></span></code></pre></div>
 <center>
 <p><img src="coops_paired.png" width="469" height="521"></p>
 </center>
