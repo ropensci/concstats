@@ -3,7 +3,8 @@ local_edition(3)
 # concstats_concstats
 
 test_that("concstats_concstats function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
 
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4, -0.1)
@@ -185,13 +186,14 @@ test_that("concstats_entropy returns the entropy measure", {
 #' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_entropy(share_2018), share_2018_ent,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_entropy(x), (sum(-x / sum(x) * log(x / sum(x), base = 2))
+  expect_equal(concstats_entropy(x),
+               (sum(-x / sum(x) * log(x / sum(x), base = 2))
                                       / log(sum(x > 0), base = 2)))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_ent), label = "numeric values returned")
 })
 
-  test_that("concstats_palma returns the alternative palma inequality measure", {
+  test_that("concstats_palma returns the alternative palma measure", {
 
   x <- c(0.2, 0.3, 0.5)
   share_2018_palma <- 6.174089

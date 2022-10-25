@@ -3,7 +3,8 @@ local_edition(3)
 ## concstats_comp
 
 test_that("concstats_comp function operates / switches properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#' examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4)
   x1b <- c()
@@ -19,7 +20,8 @@ test_that("concstats_comp function operates / switches properly", {
   expect_true(any(is.na(x2)), all(!is.na(x2)))
 
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(concstats_comp(x, type = "hhi"), concstats_hhi(x))
+  expect_equal(concstats_comp(x, type = "hhi"),
+               concstats_hhi(x))
   expect_equal(concstats_comp(x, unbiased = TRUE, type = "hhi"),
                concstats_hhi(x, unbiased = TRUE))
   expect_equal(concstats_comp(x, type = "hhi_d"), concstats_hhi_d(x))
@@ -29,13 +31,15 @@ test_that("concstats_comp function operates / switches properly", {
   expect_equal(concstats_comp(x, type = "HHI"), concstats_hhi(x))
   expect_equal(concstats_comp(x, type = "ALL"), concstats_all_comp(x))
   expect_error(concstats_comp(x1b, na.rm = TRUE))
-
+  expect_length(unbiased, 1L)
+  expect_type(unbiased, "logical")
 })
 
 ## concstats_hhi
 
 test_that("concstats_hhi function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4, -0.1)
   x1b <- c()
@@ -100,8 +104,9 @@ test_that("concstats_hhi returns sum of squared shares as decimal", {
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_hhi), label = "numeric values returned")
 
-#' @srrstats {G5.4, G5.4b} Correctness test from hhi package can be checked just
-#' visually in the plot (https://joss.theoj.org/papers/10.21105/joss.00828)
+#' @srrstats {G5.4, G5.4b} Correctness test from hhi package can be checked
+#'  just visually in the plot
+#'   (https://joss.theoj.org/papers/10.21105/joss.00828)
 
   us_2012_hhi <- 0.1364397
   us_2012 <- c(1.2, 12.3, 11.5, 9.7, 4.5, 4.2, 0.6, 22.4, 17.9, 7.3, 8.3)
@@ -130,7 +135,8 @@ test_that("concstats_hhi returns unbiased sum of squared shares", {
 ## concstats_hhi_min
 
 test_that("concstats_hhi_min function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4, -0.1)
   x1b <- c()
@@ -147,8 +153,8 @@ test_that("concstats_hhi_min function operates properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_hhi_min(x2, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_hhi_min(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_hhi_min` must be a numeric vector\n",
   "You have provided an object of class: ", class(x)[1])))
@@ -196,7 +202,8 @@ test_that("concstats_hhi_min returns min of squared shares", {
 ## concstats_hhi_d
 
 test_that("concstats_hhi_d function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -214,8 +221,8 @@ test_that("concstats_hhi_d function operates properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_hhi_d(x2, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_hhi_d(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_hhi_d` must be a numeric vector\n",
   "You have provided an object of class: ", class(x)[1])))
@@ -267,7 +274,8 @@ test_that("concstats_hhi_d returns dual of hhi", {
 ## concstats_dom
 
 test_that("concstats_dom function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -285,8 +293,8 @@ test_that("concstats_dom function operates properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_dom(x2, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_dom(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_dom` must be a numeric vector\n",
   "You have provided an object of class: ", class(x)[1])))
@@ -338,7 +346,8 @@ test_that("concstats_dom returns dominance index", {
 ## concstats_sten
 
 test_that("concstats_sten function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -358,8 +367,8 @@ test_that("concstats_sten function operates properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_sten(x3, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_sten(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_sten` must be a numeric vector\n",
   "You have provided an object of class ", class(x)[1])))
@@ -409,7 +418,8 @@ test_that("concstats_sten returns stenbacka index", {
 })
 
 test_that("concstats_all_comp returns a data frame", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.4, 0.2, 0.15, 0.1, 0.05, 0.07, 0.03)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -435,8 +445,8 @@ test_that("concstats_all_comp returns a data frame", {
   expect_identical(names(dummy_df), c("Measure", "Value"))
   expect_true(is.data.frame(concstats_all_comp(x)), "data.frame")
   expect_equal(concstats_all_comp(x3, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_all_comp(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_all_com` must be a numeric vector\n",
   "You have provided an object of class: ", class(x)[1])))

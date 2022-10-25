@@ -3,7 +3,8 @@ local_edition(3)
 ## concstats_mstruct
 
 test_that("concstats_mstruct function operates / switches properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#' examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -13,6 +14,9 @@ test_that("concstats_mstruct function operates / switches properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
 
+#' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
+  expect_true(any(is.na(x3)), all(!is.na(x3)))
+  expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(concstats_mstruct(x, type = "firm"), concstats_firm(x))
   expect_equal(concstats_mstruct(x, type = "nrs_eq"), concstats_nrs_eq(x))
   expect_equal(concstats_mstruct(x2, type = "top"), concstats_top(x2))
@@ -27,7 +31,8 @@ test_that("concstats_mstruct function operates / switches properly", {
 ## concstats_firm
 
 test_that("concstats_firm function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -104,7 +109,8 @@ test_that("concstats_firm function operates properly", {
 ## concstats_nrs_eq
 
 test_that("concstats_nrs_eq function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -122,8 +128,8 @@ test_that("concstats_nrs_eq function operates properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_nrs_eq(x2, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_nrs_eq(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_nrs_eq` must be a numeric vector\n",
   "You have provided an object of class: ", class(xch)[1])))
@@ -174,7 +180,8 @@ test_that("concstats_nrs_eq returns numbers equivalent", {
 ## concstats_top
 
 test_that("concstats_top function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -194,8 +201,8 @@ test_that("concstats_top function operates properly", {
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_top(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_top(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_top`must be a numeric vector\n",
   "You have provided an object of class: ", class(xch)[1])))
@@ -247,7 +254,8 @@ test_that("concstats_top returns top market share", {
 ## concstats_top3
 
 test_that("concstats_top3 function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -267,8 +275,8 @@ test_that("concstats_top3 function operates properly", {
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_top3(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_top3(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_top3` must be a numeric vector\n",
   "You have provided an object of class: ", class(xch)[1])))
@@ -318,7 +326,8 @@ test_that("concstats_top3 returns sum of top 3 market shares", {
 ## concstats_top5
 
 test_that("concstats_top5 function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -338,8 +347,8 @@ test_that("concstats_top5 function operates properly", {
   expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_top5(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x, decreasing = TRUE), x3)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_top5(xch, !isTRUE(is.numeric(xch),
   "x in `constats_top5` must be a numeric vector\n",
   "You have provided an object of class: ", class(xch)[1])))
@@ -390,7 +399,8 @@ test_that("concstats_top5 returns sum of top 5 market shares", {
 })
 
 test_that("concstats_all_mstruct returns a data frame", {
-#' @srrstats {G5.1} Data used to test, made generally available and run examples.
+#' @srrstats {G5.1} Data used to test, made generally available and run
+#'  examples.
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.5, -0.1)
   x1b <- c()
@@ -416,8 +426,8 @@ test_that("concstats_all_mstruct returns a data frame", {
   expect_identical(names(dummy_df), c("Measure", "Value"))
   expect_true(is.data.frame(concstats_all_mstruct(x)), "data.frame")
   expect_equal(concstats_all_mstruct(x2, na.rm = FALSE), NA_real_)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of unsupported
-#'  types
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
+#'  unsupported types
   expect_error(concstats_all_mstruct(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_all_mstruct`must be a numeric vector\n",
   "You have provided an object of class:", class(xch)[1])))

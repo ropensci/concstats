@@ -58,13 +58,18 @@
 #' shares_comp <- concstats_comp(x, type = "all")
 #'
 #' @export concstats_comp
-concstats_comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d",
-                                                         "hhi_min", "dom",
-                                               "sten", "all"), na.rm = TRUE) {
+concstats_comp <- function(x, unbiased = FALSE,
+                           type = c("hhi", "hhi_d", "hhi_min", "dom", "sten",
+                                    "all"),
+                           na.rm = TRUE) {
 
   type <- tolower(as.character(type))
 #' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
-#' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()` on line#65
+#' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
+#' @srrstats {G2.0, G2.1}
+  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+    warning("`unbiased` in `concstats_comp` must be either TRUE or FALSE")
+  }
 
 #' @srrstats {G2.3, G2.3a} Used `match.arg()`
   switch(match.arg(type),
@@ -74,6 +79,8 @@ concstats_comp <- function(x, unbiased = FALSE, type = c("hhi", "hhi_d",
          dom = concstats_dom(x, na.rm = na.rm),
          sten = concstats_sten(x, na.rm = na.rm),
          all = concstats_all_comp(x, na.rm = na.rm))
+
+
 }
 
 #' @export
@@ -401,8 +408,8 @@ concstats_all_comp <- function(x, na.rm = TRUE) {
     hhi_min <- concstats_hhi_min(x, na.rm = TRUE),
     dom <- concstats_dom(x, na.rm = TRUE),
     sten <- concstats_sten(x, na.rm = TRUE)))
-#' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of screen-based
-#'  output.
+#' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of
+#'  screen-based output.
   results_comp <- data.frame(Measure = c("HHI", "HHI(min)", "HHI(dual)",
                                        "Dominance", "Stenbacka(%)"),
                              Value = as.numeric(format(c(hhi, hhi_min, hhi_d,

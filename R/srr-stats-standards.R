@@ -26,8 +26,10 @@ NULL
 #' @srrstatsNA {G1.6} No performance claims are made
 #' @srrstatsNA {G2.4a} No explicit conversion to `integer` via `as.integer()`
 #' @srrstatsNA {G2.4d} No explicit conversion to factor via `as.factor()`
-#' @srrstatsNA {G2.4e} No explicit conversion from factor via `as...()` functions
-#' @srrstatsNA {G2.5} No inputs are expected to be of `factor` type, just numeric
+#' @srrstatsNA {G2.4e} No explicit conversion from factor via
+#'  `as...()` functions
+#' @srrstatsNA {G2.5} No inputs are expected to be of `factor` type, just
+#'  numeric
 #' @srrstatsNA {G2.7} No tabular data allowed.
 #' @srrstatsNA {G2.8} No tabular data allowed.
 #' @srrstatsNA {G2.9} No tabular data allowed.

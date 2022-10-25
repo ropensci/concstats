@@ -91,9 +91,10 @@ We will use a vector which represents market participants with their respective
 market shares (in decimal form): 
 
 ### concstats_mstruct
-The wrapper includes the following individual functions: ```firm```, ```nrs_eq```,
-```top```, ```top3```, ```top5```, and ```all```. All individual functions
-can be accessed directly with the prefix "concstats_", e.g. "concstats_firm".
+The wrapper includes the following individual functions:
+```firm```, ```nrs_eq```, ```top```, ```top3```, ```top5```, and ```all```.
+All individual functions can be accessed directly with the prefix "concstats_",
+e.g. "concstats_firm".
 ```{r example-1}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_top5 <- concstats_top5(test_share) # top 5 market share in percentage
@@ -173,11 +174,11 @@ data visualization packages e.g. [```overviewR```](https://CRAN.R-project.org/pa
 
 Some examples how you can accomplish this.
 Let us assume one would like to use the group measure for e.g. market structure,
-and keep the resulting data frame. We can refine the table using ```kableExtra``` 
-which works nice with ```knitr```.
+and keep the resulting data frame. We can refine the table
+using ```kableExtra``` which works nice with ```knitr```.
 
-This time, we will use our ```creditcoops``` data set again, which comes with the 
-package.
+This time, we will use our ```creditcoops``` data set again, which comes with
+the package.
 
 ```{r}
 data("creditcoops")
@@ -232,7 +233,8 @@ Now, let's go a step further. We will compare the two samples for 2016 and 2018.
 For this purpose, we will select from our `creditcoops` data set the relevant
 columns (coop_id, year, paired, and total_loans_log) and make a new data frame.
 ```{r visualization-sample-prep, echo=FALSE, eval=FALSE}
-df_shares <- creditcoops %>% dplyr::select(coop_id, year, paired, total_loans_log)
+df_shares <- creditcoops %>%
+  dplyr::select(coop_id, year, paired, total_loans_log)
 ```
 Make sure you have  the `ggplot2` package installed. Load the package.
 ```{r}

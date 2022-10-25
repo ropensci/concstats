@@ -53,14 +53,14 @@ A set of different inequality and diversity measures.
 \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
 If no measure is specified, "concstats_entropy" is the default.
 
-\code{concstats_entropy} returns the (Shannon) Entropy, \code{concstats_gini}
-is the Gini coefficient, \code{concstats_simpson} is the complement of the
-Herfindahl-Hirschman Index. You can normalize each of these three measures
-by setting \code{unbiased = TRUE}
-
+\code{concstats_entropy} returns the (Shannon) Entropy,
+\code{concstats_gini} is the Gini coefficient, \code{concstats_simpson} is
+the complement of the Herfindahl-Hirschman Index. You can normalize each
+of these three measures by setting \code{unbiased = TRUE}
 \code{concstats_palma} measures the ratio of inequality (normally used with
 income inequality) of the top 10 percent to the bottom 40 percent.
-\code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009),
+\code{concstats_grs} is an alternative inequality measure
+(Ginevicius, 2009),
 \code{concstats_all} returns all measures in a one step procedure.
 }
 \note{
