@@ -43,12 +43,12 @@ lapply(pkgs, library, character.only = TRUE)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
+
 <!-- badges: end -->
 
-```{r, echo=FALSE, eval=FALSE}
+```{r srr-tags-audience, echo=FALSE, eval=FALSE}
 #' @srrstats {EA1.0} identifying target audience
 #' @srrstats {EA1.2} scope of the package
-
 ```
 Measures of concentration and competition are important and give a first
 insight of a given market structure in a particular market. They are important
@@ -154,7 +154,7 @@ a value between 0 and 1, 8) Palma ratio, an inequality score which
 measures the ratio of the top 10 percent to the bottom 40 percent.
 
 ## *Prior Art*
-```{r srr-tags-1, echo=FALSE, eval=FALSE}
+```{r srr-tags-priorart, echo=FALSE, eval=FALSE}
 #' @srrstats {G1.1} Prior Art
 ```
 Some functions are already implemented in other R packages. The non-exhaustive
@@ -177,7 +177,7 @@ exception of the [ineq](https://cran.r-project.org/package=ineq) package.
 Other functions are new implementations in R, e.g. Dominance Index,
 Palma ratio, Stenbacka Index, GRS measure, and the dual of the Herfindahl
 Hirschman Index.
-```{r srr-tags-2, echo = FALSE, eval = FALSE}
+```{r srr-tags-primaryref, echo = FALSE, eval = FALSE}
 #' @srrstats {G1.0} primary references for formulas used in code
 ```
 ## References

@@ -24,6 +24,7 @@ downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
+
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
