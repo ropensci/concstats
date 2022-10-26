@@ -60,14 +60,13 @@
 #' @export concstats_comp
 concstats_comp <- function(x, unbiased = FALSE,
                            type = c("hhi", "hhi_d", "hhi_min", "dom", "sten",
-                                    "all"),
-                           na.rm = TRUE) {
+                                    "all"), na.rm = TRUE) {
 
   type <- tolower(as.character(type))
 #' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
 #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_comp` must be either TRUE or FALSE")
   }
 
@@ -111,10 +110,10 @@ concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_hhi` must be either TRUE or FALSE")
   }
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_hhi` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -166,7 +165,7 @@ concstats_hhi_min <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_hhi_min` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -218,7 +217,7 @@ concstats_hhi_d <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_hhi_d` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -271,7 +270,7 @@ concstats_dom <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_dom` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -323,7 +322,7 @@ concstats_sten <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_sten` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -380,7 +379,7 @@ concstats_all_comp <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_all_comp` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values

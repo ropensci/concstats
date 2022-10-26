@@ -49,12 +49,12 @@ concstats_concstats <- function(x, na.rm = TRUE) {
   }
 #' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
   else if (sum(x, na.rm = TRUE) > 1) {
-    x <-  as.numeric(x / sum(x, na.rm = TRUE))
-  } else {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))}
+  else {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm ) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_concstats` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values

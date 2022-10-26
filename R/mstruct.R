@@ -87,7 +87,7 @@ concstats_firm <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_firm` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -137,7 +137,7 @@ concstats_nrs_eq <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_nrs_eq` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -188,7 +188,7 @@ concstats_top <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("na.rm in `concstats_top` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -238,7 +238,7 @@ concstats_top3 <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("na.rm in `concstats_top3` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -288,7 +288,7 @@ concstats_top5 <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("na.rm in `concstats_top5` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -341,7 +341,7 @@ concstats_all_mstruct <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("na.rm in `concstats_all_mstruct` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values

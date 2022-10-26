@@ -57,12 +57,12 @@
 concstats_inequ <- function(x, unbiased = FALSE, type = c("entropy", "gini",
                                                           "simpson", "palma",
                                                           "grs", "all"),
-                  na.rm = TRUE) {
+                            na.rm = TRUE) {
   type <- tolower(as.character(type))
 #' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
 #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_comp` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.3, G2.3a} Used `match.arg()`
@@ -98,15 +98,15 @@ concstats_entropy <- function(x, unbiased = TRUE, na.rm = TRUE) {
   }
 #' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
   else if (sum(x, na.rm = TRUE) > 1) {
-    x <-  as.numeric(x / sum(x, na.rm = TRUE))
-  } else {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))}
+  else {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_entropy` must be either TRUE or FALSE")
   }
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_entropy` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -161,10 +161,10 @@ concstats_gini <- function(x, unbiased = FALSE, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_gini` must be either TRUE or FALSE")
   }
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_gini` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -219,10 +219,10 @@ concstats_simpson <- function(x, unbiased = FALSE, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) | !length(unbiased) == 1) {
+  if (!is.logical(unbiased) || !length(unbiased) == 1) {
     warning("`unbiased` in `concstats_simpson` must be either TRUE or FALSE")
   }
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_simpson` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -271,7 +271,7 @@ concstats_palma <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("*na.rm* in `concstats_palma` is not a logical value")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -325,7 +325,7 @@ concstats_grs <- function(x, na.rm = TRUE) {
     x
   }
   #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("*na.rm* in `concstats_grs` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
@@ -378,7 +378,7 @@ concstats_all_inequ <- function(x, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(na.rm) | !length(na.rm) == 1) {
+  if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("*na.rm* in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
