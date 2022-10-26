@@ -69,6 +69,5 @@ NULL
 #' @srrstatsNA {EA5.6} No bundling of libraries.
 #' @srrstatsNA {EA6.1} No graphical output
 #'
-#'
 #' @noRd
 NULL

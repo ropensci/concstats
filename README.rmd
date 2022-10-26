@@ -2,6 +2,9 @@
 output: github_document
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -23,7 +26,6 @@ lapply(pkgs[!(pkgs %in% installed.packages())], install.packages)
 ## Load all packages to library 
 lapply(pkgs, library, character.only = TRUE)
 ```
-
 
 # concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
@@ -69,15 +71,15 @@ diversity measures in a one-step procedure.
 Top5 market shares.  
 \-`concstats_comp` is a wrapper for concentration measures, e.g. the Herfindahl
 Hirschman Index.  
-\-`concstats_inequ` offers diversity or inequality measures, e.g. the Entropy or the
-Palma ratio.
-
+\-`concstats_inequ` offers diversity or inequality measures, e.g. the Entropy
+or the Palma ratio.
 
 ## Installation
 
 A stable version of concstats is available on CRAN:
 ```{r, eval=FALSE}
-install.packages("concstats") # Market structure, concentration and inequality measures
+install.packages("concstats") # Market structure, concentration and inequality
+                              # measures
 ```
 
 You can install the development version from
@@ -166,7 +168,8 @@ summary below is by no means a description of each package.
 package has just one function, neither of both packages offer a finite sample
 correction.
 
-- The latter offers as well functions for the Entropy, Gini and Simpson measures.
+- The latter offers as well functions for the Entropy, Gini and Simpson
+measures.
 
 - The [acid](https://cran.r-project.org/package=acid) and the
 [ineq](https://cran.r-project.org/package=ineq) packages offer functions for

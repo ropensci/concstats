@@ -1,4 +1,6 @@
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # concstats <img src='man/figures/logo.png' align="right" height="150" style="float:right; height:150px;"/>
 
 # Market Structure, Concentration, and Inequality Measures
@@ -55,7 +57,8 @@ Entropy or the Palma ratio.
 A stable version of concstats is available on CRAN:
 
 ``` r
-install.packages("concstats") # Market structure, concentration and inequality measures
+install.packages("concstats") # Market structure, concentration and inequality
+                              # measures
 ```
 
 You can install the development version from
