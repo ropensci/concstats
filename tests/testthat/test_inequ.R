@@ -101,11 +101,12 @@ test_that("concstats_entropy returns the unbiased entropy measure ", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
   share_2018_ent <- 0.8024276
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_entropy(share_2018), share_2018_ent,
@@ -122,11 +123,12 @@ test_that("concstats_entropy returns the biased entropy measure ", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
   share_2018_ent2 <- 3.578371
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_entropy(share_2018, unbiased = FALSE), share_2018_ent2,
@@ -189,11 +191,12 @@ test_that("concstats_gini returns the gini measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
   share_2018_gini <- 0.5793415
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_gini(share_2018), share_2018_gini,
@@ -208,11 +211,12 @@ test_that("concstats_gini returns the unbiased gini measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
   share_2018_gini2 <- 0.6069292
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_gini(share_2018, unbiased = TRUE), share_2018_gini2,
@@ -252,7 +256,7 @@ test_that("concstats_simpson function operates properly", {
 #'  unsupported types
   expect_error(concstats_simpson(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_simpson` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1] )))
+  "You have provided an object of class: ", class(x)[1])))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_simpson(x9, na.rm = TRUE))
   expect_error(concstats_simpson(x8, na.rm = TRUE))
@@ -283,11 +287,12 @@ test_that("concstats_simpson returns the Simpson measure", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
   share_2018_sim <- 0.8765386
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(share_2018), share_2018_sim,
@@ -302,11 +307,12 @@ test_that("concstats_simpson returns the unbiased simpson measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
   share_2018_sim2 <- 0.8765386
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(share_2018), share_2018_sim2,
@@ -345,7 +351,7 @@ test_that("concstats_palma function operates properly", {
 #'  unsupported types
   expect_error(concstats_palma(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_palma` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1] )))
+  "You have provided an object of class: ", class(x)[1])))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_palma(x9, na.rm = TRUE))
   expect_error(concstats_palma(x8, na.rm = TRUE))
@@ -373,11 +379,12 @@ test_that("concstats_palma returns the alternative palma inequality measure", {
 
   x <- c(0.2, 0.3, 0.5)
   share_2018_palma <- 6.174089
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_palma(share_2018), share_2018_palma,
@@ -422,7 +429,7 @@ test_that("concstats_grs function operates properly", {
 #'  unsupported types
   expect_error(concstats_grs(xch, !isTRUE(is.numeric(xch),
   "x in `concstats_grs` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1] )))
+  "You have provided an object of class: ", class(x)[1])))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_grs(x9, na.rm = TRUE))
   expect_error(concstats_grs(x8, na.rm = TRUE))
@@ -450,11 +457,12 @@ test_that("concstats_grs returns the alternative grs measure", {
 
   x <- c(0.4, 0.3, 0.2, 0.1)
   share_2018_grs <- 0.2284457
-  share_2018 <- c(0.012663407,0.029367501,0.014456455,0.012046011,0.007477799,
-                  0.189784408,0.008738591,0.015635544,0.012787201,
-                  0.013071539,0.046268385, 0.006580823, 0.009102, 0.00760554,
-                  0.047173998, 0.034356881, 0.137813902, 0.016876624,
-                  0.065780114, 0.053775553, 0.228519883, 0.030117841)
+  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
+                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
+                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
+                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
+                  0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_grs(share_2018), share_2018_grs,
@@ -481,7 +489,7 @@ test_that("concstats_all_inequ returns a data frame", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE | FALSE)
-  dummy_df <- data.frame(Measure = rep(letters[1:5]), Value = c(1,2,3,4,5))
+  dummy_df <- data.frame(Measure = rep(letters[1:5]), Value = c(1, 2, 3, 4, 5))
 
   expect_vector(x, ptype = numeric(), size = 4)
   expect_true(any(is.na(x2)), all(!is.na(x2)))

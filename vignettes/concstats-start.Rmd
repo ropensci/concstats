@@ -55,7 +55,6 @@ reducing uncertainty.** **It can be used by practitioners and academics alike.**
 ```{r, echo=FALSE, eval=FALSE}
 #' @srrstats {EA1.0} identifying target audience on line#60
 #' @srrstats {EA1.2} scope of the package on line#61-62
-
 ```
 `concstats` should be used by practitioners and academics **who are concerned
 about structure, concentration, diversity or inequality** in general or on a

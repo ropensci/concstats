@@ -39,7 +39,7 @@ library(concstats)
 To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) use: 
 
 ```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
-library(devtools) # Tools to Make Developing R Packages Easier 
+library(devtools) # Tools to Make Developing R Packages Easier
 devtools::install_github("schneiderpy/concstats")
 ```
 
@@ -209,16 +209,16 @@ coops_2016 <- creditcoops %>% dplyr::filter(year == 2016)
 head(coops_2016)
 
 coops_2016 <- coops_2016[["total_loans"]] # atomic vector of total loans
-coops_2016 <- coops_2016/sum(coops_2016)  # market shares in decimal form
+coops_2016 <- coops_2016 / sum(coops_2016)  # market shares in decimal form
 
 # We then use the new object `coops_2016` to calculate the market structure
 # measures as a group in a one-step-procedure and capture the results in a
 # printed table:
 coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all")
-coops_2016_mstruct_tab <- coops_2016_mstruct %>% 
+coops_2016_mstruct_tab <- coops_2016_mstruct %>%
   kableExtra::kbl(caption = "Market structure 2016", digits = 2,
-                  booktabs = T, align = "r") %>% 
-  kableExtra::kable_classic(full_width = F, html_font = "Arial")
+                  booktabs = TRUE, align = "r") %>%
+  kableExtra::kable_classic(full_width = FALSE, html_font = "Arial")
 coops_2016_mstruct_tab
 
 ```
