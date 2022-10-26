@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Introduction to concstats</h1>
                         <h4 data-toc-skip class="author">Andreas Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-10-25</h4>
+            <h4 data-toc-skip class="date">2022-10-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -111,7 +111,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></span></code></pre></div>
 <p>To install the latest development version of <code>concstats</code> directly from <a href="https://github.com/schneiderpy/concstats" class="external-link">GitHub</a> use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier </span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"schneiderpy/concstats"</span><span class="op">)</span></span></code></pre></div>
 <p>Then, load the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -280,16 +280,16 @@
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span></span>
-<span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>  <span class="co"># market shares in decimal form</span></span>
+<span><span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>  <span class="co"># market shares in decimal form</span></span>
 <span></span>
 <span><span class="co"># We then use the new object `coops_2016` to calculate the market structure</span></span>
 <span><span class="co"># measures as a group in a one-step-procedure and capture the results in a</span></span>
 <span><span class="co"># printed table:</span></span>
 <span><span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
-<span><span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span><span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                  booktabs <span class="op">=</span> <span class="cn">T</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
+<span>                  booktabs <span class="op">=</span> <span class="cn">TRUE</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
 <span><span class="va">coops_2016_mstruct_tab</span></span></code></pre></div>
 <p>The result is a nice reusable table.</p>
 <p><img src="mstruct_tab.png" style="display: block; margin: auto;"></p>
