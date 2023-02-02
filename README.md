@@ -11,7 +11,7 @@
 
 [![R-CMD-check](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-[![cran
+\#[![cran
 checks](https://cranchecks.info/badges/summary/concstats)](https://cran.r-project.org/web/checks/check_results_concstats.html)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
@@ -26,6 +26,8 @@ downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
+[![Status at rOpenSci Software Peer
+Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
 
 <!-- badges: end -->
 
