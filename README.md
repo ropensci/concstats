@@ -11,8 +11,8 @@
 
 [![R-CMD-check](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-\#[![cran
-checks](https://cranchecks.info/badges/summary/concstats)](https://cran.r-project.org/web/checks/check_results_concstats.html)
+[![cran
+checks](https://badges.cranchecks.info/summary/concstats.svg)](https://cran.r-project.org/web/checks/check_results_concstats.html)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
