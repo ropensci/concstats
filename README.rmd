@@ -46,7 +46,6 @@ lapply(pkgs, library, character.only = TRUE)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
-
 <!-- badges: end -->
 
 ```{r srr-tags-audience, echo=FALSE, eval=FALSE}

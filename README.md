@@ -28,7 +28,6 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](
 [![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
-
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
