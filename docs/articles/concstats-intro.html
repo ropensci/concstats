@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Andreas
 Schneider</h4>
             
-            <h4 data-toc-skip class="date">2022-10-10</h4>
+            <h4 data-toc-skip class="date">2023-02-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -117,7 +117,7 @@ available to achieve the desired goal.</p>
 <p>To install the latest development version of <code>concstats</code>
 directly from <a href="https://github.com/schneiderpy/concstats" class="external-link">GitHub</a> use:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier </span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span> <span class="co"># Tools to Make Developing R Packages Easier</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"schneiderpy/concstats"</span><span class="op">)</span></code></pre></div>
 <p>Then, load the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -210,11 +210,11 @@ respective argument in the group wrapper:</p>
 <span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
 <span class="va">test_share_mstruct</span>
 <span class="co">#&gt;          Measure Value</span>
-<span class="co">#&gt; 1          Firms   6.0</span>
-<span class="co">#&gt; 2 Nrs_equivalent   3.3</span>
-<span class="co">#&gt; 3        Top (%)  40.0</span>
-<span class="co">#&gt; 4       Top3 (%)  85.0</span>
-<span class="co">#&gt; 5       Top5 (%)  96.0</span></code></pre></div>
+<span class="co">#&gt; 1          Firms  6.00</span>
+<span class="co">#&gt; 2 Nrs_equivalent  3.33</span>
+<span class="co">#&gt; 3        Top (%) 40.00</span>
+<span class="co">#&gt; 4       Top3 (%) 85.00</span>
+<span class="co">#&gt; 5       Top5 (%) 96.00</span></code></pre></div>
 <p>The result is a data frame of market structure measures.</p>
 </div>
 <div class="section level3">
@@ -271,7 +271,7 @@ structure.</p>
 <span class="co">#&gt; 2 Nrs_equivalent   2.63</span>
 <span class="co">#&gt; 3        Top (%)  50.00</span>
 <span class="co">#&gt; 4       Top3 (%) 100.00</span>
-<span class="co">#&gt; 5       Top5 (%)     NA</span>
+<span class="co">#&gt; 5       Top5 (%) 100.00</span>
 <span class="co">#&gt; 6            HHI   0.38</span>
 <span class="co">#&gt; 7    Entropy(RE)   0.94</span>
 <span class="co">#&gt; 8    Palma ratio   2.50</span></code></pre></div>
@@ -330,16 +330,16 @@ packages installed.</p>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>
 
 <span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">[[</span><span class="st">"total_loans"</span><span class="op">]</span><span class="op">]</span> <span class="co"># atomic vector of total loans</span>
-<span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>  <span class="co"># market shares in decimal form</span>
+<span class="va">coops_2016</span> <span class="op">&lt;-</span> <span class="va">coops_2016</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">coops_2016</span><span class="op">)</span>  <span class="co"># market shares in decimal form</span>
 
 <span class="co"># We then use the new object `coops_2016` to calculate the market structure</span>
 <span class="co"># measures as a group in a one-step-procedure and capture the results in a</span>
 <span class="co"># printed table:</span>
 <span class="va">coops_2016_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">coops_2016</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>
-<span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+<span class="va">coops_2016_mstruct_tab</span> <span class="op">&lt;-</span> <span class="va">coops_2016_mstruct</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Market structure 2016"</span>, digits <span class="op">=</span> <span class="fl">2</span>,
-                  booktabs <span class="op">=</span> <span class="cn">T</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span>
+                  booktabs <span class="op">=</span> <span class="cn">TRUE</span>, align <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span>
 <span class="va">coops_2016_mstruct_tab</span></code></pre></div>
 <p>The result is a nice reusable table.</p>
 <p><img src="mstruct_tab.png" width="188" style="display: block; margin: auto;"></p>
@@ -377,8 +377,7 @@ time for the two sample years 2016 and 2018.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
