@@ -184,6 +184,9 @@ Index.
     ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.
 6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The
     Bell System Technical Journal (Nokia Bell Labs).
+7.  Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
+    dominance, Journal of Economic Behavior and Organization, 68:
+    pp. 63-72.
 
 ## Credits
 
