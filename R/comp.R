@@ -5,14 +5,13 @@
 #' @description A set of different concentration measures.
 #'
 #' @usage
-#'  concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min",
+#'  concstats_comp(x, normalized = FALSE, type = c("hhi", "hhi_d", "hhi_min",
 #'  "dom", "sten", "all"),na.rm = TRUE)
 #' @srrstats {G2.0a, G2.1a, EA1.1, EA1.3} accepted as input, length and type
 #' @param x A numeric vector of length 1 with non-negative values.
-#' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'  correction should be applied. Must be either TRUE or FALSE. The default is
-#'  FALSE.
-#
+#' @param normalized Logical. Argument specifying whether or not a normalized
+#'  value is required. Ranges from {0, 1} and often used for comparison over
+#'  time. Must be either TRUE or FALSE. The default is FALSE.
 #' @param type A character string of the measure to be calculated,
 #'  can be abbreviated with the first letter. Defaults to "hhi". Input is not
 #'  case-sensitive.
@@ -26,11 +25,14 @@
 #'  \code{concstats_dom}, \code{concstats_sten}, \code{concstats_all}.
 #'  If no measure is specified "hhi" will be the default.
 #'
-#'  \code{concstats_hhi}, \code{concstats_hhi_min}, \code{concstats_hhi_d}
-#'  calculate the Herfindahl-Hirschman index, its minimum, and its dual,
-#'  respectively. \code{concstats_dom} calculates a dominance index and
-#'  \code{concstats_sten} calculates the Stenbacka index. The index indicates
-#'  the market share of a dominant position.
+#'  \code{concstats_hhi} calculates the widely used Herfindahl-Hirschman Index
+#'  (Herfindahl, 1950 and Hirschman, 1945), \code{concstats_hhi_min}
+#'  its minimum, and \code{concstats_hhi_d} its dual (Chang, Guerra,
+#'  de Souza Penaloza & Tabak, 2005)
+#'  \code{concstats_dom} calculates a dominance index (Garcia, 1994) and
+#'  \code{concstats_sten} calculates the Stenbacka index (Melnik, Shy, and
+#'  Stenbacka, 2005). The index indicates the market share of a dominant
+#'  position.
 #'
 #'  All measures can be accessed individually.
 #'  \code{concstats_hhi}, \code{concstats_hhi_d}, and \code{concstats_dom} can
@@ -40,25 +42,36 @@
 #'
 #' @return the calculated numeric measure.
 #' @note The vector of market shares should be in a decimal form corresponding
-#'  to total shares of individual firms/units. The sum of the vector should sum
-#'  up to 1.
+#'  to total shares of individual firms/units. The vector should sum up to 1.
+#' @references Herfindahl, O. C. (1950), "Concentration in the steel industry"
+#'  (PhD thesis)
+#' @references Hirschmann, A. O. (1945), "National power and structure of
+#'  foreign trade".
+#' @references Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak,
+#'  B. M. (2005) Banking concentration: the Brazilian case. In Financial
+#'  Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.
+#' @references Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+#'  analisis de la estructura de los mercados. El Trimestre Economico,
+#'  61: 499-524.
+#' @references Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
+#'  dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.
 #'
-#'
-#' @seealso {\code{\link{concstats_concstats}}, \code{\link{concstats_mstruct}},
-#'  \code{\link{concstats_inequ}}}
+#' @seealso \code{\link[concstats_concstats]{concstats_concstats()}},
+#'  \code{\link[concstats_mstruct]{concstats_mstruct()}},
+#'  \code{\link[concstats_inequ]{concstats_inequ()}}
 #'
 #' @examples
 #' # a vector of market shares
 #' x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 #' # the Herfindahl-Hirschman index of the vector
-#' shares_hhi <- concstats_comp(x, type = "hhi")
+#' concstats_comp(x, type = "hhi")
 #' # individual measure
-#' shares_sten <- concstats_sten(x)
+#' concstats_sten(x)
 #' # complete group measures
-#' shares_comp <- concstats_comp(x, type = "all")
+#' concstats_comp(x, type = "all")
 #'
 #' @export concstats_comp
-concstats_comp <- function(x, unbiased = FALSE,
+concstats_comp <- function(x, normalized = FALSE,
                            type = c("hhi", "hhi_d", "hhi_min", "dom", "sten",
                                     "all"), na.rm = TRUE) {
 
@@ -66,32 +79,31 @@ concstats_comp <- function(x, unbiased = FALSE,
 #' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
 #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) || !length(unbiased) == 1) {
-    warning("`unbiased` in `concstats_comp` must be either TRUE or FALSE")
+  if (!is.logical(normalized) || !length(normalized) == 1) {
+    warning("`normalized` in `concstats_comp` must be either TRUE or FALSE")
   }
 
 #' @srrstats {G2.3, G2.3a} Used `match.arg()`
   switch(match.arg(type),
-         hhi = concstats_hhi(x, unbiased = unbiased, na.rm = na.rm),
+         hhi = concstats_hhi(x, normalized = normalized, na.rm = na.rm),
          hhi_d = concstats_hhi_d(x, na.rm = na.rm),
          hhi_min = concstats_hhi_min(x, na.rm = na.rm),
          dom = concstats_dom(x, na.rm = na.rm),
          sten = concstats_sten(x, na.rm = na.rm),
          all = concstats_all_comp(x, na.rm = na.rm))
 
-
 }
 
 #' @export
 #' @rdname concstats_comp
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. Must be either TRUE or FALSE. The default is
-#'   FALSE.
+#' @param normalized Logical. Argument specifying whether or not a normalized
+#'  value is required. Ranges from {0, 1} and often used for comparison over
+#'  time. Must be either TRUE or FALSE. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-#'   If set to \code{FALSE} the computation yields \code{NA}.
-concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
+concstats_hhi <- function(x, normalized = FALSE, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
   if (length(x) == 0) {
     stop("x in concstats_hhi cannot be empty.")
@@ -110,8 +122,8 @@ concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
     x
   }
 #' @srrstats {G2.0, G2.1}
-  if (!is.logical(unbiased) || !length(unbiased) == 1) {
-    warning("`unbiased` in `concstats_hhi` must be either TRUE or FALSE")
+  if (!is.logical(normalized) || !length(normalized) == 1) {
+    warning("`normalized` in `concstats_hhi` must be either TRUE or FALSE")
   }
   if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_hhi` must be either TRUE or FALSE")
@@ -135,7 +147,7 @@ concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
   }
 
   hhi <- as.numeric(sum(x ^ 2))
-  if (unbiased == TRUE) hhi <- as.numeric((hhi - (1 / sum(x > 0))) /
+  if (normalized == TRUE) hhi <- as.numeric((hhi - (1 / sum(x > 0))) /
     (1 - (1 / sum(x > 0))))
   return(hhi)
 }
@@ -144,8 +156,8 @@ concstats_hhi <- function(x, unbiased = FALSE, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-#'   If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_hhi_min <- function(x, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
   if (length(x) == 0) {
@@ -185,7 +197,6 @@ concstats_hhi_min <- function(x, na.rm = TRUE) {
     stop("vector x in `concstats_hhi_min` does not sum to 1")
   }
 
-
   hhi_min <- as.numeric(1 / sum(x > 0))
   return(hhi_min)
 }
@@ -193,9 +204,6 @@ concstats_hhi_min <- function(x, na.rm = TRUE) {
 #' @export
 #' @rdname concstats_comp
 #' @param x a non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. Must be either TRUE or FALSE. The default is
-#'   FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 concstats_hhi_d <- function(x, na.rm = TRUE) {
@@ -245,12 +253,9 @@ concstats_hhi_d <- function(x, na.rm = TRUE) {
 #' @export
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
-#' @param unbiased Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. Must be either TRUE or FALSE. The default is
-#'   FALSE.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-#'   If set to \code{FALSE} the computation yields \code{NA}.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  If set to \code{FALSE} the computation yields \code{NA}.
 concstats_dom <- function(x, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
   if (length(x) == 0) {
@@ -356,9 +361,9 @@ concstats_sten <- function(x, na.rm = TRUE) {
 #' @rdname concstats_comp
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'   be excluded or not. Must be either TRUE or FALSE. The default is FALSE.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is FALSE.
 #' @return `data.frame` of concentration and competition measures with default
-#'   settings.
+#'  settings.
 #' @srrstats {EA2.6}
 concstats_all_comp <- function(x, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
@@ -402,7 +407,7 @@ concstats_all_comp <- function(x, na.rm = TRUE) {
   x <- as.numeric(stats::na.omit(x))
 
   invisible(utils::capture.output(
-    hhi <- concstats_hhi(x, unbiased = FALSE, na.rm = TRUE),
+    hhi <- concstats_hhi(x, normalized = FALSE, na.rm = TRUE),
     hhi_d <- concstats_hhi_d(x, na.rm = TRUE),
     hhi_min <- concstats_hhi_min(x, na.rm = TRUE),
     dom <- concstats_dom(x, na.rm = TRUE),

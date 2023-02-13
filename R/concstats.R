@@ -24,15 +24,16 @@
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to the total share of individual firms/units. The vector should sum up to 1.
 #'
-#' @seealso \code{\link{concstats_mstruct}}, \code{\link{concstats_comp}},
-#'  \code{\link{concstats_inequ}}
+#' @seealso \code{\link[concstats_mstruct]{concstats_mstruct()}},
+#'  \code{\link[concstats_comp]{concstats_comp()}},
+#'  \code{\link[concstats_inequ]{concstats_inequ()}}
 #'
 #' @examples
 #' # a vector of market shares
 #' # share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 #' # a selected set of different structural, concentration, and inequality
 #' # measures
-#' # share_conc <- concstats_concstats(share)
+#' # concstats_concstats(share)
 #'
 #' @export
 #' @srrstats {G2.6, EA2.6} process vector data
@@ -49,8 +50,8 @@ concstats_concstats <- function(x, na.rm = TRUE) {
   }
 #' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
   else if (sum(x, na.rm = TRUE) > 1) {
-    x <-  as.numeric(x / sum(x, na.rm = TRUE))}
-  else {
+    x <-  as.numeric(x / sum(x, na.rm = TRUE))
+  } else {
     x
   }
 #' @srrstats {G2.0, G2.1}
