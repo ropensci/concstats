@@ -123,20 +123,19 @@ measure or a set of market structure and concentration measures:
 ```{r examples, eval=FALSE}
 library(concstats)
 ## Create some simple data
-share1 <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
-share_hhi <- concstats_hhi(share1) # the Herfindahl-Hirschman Index
+x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
+concstats_hhi(x) # the Herfindahl-Hirschman Index
 #> [1] 0.275
 
-share_dom <- concstats_dom(share1) # the Dominance Index
+concstats_dom(x) # the Dominance Index
 #> [1] 0.4127273
 
 ## Our simple data
-share2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
-                                              # the market (should sum up to 1)
+x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
+                                          # the market (should sum up to 1)
 
 ## Calculate a selected set of market structure and concentration measures
-share2_con <- concstats_concstats(share2) # creates share2_con, a selected set
-                                          # of measures
+concstats_concstats(x2) # calculates a selected set of measures
 #>         Measures Values
 #> 1          Firms   6.00
 #> 2 Nrs_equivalent   3.33
@@ -151,7 +150,7 @@ share2_con <- concstats_concstats(share2) # creates share2_con, a selected set
 In this case, the result is a table with eight selected measures: 1)
 Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in
 %, 4) Top 3 firms, share in %, 5) Top 5 firms, share in %, 6) The
-Herfindahl-Hirschman Index, in decimal form, 7) Normalized Entropy (RE),
+Herfindahl-Hirschman Index, in decimal form, 7) Normalized Shannon Entropy (RE),
 a value between 0 and 1, 8) Palma ratio, an inequality score which
 measures the ratio of the top 10 percent to the bottom 40 percent.
 
@@ -175,11 +174,15 @@ measures.
 [ineq](https://cran.r-project.org/package=ineq) packages offer functions for
 inequality and competition measures, e.g. for the Entropy and Gini metric.
 
+Some popular measures, e.g. Gini or the Herfindahl-Hirschman index have also
+been implemented in Python.
+
 However, almost none of these packages offer finite sample correction, with the
 exception of the [ineq](https://cran.r-project.org/package=ineq) package.
 Other functions are new implementations in R, e.g. Dominance Index,
 Palma ratio, Stenbacka Index, GRS measure, and the dual of the Herfindahl
 Hirschman Index.
+
 ```{r srr-tags-primaryref, echo = FALSE, eval = FALSE}
 #' @srrstats {G1.0} primary references for formulas used in code
 ```
@@ -191,7 +194,7 @@ Hirschman Index.
 2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
     Palma Measure of Income Inequality, Center for Global Development,
     Washington, DC.
-3.  Garcia Alba Idunate, P. (1994). Un Indice de dominacion para el
+3.  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
     analisis de la estructura de los mercados. El Trimestre Economico,
     61: 499-524.
 4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
@@ -203,6 +206,8 @@ Hirschman Index.
     Bell System Technical Journal (Nokia Bell Labs).
 7.  Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market dominance,
     Journal of Economic Behavior and Organization, 68: pp. 63-72.
+8.  Simpson, E. H. (1949). "Measurement of Diversity", Nature, 163, 688.
+    https://doi.org/10.1038/163688a0
 
 ## Credits
 
