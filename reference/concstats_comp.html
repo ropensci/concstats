@@ -66,10 +66,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hhi"</span>, <span class="st">"hhi_d"</span>, <span class="st">"hhi_min"</span>,</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hhi"</span>, <span class="st">"hhi_d"</span>, <span class="st">"hhi_min"</span>,</span>
 <span> <span class="st">"dom"</span>, <span class="st">"sten"</span>, <span class="st">"all"</span><span class="op">)</span>,na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">concstats_hhi</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">concstats_hhi</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">concstats_hhi_min</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -88,10 +88,10 @@
 <dd><p>A non-negative numeric vector.</p></dd>
 
 
-<dt>unbiased</dt>
-<dd><p>Logical. Argument specifying whether or not a finite sample
-correction should be applied. Must be either TRUE or FALSE. The default is
-FALSE.</p></dd>
+<dt>normalized</dt>
+<dd><p>Logical. Argument specifying whether or not a normalized
+value is required. Ranges from 0, 1 and often used for comparison over
+time. Must be either TRUE or FALSE. The default is FALSE.</p></dd>
 
 
 <dt>type</dt>
@@ -121,11 +121,14 @@ settings.</p>
 <code>concstats_hhi</code>, <code>concstats_hhi_d</code>, <code>concstats_hhi_min</code>,
 <code>concstats_dom</code>, <code>concstats_sten</code>, <code>concstats_all</code>.
 If no measure is specified "hhi" will be the default.</p>
-<p><code>concstats_hhi</code>, <code>concstats_hhi_min</code>, <code>concstats_hhi_d</code>
-calculate the Herfindahl-Hirschman index, its minimum, and its dual,
-respectively. <code>concstats_dom</code> calculates a dominance index and
-<code>concstats_sten</code> calculates the Stenbacka index. The index indicates
-the market share of a dominant position.</p>
+<p><code>concstats_hhi</code> calculates the widely used Herfindahl-Hirschman Index
+(Herfindahl, 1950 and Hirschman, 1945), <code>concstats_hhi_min</code>
+its minimum, and <code>concstats_hhi_d</code> its dual (Chang, Guerra,
+de Souza Penaloza &amp; Tabak, 2005)
+<code>concstats_dom</code> calculates a dominance index (Garcia, 1994) and
+<code>concstats_sten</code> calculates the Stenbacka index (Melnik, Shy, and
+Stenbacka, 2005). The index indicates the market share of a dominant
+position.</p>
 <p>All measures can be accessed individually.
 <code>concstats_hhi</code>, <code>concstats_hhi_d</code>, and <code>concstats_dom</code> can
 be calculated individually as a normalized measure changing the default
@@ -135,13 +138,28 @@ step procedure.</p>
     <div id="note">
     <h2>Note</h2>
     <p>The vector of market shares should be in a decimal form corresponding
-to total shares of individual firms/units. The sum of the vector should sum
-up to 1.</p>
+to total shares of individual firms/units. The vector should sum up to 1.</p>
+    </div>
+    <div id="references">
+    <h2>References</h2>
+    <p>Herfindahl, O. C. (1950), "Concentration in the steel industry"
+(PhD thesis)</p>
+<p>Hirschmann, A. O. (1945), "National power and structure of
+foreign trade".</p>
+<p>Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. &amp; Tabak,
+B. M. (2005) Banking concentration: the Brazilian case. In Financial
+Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.</p>
+<p>Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+analisis de la estructura de los mercados. El Trimestre Economico,
+61: 499-524.</p>
+<p>Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
+dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats</a></code>, <code><a href="concstats_mstruct.html">concstats_mstruct</a></code>,
-<code><a href="concstats_inequ.html">concstats_inequ</a></code></p></div>
+    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats()</a></code>,
+<code><a href="concstats_mstruct.html">concstats_mstruct()</a></code>,
+<code><a href="concstats_inequ.html">concstats_inequ()</a></code></p></div>
     </div>
 
     <div id="ref-examples">
@@ -149,11 +167,19 @@ up to 1.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># a vector of market shares</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># the Herfindahl-Hirschman index of the vector</span></span></span>
-<span class="r-in"><span><span class="va">shares_hhi</span> <span class="op">&lt;-</span> <span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"hhi"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"hhi"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3002</span>
 <span class="r-in"><span><span class="co"># individual measure</span></span></span>
-<span class="r-in"><span><span class="va">shares_sten</span> <span class="op">&lt;-</span> <span class="fu">concstats_sten</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_sten</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 48.125</span>
 <span class="r-in"><span><span class="co"># complete group measures</span></span></span>
-<span class="r-in"><span><span class="va">shares_comp</span> <span class="op">&lt;-</span> <span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_comp</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        Measure Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          HHI  0.30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     HHI(min)  0.17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    HHI(dual)  0.44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    Dominance  0.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 Stenbacka(%) 48.12</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

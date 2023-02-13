@@ -115,7 +115,8 @@ If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
     <h2>Details</h2>
     <p><code>concstats_mstruct</code> is a wrapper for the proposed structural measures
 <code>concstats_firm</code>, returns the number of firms with a given market share
-<code>concstats_nrs_eq</code> computes the numbers equivalent,
+<code>concstats_nrs_eq</code> computes the reciprocal of the HHI, which indicates
+the equivalent number of firms of the same size,
 <code>concstats_top</code>, <code>concstats_top3</code>, and <code>concstats_top5</code>
 calculate the share of the top (top 3 and top 5) firm(s) and returns the
 value in percentage. <code>concstats_all</code> computes all measures in a
@@ -138,11 +139,19 @@ to 1.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># a vector of market shares</span></span></span>
 <span class="r-in"><span><span class="va">share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># the number of firms with market share</span></span></span>
-<span class="r-in"><span><span class="va">share_firm</span> <span class="op">&lt;-</span> <span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"firm"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"firm"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
 <span class="r-in"><span><span class="co"># Calculate top market share individually</span></span></span>
-<span class="r-in"><span><span class="va">share_top</span> <span class="op">&lt;-</span> <span class="fu">concstats_top</span><span class="op">(</span><span class="va">share</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_top</span><span class="op">(</span><span class="va">share</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
 <span class="r-in"><span><span class="co"># Calculate the market structure group measures</span></span></span>
-<span class="r-in"><span><span class="va">share_mstruct</span> <span class="op">&lt;-</span> <span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Measure Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          Firms  6.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Nrs_equivalent  3.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Top (%) 40.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       Top3 (%) 85.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Top5 (%) 96.00</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
