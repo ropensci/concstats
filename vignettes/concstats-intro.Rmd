@@ -27,21 +27,8 @@ reduce uncertainty with respect to a given market situation. Various functions
 or groups of functions are available to achieve the desired goal. 
 
 ## Installation
-You can install `concstats` directly from CRAN
-
-```{r, eval=FALSE}
-install.packages("concstats") # Market Structure, Concentration, and Inequality
-                              # Measures
-library(concstats)
-
-```
-
-To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) use: 
-
-```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
-library(devtools) # Tools to Make Developing R Packages Easier
-devtools::install_github("schneiderpy/concstats")
-```
+You can install `concstats` directly from CRAN or the latest development version
+from [GitHub](https://github.com/schneiderpy/concstats)
 
 Then, load the package.
 ```{r, message=FALSE, warning=FALSE}
@@ -113,7 +100,8 @@ test_share_top <- concstats_mstruct(test_share, type = "top") # top market share
 test_share_top
 ```
 
-Or, just calculate all measures of the group wrapper.
+Or, just calculate all measures of the group wrapper, and store it in a named
+object.
 ```{r examples-mstruct-all}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_mstruct <- concstats_mstruct(test_share, type = "all")
@@ -131,8 +119,8 @@ test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 test_share_entropy <- concstats_entropy(test_share)
 test_share_entropy
 
-# and as a standardized value
-test_share_entropy2 <- concstats_entropy(test_share, unbiased = TRUE)
+# and as a non-normalized value
+test_share_entropy2 <- concstats_entropy(test_share, normalized = FALSE)
 test_share_entropy2
 ```
 
@@ -145,8 +133,8 @@ test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_hhi <- concstats_hhi(test_share)
 test_share_hhi
 
-# a standardized value
-test_share_hhi2 <- concstats_hhi(test_share, unbiased = TRUE)
+# a normalized value
+test_share_hhi2 <- concstats_hhi(test_share, normalized = TRUE)
 test_share_hhi2
 
 # the min average of the hhi
@@ -172,7 +160,7 @@ reporting your results. The package ```concstats``` works fine with other EDA or
 data visualization packages e.g. [```overviewR```](https://CRAN.R-project.org/package=overviewR),
 [```dataexplorer```](https://CRAN.R-project.org/package=DataExplorer), [```kableExtra```](https://CRAN.R-project.org/package=kableExtra) or [```ggplot2```](https://CRAN.R-project.org/package=ggplot2) to name a few.
 
-Some examples how you can accomplish this.
+Some examples on how you can accomplish this.
 Let us assume one would like to use the group measure for e.g. market structure,
 and keep the resulting data frame. We can refine the table
 using ```kableExtra``` which works nice with ```knitr```.
@@ -235,10 +223,21 @@ columns (coop_id, year, paired, and total_loans_log) and make a new data frame.
 ```{r visualization-sample-prep, echo=FALSE, eval=FALSE}
 df_shares <- creditcoops %>%
   dplyr::select(coop_id, year, paired, total_loans_log)
+
 ```
-Make sure you have  the `ggplot2` package installed. Load the package.
-```{r}
+Make sure you have the `ggplot2` package installed. Load the package.
+```{r, echo=TRUE, eval=FALSE}
 library(ggplot2) # Data Visualizations Using the Grammar of Graphics
+
+df_shares_plot <- df_shares %>%
+  ggplot(aes(year, total_loans_log, fill = year)) +
+  geom_boxplot() +
+  geom_point() +
+  geom_line(aes(group = paired)) +
+  labs(title = "Credit cooperatives (type A)", y = "Total loans (log)",
+       caption = "Source: Andreas Schneider with data from INCOOP") +
+  theme(legend.position = "none")
+df_shares_plot
 ```
 <center>
 
