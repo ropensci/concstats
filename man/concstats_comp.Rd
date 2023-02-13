@@ -10,10 +10,10 @@
 \alias{concstats_all_comp}
 \title{Concentration Measures}
 \usage{
-concstats_comp(x, unbiased = FALSE, type = c("hhi", "hhi_d", "hhi_min",
+concstats_comp(x, normalized = FALSE, type = c("hhi", "hhi_d", "hhi_min",
  "dom", "sten", "all"),na.rm = TRUE)
 
-concstats_hhi(x, unbiased = FALSE, na.rm = TRUE)
+concstats_hhi(x, normalized = FALSE, na.rm = TRUE)
 
 concstats_hhi_min(x, na.rm = TRUE)
 
@@ -28,9 +28,9 @@ concstats_all_comp(x, na.rm = TRUE)
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
-\item{unbiased}{Logical. Argument specifying whether or not a finite sample
-correction should be applied. Must be either TRUE or FALSE. The default is
-FALSE.}
+\item{normalized}{Logical. Argument specifying whether or not a normalized
+value is required. Ranges from {0, 1} and often used for comparison over
+time. Must be either TRUE or FALSE. The default is FALSE.}
 
 \item{type}{A character string of the measure to be calculated,
 can be abbreviated with the first letter. Defaults to "hhi". Input is not
@@ -54,11 +54,14 @@ A set of different concentration measures.
 \code{concstats_dom}, \code{concstats_sten}, \code{concstats_all}.
 If no measure is specified "hhi" will be the default.
 
-\code{concstats_hhi}, \code{concstats_hhi_min}, \code{concstats_hhi_d}
-calculate the Herfindahl-Hirschman index, its minimum, and its dual,
-respectively. \code{concstats_dom} calculates a dominance index and
-\code{concstats_sten} calculates the Stenbacka index. The index indicates
-the market share of a dominant position.
+\code{concstats_hhi} calculates the widely used Herfindahl-Hirschman Index
+(Herfindahl, 1950 and Hirschman, 1945), \code{concstats_hhi_min}
+its minimum, and \code{concstats_hhi_d} its dual (Chang, Guerra,
+de Souza Penaloza & Tabak, 2005)
+\code{concstats_dom} calculates a dominance index (Garcia, 1994) and
+\code{concstats_sten} calculates the Stenbacka index (Melnik, Shy, and
+Stenbacka, 2005). The index indicates the market share of a dominant
+position.
 
 All measures can be accessed individually.
 \code{concstats_hhi}, \code{concstats_hhi_d}, and \code{concstats_dom} can
@@ -68,21 +71,39 @@ step procedure.
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
-to total shares of individual firms/units. The sum of the vector should sum
-up to 1.
+to total shares of individual firms/units. The vector should sum up to 1.
 }
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # the Herfindahl-Hirschman index of the vector
-shares_hhi <- concstats_comp(x, type = "hhi")
+concstats_comp(x, type = "hhi")
 # individual measure
-shares_sten <- concstats_sten(x)
+concstats_sten(x)
 # complete group measures
-shares_comp <- concstats_comp(x, type = "all")
+concstats_comp(x, type = "all")
 
 }
+\references{
+Herfindahl, O. C. (1950), "Concentration in the steel industry"
+(PhD thesis)
+
+Hirschmann, A. O. (1945), "National power and structure of
+foreign trade".
+
+Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak,
+B. M. (2005) Banking concentration: the Brazilian case. In Financial
+Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.
+
+Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
+analisis de la estructura de los mercados. El Trimestre Economico,
+61: 499-524.
+
+Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
+dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.
+}
 \seealso{
-{\code{\link{concstats_concstats}}, \code{\link{concstats_mstruct}},
-\code{\link{concstats_inequ}}}
+\code{\link[concstats_concstats]{concstats_concstats()}},
+\code{\link[concstats_mstruct]{concstats_mstruct()}},
+\code{\link[concstats_inequ]{concstats_inequ()}}
 }

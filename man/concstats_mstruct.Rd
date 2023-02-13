@@ -48,7 +48,8 @@ market structure.
 \details{
 \code{concstats_mstruct} is a wrapper for the proposed structural measures
 \code{concstats_firm}, returns the number of firms with a given market share
-\code{concstats_nrs_eq} computes the numbers equivalent,
+\code{concstats_nrs_eq} computes the reciprocal of the HHI, which indicates
+the equivalent number of firms of the same size,
 \code{concstats_top}, \code{concstats_top3}, and \code{concstats_top5}
 calculate the share of the top (top 3 and top 5) firm(s) and returns the
 value in percentage. \code{concstats_all} computes all measures in a
@@ -63,11 +64,11 @@ to 1.
 # a vector of market shares
 share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # the number of firms with market share
-share_firm <- concstats_mstruct(share, type = "firm")
+concstats_mstruct(share, type = "firm")
 # Calculate top market share individually
-share_top <- concstats_top(share)
+concstats_top(share)
 # Calculate the market structure group measures
-share_mstruct <- concstats_mstruct(share, type = "all")
+concstats_mstruct(share, type = "all")
 
 }
 \seealso{

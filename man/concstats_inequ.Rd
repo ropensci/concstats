@@ -10,14 +10,14 @@
 \alias{concstats_all_inequ}
 \title{Inequality and Diversity Measures}
 \usage{
-concstats_inequ(x, unbiased = FALSE, type = c("entropy", "gini", "simpson",
- "palma", "grs", "all"), na.rm = TRUE)
+concstats_inequ(x, normalized = FALSE, type = c("entropy", "gini",
+ "simpson", "palma", "grs", "all"), na.rm = TRUE)
 
-concstats_entropy(x, unbiased = TRUE, na.rm = TRUE)
+concstats_entropy(x, normalized = TRUE, na.rm = TRUE)
 
-concstats_gini(x, unbiased = FALSE, na.rm = TRUE)
+concstats_gini(x, normalized = FALSE, na.rm = TRUE)
 
-concstats_simpson(x, unbiased = FALSE, na.rm = TRUE)
+concstats_simpson(x, normalized = FALSE, na.rm = TRUE)
 
 concstats_palma(x, na.rm = TRUE)
 
@@ -28,7 +28,7 @@ concstats_all_inequ(x, na.rm = TRUE)
 \arguments{
 \item{x}{a non-negative numeric vector.}
 
-\item{unbiased}{Logical. Argument specifying whether or not a finite sample
+\item{normalized}{Logical. Argument specifying whether or not a finite sample
 correction should be applied. Must be either TRUE or FALSE. The default is
 FALSE.}
 
@@ -53,14 +53,18 @@ A set of different inequality and diversity measures.
 \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
 If no measure is specified, "concstats_entropy" is the default.
 
-\code{concstats_entropy} returns the (Shannon) Entropy,
-\code{concstats_gini} is the Gini coefficient, \code{concstats_simpson} is
-the complement of the Herfindahl-Hirschman Index. You can normalize each
-of these three measures by setting \code{unbiased = TRUE}
+\code{concstats_entropy} returns the (Shannon, 1948) Entropy,
+\code{concstats_gini} is the Gini coefficient,
+\code{concstats_simpson} is the Gini-Simpson index (Simpson, 1949;
+Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
+Machine Learning, Gibbs-Martin index or Blau index in sociology and
+management studies. You can normalize each of these three measures by
+setting \code{normalized = TRUE}
 \code{concstats_palma} measures the ratio of inequality (normally used with
-income inequality) of the top 10 percent to the bottom 40 percent.
-\code{concstats_grs} is an alternative inequality
-measure (Ginevicius, 2009),
+income inequality) of the top 10 percent to the bottom 40 percent
+(Palma, 2006).
+\code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009)
+and
 \code{concstats_all} returns all measures in a one step procedure.
 }
 \note{
@@ -70,16 +74,33 @@ should sum up to 1.
 }
 \examples{
 # a vector of market shares
-share <- c(0.4, 0.2, 0.25, 0.1, 0.05)
+x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 # Calculate the Palma ratio
-share_p <- concstats_inequ(share, type = "palma")
+concstats_inequ(x, type = "palma")
 # Calculate the entropy measure directly
-share_ent <- concstats_entropy(share, unbiased = TRUE)
+concstats_entropy(x, unbiased = TRUE)
 # Calculate the group measures
-share_inequ <- concstats_inequ(share, type = "all")
+concstats_inequ(x, type = "all")
 
 }
+\references{
+Shannon, C. E. (1948). A Mathematical Theory of Communication,
+The Bell System Technical Journal (Nokia Bell Labs).
+
+Simpson, E. H. (1949). Measurement of Diversity, Nature, 163,
+688.
+
+Palma, J. G. (2006). Globalizing Inequality: 'Centrifugal' and
+'Centripetal' Forces at Work, DESA Working Paper No. 35.
+
+Ginevicius, R. and S. Cirba (2009). Additive measurement of
+market concentration, Journal of Business Economics and Management, 10(3),
+191-198.
+
+Jost, L. (2006). Entropy and Diversity. Oikos, 113(2), 363-375.
+}
 \seealso{
-{\code{\link{concstats_concstats}}, \code{\link{concstats_mstruct}},
-\code{\link{concstats_comp}}}
+\code{\link[concstats_concstats]{concstats_concstats()}},
+\code{\link[concstats_mstruct]{concstats_mstruct()}},
+\code{\link[concstats_comp]{concstats_comp()}}
 }

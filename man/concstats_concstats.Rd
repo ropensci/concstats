@@ -37,10 +37,11 @@ to the total share of individual firms/units. The vector should sum up to 1.
 # share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # a selected set of different structural, concentration, and inequality
 # measures
-# share_conc <- concstats_concstats(share)
+# concstats_concstats(share)
 
 }
 \seealso{
-\code{\link{concstats_mstruct}}, \code{\link{concstats_comp}},
-\code{\link{concstats_inequ}}
+\code{\link[concstats_mstruct]{concstats_mstruct()}},
+\code{\link[concstats_comp]{concstats_comp()}},
+\code{\link[concstats_inequ]{concstats_inequ()}}
 }
