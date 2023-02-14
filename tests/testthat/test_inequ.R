@@ -19,19 +19,19 @@ test_that("concstats_inequ function operates / switches properly", {
 
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(concstats_inequ(x, type = "entropy"),
-               concstats_entropy(x, unbiased = FALSE))
-  expect_equal(concstats_inequ(x, unbiased = TRUE, type = "entropy"),
-               concstats_entropy(x, unbiased = TRUE))
+               concstats_entropy(x, normalized = FALSE))
+  expect_equal(concstats_inequ(x, normalized = TRUE, type = "entropy"),
+               concstats_entropy(x, normalized = TRUE))
   expect_equal(concstats_inequ(x1, type = "gini"), concstats_gini(x1))
-  expect_equal(concstats_inequ(x1, unbiased = TRUE, type = "gini"),
-               concstats_gini(x1, unbiased = TRUE))
+  expect_equal(concstats_inequ(x1, normalized = TRUE, type = "gini"),
+               concstats_gini(x1, normalized = TRUE))
   expect_equal(concstats_inequ(x, type = "simpson"), concstats_simpson(x))
-  expect_equal(concstats_inequ(x, unbiased = TRUE, type = "simpson"),
-               concstats_simpson(x, unbiased = TRUE))
+  expect_equal(concstats_inequ(x, normalized = TRUE, type = "simpson"),
+               concstats_simpson(x, normalized = TRUE))
   expect_equal(concstats_inequ(x1, type = "palma"), concstats_palma(x1))
   expect_equal(concstats_inequ(x2, type = "grs"), concstats_grs(x2))
   expect_equal(concstats_inequ(x, type = "Entropy"), concstats_entropy(x,
-                                                            unbiased = FALSE))
+                                                            normalized = FALSE))
   expect_equal(concstats_inequ(x, type = "all"), concstats_all_inequ(x))
   expect_error(concstats_inequ(x1b, na.rm = TRUE))
 })
@@ -53,7 +53,7 @@ test_that("concstats_entropy function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE | FALSE)
-  unbiased <- as.logical(TRUE | FALSE)
+  normalized <- as.logical(TRUE | FALSE)
 
 #' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
@@ -72,7 +72,7 @@ test_that("concstats_entropy function operates properly", {
   expect_error(concstats_entropy(x8, na.rm = TRUE))
   expect_error(concstats_entropy(x1b, na.rm = TRUE))
   expect_warning(concstats_entropy(x2, na.rm = 0))
-  expect_warning(concstats_entropy(x2, unbiased = 0))
+  expect_warning(concstats_entropy(x2, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_entropy(x, isTRUE(all.equal(1, sum(x),
                                        tolerance = .Machine$double.eps^0.25))),
@@ -88,8 +88,8 @@ test_that("concstats_entropy function operates properly", {
                "vector x in `concstats_entropy` does not sum to 1")
   expect_length(na.rm, 1L)
   expect_type(na.rm, "logical")
-  expect_length(unbiased, 1L)
-  expect_type(unbiased, "logical")
+  expect_length(normalized, 1L)
+  expect_type(normalized, "logical")
 
 })
 
@@ -131,9 +131,9 @@ test_that("concstats_entropy returns the biased entropy measure ", {
                   0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_entropy(share_2018, unbiased = FALSE), share_2018_ent2,
+  expect_equal(concstats_entropy(share_2018, normalized = FALSE), share_2018_ent2,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_entropy(x, unbiased = FALSE),
+  expect_equal(concstats_entropy(x, normalized = FALSE),
                sum(-x / sum(x) * log(x / sum(x), base = 2)))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_ent2),
@@ -157,7 +157,7 @@ test_that("concstats_gini function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE | FALSE)
-  unbiased <- as.logical(TRUE | FALSE)
+  normalized <- as.logical(TRUE | FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
@@ -175,15 +175,15 @@ test_that("concstats_gini function operates properly", {
   expect_error(concstats_gini(x8, na.rm = TRUE))
   expect_error(concstats_gini(x1b, na.rm = TRUE))
   expect_warning(concstats_gini(x, na.rm = 0))
-  expect_warning(concstats_gini(x, unbiased = 0))
+  expect_warning(concstats_gini(x, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_error(concstats_gini(x1, !isTRUE(all.equal(1, sum(x1),
                                        tolerance = .Machine$double.eps^0.25))),
                "vector x in `concstats_gini` does not sum to 1")
   expect_length(na.rm, 1L)
   expect_type(na.rm, "logical")
-  expect_length(unbiased, 1L)
-  expect_type(unbiased, "logical")
+  expect_length(normalized, 1L)
+  expect_type(normalized, "logical")
 
 })
 
@@ -219,10 +219,10 @@ test_that("concstats_gini returns the unbiased gini measure", {
                   0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_gini(share_2018, unbiased = TRUE), share_2018_gini2,
+  expect_equal(concstats_gini(share_2018, normalized = TRUE), share_2018_gini2,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_gini(x, unbiased = TRUE), length(x) / (length(x) - 1) *
-                 (2 * sum(x * seq_len(length(x))
+  expect_equal(concstats_gini(x, normalized = TRUE),
+               length(x) / (length(x) - 1) * (2 * sum(x * seq_len(length(x))
                                 / length(x) * sum(x)) - 1 - (1 / length(x))))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_gini2), label = "numeric values returned")
@@ -245,7 +245,7 @@ test_that("concstats_simpson function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE, FALSE)
-  unbiased <- as.logical(TRUE, FALSE)
+  normalized <- as.logical(TRUE, FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
@@ -262,7 +262,7 @@ test_that("concstats_simpson function operates properly", {
   expect_error(concstats_simpson(x8, na.rm = TRUE))
   expect_error(concstats_simpson(x1b, na.rm = TRUE))
   expect_warning(concstats_simpson(x, na.rm = 0))
-  expect_warning(concstats_simpson(x, unbiased = 0))
+  expect_warning(concstats_simpson(x, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(x, isTRUE(all.equal(1, sum(x),
                                         tolerance = .Machine$double.eps^0.25))),
@@ -278,8 +278,8 @@ test_that("concstats_simpson function operates properly", {
                "vector x in `concstats_simpson` does not sum to 1")
   expect_length(na.rm, 1L)
   expect_type(na.rm, "logical")
-  expect_length(unbiased, 1L)
-  expect_type(unbiased, "logical")
+  expect_length(normalized, 1L)
+  expect_type(normalized, "logical")
 
 })
 
@@ -317,7 +317,7 @@ test_that("concstats_simpson returns the unbiased simpson measure", {
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(share_2018), share_2018_sim2,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_simpson(x, unbiased = TRUE),
+  expect_equal(concstats_simpson(x, normalized = TRUE),
                as.numeric(1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_sim2),

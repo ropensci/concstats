@@ -14,7 +14,7 @@ test_that("concstats_comp function operates / switches properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE, FALSE)
-  unbiased <- as.logical(TRUE, FALSE)
+  normalized <- as.logical(TRUE, FALSE)
 
 #' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
@@ -22,8 +22,8 @@ test_that("concstats_comp function operates / switches properly", {
   expect_vector(x, ptype = numeric(), size = 4)
   expect_equal(concstats_comp(x, type = "hhi"),
                concstats_hhi(x))
-  expect_equal(concstats_comp(x, unbiased = TRUE, type = "hhi"),
-               concstats_hhi(x, unbiased = TRUE))
+  expect_equal(concstats_comp(x, normalized = TRUE, type = "hhi"),
+               concstats_hhi(x, normalized = TRUE))
   expect_equal(concstats_comp(x, type = "hhi_d"), concstats_hhi_d(x))
   expect_equal(concstats_comp(x, type = "hhi_min"), concstats_hhi_min(x))
   expect_equal(concstats_comp(x, type = "dom"), concstats_dom(x))
@@ -31,8 +31,8 @@ test_that("concstats_comp function operates / switches properly", {
   expect_equal(concstats_comp(x, type = "HHI"), concstats_hhi(x))
   expect_equal(concstats_comp(x, type = "ALL"), concstats_all_comp(x))
   expect_error(concstats_comp(x1b, na.rm = TRUE))
-  expect_length(unbiased, 1L)
-  expect_type(unbiased, "logical")
+  expect_length(normalized, 1L)
+  expect_type(normalized, "logical")
 })
 
 ## concstats_hhi
@@ -52,7 +52,7 @@ test_that("concstats_hhi function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE | FALSE)
-  unbiased <- as.logical(TRUE | FALSE)
+  normalized <- as.logical(TRUE | FALSE)
 
 #' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
@@ -72,7 +72,7 @@ test_that("concstats_hhi function operates properly", {
   expect_error(concstats_hhi(x8, na.rm = TRUE))
   expect_error(concstats_hhi(x1b, na.rm = TRUE))
   expect_warning(concstats_hhi(x, na.rm = 0))
-  expect_warning(concstats_hhi(x, unbiased = 0))
+  expect_warning(concstats_hhi(x, normalized = 0))
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
   expect_error(concstats_hhi(x1, !isTRUE(all.equal(1, sum(x1),
@@ -80,8 +80,8 @@ test_that("concstats_hhi function operates properly", {
                "vector x in `concstats_hhi` does not sum to 1")
   expect_length(na.rm, 1L)
   expect_type(na.rm, "logical")
-  expect_length(unbiased, 1L)
-  expect_type(unbiased, "logical")
+  expect_length(normalized, 1L)
+  expect_type(normalized, "logical")
 
 })
 
@@ -126,9 +126,9 @@ test_that("concstats_hhi returns unbiased sum of squared shares", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_hhi(share_2018, unbiased = TRUE), share_2018_hhi2,
+  expect_equal(concstats_hhi(share_2018, normalized = TRUE), share_2018_hhi2,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_hhi(x, unbiased = TRUE),
+  expect_equal(concstats_hhi(x, normalized = TRUE),
                (sum(x ^ 2) - (1 / sum(x > 0))) / (1 - (1 / sum(x > 0))))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_hhi2), label = "numeric values returned")
