@@ -120,7 +120,7 @@ If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
 <code>concstats_entropy</code>, <code>concstats_gini</code>, <code>concstats_simpson</code>,
 <code>concstats_palma</code>, <code>concstats_grs</code>, <code>concstats_all</code>.
 If no measure is specified, "concstats_entropy" is the default.</p>
-<p><code>concstats_entropy</code> returns the (Shannon, 1948) Entropy,
+<p><code>concstats_entropy</code> returns the Shannon Entropy (Shannon, 1948),
 <code>concstats_gini</code> is the Gini coefficient,
 <code>concstats_simpson</code> is the Gini-Simpson index (Simpson, 1949;
 Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
@@ -168,8 +168,8 @@ market concentration, Journal of Business Economics and Management, 10(3),
 <span class="r-in"><span><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"palma"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.666667</span>
 <span class="r-in"><span><span class="co"># Calculate the entropy measure directly</span></span></span>
-<span class="r-in"><span><span class="fu">concstats_entropy</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in concstats_entropy(x, unbiased = TRUE):</span> unused argument (unbiased = TRUE)</span>
+<span class="r-in"><span><span class="fu">concstats_entropy</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.879203</span>
 <span class="r-in"><span><span class="co"># Calculate the group measures</span></span></span>
 <span class="r-in"><span><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Measure Value</span>
