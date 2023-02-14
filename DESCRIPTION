@@ -33,7 +33,7 @@ Description: Based on individual market shares of all participants in a
     'Centripetal' Forces at Work".
     9.  Shannon, C. E. (1948). "A Mathematical Theory of Communication".
     10.  Simpson, E. H. (1949). "Measurement of Diversity"
-    <doi:10.1038/163688a0>
+    <doi:10.1038/163688a0>.
 License: MIT + file LICENSE
 URL: https://github.com/schneiderpy/concstats,
     https//schneiderpy.github.io/constats (website)

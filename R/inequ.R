@@ -55,9 +55,9 @@
 #'  191-198.
 #' @references Jost, L. (2006). Entropy and Diversity. Oikos, 113(2), 363-375.
 #'
-#' @seealso \code{\link[concstats_concstats]{concstats_concstats()}},
-#'  \code{\link[concstats_mstruct]{concstats_mstruct()}},
-#'  \code{\link[concstats_comp]{concstats_comp()}}
+#' @seealso \code{\link[=concstats_concstats]{concstats_concstats()}},
+#'  \code{\link[=concstats_mstruct]{concstats_mstruct()}},
+#'  \code{\link[=concstats_comp]{concstats_comp()}}
 #'
 #' @examples
 #' # a vector of market shares

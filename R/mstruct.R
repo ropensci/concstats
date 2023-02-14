@@ -32,8 +32,9 @@
 #'  to total share of individual firms/units.The sum of the vector should sum up
 #'  to 1.
 #'
-#' @seealso {\code{\link{concstats_concstats}}, \code{\link{concstats_comp}},
-#'  \code{\link{concstats_inequ}}}
+#' @seealso \code{\link[=concstats_concstats]{concstats_concstats()}},
+#'  \code{\link[=concstats_comp]{concstats_comp()}},
+#'  \code{\link[=concstats_inequ]{concstats_inequ()}}
 #'
 #' @examples
 #' # a vector of market shares

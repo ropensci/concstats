@@ -53,7 +53,7 @@ A set of different inequality and diversity measures.
 \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
 If no measure is specified, "concstats_entropy" is the default.
 
-\code{concstats_entropy} returns the (Shannon, 1948) Entropy,
+\code{concstats_entropy} returns the Shannon Entropy (Shannon, 1948),
 \code{concstats_gini} is the Gini coefficient,
 \code{concstats_simpson} is the Gini-Simpson index (Simpson, 1949;
 Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
@@ -78,7 +78,7 @@ x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 # Calculate the Palma ratio
 concstats_inequ(x, type = "palma")
 # Calculate the entropy measure directly
-concstats_entropy(x, unbiased = TRUE)
+concstats_entropy(x, normalized = TRUE)
 # Calculate the group measures
 concstats_inequ(x, type = "all")
 
@@ -100,7 +100,7 @@ market concentration, Journal of Business Economics and Management, 10(3),
 Jost, L. (2006). Entropy and Diversity. Oikos, 113(2), 363-375.
 }
 \seealso{
-\code{\link[concstats_concstats]{concstats_concstats()}},
-\code{\link[concstats_mstruct]{concstats_mstruct()}},
-\code{\link[concstats_comp]{concstats_comp()}}
+\code{\link[=concstats_concstats]{concstats_concstats()}},
+\code{\link[=concstats_mstruct]{concstats_mstruct()}},
+\code{\link[=concstats_comp]{concstats_comp()}}
 }

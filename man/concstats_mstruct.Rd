@@ -72,6 +72,7 @@ concstats_mstruct(share, type = "all")
 
 }
 \seealso{
-{\code{\link{concstats_concstats}}, \code{\link{concstats_comp}},
-\code{\link{concstats_inequ}}}
+\code{\link[=concstats_concstats]{concstats_concstats()}},
+\code{\link[=concstats_comp]{concstats_comp()}},
+\code{\link[=concstats_inequ]{concstats_inequ()}}
 }

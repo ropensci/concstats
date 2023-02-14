@@ -24,9 +24,9 @@
 #' @note the vector of market shares should be in a decimal form corresponding
 #'  to the total share of individual firms/units. The vector should sum up to 1.
 #'
-#' @seealso \code{\link[concstats_mstruct]{concstats_mstruct()}},
-#'  \code{\link[concstats_comp]{concstats_comp()}},
-#'  \code{\link[concstats_inequ]{concstats_inequ()}}
+#' @seealso \code{\link[=concstats_mstruct]{concstats_mstruct()}},
+#'  \code{\link[=concstats_comp]{concstats_comp()}},
+#'  \code{\link[=concstats_inequ]{concstats_inequ()}}
 #'
 #' @examples
 #' # a vector of market shares

@@ -56,9 +56,9 @@
 #' @references Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
 #'  dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.
 #'
-#' @seealso \code{\link[concstats_concstats]{concstats_concstats()}},
-#'  \code{\link[concstats_mstruct]{concstats_mstruct()}},
-#'  \code{\link[concstats_inequ]{concstats_inequ()}}
+#' @seealso \code{\link[=concstats_concstats]{concstats_concstats()}},
+#'  \code{\link[=concstats_mstruct]{concstats_mstruct()}},
+#'  \code{\link[=concstats_inequ]{concstats_inequ()}}
 #'
 #' @examples
 #' # a vector of market shares
