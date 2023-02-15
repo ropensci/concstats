@@ -73,7 +73,7 @@
 <span></span>
 <span><span class="fu">concstats_gini</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">concstats_simpson</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">concstats_simpson</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">concstats_palma</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -89,9 +89,8 @@
 
 
 <dt>normalized</dt>
-<dd><p>Logical. Argument specifying whether or not a finite sample
-correction should be applied. Must be either TRUE or FALSE. The default is
-FALSE.</p></dd>
+<dd><p>Logical. Argument specifying whether or not a normalized
+value is required. Must be either TRUE or FALSE. The default is FALSE.</p></dd>
 
 
 <dt>type</dt>
@@ -119,14 +118,14 @@ If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
     <p><code>concstats_inequ</code> is a wrapper for the proposed inequality measures
 <code>concstats_entropy</code>, <code>concstats_gini</code>, <code>concstats_simpson</code>,
 <code>concstats_palma</code>, <code>concstats_grs</code>, <code>concstats_all</code>.
-If no measure is specified, "concstats_entropy" is the default.</p>
-<p><code>concstats_entropy</code> returns the Shannon Entropy (Shannon, 1948),
-<code>concstats_gini</code> is the Gini coefficient,
-<code>concstats_simpson</code> is the Gini-Simpson index (Simpson, 1949;
-Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
+If no measure is specified, "concstats_entropy" is the default.
+<code>concstats_entropy</code> returns the Shannon Entropy (Shannon, 1948),
+<code>concstats_gini</code> is the Gini coefficient. You can normalize the
+Entropy and Gini measures by setting <code>normalized = TRUE</code>
+<code>concstats_simpson</code> is the Gini-Simpson (Simpson, 1949; Jost, 2006),
+also known as the Gini impurity (Gini's diversity index) in
 Machine Learning, Gibbs-Martin index or Blau index in sociology and
-management studies. You can normalize each of these three measures by
-setting <code>normalized = TRUE</code>
+management studies. This index ranges from 0, 1.
 <code>concstats_palma</code> measures the ratio of inequality (normally used with
 income inequality) of the top 10 percent to the bottom 40 percent
 (Palma, 2006).
@@ -175,7 +174,7 @@ market concentration, Journal of Business Economics and Management, 10(3),
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Measure Value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       Entropy  0.88</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    Gini Index  0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Simpson Index  0.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Simpson Index  0.82</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4   Palma Ratio  2.67</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5           GRS  0.40</span>
 <span class="r-in"><span></span></span>
