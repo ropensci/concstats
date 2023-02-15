@@ -17,7 +17,7 @@ concstats_entropy(x, normalized = TRUE, na.rm = TRUE)
 
 concstats_gini(x, normalized = FALSE, na.rm = TRUE)
 
-concstats_simpson(x, normalized = FALSE, na.rm = TRUE)
+concstats_simpson(x, na.rm = TRUE)
 
 concstats_palma(x, na.rm = TRUE)
 
@@ -28,9 +28,8 @@ concstats_all_inequ(x, na.rm = TRUE)
 \arguments{
 \item{x}{a non-negative numeric vector.}
 
-\item{normalized}{Logical. Argument specifying whether or not a finite sample
-correction should be applied. Must be either TRUE or FALSE. The default is
-FALSE.}
+\item{normalized}{Logical. Argument specifying whether or not a normalized
+value is required. Must be either TRUE or FALSE. The default is FALSE.}
 
 \item{type}{a character string of the measure to be calculated, defaults to
 "concstats_entropy". Input is not case-sensitive.}
@@ -52,14 +51,13 @@ A set of different inequality and diversity measures.
 \code{concstats_entropy}, \code{concstats_gini}, \code{concstats_simpson},
 \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
 If no measure is specified, "concstats_entropy" is the default.
-
 \code{concstats_entropy} returns the Shannon Entropy (Shannon, 1948),
-\code{concstats_gini} is the Gini coefficient,
-\code{concstats_simpson} is the Gini-Simpson index (Simpson, 1949;
-Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
+\code{concstats_gini} is the Gini coefficient. You can normalize the
+Entropy and Gini measures by setting \code{normalized = TRUE}
+\code{concstats_simpson} is the Gini-Simpson (Simpson, 1949; Jost, 2006),
+also known as the Gini impurity (Gini's diversity index) in
 Machine Learning, Gibbs-Martin index or Blau index in sociology and
-management studies. You can normalize each of these three measures by
-setting \code{normalized = TRUE}
+management studies. This index ranges from {0, 1}.
 \code{concstats_palma} measures the ratio of inequality (normally used with
 income inequality) of the top 10 percent to the bottom 40 percent
 (Palma, 2006).

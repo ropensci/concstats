@@ -10,10 +10,9 @@
 #' @srrstats {G2.0a, G2.1a, EA1.1, EA1.3} accepted as input, length and type
 #' @param x a numeric vector of length 1 with non-negative values.
 #' @param normalized Logical. Argument of the functions
-#'  \code{concstats_entropy}, \code{concstats_gini}, and
-#'  \code{concstats_simpson} specifying whether or not a normalized value is
-#'  required. Ranges from {0, 1} and often used for comparison over time. Must
-#'  be either TRUE or FALSE. The default is FALSE.
+#'  \code{concstats_entropy}, \code{concstats_gini} specifying whether or not a
+#'   normalized value is required. Ranges from {0, 1} and often used for
+#'   comparison over time. Must be either TRUE or FALSE. The default is FALSE.
 #' @param type a character string of the measure to be calculated, defaults to
 #'  "concstats_entropy". Input is not case-sensitive.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
@@ -25,14 +24,13 @@
 #'  \code{concstats_entropy}, \code{concstats_gini}, \code{concstats_simpson},
 #'  \code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
 #'   If no measure is specified, "concstats_entropy" is the default.
-#'
 #'  \code{concstats_entropy} returns the Shannon Entropy (Shannon, 1948),
-#'  \code{concstats_gini} is the Gini coefficient,
-#'  \code{concstats_simpson} is the Gini-Simpson index (Simpson, 1949;
-#'   Jost, 2006), also known as the Gini impurity (Gini's diversity index) in
+#'  \code{concstats_gini} is the Gini coefficient. You can normalize the
+#'   Entropy and Gini measures by setting \code{normalized = TRUE}
+#'  \code{concstats_simpson} is the Gini-Simpson (Simpson, 1949; Jost, 2006),
+#'   also known as the Gini impurity (Gini's diversity index) in
 #'   Machine Learning, Gibbs-Martin index or Blau index in sociology and
-#'   management studies. You can normalize each of these three measures by
-#'   setting \code{normalized = TRUE}
+#'   management studies. This index ranges from {0, 1}.
 #'  \code{concstats_palma} measures the ratio of inequality (normally used with
 #'   income inequality) of the top 10 percent to the bottom 40 percent
 #'   (Palma, 2006).
@@ -86,8 +84,7 @@ concstats_inequ <- function(x, normalized = FALSE, type = c("entropy", "gini",
            entropy = concstats_entropy(x, normalized = normalized,
                                        na.rm = na.rm),
            gini = concstats_gini(x, normalized = normalized, na.rm = na.rm),
-           simpson = concstats_simpson(x, normalized = normalized,
-                                       na.rm = na.rm),
+           simpson = concstats_simpson(x, na.rm = na.rm),
            palma = concstats_palma(x, na.rm = na.rm),
            grs = concstats_grs(x, na.rm = na.rm),
            all = concstats_all_inequ(x, na.rm = na.rm))
@@ -97,11 +94,10 @@ concstats_inequ <- function(x, normalized = FALSE, type = c("entropy", "gini",
 #' @export
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
-#' @param normalized Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. Must be either TRUE or FALSE. The default is
-#'   TRUE.
+#' @param normalized Logical. Argument specifying whether or not a normalized
+#'  value is required. Must be either TRUE or FALSE. The default is TRUE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
-#'   be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
+#'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 concstats_entropy <- function(x, normalized = TRUE, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
   if (length(x) == 0) {
@@ -155,9 +151,8 @@ concstats_entropy <- function(x, normalized = TRUE, na.rm = TRUE) {
 #' @export
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
-#' @param normalized Logical. Argument specifying whether or not a finite sample
-#'  correction should be applied. Must be either TRUE or FALSE. The default is
-#'  FALSE.
+#' @param normalized Logical. Argument specifying whether or not a normalized
+#'  value is required. Must be either TRUE or FALSE. The default is FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
@@ -213,13 +208,10 @@ concstats_gini <- function(x, normalized = FALSE, na.rm = TRUE) {
 #' @export
 #' @rdname concstats_inequ
 #' @param x a non-negative numeric vector.
-#' @param normalized Logical. Argument specifying whether or not a finite sample
-#'   correction should be applied. Must be either TRUE or FALSE. The default is
-#'   FALSE.
 #' @param na.rm a logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
 #'  If set to \code{FALSE} the computation yields \code{NA}.
-concstats_simpson <- function(x, normalized = FALSE, na.rm = TRUE) {
+concstats_simpson <- function(x, na.rm = TRUE) {
 #' @srrstats {G5.8a} Zero-length data
   if (length(x) == 0) {
     stop("x in concstats_simpson cannot be empty.")
@@ -236,10 +228,6 @@ concstats_simpson <- function(x, normalized = FALSE, na.rm = TRUE) {
     x <-  as.numeric(x / sum(x, na.rm = TRUE))
   } else {
     x
-  }
-#' @srrstats {G2.0, G2.1}
-  if (!is.logical(normalized) || !length(normalized) == 1) {
-    warning("`normalized` in `concstats_simpson` must be either TRUE or FALSE")
   }
   if (!is.logical(na.rm) || !length(na.rm) == 1) {
     warning("`na.rm` in `concstats_simpson` must be either TRUE or FALSE")
@@ -261,8 +249,7 @@ concstats_simpson <- function(x, normalized = FALSE, na.rm = TRUE) {
     stop("vector x in `concstats_simpson` does not sum to 1")
   }
 
-  simpson <- as.numeric(1 - sum(x ^ 2))
-  if (normalized) simpson <- as.numeric(1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2)
+  simpson <- as.numeric(1 - (sum(x * (x - 1)) / (sum(x) * (sum(x - 1)))))
   return(simpson)
 }
 
@@ -420,7 +407,7 @@ concstats_all_inequ <- function(x, na.rm = TRUE) {
   invisible(utils::capture.output(
     entropy <- concstats_entropy(x, normalized = TRUE, na.rm = TRUE),
     gini <- concstats_gini(x, normalized = FALSE, na.rm = TRUE),
-    simpson <- concstats_simpson(x, normalized = FALSE, na.rm = TRUE),
+    simpson <- concstats_simpson(x, na.rm = TRUE),
     palma <- concstats_palma(x, na.rm = TRUE),
     grs <- concstats_grs(x, na.rm = TRUE)))
 #' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of

@@ -26,8 +26,6 @@ test_that("concstats_inequ function operates / switches properly", {
   expect_equal(concstats_inequ(x1, normalized = TRUE, type = "gini"),
                concstats_gini(x1, normalized = TRUE))
   expect_equal(concstats_inequ(x, type = "simpson"), concstats_simpson(x))
-  expect_equal(concstats_inequ(x, normalized = TRUE, type = "simpson"),
-               concstats_simpson(x, normalized = TRUE))
   expect_equal(concstats_inequ(x1, type = "palma"), concstats_palma(x1))
   expect_equal(concstats_inequ(x2, type = "grs"), concstats_grs(x2))
   expect_equal(concstats_inequ(x, type = "Entropy"), concstats_entropy(x,
@@ -245,7 +243,6 @@ test_that("concstats_simpson function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
   na.rm <- as.logical(TRUE, FALSE)
-  normalized <- as.logical(TRUE, FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
@@ -262,7 +259,6 @@ test_that("concstats_simpson function operates properly", {
   expect_error(concstats_simpson(x8, na.rm = TRUE))
   expect_error(concstats_simpson(x1b, na.rm = TRUE))
   expect_warning(concstats_simpson(x, na.rm = 0))
-  expect_warning(concstats_simpson(x, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(x, isTRUE(all.equal(1, sum(x),
                                         tolerance = .Machine$double.eps^0.25))),
@@ -278,15 +274,13 @@ test_that("concstats_simpson function operates properly", {
                "vector x in `concstats_simpson` does not sum to 1")
   expect_length(na.rm, 1L)
   expect_type(na.rm, "logical")
-  expect_length(normalized, 1L)
-  expect_type(normalized, "logical")
 
 })
 
 test_that("concstats_simpson returns the Simpson measure", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
-  share_2018_sim <- 0.8765386
+  share_2018_sim <- 0.9582601
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
                   0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
@@ -297,32 +291,13 @@ test_that("concstats_simpson returns the Simpson measure", {
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(share_2018), share_2018_sim,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_simpson(x), 1 - sum(x ^ 2))
+  expect_equal(concstats_simpson(x), as.numeric(1 - (sum(x * (x - 1)) /
+                                                      (sum(x) * (sum(x - 1))))))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_sim),
                          label = "numeric values returned")
 })
 
-test_that("concstats_simpson returns the unbiased simpson measure", {
-
-  x <- c(0.1, 0.2, 0.3, 0.4)
-  share_2018_sim2 <- 0.8765386
-  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
-                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
-
-#' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_simpson(share_2018), share_2018_sim2,
-               tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_simpson(x, normalized = TRUE),
-               as.numeric(1 - sum(x ^ 2) / (sum(x / sum(x))) ^ 2))
-#' @srrstats {EA6.0, EA6.0a} Return values
-  expect_true(is.numeric(share_2018_sim2),
-                         label = "numeric values returned")
-})
 ## concstats_palma
 
 test_that("concstats_palma function operates properly", {
