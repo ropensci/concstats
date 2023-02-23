@@ -352,8 +352,8 @@ concstats_grs <- function(x, na.rm = TRUE) {
   }
 
   x <- sort(x, decreasing = TRUE)
-  grs <- as.numeric(sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
-               (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) * x))
+  grs <- as.numeric(sum((length(x) ^ 2 * x[1] + 0.3 * x ^ 2) /
+                      (length(x) ^ 2 + length(x) * 0.3 * x[1] * x) * x))
   return(grs)
 }
 

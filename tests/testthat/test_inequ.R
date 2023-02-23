@@ -443,9 +443,8 @@ test_that("concstats_grs returns the alternative grs measure", {
   expect_equal(concstats_grs(share_2018), share_2018_grs,
                tolerance = .Machine$double.eps^0.25)
 
-  expect_equal(concstats_grs(x), sum((sum(x > 0) ^ 2 * x[1] + 0.3 * x ^ 2) /
-                             (sum(x > 0) ^ 2 + sum(x > 0) * 0.3 * x[1] * x) *
-                             x))
+  expect_equal(concstats_grs(x), sum((length(x) ^ 2 * x[1] + 0.3 * x ^ 2) /
+                              (length(x) ^ 2 + length(x) * 0.3 * x[1] * x) * x))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_grs), label = "numeric values returned")
 })
@@ -468,7 +467,7 @@ test_that("concstats_all_inequ returns a data frame", {
 
   expect_vector(x, ptype = numeric(), size = 4)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
-#' @srrstats {EA6.0, EA6.0a, EA6.0b, EA6.0c,  EA6.0d} Classes, dimensions, and
+#' @srrstats {EA6.0, EA6.0a, EA6.0b, EA6.0c, EA6.0d} Classes, dimensions, and
 #'  types of objects
   expect_equal(ncol(dummy_df), 2)
   expect_equal(x, as.numeric(x4 / sum(x4)))
