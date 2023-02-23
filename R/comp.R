@@ -26,12 +26,12 @@
 #'  If no measure is specified "hhi" will be the default.
 #'
 #'  \code{concstats_hhi} calculates the widely used Herfindahl-Hirschman Index
-#'  (Herfindahl, 1950 and Hirschman, 1945), \code{concstats_hhi_min}
-#'  its minimum, and \code{concstats_hhi_d} its dual (Chang, Guerra,
-#'  de Souza Penaloza & Tabak, 2005)
+#'  (Herfindahl, 1950 and Hirschman, 1945),
+#'  \code{concstats_hhi_min} its minimum, and \code{concstats_hhi_d} its dual
+#'  (Chang, Guerra, de Souza Penaloza & Tabak, 2005)
 #'  \code{concstats_dom} calculates a dominance index (Garcia, 1994) and
 #'  \code{concstats_sten} calculates the Stenbacka index (Melnik, Shy, and
-#'  Stenbacka, 2005). The index indicates the market share of a dominant
+#'  Stenbacka, 2005). This index indicates the market share of a dominant
 #'  position.
 #'
 #'  All measures can be accessed individually.
