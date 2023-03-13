@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Andreas
 Schneider</h4>
             
-            <h4 data-toc-skip class="date">2023-02-23</h4>
+            <h4 data-toc-skip class="date">Last updated 2023-03-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -126,19 +126,19 @@ real Paraguayan credit cooperatives (with assets &gt; 11 Mio. USD) for
 2016 and 2018 with their respective total loans granted. For a better
 visualization there is an additional column with the transformed total
 loans. For further information on the data please see the
-<code>data</code> help file.</p>
+<code>creditcoops</code> <a href="https://schneiderpy.github.io/concstats/reference/creditcoops.html" class="external-link">help</a>
+file. For a practical implementation you might be interested to read the
+following <a href="https://doi.org/10.1515/zfgg-2022-0002" class="external-link">article</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span></span>
-<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></span></code></pre></div>
+<span><span class="co">#&gt;   coop_id year total_loans paired total_loans_log</span></span>
+<span><span class="co">#&gt; 1       1 2016   173892358      1        18.97395</span></span>
+<span><span class="co">#&gt; 2       1 2018   199048199      1        19.10906</span></span>
+<span><span class="co">#&gt; 3       2 2016   323892456      2        19.59592</span></span>
+<span><span class="co">#&gt; 4       2 2018   461609439      2        19.95023</span></span>
+<span><span class="co">#&gt; 5       3 2016   179981404      3        19.00836</span></span>
+<span><span class="co">#&gt; 6       3 2018   227232008      3        19.24148</span></span></code></pre></div>
 <!--```-->
 <!--  # A tibble: 6 x 5                                   -->
 <!--  coop_id   year  total_loans paired total_loans_log  -->
@@ -156,15 +156,15 @@ loans. For further information on the data please see the
 </h2>
 <p>At the moment, there are the following groups of functions
 available:<br>
-- <code>concstats_mstruct</code> is a wrapper for market structure
+- <code><a href="../reference/concstats_mstruct.html">concstats_mstruct()</a></code> is a wrapper for market structure
 measures<br>
-- <code>concstats_inequ</code> is a wrapper for inequality and diversity
-measures<br>
-- <code>concstats_comp</code> is a wrapper with different concentration
-measures<br>
-- <code>concstats_concstats</code> is a function which calculates a set
-of pre-selected measures in a one step procedure to get a quick overview
-of a given market structure</p>
+- <code><a href="../reference/concstats_inequ.html">concstats_inequ()</a></code> is a wrapper for inequality and
+diversity measures<br>
+- <code><a href="../reference/concstats_comp.html">concstats_comp()</a></code> is a wrapper with different
+concentration measures<br>
+- <code><a href="../reference/concstats_concstats.html">concstats_concstats()</a></code> is a function which calculates a
+set of pre-selected measures in a one step procedure to get a quick
+overview of a given market structure</p>
 <p>The functions will be presented in more details in the following
 short step-by-step guide.</p>
 </div>
@@ -176,21 +176,27 @@ respective market shares (in decimal form):</p>
 <div class="section level3">
 <h3 id="concstats_mstruct">concstats_mstruct<a class="anchor" aria-label="anchor" href="#concstats_mstruct"></a>
 </h3>
-<p>The wrapper includes the following individual functions:
-<code>firm</code>, <code>nrs_eq</code>, <code>top</code>,
-<code>top3</code>, <code>top5</code>, and <code>all</code>. All
-individual functions can be accessed directly with the prefix
-“concstats_”, e.g. “concstats_firm”.</p>
+<p>The wrapper includes the following arguments to calculate individual
+functions: <code>firm</code>, <code>nrs_eq</code>, <code>top</code>,
+<code>top3</code>, <code>top5</code>, and <code>all</code>. You can also
+pass the additional argument <code>digits</code> to <code>all</code>,
+which controls for the number of digits to be printed.<br>
+All individual functions can be accessed directly with the prefix
+“concstats_” (e.g. “concstats_firm” or “concstats_all_mstruct”).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share in percentage</span></span>
+<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_top5.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share in percentage</span></span>
 <span><span class="va">test_share_top5</span></span>
 <span><span class="co">#&gt; [1] 96</span></span></code></pre></div>
 <p>You should have noticed that the market shares are in decimal form.
-There are eight market participants, however, two have no market shares,
-by default <code>concstats</code> treats 0 as NA. The result is a top 5
-market share of 96 %. You can also access each function through their
-respective argument in the group wrapper:</p>
+However, you can use integers or floating point numeric types to express
+market shares. All <code>concstats</code> functions will take care of
+this and convert theses vectors into decimal form. There are eight
+market participants, however, two have no market shares, by default
+<code>concstats</code> treats 0 as NA. The result is a top 5 market
+share of 96 %.<br>
+You can also access each function through their respective argument in
+the group wrapper:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">test_share_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="co"># top market share</span></span>
@@ -200,7 +206,7 @@ respective argument in the group wrapper:</p>
 a named object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">test_share_mstruct</span></span>
 <span><span class="co">#&gt;          Measure Value</span></span>
 <span><span class="co">#&gt; 1          Firms  6.00</span></span>
@@ -213,34 +219,36 @@ a named object.</p>
 <div class="section level3">
 <h3 id="concstats_inequ">concstats_inequ<a class="anchor" aria-label="anchor" href="#concstats_inequ"></a>
 </h3>
-<p>The inequality and diversity group includes the functions
+<p>The inequality and diversity group has the following arguments:
 <code>entropy</code>, <code>gini</code>, <code>simpson</code>,
-<code>palma</code>, <code>grs</code>, and <code>all</code>.</p>
+<code>palma</code>, <code>grs</code>, and <code>all</code>. They can
+also be accessed as individual functions.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
-<span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_entropy.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
 <span><span class="va">test_share_entropy</span></span>
 <span><span class="co">#&gt; [1] 0.787806</span></span>
 <span></span>
 <span><span class="co"># and as a non-normalized value</span></span>
-<span><span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_entropy.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">test_share_entropy2</span></span>
 <span><span class="co">#&gt; [1] 2.036449</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="concstats_comp">concstats_comp<a class="anchor" aria-label="anchor" href="#concstats_comp"></a>
 </h3>
-<p>The group wrapper for competition measures includes the functions
-<code>hhi</code>, <code>hhi_d</code>, <code>hhi_min</code>,
-<code>dom</code>, <code>sten</code>, and <code>all</code>.</p>
+<p>The group wrapper for competition measures includes the following
+arguments to calculate <code>hhi</code>, <code>hhi_d</code>,
+<code>hhi_min</code>, <code>dom</code>, <code>sten</code>, and
+<code>all</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_comp.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_hhi.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
 <span><span class="va">test_share_hhi</span></span>
 <span><span class="co">#&gt; [1] 0.3002</span></span>
 <span></span>
 <span><span class="co"># a normalized value</span></span>
-<span><span class="va">test_share_hhi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_comp.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">test_share_hhi2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_hhi.html">concstats_hhi</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">test_share_hhi2</span></span>
 <span><span class="co">#&gt; [1] 0.16024</span></span>
 <span></span>
@@ -254,10 +262,13 @@ a named object.</p>
 </h3>
 <p>A single function which calculates a set of eight pre-selected
 measures in a one step procedure for a first overview of a given market
-structure.</p>
+structure. The resulting data frame contains eight measures, which are:
+number of firms with market share, numbers equivalent, the cumulative
+share of the top (top 3 and top 5) firm(s) in percentage, the hhi index,
+the entropy index, and the palma ratio.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">test_share</span>, digit <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">test_share_conc</span></span>
 <span><span class="co">#&gt;          Measure  Value</span></span>
 <span><span class="co">#&gt; 1          Firms   3.00</span></span>
@@ -266,7 +277,7 @@ structure.</p>
 <span><span class="co">#&gt; 4       Top3 (%) 100.00</span></span>
 <span><span class="co">#&gt; 5       Top5 (%) 100.00</span></span>
 <span><span class="co">#&gt; 6            HHI   0.38</span></span>
-<span><span class="co">#&gt; 7    Entropy(RE)   0.94</span></span>
+<span><span class="co">#&gt; 7        Entropy   0.94</span></span>
 <span><span class="co">#&gt; 8    Palma ratio   2.50</span></span></code></pre></div>
 </div>
 </div>
@@ -277,8 +288,8 @@ structure.</p>
 concentration measures to get a quick and more informed overview of a
 given market situation. However, it is good practice to visualize your
 data in an exploratory step or in reporting your results. The package
-<code>concstats</code> works fine with other EDA or data visualization
-packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>,
+<code>concstats</code> works fine with other Exploratory Data Analysis
+(EDA) packages or data visualization packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>,
 <a href="https://CRAN.R-project.org/package=DataExplorer" class="external-link"><code>dataexplorer</code></a>,
 <a href="https://CRAN.R-project.org/package=kableExtra" class="external-link"><code>kableExtra</code></a>
 or <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link"><code>ggplot2</code></a>
@@ -292,15 +303,13 @@ which comes with the package.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">#&gt;   coop_id year  total_loans paired total_loans_log</span></span>
-<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1 2016    173<span style="text-decoration: underline;">892</span>358      1            19.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>       1 2018    199<span style="text-decoration: underline;">048</span>199      1            19.1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>       2 2016    323<span style="text-decoration: underline;">892</span>456      2            19.6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>       2 2018    461<span style="text-decoration: underline;">609</span>439      2            20.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>       3 2016    179<span style="text-decoration: underline;">981</span>404      3            19.0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>       3 2018    227<span style="text-decoration: underline;">232</span>008      3            19.2</span></span></code></pre></div>
+<span><span class="co">#&gt;   coop_id year total_loans paired total_loans_log</span></span>
+<span><span class="co">#&gt; 1       1 2016   173892358      1        18.97395</span></span>
+<span><span class="co">#&gt; 2       1 2018   199048199      1        19.10906</span></span>
+<span><span class="co">#&gt; 3       2 2016   323892456      2        19.59592</span></span>
+<span><span class="co">#&gt; 4       2 2018   461609439      2        19.95023</span></span>
+<span><span class="co">#&gt; 5       3 2016   179981404      3        19.00836</span></span>
+<span><span class="co">#&gt; 6       3 2018   227232008      3        19.24148</span></span></code></pre></div>
 <!--```-->
 <!--  # A tibble: 6 x 5                                   -->
 <!--  coop_id   year  total_loans paired total_loans_log  -->

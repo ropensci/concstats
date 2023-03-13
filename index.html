@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
       </span>
     </div>
 
@@ -125,7 +125,7 @@
 </h2>
 <!-- badges: start -->
 
-<p>Measures of concentration and competition are important and give a first insight of a given market structure in a particular market. They are important to determine public policies and strategic corporate decisions. However, in research and in practice the most commonly used measure is the Herfindahl Hirschman Index. Various complementary or alternative measures exist, which - used as a set - might reduce uncertainty. The goal of the <code>concstats</code> package is to offer a set of alternative and/or additional measures for researchers in social sciences and practitioners in institutions concerned with competition on a regular basis to better determine a given market structure and therefore reduce uncertainty with respect to a given market situation. Various functions or groups of functions are available to achieve the desired goal.</p>
+<p>Measures of concentration and competition are important and give a first insight of a given market structure in a particular market. They are important to determine public policies and strategic corporate decisions. However, in research and in practice the most commonly used measure is the Herfindahl Hirschman Index. Various complementary or alternative measures exist, which - used as a set - might reduce uncertainty. The goal of the <a href="https://cran.r-project.org/package=concstats" class="external-link">concstats</a> package is to offer a set of alternative and/or additional measures for researchers in social sciences and practitioners in institutions concerned with competition on a regular basis to better determine a given market structure and therefore reduce uncertainty with respect to a given market situation. Various functions or groups of functions are available to achieve the desired goal.</p>
 <p>-<code>concstats_concstats</code> calculates a set of pre-selected concentration and diversity measures in a one-step procedure.<br>
 -<code>concstats_mstruct</code> offers market structure measures, e.g. the sum of Top3 or Top5 market shares.<br>
 -<code>concstats_comp</code> is a wrapper for concentration measures, e.g. the Herfindahl Hirschman Index.<br>
@@ -180,10 +180,10 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/schneiderpy/concstats" class="external-link">concstats</a></span><span class="op">)</span></span>
 <span><span class="co">## Create some simple data</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/concstats_comp.html">concstats_hhi</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># the Herfindahl-Hirschman Index</span></span>
+<span><span class="fu"><a href="reference/concstats_hhi.html">concstats_hhi</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># the Herfindahl-Hirschman Index</span></span>
 <span><span class="co">#&gt; [1] 0.275</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/concstats_comp.html">concstats_dom</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># the Dominance Index</span></span>
+<span><span class="fu"><a href="reference/concstats_dom.html">concstats_dom</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="co"># the Dominance Index</span></span>
 <span><span class="co">#&gt; [1] 0.4127273</span></span>
 <span></span>
 <span><span class="co">## Our simple data</span></span>
@@ -191,7 +191,7 @@
 <span>                                          <span class="co"># the market (should sum up to 1)</span></span>
 <span></span>
 <span><span class="co">## Calculate a selected set of market structure and concentration measures</span></span>
-<span><span class="fu"><a href="reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">x2</span><span class="op">)</span> <span class="co"># calculates a selected set of measures</span></span>
+<span><span class="fu"><a href="reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">x2</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># calculates a selected set of measures</span></span>
 <span><span class="co">#&gt;         Measures Values</span></span>
 <span><span class="co">#&gt; 1          Firms   6.00</span></span>
 <span><span class="co">#&gt; 2 Nrs_equivalent   3.33</span></span>
@@ -209,12 +209,12 @@
 </h2>
 <p>Some functions are already implemented in other R packages. The non-exhaustive summary below is by no means a description of each package.</p>
 <ul>
-<li><p>The Herfindahl Hirschman Index can be found in the <a href="https://joss.theoj.org/papers/10.21105/joss.00828" class="external-link">hhi</a> and the <a href="https://github.com/christopherkenny/divseg" class="external-link">divseg</a> packages. While the <em>hhi</em> package has just one function, neither of both packages offer a finite sample correction.</p></li>
+<li><p>The Herfindahl Hirschman Index can be found in the <a href="https://joss.theoj.org/papers/10.21105/joss.00828" class="external-link">hhi</a> and the <a href="https://github.com/christopherkenny/divseg" class="external-link">divseg</a> packages. While the <em>hhi</em> package has just one function, neither of both packages offer a normalized version of the measure.</p></li>
 <li><p>The latter offers as well functions for the Entropy, Gini and Simpson measures.</p></li>
 <li><p>The <a href="https://cran.r-project.org/package=acid" class="external-link">acid</a> and the <a href="https://cran.r-project.org/package=ineq" class="external-link">ineq</a> packages offer functions for inequality and competition measures, e.g. for the Entropy and Gini metric.</p></li>
 </ul>
 <p>Some popular measures, e.g. Gini or the Herfindahl-Hirschman index have also been implemented in Python.</p>
-<p>However, almost none of these packages offer finite sample correction, with the exception of the <a href="https://cran.r-project.org/package=ineq" class="external-link">ineq</a> package. Other functions are new implementations in R, e.g. Dominance Index, Palma ratio, Stenbacka Index, GRS measure, and the dual of the Herfindahl Hirschman Index.</p>
+<p>However, almost none of these packages offer a normalized calculation of the respective measure, with the exception of the <a href="https://cran.r-project.org/package=ineq" class="external-link">ineq</a> package. Other functions are new implementations in R, e.g. Dominance Index, Palma ratio, Stenbacka Index, GRS measure, and the dual of the Herfindahl Hirschman Index.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -222,17 +222,17 @@
 <ol style="list-style-type: decimal">
 <li>Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. &amp; Tabak, B. M.
 <ol start="2005" style="list-style-type: decimal">
-<li>Banking concentration: the Brazilian case. In Financial Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.</li>
+<li>“Banking concentration: the Brazilian case” In Financial Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.</li>
 </ol>
 </li>
-<li>Cobham, A. and A. Summer (2013). Is It All About the Tails? The Palma Measure of Income Inequality, Center for Global Development, Washington, DC.</li>
-<li>Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el analisis de la estructura de los mercados. El Trimestre Economico, 61: 499-524.</li>
-<li>Ginevicius, R. and S. Cirba (2009). Additive measurement of market concentration, Journal of Business Economics and Management, 10(3), 191-198. <a href="https://doi.org/10.3846/1611-1699.2009.10.191-198" class="external-link uri">https://doi.org/10.3846/1611-1699.2009.10.191-198</a>
+<li>Cobham, A. and A. Summer (2013). “Is It All About the Tails? The Palma Measure of Income Inequality”, Center for Global Development, Washington, DC.</li>
+<li>Garcia Alba Idunate, P. (1994). “Un Indice de dominancia para el analisis de la estructura de los mercados”. , 61: 499-524.</li>
+<li>Ginevicius, R. and S. Cirba (2009). “Additive measurement of market concentration”, , 10(3), 191-198. <a href="https://doi.org/10.3846/1611-1699.2009.10.191-198" class="external-link uri">https://doi.org/10.3846/1611-1699.2009.10.191-198</a>
 </li>
-<li>Palma, J. G. (2006). Globalizing Inequality: ‘Centrifugal’ and ‘Centripetal’ Forces at Work, DESA Working Paper No. 35.</li>
-<li>Shannon, C. E. (1948). A Mathematical Theory of Communication, The Bell System Technical Journal (Nokia Bell Labs).</li>
-<li>Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.</li>
-<li>Simpson, E. H. (1949). “Measurement of Diversity”, Nature, 163, 688. <a href="https://doi.org/10.1038/163688a0" class="external-link uri">https://doi.org/10.1038/163688a0</a>
+<li>Palma, J. G. (2006). “Globalizing Inequality: ‘Centrifugal’ and ‘Centripetal’ Forces at Work”, DESA Working Paper No. 35.</li>
+<li>Shannon, C. E. (1948). “A Mathematical Theory of Communication”, (Nokia Bell Labs).</li>
+<li>Melnik, A., Shy, Oz, Stenbacka, R., (2008), “Assessing market dominance”, , 68: pp. 63-72.</li>
+<li>Simpson, E. H. (1949). “Measurement of Diversity”, , 163, 688. <a href="https://doi.org/10.1038/163688a0" class="external-link uri">https://doi.org/10.1038/163688a0</a>
 </li>
 </ol>
 </div>
@@ -249,7 +249,7 @@
 <div class="section level2">
 <h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h2>
-<p>Contributions are welcome!</p>
+<p>Contributions are welcome! For more details on how to contribute to this package please see the <a href="CONTRIBUTING.html">CONTRIBUTING file</a>.</p>
 </div>
 </div>
 
@@ -291,6 +291,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Andreas Schneider <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/https://orcid.org/0000-0001-5630-1097" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 

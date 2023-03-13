@@ -31,16 +31,70 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/concstats_all_comp.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_all_inequ.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_all_mstruct.html</loc>
+  </url>
+  <url>
     <loc>/reference/concstats_comp.html</loc>
   </url>
   <url>
     <loc>/reference/concstats_concstats.html</loc>
   </url>
   <url>
+    <loc>/reference/concstats_dom.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_entropy.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_firm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_gini.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_grs.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_hhi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_hhi_d.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_hhi_min.html</loc>
+  </url>
+  <url>
     <loc>/reference/concstats_inequ.html</loc>
   </url>
   <url>
     <loc>/reference/concstats_mstruct.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_nrs_eq.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_palma.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_simpson.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_sten.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_top.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_top3.html</loc>
+  </url>
+  <url>
+    <loc>/reference/concstats_top5.html</loc>
   </url>
   <url>
     <loc>/reference/creditcoops.html</loc>
