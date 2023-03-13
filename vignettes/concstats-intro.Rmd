@@ -1,7 +1,7 @@
 ---
 title: "Introduction to concstats"
 author: "Andreas Schneider"
-date: "`r Sys.Date()`"
+date: "Last updated `r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: TRUE
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(collapse = TRUE,
 ```
 
 
-The goal of the ``concstats`` package is to offer a set of alternative and/or
+The goal of the `concstats` package is to offer a set of alternative and/or
 additional measures to better determine a given market structure and therefore
 reduce uncertainty with respect to a given market situation. Various functions
 or groups of functions are available to achieve the desired goal. 
@@ -43,7 +43,10 @@ are 22 paired observations for real Paraguayan credit cooperatives
 (with assets > 11 Mio. USD) for 2016 and 2018 with their respective total loans 
 granted. For a better visualization there is an additional column with the 
 transformed total loans. For further information on the data please see the
-`data` help file.
+`creditcoops`
+[help](https://schneiderpy.github.io/concstats/reference/creditcoops.html)
+file. For a practical implementation you might be interested
+to read the following [article](https://doi.org/10.1515/zfgg-2022-0002).
 
 ```{r}
 data("creditcoops")
@@ -63,10 +66,10 @@ head(creditcoops)
 
 ## Group wrapper overview
 At the moment, there are the following groups of functions available:    
-- `concstats_mstruct` is a wrapper for market structure measures    
-- `concstats_inequ` is a wrapper for inequality and diversity measures    
-- `concstats_comp` is a wrapper with different concentration measures    
-- `concstats_concstats` is a function which calculates a set of pre-selected
+- `concstats_mstruct()` is a wrapper for market structure measures    
+- `concstats_inequ()` is a wrapper for inequality and diversity measures    
+- `concstats_comp()` is a wrapper with different concentration measures    
+- `concstats_concstats()` is a function which calculates a set of pre-selected
                       measures in a one step procedure to get a quick overview
                       of a given market structure    
 
@@ -78,19 +81,24 @@ We will use a vector which represents market participants with their respective
 market shares (in decimal form): 
 
 ### concstats_mstruct
-The wrapper includes the following individual functions:
-```firm```, ```nrs_eq```, ```top```, ```top3```, ```top5```, and ```all```.
-All individual functions can be accessed directly with the prefix "concstats_",
-e.g. "concstats_firm".
+The wrapper includes the following arguments to calculate individual functions:
+``firm``, ``nrs_eq``, ``top``, ``top3``, ``top5``, and ``all``. You can also
+pass the additional argument ``digits`` to ``all``, which controls for the
+number of digits to be printed.  
+All individual functions can be accessed directly with the prefix "concstats_"
+(e.g. "concstats_firm" or "concstats_all_mstruct").
 ```{r example-1}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
 test_share_top5 <- concstats_top5(test_share) # top 5 market share in percentage
 test_share_top5
 ```
 
-You should have noticed that the market shares are in decimal form. There are 
-eight market participants, however, two have no market shares, by default 
-```concstats``` treats 0 as NA. The result is a top 5 market share of 96 %.
+You should have noticed that the market shares are in decimal form. However, you
+can use integers or floating point numeric types to express market shares. All
+`concstats` functions will take care of this and convert theses vectors into
+decimal form. There are eight market participants, however, two have no market
+shares, by default `concstats` treats 0 as NA. The result is a top 5 market
+share of 96 %.  
 You can also access each function through their respective argument in the 
 group wrapper:
 
@@ -104,15 +112,16 @@ Or, just calculate all measures of the group wrapper, and store it in a named
 object.
 ```{r examples-mstruct-all}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_mstruct <- concstats_mstruct(test_share, type = "all")
+test_share_mstruct <- concstats_mstruct(test_share, type = "all", digits = 3)
 test_share_mstruct
 ```
 
 The result is a data frame of market structure measures.
 
 ### concstats_inequ
-The inequality and diversity group includes the functions ```entropy```, 
-```gini```, ```simpson```, ```palma```, ```grs```, and ```all```.
+The inequality and diversity group has the following arguments: ```entropy```, 
+``gini``, ``simpson``, ``palma``, ``grs``, and ``all``. They can also
+be accessed as individual functions.
 
 ```{r examples-entropy, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
@@ -125,8 +134,8 @@ test_share_entropy2
 ```
 
 ### concstats_comp
-The group wrapper for competition measures includes the functions ```hhi```, 
-```hhi_d```, ```hhi_min```, ```dom```, ```sten```, and ```all```.
+The group wrapper for competition measures includes the following arguments to
+calculate ``hhi``, ``hhi_d``, ``hhi_min``, ``dom``, ``sten``, and ``all``.
 
 ```{r examples-hhi, echo=TRUE}
 test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
@@ -144,11 +153,15 @@ test_share_hhi3
 
 ### concstats_concstats
 A single function which calculates a set of eight pre-selected measures in a 
-one step procedure for a first overview of a given market structure.
+one step procedure for a first overview of a given market structure. The
+resulting data frame contains eight measures, which are: number of firms with
+market share, numbers equivalent, the cumulative share of the top
+(top 3 and top 5) firm(s) in percentage, the hhi index, the entropy index, and
+the palma ratio.
 
 ```{r examples-concstats, echo=TRUE}
 test_share <- c(0.2, 0.3, 0.5)
-test_share_conc <- concstats_concstats(test_share)
+test_share_conc <- concstats_concstats(test_share, digit = 2)
 test_share_conc
 ```
 
@@ -156,16 +169,17 @@ test_share_conc
 The scope of the package is to calculate market structure and concentration 
 measures to get a quick and more informed overview of a given market situation.
 However, it is good practice to visualize your data in an exploratory step or in
-reporting your results. The package ```concstats``` works fine with other EDA or 
-data visualization packages e.g. [```overviewR```](https://CRAN.R-project.org/package=overviewR),
+reporting your results. The package `concstats` works fine with other
+Exploratory Data Analysis (EDA) packages or data visualization packages e.g.
+[```overviewR```](https://CRAN.R-project.org/package=overviewR),
 [```dataexplorer```](https://CRAN.R-project.org/package=DataExplorer), [```kableExtra```](https://CRAN.R-project.org/package=kableExtra) or [```ggplot2```](https://CRAN.R-project.org/package=ggplot2) to name a few.
 
 Some examples on how you can accomplish this.
 Let us assume one would like to use the group measure for e.g. market structure,
 and keep the resulting data frame. We can refine the table
-using ```kableExtra``` which works nice with ```knitr```.
+using `kableExtra` which works nice with `knitr`.
 
-This time, we will use our ```creditcoops``` data set again, which comes with
+This time, we will use our ``creditcoops`` data set again, which comes with
 the package.
 
 ```{r}
@@ -218,7 +232,7 @@ knitr::include_graphics("mstruct_tab.png")
 ```
 
 Now, let's go a step further. We will compare the two samples for 2016 and 2018.
-For this purpose, we will select from our `creditcoops` data set the relevant
+For this purpose, we will select from our ``creditcoops`` data set the relevant
 columns (coop_id, year, paired, and total_loans_log) and make a new data frame.
 ```{r visualization-sample-prep, echo=FALSE, eval=FALSE}
 df_shares <- creditcoops %>%
