@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@ are present.</p></dd>
 <dt>digits</dt>
 <dd><p>A non-null value for digits specifies the minimum number of
 significant digits to be printed in values. The default is <code>NULL</code> and
-will use base R print option.</p></dd>
+will use base R print option. Significant digits defaults to 7.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -104,7 +104,7 @@ will use base R print option.</p></dd>
     <div id="details">
     <h2>Details</h2>
     <p><code>concstats_all_comp</code> returns all proposed group measures in a one step
-procedure.</p>
+procedure with default settings if not otherwise specified.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -115,7 +115,7 @@ procedure.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># a vector of market shares</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">concstats_all_comp</span><span class="op">(</span><span class="va">x</span>, digit <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_all_comp</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Measure Value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1          HHI  0.30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     HHI(min)  0.17</span>

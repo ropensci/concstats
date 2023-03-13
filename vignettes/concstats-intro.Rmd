@@ -227,9 +227,11 @@ coops_2016_mstruct_tab
 
 The result is a nice reusable table.
 
-```{r, echo=FALSE}
-knitr::include_graphics("mstruct_tab.png")
-```
+<center>
+
+![](mstruct_tab.png){width="400" height="200"}
+
+</center>
 
 Now, let's go a step further. We will compare the two samples for 2016 and 2018.
 For this purpose, we will select from our ``creditcoops`` data set the relevant

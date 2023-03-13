@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">concstats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.6</span>
       </span>
     </div>
 
@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Andreas
 Schneider</h4>
             
-            <h4 data-toc-skip class="date">Last updated 2023-02-28</h4>
+            <h4 data-toc-skip class="date">Last updated 2023-03-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/schneiderpy/concstats/blob/HEAD/vignettes/concstats-intro.Rmd" class="external-link"><code>vignettes/concstats-intro.Rmd</code></a></small>
       <div class="hidden name"><code>concstats-intro.Rmd</code></div>
@@ -126,8 +126,9 @@ real Paraguayan credit cooperatives (with assets &gt; 11 Mio. USD) for
 2016 and 2018 with their respective total loans granted. For a better
 visualization there is an additional column with the transformed total
 loans. For further information on the data please see the
-<code>creditcoops</code> help file. For a practical implementation you
-might be interested to read the following <a href="https://doi.org/10.1515/zfgg-2022-0002" class="external-link">article</a>.</p>
+<code>creditcoops</code> <a href="https://schneiderpy.github.io/concstats/reference/creditcoops.html" class="external-link">help</a>
+file. For a practical implementation you might be interested to read the
+following <a href="https://doi.org/10.1515/zfgg-2022-0002" class="external-link">article</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"creditcoops"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">creditcoops</span><span class="op">)</span></span>
@@ -177,19 +178,25 @@ respective market shares (in decimal form):</p>
 </h3>
 <p>The wrapper includes the following arguments to calculate individual
 functions: <code>firm</code>, <code>nrs_eq</code>, <code>top</code>,
-<code>top3</code>, <code>top5</code>, and <code>all</code>. All
-individual functions can be accessed directly with the prefix
-“concstats_” (e.g. “concstats_firm”).</p>
+<code>top3</code>, <code>top5</code>, and <code>all</code>. You can also
+pass the additional argument <code>digits</code> to <code>all</code>,
+which controls for the number of digits to be printed.<br>
+All individual functions can be accessed directly with the prefix
+“concstats_” (e.g. “concstats_firm” or “concstats_all_mstruct”).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share in percentage</span></span>
+<span><span class="va">test_share_top5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_top5.html">concstats_top5</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span> <span class="co"># top 5 market share in percentage</span></span>
 <span><span class="va">test_share_top5</span></span>
 <span><span class="co">#&gt; [1] 96</span></span></code></pre></div>
 <p>You should have noticed that the market shares are in decimal form.
-There are eight market participants, however, two have no market shares,
-by default <code>concstats</code> treats 0 as NA. The result is a top 5
-market share of 96 %. You can also access each function through their
-respective argument in the group wrapper:</p>
+However, you can use integers or floating point numeric types to express
+market shares. All <code>concstats</code> functions will take care of
+this and convert theses vectors into decimal form. There are eight
+market participants, however, two have no market shares, by default
+<code>concstats</code> treats 0 as NA. The result is a top 5 market
+share of 96 %.<br>
+You can also access each function through their respective argument in
+the group wrapper:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
 <span><span class="va">test_share_top</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"top"</span><span class="op">)</span> <span class="co"># top market share</span></span>
@@ -199,7 +206,7 @@ respective argument in the group wrapper:</p>
 a named object.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
+<span><span class="va">test_share_mstruct</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_mstruct.html">concstats_mstruct</a></span><span class="op">(</span><span class="va">test_share</span>, type <span class="op">=</span> <span class="st">"all"</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="va">test_share_mstruct</span></span>
 <span><span class="co">#&gt;          Measure Value</span></span>
 <span><span class="co">#&gt; 1          Firms  6.00</span></span>
@@ -218,12 +225,12 @@ a named object.</p>
 also be accessed as individual functions.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
-<span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_entropy.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
 <span><span class="va">test_share_entropy</span></span>
 <span><span class="co">#&gt; [1] 0.787806</span></span>
 <span></span>
 <span><span class="co"># and as a non-normalized value</span></span>
-<span><span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_inequ.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">test_share_entropy2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_entropy.html">concstats_entropy</a></span><span class="op">(</span><span class="va">test_share</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">test_share_entropy2</span></span>
 <span><span class="co">#&gt; [1] 2.036449</span></span></code></pre></div>
 </div>
@@ -261,7 +268,7 @@ share of the top (top 3 and top 5) firm(s) in percentage, the hhi index,
 the entropy index, and the palma ratio.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span><span class="op">)</span></span>
-<span><span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">test_share</span><span class="op">)</span></span>
+<span><span class="va">test_share_conc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/concstats_concstats.html">concstats_concstats</a></span><span class="op">(</span><span class="va">test_share</span>, digit <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">test_share_conc</span></span>
 <span><span class="co">#&gt;          Measure  Value</span></span>
 <span><span class="co">#&gt; 1          Firms   3.00</span></span>
@@ -270,7 +277,7 @@ the entropy index, and the palma ratio.</p>
 <span><span class="co">#&gt; 4       Top3 (%) 100.00</span></span>
 <span><span class="co">#&gt; 5       Top5 (%) 100.00</span></span>
 <span><span class="co">#&gt; 6            HHI   0.38</span></span>
-<span><span class="co">#&gt; 7    Entropy(RE)   0.94</span></span>
+<span><span class="co">#&gt; 7        Entropy   0.94</span></span>
 <span><span class="co">#&gt; 8    Palma ratio   2.50</span></span></code></pre></div>
 </div>
 </div>
@@ -281,8 +288,8 @@ the entropy index, and the palma ratio.</p>
 concentration measures to get a quick and more informed overview of a
 given market situation. However, it is good practice to visualize your
 data in an exploratory step or in reporting your results. The package
-<code>concstats</code> works fine with other EDA or data visualization
-packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>,
+<code>concstats</code> works fine with other Exploratory Data Analysis
+(EDA) packages or data visualization packages e.g. <a href="https://CRAN.R-project.org/package=overviewR" class="external-link"><code>overviewR</code></a>,
 <a href="https://CRAN.R-project.org/package=DataExplorer" class="external-link"><code>dataexplorer</code></a>,
 <a href="https://CRAN.R-project.org/package=kableExtra" class="external-link"><code>kableExtra</code></a>
 or <a href="https://CRAN.R-project.org/package=ggplot2" class="external-link"><code>ggplot2</code></a>
@@ -337,7 +344,9 @@ packages installed.</p>
 <span>  <span class="fu">kableExtra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_classic.html" class="external-link">kable_classic</a></span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">FALSE</span>, html_font <span class="op">=</span> <span class="st">"Arial"</span><span class="op">)</span></span>
 <span><span class="va">coops_2016_mstruct_tab</span></span></code></pre></div>
 <p>The result is a nice reusable table.</p>
-<p><img src="mstruct_tab.png" width="188" style="display: block; margin: auto;"></p>
+<center>
+<p><img src="mstruct_tab.png" width="400" height="200"></p>
+</center>
 <p>Now, let’s go a step further. We will compare the two samples for
 2016 and 2018. For this purpose, we will select from our
 <code>creditcoops</code> data set the relevant columns (coop_id, year,
