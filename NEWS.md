@@ -1,3 +1,21 @@
+# concstats 0.1.6
+
+-   changed to version 0.1.6
+-   unified variable declaration (all x, instead of shares)
+-   corrected the implementation of the GRS formula
+-   enhanced examples, added references to functions, each function has now its own documentation
+-   updated vignette "Introduction to concstats", and added code for the plot "Credit cooperatives"
+-   link from README to CONTRIBUTING.md
+-   using fs() for direct links in documentation
+-   corrected function names
+-   `unbiased` changed to `normalized`; implemented messages and tests
+-   computation yields `NA` just if `NAs` are present (changed documentation)
+-   removed dependencies (readr and dplyr)
+-   added argument `digits` for some functions to enable user control of the printed number of digits
+-   reviewed, changed or added tests for several functions
+-   changed data-raw/creditcoops.R, on line 3 n() to dplyr::n()
+
+
 # concstats 0.1.4
 
 -   Added more tests
