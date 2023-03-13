@@ -1,13 +1,16 @@
 Type: Package
 Package: concstats
 Title: Market Structure, Concentration and Inequality Measures
-Version: 0.1.4
-Authors@R: 
+Version: 0.1.6
+Authors@R: c(
     person(given = "Andreas",
            family = "Schneider",
            role = c("aut", "cre"),
            email = "schneiderconsultingpy@gmail.com",
-           comment = c(ORCID = "https://orcid.org/0000-0001-5630-1097"))
+           comment = c(ORCID = "https://orcid.org/0000-0001-5630-1097")),
+    person("Sebastian", "Wojcik", role = "rev"),
+    person("Christopher T.", "Kenny", role = "rev")
+    )
 Description: Based on individual market shares of all participants in a
     market or space, the package offers a set of different structural and
     concentration measures frequently - and not so frequently - used in research
@@ -40,12 +43,10 @@ URL: https://github.com/schneiderpy/concstats,
 BugReports: https://github.com/schneiderpy/concstats/issues
 Depends:
     R (>= 2.10)
-Imports:
-    dplyr (>= 1.0.7),
-    readr
 Suggests: 
     rmarkdown,
     knitr,
+    dplyr,
     devtools,
     kableExtra,
     ggplot2,
