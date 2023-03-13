@@ -11,9 +11,7 @@
 #'   \item{\code{paired}}{integer, paires of cooperatives}
 #'   \item{\code{total_loans_log}}{double, the natural log of total loans}
 #'}
-#' @importFrom dplyr "%>%" mutate filter
-#' @importFrom utils data head
-#' @importFrom readr read_csv
+#'
 #' @source \url{http://www.incoop.gov.py/v2/}
 #' @author Andreas Schneider
 #'
