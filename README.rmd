@@ -57,7 +57,8 @@ insight of a given market structure in a particular market. They are important
 to determine public policies and strategic corporate decisions.
 However, in research and in practice the most commonly used measure is the
 Herfindahl Hirschman Index. Various complementary or alternative measures exist,
-which - used as a set - might reduce uncertainty. The goal of the `concstats`
+which - used as a set - might reduce uncertainty. The goal of the
+[concstats](https://cran.r-project.org/package=concstats)
 package is to offer a set of alternative and/or additional measures for
 researchers in social sciences and practitioners in institutions concerned with
 competition on a regular basis to better determine a given market structure and
@@ -135,7 +136,7 @@ x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
                                           # the market (should sum up to 1)
 
 ## Calculate a selected set of market structure and concentration measures
-concstats_concstats(x2) # calculates a selected set of measures
+concstats_concstats(x2, digits = 2) # calculates a selected set of measures
 #>         Measures Values
 #> 1          Firms   6.00
 #> 2 Nrs_equivalent   3.33
@@ -164,8 +165,8 @@ summary below is by no means a description of each package.
 - The Herfindahl Hirschman Index can be found in the
 [hhi](https://joss.theoj.org/papers/10.21105/joss.00828) and the
 [divseg](https://github.com/christopherkenny/divseg) packages. While the *hhi*
-package has just one function, neither of both packages offer a finite sample
-correction.
+package has just one function, neither of both packages offer a normalized
+version of the measure.
 
 - The latter offers as well functions for the Entropy, Gini and Simpson
 measures.
@@ -177,7 +178,8 @@ inequality and competition measures, e.g. for the Entropy and Gini metric.
 Some popular measures, e.g. Gini or the Herfindahl-Hirschman index have also
 been implemented in Python.
 
-However, almost none of these packages offer finite sample correction, with the
+However, almost none of these packages offer a normalized calculation of the
+respective measure, with the
 exception of the [ineq](https://cran.r-project.org/package=ineq) package.
 Other functions are new implementations in R, e.g. Dominance Index,
 Palma ratio, Stenbacka Index, GRS measure, and the dual of the Herfindahl
@@ -189,24 +191,24 @@ Hirschman Index.
 ## References
 
 1.  Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak, B. M.
-    (2005) Banking concentration: the Brazilian case. In Financial
+    (2005) "Banking concentration: the Brazilian case" In Financial
     Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.
-2.  Cobham, A. and A. Summer (2013). Is It All About the Tails? The
-    Palma Measure of Income Inequality, Center for Global Development,
+2.  Cobham, A. and A. Summer (2013). "Is It All About the Tails? The
+    Palma Measure of Income Inequality", Center for Global Development,
     Washington, DC.
-3.  Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
-    analisis de la estructura de los mercados. El Trimestre Economico,
+3.  Garcia Alba Idunate, P. (1994). "Un Indice de dominancia para el
+    analisis de la estructura de los mercados". \emph{El Trimestre Economico},
     61: 499-524.
-4.  Ginevicius, R. and S. Cirba (2009). Additive measurement of market
-    concentration, Journal of Business Economics and Management, 10(3),
+4.  Ginevicius, R. and S. Cirba (2009). "Additive measurement of market
+    concentration", \emph{Journal of Business Economics and Management}, 10(3),
     191-198. https://doi.org/10.3846/1611-1699.2009.10.191-198
-5.  Palma, J. G. (2006). Globalizing Inequality: 'Centrifugal' and
-    'Centripetal' Forces at Work, DESA Working Paper No. 35.
-6.  Shannon, C. E. (1948). A Mathematical Theory of Communication, The
-    Bell System Technical Journal (Nokia Bell Labs).
-7.  Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market dominance,
-    Journal of Economic Behavior and Organization, 68: pp. 63-72.
-8.  Simpson, E. H. (1949). "Measurement of Diversity", Nature, 163, 688.
+5.  Palma, J. G. (2006). "Globalizing Inequality: 'Centrifugal' and
+    'Centripetal' Forces at Work", DESA Working Paper No. 35.
+6.  Shannon, C. E. (1948). "A Mathematical Theory of Communication", \emph{The
+    Bell System Technical Journal} (Nokia Bell Labs).
+7.  Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing market dominance",
+    \emph{Journal of Economic Behavior and Organization}, 68: pp. 63-72.
+8.  Simpson, E. H. (1949). "Measurement of Diversity", \emph{Nature}, 163, 688.
     https://doi.org/10.1038/163688a0
 
 ## Credits
@@ -223,4 +225,6 @@ an issue or pull request.
 
 ## Development
 
-Contributions are welcome\!
+Contributions are welcome\! For more details on how to contribute to this
+package please see the
+[CONTRIBUTING file](CONTRIBUTING.md).
