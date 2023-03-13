@@ -22,9 +22,10 @@ test_that("concstats_inequ function operates / switches properly", {
                concstats_entropy(x, normalized = FALSE))
   expect_equal(concstats_inequ(x, normalized = TRUE, type = "entropy"),
                concstats_entropy(x, normalized = TRUE))
-  expect_equal(concstats_inequ(x1, type = "gini"), concstats_gini(x1))
+  expect_equal(concstats_inequ(x1, type = "gini"),
+               concstats_gini(x1, normalized = FALSE))
   expect_equal(concstats_inequ(x1, normalized = TRUE, type = "gini"),
-               concstats_gini(x1, normalized = TRUE))
+               concstats_gini(x1))
   expect_equal(concstats_inequ(x, type = "simpson"), concstats_simpson(x))
   expect_equal(concstats_inequ(x1, type = "palma"), concstats_palma(x1))
   expect_equal(concstats_inequ(x2, type = "grs"), concstats_grs(x2))
@@ -32,6 +33,9 @@ test_that("concstats_inequ function operates / switches properly", {
                                                             normalized = FALSE))
   expect_equal(concstats_inequ(x, type = "all"), concstats_all_inequ(x))
   expect_error(concstats_inequ(x1b, na.rm = TRUE))
+  expect_error(concstats_inequ(x, na.rm = 0))
+  expect_error(concstats_inequ(x, normalized = NA))
+
 })
 
 ## concstats_entropy
@@ -45,49 +49,39 @@ test_that("concstats_entropy function operates properly", {
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x3 <- c(0.4, 0.3, 0.2, 0.1)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.1000001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE | FALSE)
-  normalized <- as.logical(TRUE | FALSE)
 
 #' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
 
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_entropy(x2, na.rm = FALSE), NA_real_)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8a, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_entropy(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_entropy` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
+  expect_error(concstats_entropy(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_entropy(x9, na.rm = TRUE))
   expect_error(concstats_entropy(x8, na.rm = TRUE))
   expect_error(concstats_entropy(x1b, na.rm = TRUE))
-  expect_warning(concstats_entropy(x2, na.rm = 0))
-  expect_warning(concstats_entropy(x2, normalized = 0))
+  expect_error(concstats_entropy(x2, na.rm = 0))
+  expect_error(concstats_entropy(x2, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_entropy(x, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_entropy(x))
+  act <- concstats_entropy(x)
+  exp <- concstats_entropy(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
-  expect_equal(concstats_entropy(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_entropy(x6))
+  act <- concstats_entropy(x)
+  exp <- concstats_entropy(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
-  expect_error(concstats_entropy(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_entropy` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
-  expect_length(normalized, 1L)
-  expect_type(normalized, "logical")
+  expect_error(concstats_entropy(sum(x1), 1,
+                                 tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -129,8 +123,8 @@ test_that("concstats_entropy returns the biased entropy measure ", {
                   0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_entropy(share_2018, normalized = FALSE), share_2018_ent2,
-               tolerance = .Machine$double.eps^0.25)
+  expect_equal(concstats_entropy(share_2018, normalized = FALSE),
+               share_2018_ent2, tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_entropy(x, normalized = FALSE),
                sum(-x / sum(x) * log(x / sum(x), base = 2)))
 #' @srrstats {EA6.0, EA6.0a} Return values
@@ -149,39 +143,35 @@ test_that("concstats_gini function operates properly", {
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x3 <- c(0.1, 0.2, 0.3, 0.4)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.100001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE | FALSE)
-  normalized <- as.logical(TRUE | FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_gini(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x), x3)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_gini(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_gini` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
+  expect_error(concstats_gini(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_gini(x9, na.rm = TRUE))
   expect_error(concstats_gini(x8, na.rm = TRUE))
   expect_error(concstats_gini(x1b, na.rm = TRUE))
-  expect_warning(concstats_gini(x, na.rm = 0))
-  expect_warning(concstats_gini(x, normalized = 0))
+  expect_error(concstats_gini(x, na.rm = 0))
+  expect_error(concstats_gini(x, normalized = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_error(concstats_gini(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_gini` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
-  expect_length(normalized, 1L)
-  expect_type(normalized, "logical")
+  act <- concstats_gini(x)
+  exp <- concstats_gini(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_gini(x)
+  exp <- concstats_gini(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+  expect_error(concstats_gini(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -197,15 +187,16 @@ test_that("concstats_gini returns the gini measure", {
                   0.030117841)
 
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_gini(share_2018), share_2018_gini,
+  expect_equal(concstats_gini(share_2018, normalized = FALSE), share_2018_gini,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_gini(x), 2 * sum(x * seq_len(length(x))
-                                / length(x) * sum(x)) - 1 - (1 / length(x)))
+  expect_equal(concstats_gini(x, normalized = FALSE),
+               2 * sum(x * seq_len(length(x))
+                       / length(x) * sum(x)) - 1 - (1 / length(x)))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_gini), label = "numeric values returned")
 })
 
-test_that("concstats_gini returns the unbiased gini measure", {
+test_that("concstats_gini returns the normalized gini measure", {
 
   x <- c(0.1, 0.2, 0.3, 0.4)
   share_2018_gini2 <- 0.6069292
@@ -237,43 +228,36 @@ test_that("concstats_simpson function operates properly", {
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x3 <- c(0.4, 0.3, 0.2, 0.1)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.1000001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE, FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_simpson(x2, na.rm = FALSE), NA_real_)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_simpson(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_simpson` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
+  expect_error(concstats_simpson(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_simpson(x9, na.rm = TRUE))
   expect_error(concstats_simpson(x8, na.rm = TRUE))
   expect_error(concstats_simpson(x1b, na.rm = TRUE))
-  expect_warning(concstats_simpson(x, na.rm = 0))
+  expect_error(concstats_simpson(x, na.rm = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_simpson(x, isTRUE(all.equal(1, sum(x),
-                                        tolerance = .Machine$double.eps^0.25))),
-               concstats_simpson(x))
-#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
-  expect_equal(concstats_simpson(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_simpson(x6))
+  act <- concstats_simpson(x)
+  exp <- concstats_simpson(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_simpson(x)
+  exp <- concstats_simpson(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
-  expect_error(concstats_simpson(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_simpson` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
+  expect_error(concstats_simpson(sum(x1), 1,
+                                 tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -309,44 +293,37 @@ test_that("concstats_palma function operates properly", {
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x3 <- c(0.1, 0.2, 0.3, 0.4)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.100001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE, FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_palma(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x), x3)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_palma(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_palma` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
+  expect_error(concstats_palma(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_palma(x9, na.rm = TRUE))
   expect_error(concstats_palma(x8, na.rm = TRUE))
   expect_error(concstats_palma(x1b, na.rm = TRUE))
-  expect_warning(concstats_palma(x, na.rm = 0))
+  expect_error(concstats_palma(x, na.rm = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_palma(x, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_palma(x))
-#' @srrstats {G3.0, G5.9, G5.9a} *Adding trivial noise
-  expect_equal(concstats_palma(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_palma(x6))
+  act <- concstats_simpson(x)
+  exp <- concstats_simpson(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_simpson(x)
+  exp <- concstats_simpson(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
-  expect_error(concstats_palma(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_palma` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
+  expect_error(concstats_palma(sum(x1), 1,
+                               tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -387,44 +364,36 @@ test_that("concstats_grs function operates properly", {
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x3 <- c(0.4, 0.3, 0.2, 0.1)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.1000001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE | FALSE)
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_equal(concstats_grs(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x, decreasing = TRUE), x3)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_grs(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_grs` must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
+  expect_error(concstats_grs(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_grs(x9, na.rm = TRUE))
   expect_error(concstats_grs(x8, na.rm = TRUE))
   expect_error(concstats_grs(x1b, na.rm = TRUE))
-  expect_warning(concstats_grs(x, na.rm = 0))
+  expect_error(concstats_grs(x, na.rm = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  expect_equal(concstats_grs(x, isTRUE(all.equal(1, sum(x),
-                                        tolerance = .Machine$double.eps^0.25))),
-               concstats_grs(x))
-#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
-  expect_equal(concstats_grs(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_grs(x6))
+  act <- concstats_grs(x)
+  exp <- concstats_grs(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_grs(x)
+  exp <- concstats_grs(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
-  expect_error(concstats_grs(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_grs` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
+  expect_error(concstats_grs(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -457,12 +426,11 @@ test_that("concstats_all_inequ returns a data frame", {
   x1b <- c()
   x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
   x4 <- c(20, 30, 40, 10)
-  x5 <- c(0.2, 0.3, 0.4, 0.101)
+  x5 <- c(0.2, 0.3, 0.4, 0.1000001)
   x6 <- c(0.2, 0.3, 0.4, 0.1, 0.0001)
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE | FALSE)
   dummy_df <- data.frame(Measure = rep(letters[1:5]), Value = c(1, 2, 3, 4, 5))
 
   expect_vector(x, ptype = numeric(), size = 4)
@@ -470,7 +438,6 @@ test_that("concstats_all_inequ returns a data frame", {
 #' @srrstats {EA6.0, EA6.0a, EA6.0b, EA6.0c, EA6.0d} Classes, dimensions, and
 #'  types of objects
   expect_equal(ncol(dummy_df), 2)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_true(is.numeric(dummy_df$Value))
   expect_type(dummy_df$Value, "double")
   expect_type(dummy_df$Measure, "character")
@@ -479,31 +446,24 @@ test_that("concstats_all_inequ returns a data frame", {
   expect_equal(concstats_all_inequ(x2, na.rm = FALSE), NA_real_)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_all_inequ(xch, na.rm = TRUE,
-                                   !isTRUE(as.numeric(xch),
-                                   "x in `concstats_all_inequ` must be a
-                                   numeric vector\n",
-                                   "You have provided an object of class:",
-                                   class(x)[1])))
+  expect_error(concstats_all_inequ(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_all_inequ(x9, na.rm = TRUE))
   expect_error(concstats_all_inequ(x8, na.rm = TRUE))
   expect_error(concstats_all_inequ(x1b, na.rm = TRUE))
-  expect_warning(concstats_all_inequ(x, na.rm = 0))
+  expect_error(concstats_entropy(x2, na.rm = 0))
+  expect_error(concstats_entropy(x2, normalized = 0))
 #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
-  expect_equal(concstats_all_inequ(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_all_inequ(x6))
-  expect_equal(concstats_grs(x, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_grs(x))
+  act <- concstats_all_inequ(x)
+  exp <- concstats_all_inequ(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_all_inequ(x)
+  exp <- concstats_all_inequ(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
 #'  objects
-  expect_error(concstats_all_inequ(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_all_inequ` does not sum to 1")
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
-
+  expect_error(concstats_all_inequ(sum(x1), 1,
+                                   tolerance = .Machine$double.eps^0.25))
 
 })

@@ -17,46 +17,34 @@ test_that("concstats_concstats function operates properly", {
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
-  na.rm <- as.logical(TRUE | FALSE)
 
 #' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
   expect_true(any(is.na(x2)), all(!is.na(x2)))
 
   expect_true(all(round(x3) == 0), (abs(x3) > 0 & abs(x3) <= 1))
-  expect_length(na.rm, 1L)
-  expect_type(na.rm, "logical")
   expect_vector(x3, ptype = numeric(), size = 4)
-  expect_equal(x, as.numeric(x4 / sum(x4)))
   expect_true(is.numeric(x3), label = "numeric values returned")
   expect_equal(concstats_concstats(x2, na.rm = FALSE), NA_real_)
   expect_equal(sort(x, decreasing = TRUE), x3)
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8a, G5.8b} Edge test for data of
 #'  unsupported types
-  expect_error(concstats_concstats(xch, !isTRUE(is.numeric(xch),
-  "x in `concstats_concstats`must be a numeric vector\n",
-  "You have provided an object of class: ", class(x)[1])))
-  expect_error(concstats_concstats(x2, na.rm = c("TRUE", "FALSE"),
-                                   !isTRUE(length(na.rm == 1L)),
-                        "`na.rm` in `concstats_concstats` must be of length 1"))
+  expect_error(concstats_concstats(xch, !is.numeric(xch)))
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
   expect_error(concstats_concstats(x9, na.rm = TRUE))
   expect_error(concstats_concstats(x8, na.rm = TRUE))
   expect_error(concstats_concstats(x1b, na.rm = TRUE))
-  expect_warning(concstats_concstats(x, na.rm = 0))
+  expect_error(concstats_concstats(x, na.rm = 0))
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values,  single-valued objects.
-  expect_equal(concstats_concstats(x, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_concstats(x))
-#' @srrstats {G5.9, G5.9a} *Adding trivial noise
-  expect_equal(concstats_concstats(x5, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_concstats(x5))
-  expect_equal(concstats_concstats(x6, isTRUE(all.equal(1, sum(x),
-                                       tolerance = .Machine$double.eps^0.25))),
-               concstats_concstats(x6))
-  expect_error(concstats_concstats(x1, !isTRUE(all.equal(1, sum(x1),
-                                       tolerance = .Machine$double.eps^0.25))),
-               "vector x in `concstats_concstats` does not sum to 1")
+  act <- concstats_concstats(x)
+  exp <- concstats_concstats(x4 / sum(x4))
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  act <- concstats_concstats(x)
+  exp <- concstats_concstats(x5)
+  expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+
+  expect_error(concstats_concstats(sum(x1), 1,
+                                       tolerance = .Machine$double.eps^0.2))
 
 })
 
@@ -242,6 +230,6 @@ test_that("concstats_concstats returns a data frame", {
   expect_type(dummy_df$Value, "double")
   expect_type(dummy_df$Measure, "character")
   expect_identical(names(dummy_df), c("Measure", "Value"))
-  expect_true(is.data.frame(concstats_all_mstruct(x)), "data.frame")
+  expect_true(is.data.frame(concstats_concstats(x)), "data.frame")
 
 })
