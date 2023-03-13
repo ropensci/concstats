@@ -66,93 +66,92 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"entropy"</span>, <span class="st">"gini"</span>, <span class="st">"simpson"</span>,
- <span class="st">"palma"</span>, <span class="st">"grs"</span>, <span class="st">"all"</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_entropy</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_gini</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_simpson</span><span class="op">(</span><span class="va">x</span>, unbiased <span class="op">=</span> <span class="cn">FALSE</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_palma</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_grs</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_all_inequ</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">FALSE</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"entropy"</span>, <span class="st">"gini"</span>,</span>
+<span> <span class="st">"simpson"</span>, <span class="st">"palma"</span>, <span class="st">"grs"</span>, <span class="st">"all"</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
-<dd><p>a non-negative numeric vector.</p></dd>
+<dd><p>A non-negative numeric vector.</p></dd>
 
 
-<dt>unbiased</dt>
-<dd><p>Logical. Argument specifying whether or not a finite sample
-correction should be applied. Must be either TRUE or FALSE. The default is
-FALSE.</p></dd>
+<dt>normalized</dt>
+<dd><p>Logical. Argument of the functions
+<code>concstats_entropy</code>, <code>concstats_gini</code> specifying whether or not a
+normalized value is required. Ranges from (0, 1) and often used for
+comparison over time. Must be either <code>TRUE</code> or <code>FALSE</code>. The
+default is <code>FALSE</code>.</p></dd>
 
 
 <dt>type</dt>
-<dd><p>a character string of the measure to be calculated, defaults to
-"concstats_entropy". Input is not case-sensitive.</p></dd>
+<dd><p>A character string of the measure to be calculated, defaults to
+<code>concstats_entropy</code>. Input is not case-sensitive.</p></dd>
 
 
 <dt>na.rm</dt>
-<dd><p>a logical vector that indicates whether <code>NA</code> values should
-be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
+<dd><p>A logical vector that indicates whether <code>NA</code> values should
+be excluded or not. If set to <code>FALSE</code> the computation yields <code>NA</code>
+if vector contains <code>NA</code> values.
+Must be either <code>TRUE</code> or <code>FALSE</code>. The default is <code>TRUE</code>.</p></dd>
+
+
+<dt>digits</dt>
+<dd><p>A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is <code>NULL</code> and
+will use base R print option.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>the calculated numeric measure</p>
+<p>The calculated numeric measure or a <code>data frame</code></p>
 
 
-<p>a <code>data.frame</code> of inequality measures with default settings.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p><code>concstats_inequ</code> is a wrapper for the proposed inequality measures
-<code>concstats_entropy</code>, <code>concstats_gini</code>, <code>concstats_simpson</code>,
-<code>concstats_palma</code>, <code>concstats_grs</code>, <code>concstats_all</code>.
-If no measure is specified, "concstats_entropy" is the default.</p>
-<p><code>concstats_entropy</code> returns the (Shannon) Entropy,
-<code>concstats_gini</code> is the Gini coefficient, <code>concstats_simpson</code> is
-the complement of the Herfindahl-Hirschman Index. You can normalize each
-of these three measures by setting <code>unbiased = TRUE</code>
+<code><a href="concstats_entropy.html">concstats_entropy()</a></code>, <code><a href="concstats_gini.html">concstats_gini()</a></code>,<code><a href="concstats_simpson.html">concstats_simpson()</a></code>,
+<code><a href="concstats_palma.html">concstats_palma()</a></code>,<code><a href="concstats_grs.html">concstats_grs()</a></code>, <code><a href="concstats_all_inequ.html">concstats_all_inequ()</a></code>
+If no measure is specified, <code>concstats_entropy</code> is the default.
+<code>concstats_entropy</code> returns the Shannon Entropy (Shannon, 1948),
+<code>concstats_gini</code> is the Gini coefficient. You can normalize the
+Entropy and Gini measures by setting <code>normalized = TRUE</code>
 <code>concstats_palma</code> measures the ratio of inequality (normally used with
-income inequality) of the top 10 percent to the bottom 40 percent.
-<code>concstats_grs</code> is an alternative inequality
-measure (Ginevicius, 2009),
-<code>concstats_all</code> returns all measures in a one step procedure.</p>
-    </div>
-    <div id="note">
-    <h2>Note</h2>
-    <p>the non-negative vector of market shares should be in a decimal form
-corresponding to the total shares of individual firms/units.The vector
-should sum up to 1.</p>
+income inequality) of the top 10 percent to the bottom 40 percent
+(Palma, 2006).
+<code>concstats_grs</code> is an alternative inequality measure (Ginevicius, 2009)
+and
+<code>concstats_all_inequ</code> returns all measures in a one step procedure.
+For more details or references please see the help page of the respective
+function.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats</a></code>, <code><a href="concstats_mstruct.html">concstats_mstruct</a></code>,
-<code><a href="concstats_comp.html">concstats_comp</a></code></p></div>
+    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats()</a></code>,<code><a href="concstats_mstruct.html">concstats_mstruct()</a></code>,<code><a href="concstats_comp.html">concstats_comp()</a></code></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># a vector of market shares</span></span>
-<span class="r-in"><span class="va">share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate the Palma ratio</span></span>
-<span class="r-in"><span class="va">share_p</span> <span class="op">&lt;-</span> <span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"palma"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate the entropy measure directly</span></span>
-<span class="r-in"><span class="va">share_ent</span> <span class="op">&lt;-</span> <span class="fu">concstats_entropy</span><span class="op">(</span><span class="va">share</span>, unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate the group measures</span></span>
-<span class="r-in"><span class="va">share_inequ</span> <span class="op">&lt;-</span> <span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># a vector of market shares</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.25</span>, <span class="fl">0.1</span>, <span class="fl">0.05</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Calculate the Palma ratio</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"palma"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.666667</span>
+<span class="r-in"><span><span class="co"># Calculate the entropy measure directly</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="concstats_entropy.html">concstats_entropy</a></span><span class="op">(</span><span class="va">x</span>, normalized <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.879203</span>
+<span class="r-in"><span><span class="co"># Calculate the group measures</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_inequ</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"all"</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         Measure Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       Entropy  2.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    Gini Index  0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 Simpson Index  0.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   Palma Ratio  2.67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5           GRS  0.40</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -167,7 +166,7 @@ should sum up to 1.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

@@ -68,20 +68,8 @@ market structure.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"firm"</span>, <span class="st">"nrs_eq"</span>, <span class="st">"top"</span>, <span class="st">"top3"</span>, <span class="st">"top5"</span>,
- <span class="st">"all"</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_firm</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_nrs_eq</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_top</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_top3</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_top5</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">concstats_all_mstruct</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"firm"</span>, <span class="st">"nrs_eq"</span>, <span class="st">"top"</span>, <span class="st">"top3"</span>, <span class="st">"top5"</span>,</span>
+<span> <span class="st">"all"</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -98,28 +86,33 @@ case-sensitive.</p></dd>
 
 <dt>na.rm</dt>
 <dd><p>A logical vector that indicates whether <code>NA</code> values should
-be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-If set to <code>FALSE</code> the computation yields <code>NA</code>.</p></dd>
+be excluded or not. Must be either <code>TRUE</code> or <code>FALSE</code>. The default
+is <code>TRUE</code>. If set to <code>FALSE</code> the computation yields <code>NA</code> if
+vector contains <code>NA</code> values.</p></dd>
+
+
+<dt>digits</dt>
+<dd><p>A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is <code>NULL</code> and
+will use base R print option.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
-<p>Returns the calculated numeric measure.</p>
-
-
-<p>A <code>data.frame</code> of market structure measures with default settings.</p>
+<p>A single calculated numeric measure or <code>data frame</code>.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p><code>concstats_mstruct</code> is a wrapper for the proposed structural measures
-<code>concstats_firm</code>, returns the number of firms with a given market share
-<code>concstats_nrs_eq</code> computes the numbers equivalent,
-<code>concstats_top</code>, <code>concstats_top3</code>, and <code>concstats_top5</code>
+<code><a href="concstats_firm.html">concstats_firm()</a></code>, returns the number of firms with a given market share
+<code><a href="concstats_nrs_eq.html">concstats_nrs_eq()</a></code> computes the reciprocal of the HHI, which indicates
+the equivalent number of firms of the same size,
+<code><a href="concstats_top.html">concstats_top()</a></code>, <code><a href="concstats_top3.html">concstats_top3()</a></code>, and <code><a href="concstats_top5.html">concstats_top5()</a></code>
 calculate the share of the top (top 3 and top 5) firm(s) and returns the
-value in percentage. <code>concstats_all</code> computes all measures in a
-one step procedure. All measures can be computed individually.</p>
+value in percentage. <code><a href="concstats_all_mstruct.html">concstats_all_mstruct()</a></code> computes all measures in
+a one step procedure. All measures can be computed individually.</p>
     </div>
     <div id="note">
     <h2>Note</h2>
@@ -129,21 +122,28 @@ to 1.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats</a></code>, <code><a href="concstats_comp.html">concstats_comp</a></code>,
-<code><a href="concstats_inequ.html">concstats_inequ</a></code></p></div>
+    <div class="dont-index"><p><code><a href="concstats_concstats.html">concstats_concstats()</a></code>,<code><a href="concstats_comp.html">concstats_comp()</a></code>,<code><a href="concstats_inequ.html">concstats_inequ()</a></code></p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># a vector of market shares</span></span>
-<span class="r-in"><span class="va">share</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># the number of firms with market share</span></span>
-<span class="r-in"><span class="va">share_firm</span> <span class="op">&lt;-</span> <span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"firm"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate top market share individually</span></span>
-<span class="r-in"><span class="va">share_top</span> <span class="op">&lt;-</span> <span class="fu">concstats_top</span><span class="op">(</span><span class="va">share</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># Calculate the market structure group measures</span></span>
-<span class="r-in"><span class="va">share_mstruct</span> <span class="op">&lt;-</span> <span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">share</span>, type <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># a vector of market shares</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.35</span>, <span class="fl">0.4</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.06</span>, <span class="fl">0.04</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># the number of firms with market share</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"firm"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-in"><span><span class="co"># Calculate top market share individually</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="concstats_top.html">concstats_top</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 40</span>
+<span class="r-in"><span><span class="co"># Calculate the market structure group measures</span></span></span>
+<span class="r-in"><span><span class="fu">concstats_mstruct</span><span class="op">(</span><span class="va">x</span>, type <span class="op">=</span> <span class="st">"all"</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          Measure Value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          Firms   6.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Nrs_equivalent   3.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        Top (%)  40.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       Top3 (%)  85.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       Top5 (%)  96.0</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -158,7 +158,7 @@ to 1.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

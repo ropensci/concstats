@@ -2,28 +2,10 @@
 % Please edit documentation in R/mstruct.R
 \name{concstats_mstruct}
 \alias{concstats_mstruct}
-\alias{concstats_firm}
-\alias{concstats_nrs_eq}
-\alias{concstats_top}
-\alias{concstats_top3}
-\alias{concstats_top5}
-\alias{concstats_all_mstruct}
 \title{Market Structure Measures}
 \usage{
 concstats_mstruct(x, type = c("firm", "nrs_eq", "top", "top3", "top5",
- "all"), na.rm = TRUE)
-
-concstats_firm(x, na.rm = TRUE)
-
-concstats_nrs_eq(x, na.rm = TRUE)
-
-concstats_top(x, na.rm = TRUE)
-
-concstats_top3(x, na.rm = TRUE)
-
-concstats_top5(x, na.rm = TRUE)
-
-concstats_all_mstruct(x, na.rm = TRUE)
+ "all"), na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
@@ -33,13 +15,16 @@ can be abbreviated with the first letter. Defaults to "firm". Input is not
 case-sensitive.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-If set to \code{FALSE} the computation yields \code{NA}.}
+be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
+is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA} if
+vector contains \code{NA} values.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option. Significant digits defaults to 7.}
 }
 \value{
-Returns the calculated numeric measure.
-
-A \code{data.frame} of market structure measures with default settings.
+A single calculated numeric measure or \verb{data frame}.
 }
 \description{
 Set of different market structure measures to reflect a given
@@ -47,13 +32,13 @@ market structure.
 }
 \details{
 \code{concstats_mstruct} is a wrapper for the proposed structural measures
-\code{concstats_firm}, returns the number of firms with a given market share
-\code{concstats_nrs_eq} computes the reciprocal of the HHI, which indicates
+\code{\link[=concstats_firm]{concstats_firm()}}, returns the number of firms with a given market share
+\code{\link[=concstats_nrs_eq]{concstats_nrs_eq()}} computes the reciprocal of the HHI, which indicates
 the equivalent number of firms of the same size,
-\code{concstats_top}, \code{concstats_top3}, and \code{concstats_top5}
+\code{\link[=concstats_top]{concstats_top()}}, \code{\link[=concstats_top3]{concstats_top3()}}, and \code{\link[=concstats_top5]{concstats_top5()}}
 calculate the share of the top (top 3 and top 5) firm(s) and returns the
-value in percentage. \code{concstats_all} computes all measures in a
-one step procedure. All measures can be computed individually.
+value in percentage. \code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}} computes all measures in
+a one step procedure. All measures can be computed individually.
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
@@ -62,17 +47,15 @@ to 1.
 }
 \examples{
 # a vector of market shares
-share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # the number of firms with market share
-concstats_mstruct(share, type = "firm")
+concstats_mstruct(x, type = "firm")
 # Calculate top market share individually
-concstats_top(share)
+concstats_top(x)
 # Calculate the market structure group measures
-concstats_mstruct(share, type = "all")
+concstats_mstruct(x, type = "all", digits = 2)
 
 }
 \seealso{
-\code{\link[=concstats_concstats]{concstats_concstats()}},
-\code{\link[=concstats_comp]{concstats_comp()}},
-\code{\link[=concstats_inequ]{concstats_inequ()}}
+\code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_comp]{concstats_comp()}},\code{\link[=concstats_inequ]{concstats_inequ()}}
 }

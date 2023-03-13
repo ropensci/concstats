@@ -2,73 +2,54 @@
 % Please edit documentation in R/inequ.R
 \name{concstats_inequ}
 \alias{concstats_inequ}
-\alias{concstats_entropy}
-\alias{concstats_gini}
-\alias{concstats_simpson}
-\alias{concstats_palma}
-\alias{concstats_grs}
-\alias{concstats_all_inequ}
 \title{Inequality and Diversity Measures}
 \usage{
 concstats_inequ(x, normalized = FALSE, type = c("entropy", "gini",
- "simpson", "palma", "grs", "all"), na.rm = TRUE)
-
-concstats_entropy(x, normalized = TRUE, na.rm = TRUE)
-
-concstats_gini(x, normalized = FALSE, na.rm = TRUE)
-
-concstats_simpson(x, na.rm = TRUE)
-
-concstats_palma(x, na.rm = TRUE)
-
-concstats_grs(x, na.rm = TRUE)
-
-concstats_all_inequ(x, na.rm = TRUE)
+ "simpson", "palma", "grs", "all"), na.rm = TRUE, digits = NULL)
 }
 \arguments{
-\item{x}{a non-negative numeric vector.}
+\item{x}{A non-negative numeric vector.}
 
-\item{normalized}{Logical. Argument specifying whether or not a normalized
-value is required. Must be either TRUE or FALSE. The default is FALSE.}
+\item{normalized}{Logical. Argument of the functions
+\code{concstats_entropy}, \code{concstats_gini} specifying whether or not a
+normalized value is required. Ranges from (0, 1) and often used for
+comparison over time. Must be either \code{TRUE} or \code{FALSE}. The
+default is \code{FALSE}.}
 
-\item{type}{a character string of the measure to be calculated, defaults to
-"concstats_entropy". Input is not case-sensitive.}
+\item{type}{A character string of the measure to be calculated, defaults to
+\code{concstats_entropy}. Input is not case-sensitive.}
 
-\item{na.rm}{a logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either TRUE or FALSE. The default is TRUE.
-If set to \code{FALSE} the computation yields \code{NA}.}
+\item{na.rm}{A logical vector that indicates whether \code{NA} values should
+be excluded or not. If set to \code{FALSE} the computation yields \code{NA}
+if vector contains \code{NA} values.
+Must be either \code{TRUE} or \code{FALSE}. The default is \code{TRUE}.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option. Significant digits defaults to 7.}
 }
 \value{
-the calculated numeric measure
-
-a \code{data.frame} of inequality measures with default settings.
+The calculated numeric measure or a \verb{data frame}
 }
 \description{
 A set of different inequality and diversity measures.
 }
 \details{
 \code{concstats_inequ} is a wrapper for the proposed inequality measures
-\code{concstats_entropy}, \code{concstats_gini}, \code{concstats_simpson},
-\code{concstats_palma}, \code{concstats_grs}, \code{concstats_all}.
-If no measure is specified, "concstats_entropy" is the default.
+\code{\link[=concstats_entropy]{concstats_entropy()}}, \code{\link[=concstats_gini]{concstats_gini()}},\code{\link[=concstats_simpson]{concstats_simpson()}},
+\code{\link[=concstats_palma]{concstats_palma()}},\code{\link[=concstats_grs]{concstats_grs()}}, \code{\link[=concstats_all_inequ]{concstats_all_inequ()}}
+If no measure is specified, \code{concstats_entropy} is the default.
 \code{concstats_entropy} returns the Shannon Entropy (Shannon, 1948),
 \code{concstats_gini} is the Gini coefficient. You can normalize the
 Entropy and Gini measures by setting \code{normalized = TRUE}
-\code{concstats_simpson} is the Gini-Simpson (Simpson, 1949; Jost, 2006),
-also known as the Gini impurity (Gini's diversity index) in
-Machine Learning, Gibbs-Martin index or Blau index in sociology and
-management studies. This index ranges from {0, 1}.
-\code{concstats_palma} measures the ratio of inequality (normally used with
-income inequality) of the top 10 percent to the bottom 40 percent
-(Palma, 2006).
+\code{concstats_palma} measures the ratio of inequality (normally used in
+the context of measuring income inequality) of the top 10 percent to the
+bottom 40 percent (Palma, 2006).
 \code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009)
 and
-\code{concstats_all} returns all measures in a one step procedure.
-}
-\note{
-the non-negative vector of market shares should be in a decimal form
-corresponding to the total shares of individual firms/units.The vector
-should sum up to 1.
+\code{concstats_all_inequ} returns all measures in a one step procedure.
+For more details or references please see the help page of the respective
+function.
 }
 \examples{
 # a vector of market shares
@@ -78,27 +59,9 @@ concstats_inequ(x, type = "palma")
 # Calculate the entropy measure directly
 concstats_entropy(x, normalized = TRUE)
 # Calculate the group measures
-concstats_inequ(x, type = "all")
+concstats_inequ(x, type = "all", digits = 2)
 
-}
-\references{
-Shannon, C. E. (1948). A Mathematical Theory of Communication,
-The Bell System Technical Journal (Nokia Bell Labs).
-
-Simpson, E. H. (1949). Measurement of Diversity, Nature, 163,
-688.
-
-Palma, J. G. (2006). Globalizing Inequality: 'Centrifugal' and
-'Centripetal' Forces at Work, DESA Working Paper No. 35.
-
-Ginevicius, R. and S. Cirba (2009). Additive measurement of
-market concentration, Journal of Business Economics and Management, 10(3),
-191-198.
-
-Jost, L. (2006). Entropy and Diversity. Oikos, 113(2), 363-375.
 }
 \seealso{
-\code{\link[=concstats_concstats]{concstats_concstats()}},
-\code{\link[=concstats_mstruct]{concstats_mstruct()}},
-\code{\link[=concstats_comp]{concstats_comp()}}
+\code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_mstruct]{concstats_mstruct()}},\code{\link[=concstats_comp]{concstats_comp()}}
 }

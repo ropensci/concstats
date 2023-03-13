@@ -2,72 +2,48 @@
 % Please edit documentation in R/comp.R
 \name{concstats_comp}
 \alias{concstats_comp}
-\alias{concstats_hhi}
-\alias{concstats_hhi_min}
-\alias{concstats_hhi_d}
-\alias{concstats_dom}
-\alias{concstats_sten}
-\alias{concstats_all_comp}
-\title{Concentration Measures}
+\title{Group of Concentration Measures}
 \usage{
 concstats_comp(x, normalized = FALSE, type = c("hhi", "hhi_d", "hhi_min",
- "dom", "sten", "all"),na.rm = TRUE)
-
-concstats_hhi(x, normalized = FALSE, na.rm = TRUE)
-
-concstats_hhi_min(x, na.rm = TRUE)
-
-concstats_hhi_d(x, na.rm = TRUE)
-
-concstats_dom(x, na.rm = TRUE)
-
-concstats_sten(x, na.rm = TRUE)
-
-concstats_all_comp(x, na.rm = TRUE)
+ "dom", "sten", "all"), na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{normalized}{Logical. Argument specifying whether or not a normalized
-value is required. Ranges from {0, 1} and often used for comparison over
-time. Must be either TRUE or FALSE. The default is FALSE.}
+value is required. Ranges from (0, 1) and often used for comparison over
+time. Must be either \code{TRUE} or \code{FALSE}. The default
+is \code{FALSE}.}
 
 \item{type}{A character string of the measure to be calculated,
 can be abbreviated with the first letter. Defaults to "hhi". Input is not
 case-sensitive.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either TRUE or FALSE. The default is FALSE.}
+be excluded or not. If set to \code{FALSE} the computation yields \code{NA}
+if vector contains \code{NA} values.
+Must be either \code{TRUE} or \code{FALSE}. Defaults to \code{TRUE}.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.  Significant digits defaults to 7.}
 }
 \value{
-the calculated numeric measure.
-
-\code{data.frame} of concentration and competition measures with default
-settings.
+A single numeric measure in decimal form or \verb{data frame}.
 }
 \description{
 A set of different concentration measures.
 }
 \details{
 \code{concstats_comp} is a wrapper for the proposed concentration measures
-\code{concstats_hhi}, \code{concstats_hhi_d}, \code{concstats_hhi_min},
-\code{concstats_dom}, \code{concstats_sten}, \code{concstats_all}.
+\code{\link[=concstats_hhi]{concstats_hhi()}}, \code{\link[=concstats_hhi_d]{concstats_hhi_d()}}, \code{\link[=concstats_dom]{concstats_dom()}},
+\code{\link[=concstats_hhi_min]{concstats_hhi_min()}}, \code{\link[=concstats_sten]{concstats_sten()}}, \code{\link[=concstats_all_comp]{concstats_all_comp()}}.
 If no measure is specified "hhi" will be the default.
-
-\code{concstats_hhi} calculates the widely used Herfindahl-Hirschman Index
-(Herfindahl, 1950 and Hirschman, 1945), \code{concstats_hhi_min}
-its minimum, and \code{concstats_hhi_d} its dual (Chang, Guerra,
-de Souza Penaloza & Tabak, 2005)
-\code{concstats_dom} calculates a dominance index (Garcia, 1994) and
-\code{concstats_sten} calculates the Stenbacka index (Melnik, Shy, and
-Stenbacka, 2005). The index indicates the market share of a dominant
-position.
-
-All measures can be accessed individually.
-\code{concstats_hhi}, \code{concstats_hhi_d}, and \code{concstats_dom} can
-be calculated individually as a normalized measure changing the default
-setting to \code{TRUE}. \code{concstats_all} computes all measures in a one
-step procedure.
+\code{concstats_hhi}, can be calculated individually as a normalized
+measure changing the default setting to \code{TRUE}.
+\code{concstats_all_comp} computes all measures in a one step procedure.
+For more details or references please see the help page of the respective
+function.
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
@@ -81,29 +57,9 @@ concstats_comp(x, type = "hhi")
 # individual measure
 concstats_sten(x)
 # complete group measures
-concstats_comp(x, type = "all")
+concstats_comp(x, type = "all", digits = 2)
 
-}
-\references{
-Herfindahl, O. C. (1950), "Concentration in the steel industry"
-(PhD thesis)
-
-Hirschmann, A. O. (1945), "National power and structure of
-foreign trade".
-
-Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak,
-B. M. (2005) Banking concentration: the Brazilian case. In Financial
-Stability Report. Brasilia: Banco Central do Brasil, 4: 109-129.
-
-Garcia Alba Idunate, P. (1994). Un Indice de dominancia para el
-analisis de la estructura de los mercados. El Trimestre Economico,
-61: 499-524.
-
-Melnik, A., Shy, Oz, Stenbacka, R., (2008), Assessing market
-dominance, Journal of Economic Behavior and Organization, 68: pp. 63-72.
 }
 \seealso{
-\code{\link[=concstats_concstats]{concstats_concstats()}},
-\code{\link[=concstats_mstruct]{concstats_mstruct()}},
-\code{\link[=concstats_inequ]{concstats_inequ()}}
+\code{\link[=concstats_concstats]{concstats_concstats()}}, \code{\link[=concstats_mstruct]{concstats_mstruct()}}, \code{\link[=concstats_inequ]{concstats_inequ()}}
 }
