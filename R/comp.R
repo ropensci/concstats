@@ -410,7 +410,6 @@ concstats_sten <- function(x, na.rm = TRUE) {
   sten1 <- x[1]
   sten2 <- x[2]
   sten <- as.numeric(0.5 * (1 - 1 * (sten1 ^ 2 - sten2 ^ 2)) * 100)
-  # sten <- ifelse(sum(sten < 1) || sum(sten == 1)) (sten * 100)
   return(sten)
 }
 
