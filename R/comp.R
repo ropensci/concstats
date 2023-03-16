@@ -481,12 +481,11 @@ concstats_all_comp <- function(x, normalized = FALSE, na.rm = TRUE,
 
   x <- as.numeric(stats::na.omit(x))
 
-  invisible(utils::capture.output(
-    hhi <- concstats_hhi(x, normalized = normalized, na.rm = TRUE),
-    hhi_d <- concstats_hhi_d(x, na.rm = TRUE),
-    hhi_min <- concstats_hhi_min(x, na.rm = TRUE),
-    dom <- concstats_dom(x, na.rm = TRUE),
-    sten <- concstats_sten(x, na.rm = TRUE)))
+    hhi <- concstats_hhi(x, normalized = normalized, na.rm = TRUE)
+    hhi_d <- concstats_hhi_d(x, na.rm = TRUE)
+    hhi_min <- concstats_hhi_min(x, na.rm = TRUE)
+    dom <- concstats_dom(x, na.rm = TRUE)
+    sten <- concstats_sten(x, na.rm = TRUE)
 #' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of
 #'  screen-based output.
   results_comp <- data.frame(Measure = c("HHI", "HHI(min)", "HHI(dual)",

@@ -393,12 +393,11 @@ concstats_all_mstruct <- function(x, na.rm = TRUE, digits = NULL) {
     x
   }
 
-  invisible(utils::capture.output(
-    firm <- concstats_firm(x, na.rm = TRUE),
-    nrs_eq <- concstats_nrs_eq(x, na.rm = TRUE),
-    top <- concstats_top(x, na.rm = TRUE),
-    top3 <- concstats_top3(x, na.rm = TRUE),
-    top5 <- concstats_top5(x, na.rm = TRUE)))
+    firm <- concstats_firm(x, na.rm = TRUE)
+    nrs_eq <- concstats_nrs_eq(x, na.rm = TRUE)
+    top <- concstats_top(x, na.rm = TRUE)
+    top3 <- concstats_top3(x, na.rm = TRUE)
+    top5 <- concstats_top5(x, na.rm = TRUE)
 #' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of screen-based
 #'  output.
   results_mstruct <- data.frame(Measure = c("Firms", "Nrs_equivalent",

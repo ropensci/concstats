@@ -484,12 +484,11 @@ concstats_all_inequ <- function(x, normalized = FALSE, na.rm = TRUE,
   }
   x <- as.numeric(x)
 
-  invisible(utils::capture.output(
-    entropy <- concstats_entropy(x, normalized = normalized, na.rm = TRUE),
-    gini <- concstats_gini(x, normalized = normalized, na.rm = TRUE),
-    simpson <- concstats_simpson(x, na.rm = TRUE),
-    palma <- concstats_palma(x, na.rm = TRUE),
-    grs <- concstats_grs(x, na.rm = TRUE)))
+    entropy <- concstats_entropy(x, normalized = normalized, na.rm = TRUE)
+    gini <- concstats_gini(x, normalized = normalized, na.rm = TRUE)
+    simpson <- concstats_simpson(x, na.rm = TRUE)
+    palma <- concstats_palma(x, na.rm = TRUE)
+    grs <- concstats_grs(x, na.rm = TRUE)
 #' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of
 #'  screen-based output.
   results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
