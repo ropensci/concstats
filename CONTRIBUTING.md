@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Contributing to the concstats R package
 
 Your want to contribute to **concstats**: Market Structure,
@@ -43,7 +37,7 @@ script, not a `.Rd` file. You can find the `.R` file that generates the
 #### Fixing bugs
 
 Please submit questions, bug reports, and requests in the [issues
-tracker](https://github.com/schneiderpy/concstats/issues). Please submit
+tracker](https://github.com/ropensci/concstats/issues). Please submit
 bug reports with a minimal
 [reprex](https://www.tidyverse.org/help/#reprex) (including details like
 operating system and local setup).
@@ -51,7 +45,7 @@ operating system and local setup).
 #### Bigger changes
 
 If you want to make a bigger change, it's a good idea to first file an
-[issue](https://github.com/schneiderpy/concstats/issues) and discuss
+[issue](https://github.com/ropensci/concstats/issues) and discuss
 your idea.
 
 -   I aim for testing that has high coverage and is robust. Include
@@ -77,9 +71,9 @@ subsequent development primarily in response to user feedback.
 #### Still got questions?
 
 Using **concstats** and got stuck? Browse the
-[documentation](https://schneiderpy.github.io/concstats) to see if you
+[documentation](https://docs.ropensci.org/concstats/) to see if you
 can find a solution. Still stuck? Post your question as an [issue on
-GitHub](https://github.com/schneiderpy/concstats/issues/new). While I
+rOpenSci](https://github.com/ropensci/concstats/issues/new). While I
 cannot offer user support, I'll try to do my best to address it, as
 questions often lead to better documentation or the discovery of bugs.
 
@@ -89,10 +83,10 @@ Want to ask a question in private? Contact the package maintainer by
 ### Propose an idea?
 
 Have an idea for a new concstats feature? Take a look at the
-[documentation](https://schneiderpy.github.io/concstats) and [issue
-list](https://github.com/schneiderpy/concstats/issues) to see if it
+[documentation](https://docs.ropensci.org/concstats/) and [issue
+list](https://github.com/ropensci/concstats/issues) to see if it
 isn't included or suggested yet. If not, suggest your idea as an [issue
-on GitHub](https://github.com/schneiderpy/concstats/issues/new). While I
+on github](https://github.com/ropensci/concstats/issues/new). While I
 can't promise to implement your idea, it helps to:
 
 -   Explain in detail how it would work.
@@ -103,8 +97,8 @@ can't promise to implement your idea, it helps to:
 
 You like the idea of the package? You will use `concstats` in research
 or practice in the future?\
-Please consider [citing
-it](https://schneiderpy.github.io/concstats/authors.html)!
+Please consider
+[citing it](https://docs.ropensci.org/concstats/authors.html#citation)!
 
 ## Code of Conduct
 

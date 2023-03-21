@@ -37,10 +37,10 @@ Description: Based on individual market shares of all participants in a
     9.  Shannon, C. E. (1948). "A Mathematical Theory of Communication".
     10.  Simpson, E. H. (1949). "Measurement of Diversity"
     <doi:10.1038/163688a0>.
-License: MIT + file LICENSE
-URL: https://github.com/schneiderpy/concstats,
-    https//schneiderpy.github.io/constats (website)
-BugReports: https://github.com/schneiderpy/concstats/issues
+License: GPL (>= 2)
+URL: https://github.com/ropensci/concstats/,
+    https://docs.ropensci.org/concstats/ (website)
+BugReports: https://github.com/ropensci/concstats/issues/
 Depends:
     R (>= 2.10)
 Suggests: 

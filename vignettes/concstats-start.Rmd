@@ -31,12 +31,14 @@ library(concstats)
 
 ```
 
-To install the latest development version of `concstats` directly from [GitHub](https://github.com/schneiderpy/concstats) or use: 
+You can install the development versions from
 
-```{r, message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
-library(devtools)
-devtools::install_github("schneiderpy/concstats")
-```
+*r-universe*    
+install.packages("concstats", repos = "https://ropensci.r-universe.dev")
+
+*github* (requires `remotes` or `devtools`)    
+remotes::install_github("ropensci/concstats"
+
 
 # </a><i class="fas fa-table"></i> Why did I build it?
 

@@ -9,23 +9,22 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/schneiderpy/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
+[![R-CMD-check](https://github.com/ropensci/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-[![cran
-checks](https://badges.cranchecks.info/summary/concstats.svg)](https://cran.r-project.org/web/checks/check_results_concstats.html)
+[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](https://ropensci.r-universe.dev/ui#package:concstats)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/schneiderpy/concstats/pulls)
+[![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/ropensci/concstats/pulls)
 [![R
-badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/schneiderpy/concstats)
-[![codecov](https://codecov.io/gh/schneiderpy/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://codecov.io/gh/schneiderpy/concstats)
+badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/ropensci/concstats)
+[![codecov](https://codecov.io/gh/ropensci/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://codecov.io/gh/ropensci/concstats)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456536.svg)](https://doi.org/10.5281/zenodo.6456536)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
-[![pkgcheck](https://github.com/schneiderpy/concstats/workflows/pkgcheck/badge.svg)](https://github.com/schneiderpy/concstats/actions?query=workflow%3Apkgcheck)
+[![pkgcheck](https://github.com/ropensci/concstats/workflows/pkgcheck/badge.svg)](https://github.com/ropensci/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
 <!-- badges: end -->
@@ -63,73 +62,71 @@ install.packages("concstats") # Market structure, concentration and inequality
                               # measures
 ```
 
-You can install the development version from
-[GitHub](https://github.com/schneiderpy/concstats) or:
+You can install the development versions from \# r-universe
+install.packages(“concstats”, repos =
+“<https://ropensci.r-universe.dev>”)
 
-``` r
-install.packages("devtools") # a package for developing R packages
-devtools::install_github("schneiderpy/concstats")
-```
+# github (requires `remotes` or `devtools`)
 
-## How to use `concstats`
+remotes::install_github(“ropensci/concstats”)
 
-### `concstats_concstats`
 
-In general, `concstats` takes numeric vectors as input, that is,
-relative market shares in decimal format. `concstats_constats` has one
-main function which calculates a set of pre-selected measures in a
-one-step procedure.
+    ## How to use `concstats`
 
-### `concstats_mstruct`
+    ### `concstats_concstats`
 
-is a wrapper to calculate different structural measures. Within this
-group are measures like the number of firms, numbers equivalent,
-cumulative Top 3 and Top 5 market share. The measures might be
-calculated as a group or individually.
+    In general, `concstats` takes numeric vectors as input, that is, relative market
+    shares in decimal format. `concstats_constats` has one main function which
+    calculates a set of pre-selected measures in a one-step procedure.
 
-### `concstats_comp`
+    ### `concstats_mstruct`
 
-is a group wrapper to calculate different concentration measures. Within
-this group are measures like the Herfindahl-Hirschman index (HHI), the
-dual of the HHI, the Dominance or the Stenbacka index.
+    is a wrapper to calculate different structural measures. Within this group are
+    measures like the number of firms, numbers equivalent, cumulative Top 3 and
+    Top 5 market share. The measures might be calculated as a group or individually.
 
-### `concstats_inequ`
+    ### `concstats_comp`
 
-is a group of inequality and diversity measures, e.g. Entropy, Gini
-coefficient, Palma ratio. Most functions offer a finite sample
-correction.
+    is a group wrapper to calculate different concentration measures. Within this
+    group are measures like the Herfindahl-Hirschman index (HHI), the dual of the
+    HHI, the Dominance or the Stenbacka index.
 
-## Examples
+    ### `concstats_inequ`
 
-This is a basic example which shows you how to calculate an individual
-measure or a set of market structure and concentration measures:
+    is a group of inequality and diversity measures, e.g. Entropy, Gini coefficient,
+    Palma ratio. Most functions offer a finite sample correction.
 
-``` r
-library(concstats)
-## Create some simple data
-x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
-concstats_hhi(x) # the Herfindahl-Hirschman Index
-#> [1] 0.275
+    ## Examples
 
-concstats_dom(x) # the Dominance Index
-#> [1] 0.4127273
+    This is a basic example which shows you how to calculate an individual
+    measure or a set of market structure and concentration measures:
 
-## Our simple data
-x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
-                                          # the market (should sum up to 1)
 
-## Calculate a selected set of market structure and concentration measures
-concstats_concstats(x2, digits = 2) # calculates a selected set of measures
-#>         Measures Values
-#> 1          Firms   6.00
-#> 2 Nrs_equivalent   3.33
-#> 3        Top (%)  40.00
-#> 4       Top3 (%)  85.00
-#> 5       Top5 (%)  96.00
-#> 6            HHI   0.30
-#> 7    Entropy(RE)   0.79
-#> 8    Palma ratio   2.67
-```
+    ```r
+    library(concstats)
+    ## Create some simple data
+    x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
+    concstats_hhi(x) # the Herfindahl-Hirschman Index
+    #> [1] 0.275
+
+    concstats_dom(x) # the Dominance Index
+    #> [1] 0.4127273
+
+    ## Our simple data
+    x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
+                                              # the market (should sum up to 1)
+
+    ## Calculate a selected set of market structure and concentration measures
+    concstats_concstats(x2, digits = 2) # calculates a selected set of measures
+    #>         Measures Values
+    #> 1          Firms   6.00
+    #> 2 Nrs_equivalent   3.33
+    #> 3        Top (%)  40.00
+    #> 4       Top3 (%)  85.00
+    #> 5       Top5 (%)  96.00
+    #> 6            HHI   0.30
+    #> 7    Entropy(RE)   0.79
+    #> 8    Palma ratio   2.67
 
 In this case, the result is a table with eight selected measures: 1)
 Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in
@@ -207,4 +204,9 @@ to open an issue or pull request.
 ## Development
 
 Contributions are welcome! For more details on how to contribute to this
-package please see the [CONTRIBUTING file](CONTRIBUTING.md).
+package please see the [CONTRIBUTING
+file](https://github.com/ropensci/concstats/blob/main/.github/CONTRIBUTING.md).
+
+Please note that this package is released with a [Contributor Code of
+Conduct](https://ropensci.org/code-of-conduct/). By contributing to this
+project, you agree to abide by its terms.

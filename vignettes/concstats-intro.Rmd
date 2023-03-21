@@ -28,7 +28,8 @@ or groups of functions are available to achieve the desired goal.
 
 ## Installation
 You can install `concstats` directly from CRAN or the latest development version
-from [GitHub](https://github.com/schneiderpy/concstats)
+from  github (requires `remotes` or `devtools`)
+remotes::install_github("ropensci/concstats")
 
 Then, load the package.
 ```{r, message=FALSE, warning=FALSE}
@@ -44,7 +45,7 @@ are 22 paired observations for real Paraguayan credit cooperatives
 granted. For a better visualization there is an additional column with the 
 transformed total loans. For further information on the data please see the
 `creditcoops`
-[help](https://schneiderpy.github.io/concstats/reference/creditcoops.html)
+[help](https://docs.ropensci.org/concstats/reference/creditcoops.html)
 file. For a practical implementation you might be interested
 to read the following [article](https://doi.org/10.1515/zfgg-2022-0002).
 
@@ -216,7 +217,7 @@ coops_2016 <- coops_2016 / sum(coops_2016)  # market shares in decimal form
 # We then use the new object `coops_2016` to calculate the market structure
 # measures as a group in a one-step-procedure and capture the results in a
 # printed table:
-coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all")
+coops_2016_mstruct <- concstats_mstruct(coops_2016, type = "all", digits = 2)
 coops_2016_mstruct_tab <- coops_2016_mstruct %>%
   kableExtra::kbl(caption = "Market structure 2016", digits = 2,
                   booktabs = TRUE, align = "r") %>%
