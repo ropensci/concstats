@@ -83,14 +83,15 @@ install.packages("concstats") # Market structure, concentration and inequality
                               # measures
 ```
 
-You can install the development versions from
-# r-universe
-install.packages("concstats", repos = "https://ropensci.r-universe.dev")
-
-# github (requires `remotes` or `devtools`)
-remotes::install_github("ropensci/concstats")
+You can install the latest development version from
+[GitHub](https://github.com/ropensci/concstats) or [R-universe](https://ropensci.r-universe.dev/ui#package:concstats).
+```{r eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("ropensci/concstats")
 ```
-
+```{r eval = FALSE}
+install.packages("concstats", repos = "https://ropensci.r-universe.dev")
+```
 ## How to use `concstats`
 
 ### `concstats_concstats`

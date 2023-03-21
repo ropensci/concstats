@@ -62,71 +62,78 @@ install.packages("concstats") # Market structure, concentration and inequality
                               # measures
 ```
 
-You can install the development versions from \# r-universe
-install.packages(“concstats”, repos =
-“<https://ropensci.r-universe.dev>”)
+You can install the latest development version from
+[GitHub](https://github.com/ropensci/concstats) or
+[R-universe](https://ropensci.r-universe.dev/ui#package:concstats).
 
-# github (requires `remotes` or `devtools`)
+``` r
+# install.packages("devtools")
+devtools::install_github("ropensci/concstats")
+```
 
-remotes::install_github(“ropensci/concstats”)
+``` r
+install.packages("concstats", repos = "https://ropensci.r-universe.dev")
+```
 
+## How to use `concstats`
 
-    ## How to use `concstats`
+### `concstats_concstats`
 
-    ### `concstats_concstats`
+In general, `concstats` takes numeric vectors as input, that is,
+relative market shares in decimal format. `concstats_constats` has one
+main function which calculates a set of pre-selected measures in a
+one-step procedure.
 
-    In general, `concstats` takes numeric vectors as input, that is, relative market
-    shares in decimal format. `concstats_constats` has one main function which
-    calculates a set of pre-selected measures in a one-step procedure.
+### `concstats_mstruct`
 
-    ### `concstats_mstruct`
+is a wrapper to calculate different structural measures. Within this
+group are measures like the number of firms, numbers equivalent,
+cumulative Top 3 and Top 5 market share. The measures might be
+calculated as a group or individually.
 
-    is a wrapper to calculate different structural measures. Within this group are
-    measures like the number of firms, numbers equivalent, cumulative Top 3 and
-    Top 5 market share. The measures might be calculated as a group or individually.
+### `concstats_comp`
 
-    ### `concstats_comp`
+is a group wrapper to calculate different concentration measures. Within
+this group are measures like the Herfindahl-Hirschman index (HHI), the
+dual of the HHI, the Dominance or the Stenbacka index.
 
-    is a group wrapper to calculate different concentration measures. Within this
-    group are measures like the Herfindahl-Hirschman index (HHI), the dual of the
-    HHI, the Dominance or the Stenbacka index.
+### `concstats_inequ`
 
-    ### `concstats_inequ`
+is a group of inequality and diversity measures, e.g. Entropy, Gini
+coefficient, Palma ratio. Most functions offer a finite sample
+correction.
 
-    is a group of inequality and diversity measures, e.g. Entropy, Gini coefficient,
-    Palma ratio. Most functions offer a finite sample correction.
+## Examples
 
-    ## Examples
+This is a basic example which shows you how to calculate an individual
+measure or a set of market structure and concentration measures:
 
-    This is a basic example which shows you how to calculate an individual
-    measure or a set of market structure and concentration measures:
+``` r
+library(concstats)
+## Create some simple data
+x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
+concstats_hhi(x) # the Herfindahl-Hirschman Index
+#> [1] 0.275
 
+concstats_dom(x) # the Dominance Index
+#> [1] 0.4127273
 
-    ```r
-    library(concstats)
-    ## Create some simple data
-    x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
-    concstats_hhi(x) # the Herfindahl-Hirschman Index
-    #> [1] 0.275
+## Our simple data
+x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
+                                          # the market (should sum up to 1)
 
-    concstats_dom(x) # the Dominance Index
-    #> [1] 0.4127273
-
-    ## Our simple data
-    x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
-                                              # the market (should sum up to 1)
-
-    ## Calculate a selected set of market structure and concentration measures
-    concstats_concstats(x2, digits = 2) # calculates a selected set of measures
-    #>         Measures Values
-    #> 1          Firms   6.00
-    #> 2 Nrs_equivalent   3.33
-    #> 3        Top (%)  40.00
-    #> 4       Top3 (%)  85.00
-    #> 5       Top5 (%)  96.00
-    #> 6            HHI   0.30
-    #> 7    Entropy(RE)   0.79
-    #> 8    Palma ratio   2.67
+## Calculate a selected set of market structure and concentration measures
+concstats_concstats(x2, digits = 2) # calculates a selected set of measures
+#>         Measures Values
+#> 1          Firms   6.00
+#> 2 Nrs_equivalent   3.33
+#> 3        Top (%)  40.00
+#> 4       Top3 (%)  85.00
+#> 5       Top5 (%)  96.00
+#> 6            HHI   0.30
+#> 7    Entropy(RE)   0.79
+#> 8    Palma ratio   2.67
+```
 
 In this case, the result is a table with eight selected measures: 1)
 Number of firms, 2) Numbers equivalent of firms, 3) Top firm, share in
