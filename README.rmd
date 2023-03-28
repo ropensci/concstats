@@ -34,13 +34,13 @@ lapply(pkgs, library, character.only = TRUE)
 ## Introduction
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/ropensci/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/schneiderpy/concstats/actions)
+[![R-CMD-check](https://github.com/ropensci/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/concstats/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](https://ropensci.r-universe.dev/ui#package:concstats)
+[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](https://ropensci.r-universe.dev/concstats)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![PRsWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=plastic)](https://github.com/ropensci/concstats/pulls)
 [![R badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/ropensci/concstats)
-[![codecov](https://codecov.io/gh/ropensci/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://codecov.io/gh/ropensci/concstats)
+[![codecov](https://codecov.io/gh/ropensci/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://app.codecov.io/gh/ropensci/concstats)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456536.svg)](https://doi.org/10.5281/zenodo.6456536)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
@@ -228,7 +228,7 @@ an issue or pull request.
 
 Contributions are welcome\! For more details on how to contribute to this
 package please see the
-[CONTRIBUTING file](https://github.com/ropensci/concstats/blob/main/.github/CONTRIBUTING.md).
+[CONTRIBUTING file](https://docs.ropensci.org/concstats/CONTRIBUTING.html).
 
 Please note that this package is released with a
 [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/).
