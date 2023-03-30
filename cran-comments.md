@@ -1,50 +1,40 @@
-## Submission (v.0.1.2)
+## Submission
+This is a submission for an updated version of this package.
 
-- increased version number for this submission to v.0.1.2
-- fixed issues with unit tests regarding floating doubles
-- now passed all test environments, including MacOS
+## Test environments
+- Windows Server 2022, R-devel, 64 bit
+- Fedora Linux, R-devel, clang, gfortran
+- Ubuntu Linux 20.04.1 LTS, R-release, GCC
+- macOS 10.13.6 High Sierra, R-release, brew
 
-## Resubmission (v.0.1.1)
+## R CMD check results
 
-- increased version number for this submission
-- fixed issues with unit tests
+There were no ERRORS or WARNINGS
 
-## Resubmission
+There is one NOTE that is only found on Windows (Server 2022, R-devel 64-bit):
 
-- Moved references from script files to DESCRIPTION.
-- Fixed issue with (unnecessary) instances of install.packages() in vignette.
+* checking for detritus in the temp directory ... NOTE
+Found the following files/directories:
+  'lastMiKTeXException'
+  
+As mentioned in the [R-hub issue #503](https://github.com/r-hub/rhub/issues/503),
+this warning could occur due to a bug in MiKTeX and can likely be ignored.
 
-### Local check (devtools::check())
+There is one NOTE that is only found on (Fedora Linux, R-devel, clang, gfortran)
 
-Duration: 2m 59.7s
+* checking HTML version of manual ... NOTE
+Skipping checking HTML validation: no command 'tidy' found
+
+As described [here](https://groups.google.com/g/r-sig-mac/c/7u_ivEj4zhM),
+our understanding is that this is an old bug/issue which is located at the
+testing environment.
+
+## Local check - with devtools::check()
+-- R CMD check results  concstats 0.1.6 ----
+Duration: 2m 45.4s
 
 0 errors v | 0 warnings v | 0 notes v
 
 R CMD check succeeded
-
-### Test environments (processed with rhub)
-- R-hub windows-x86_64-devel (r-devel)
-- R-hub ubuntu-gcc-release (r-release)
-- R-hub fedora-clang-devel (r-devel)
-
-### R CMD check results
-
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
-
-
-## Submission
-
-This is the first submission to CRAN.
-
-### Test environments (processed with rhub)
-- R-hub windows-x86_64-devel (r-devel)
-- R-hub ubuntu-gcc-release (r-release)
-- R-hub fedora-clang-devel (r-devel)
-
-### R CMD check results
-
-0 errors | 0 warnings | 1 note
 
 * This is a new release.
