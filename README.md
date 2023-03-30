@@ -11,7 +11,7 @@
 
 [![R-CMD-check](https://github.com/ropensci/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/concstats/actions)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](https://ropensci.r-universe.dev/concstats)
+[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](http://ropensci.r-universe.dev/ui/#package:concstats)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -64,7 +64,7 @@ install.packages("concstats") # Market structure, concentration and inequality
 
 You can install the latest development version from
 [GitHub](https://github.com/ropensci/concstats) or
-[R-universe](https://ropensci.r-universe.dev/ui#package:concstats).
+[R-universe](http://ropensci.r-universe.dev/ui/#package:concstats).
 
 ``` r
 # install.packages("devtools")
