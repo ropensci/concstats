@@ -1,3 +1,7 @@
+# concstats 0.1.8
+
+-   increased version to 0.1.8 for CRAN re-submission
+
 # concstats 0.1.6
 
 -   changed to version 0.1.6
