@@ -1,7 +1,3 @@
-## Resubmission
-
-- increased version to 0.1.8
-
 ## Submission
 This is a submission for an updated version of this package.
 
