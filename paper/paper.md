@@ -14,14 +14,9 @@ affiliations:
  - name: Independent Researcher, Schneider Consulting,
          Asuncion-Paraguay
    index: 1
-citation_author: Schneider, A.
 date: 17 July 2023
 year: 2023
 bibliography: paper.bib
-link-citations: true
-output: rticles::joss_article
-#csl: apa.csl
-journal: JOSS
 ---
 
 # Summary
@@ -129,7 +124,7 @@ credit unions in Paraguay.
 # Examples
 
 First of all, make sure you have the `concstats` package installed from CRAN or
-the latest development version from Github.
+the latest development version from GitHub.
 
 Let us get a quick overview of a given market situation.
 
@@ -299,7 +294,7 @@ loans over time for the two sample years 2016 and 2018.
 # Availability
 A stable version of concstats is available on [CRAN](https://cloud.r-project.org/web/packages/concstats/index.html) and has a
 dedicated [website](https://docs.ropensci.org/concstats/) for a quick start. The
-development version is available on [Github](https://github.com/ropensci/concstats)
+development version is available on [GitHub](https://github.com/ropensci/concstats)
 
 # Acknowledgements
 The author acknowledge rOpenSci reviewers and package contributors. Detailed
