@@ -46,6 +46,7 @@ lapply(pkgs, library, character.only = TRUE)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](https://r-pkg.org/pkg/concstats)
 [![pkgcheck](https://github.com/ropensci/concstats/workflows/pkgcheck/badge.svg)](https://github.com/ropensci/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
+[![status](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0/status.svg)](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0)
 <!-- badges: end -->
 
 ```{r srr-tags-audience, echo=FALSE, eval=FALSE}

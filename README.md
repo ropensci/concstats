@@ -27,6 +27,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](
 [![pkgcheck](https://github.com/ropensci/concstats/workflows/pkgcheck/badge.svg)](https://github.com/ropensci/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
+[![status](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0/status.svg)](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0)
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
@@ -149,19 +150,19 @@ Some functions are already implemented in other R packages. The
 non-exhaustive summary below is by no means a description of each
 package.
 
--   The Herfindahl Hirschman Index can be found in the
-    [hhi](https://joss.theoj.org/papers/10.21105/joss.00828) and the
-    [divseg](https://github.com/christopherkenny/divseg) packages. While
-    the *hhi* package has just one function, neither of both packages
-    offer a normalized version of the measure.
+- The Herfindahl Hirschman Index can be found in the
+  [hhi](https://joss.theoj.org/papers/10.21105/joss.00828) and the
+  [divseg](https://github.com/christopherkenny/divseg) packages. While
+  the *hhi* package has just one function, neither of both packages
+  offer a normalized version of the measure.
 
--   The latter offers as well functions for the Entropy, Gini and
-    Simpson measures.
+- The latter offers as well functions for the Entropy, Gini and Simpson
+  measures.
 
--   The [acid](https://cran.r-project.org/package=acid) and the
-    [ineq](https://cran.r-project.org/package=ineq) packages offer
-    functions for inequality and competition measures, e.g. for the
-    Entropy and Gini metric.
+- The [acid](https://cran.r-project.org/package=acid) and the
+  [ineq](https://cran.r-project.org/package=ineq) packages offer
+  functions for inequality and competition measures, e.g. for the
+  Entropy and Gini metric.
 
 Some popular measures, e.g. Gini or the Herfindahl-Hirschman index have
 also been implemented in Python.
