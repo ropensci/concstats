@@ -107,7 +107,7 @@ e.g. concstats_hhi(), its dual concstats_hhi_d(), or any other function of
 interest, and include the name of the vector with the market shares. The user
 may also calculate a group of measures, e.g. `concstats_mstruct`
 (market structure) in a one-step procedure and the results will be printed in a
-table (see Figure \ref{fig:mstruct}). Alternatively the user might just want a quick
+table (see Figure \ref{mstruct}). Alternatively the user might just want a quick
 overview of a given market calculating a predefined set of measures using the `concstats_concstats()` function. 
 
 Where it makes sense, measures are bounded [0, 1] to provide a better
