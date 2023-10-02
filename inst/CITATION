@@ -1,21 +1,23 @@
 citHeader("To cite concstats in publications use:")
 
 bibentry(
-  key = "concstats",
-  bibtype  = "Manual",
-  title    = "{concstats}: Market Structure, Concentration, and Inequality
-              Measures",
-  author = c(person("Andreas", "Schneider")),
-  note  = "R package version 0.1.6",
-  year     = "2023",
-  doi      = "10.5281/zenodo.6456536",
-  url      = "https://github.com/ropensci/concstats"
+  bibtype = "Article",
+  title = "concstats: Market Structure, Concentration and Inequality Measures, with R",
+  author = "Andreas Schneider",
+  journal = "Journal of Open Source Software",
+  publisher = "The Open Journal",
+  year = 2023,
+  volume = 8,
+  number = 89,
+  pages = 5885,
+  url = "https://doi.org/10.21105/joss.05885",
+  doi = "10.21105/joss.05885"
 )
 
 textVersion = paste(
       "Schneider, A. (2023). concstats: Market Structure, Concentration,
-      and Inequality Measures,",
-      "DOI https//doi:10.5281/zenodo.6456536",
-      "URL https://CRAN.R-project.org/package=concstats",
+      and Inequality Measures, with R,",
+      "DOI https//doi:10.21105/joss.05885",
+      "URL https://doi.org/10.21105/joss.05885",
       "(R package version 0.1.6)"
   )

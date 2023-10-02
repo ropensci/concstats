@@ -19,7 +19,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![R
 badge](https://img.shields.io/badge/Build%20with-♥%20and%20R-blue)](https://github.com/ropensci/concstats)
 [![codecov](https://codecov.io/gh/ropensci/concstats/branch/master/graph/badge.svg?token=IG5NPEGK6J)](https://app.codecov.io/gh/ropensci/concstats)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6456536.svg)](https://doi.org/10.5281/zenodo.6456536)
 [![metacran
 downloads](https://cranlogs.r-pkg.org/badges/concstats)](https://cran.r-project.org/package=concstats)
 [![CRAN RStudio mirror
@@ -27,7 +26,7 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/concstats?color=blue)](
 [![pkgcheck](https://github.com/ropensci/concstats/workflows/pkgcheck/badge.svg)](https://github.com/ropensci/concstats/actions?query=workflow%3Apkgcheck)
 [![Status at rOpenSci Software Peer
 Review](https://badges.ropensci.org/559_status.svg)](https://github.com/ropensci/software-review/issues/559)
-[![status](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0/status.svg)](https://joss.theoj.org/papers/bca9a2ab9727d790c96b3229c384f5b0)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.05885/status.svg)](https://doi.org/10.21105/joss.05885)
 <!-- badges: end -->
 
 Measures of concentration and competition are important and give a first
