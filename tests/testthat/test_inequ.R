@@ -264,7 +264,7 @@ test_that("concstats_simpson function operates properly", {
 test_that("concstats_simpson returns the Simpson measure", {
 
   x <- c(0.2, 0.3, 0.4, 0.1)
-  share_2018_sim <- 0.9582601
+  share_2018_sim <- 0.8765386
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
                   0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
@@ -275,8 +275,7 @@ test_that("concstats_simpson returns the Simpson measure", {
 #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_simpson(share_2018), share_2018_sim,
                tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_simpson(x), as.numeric(1 - (sum(x * (x - 1)) /
-                                                      (sum(x) * (sum(x - 1))))))
+  expect_equal(concstats_simpson(x), as.numeric(1 - (sum((x/sum(x))^2))))
 #' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_sim),
                          label = "numeric values returned")

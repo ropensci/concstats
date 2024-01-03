@@ -268,11 +268,6 @@ concstats_simpson <- function(x, na.rm = TRUE) {
     stop("x in `concstats_simpson` must be a positive vector")
   }
 
-#' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  # check sum of vector. Must sum to 1
-  if (!isTRUE(all.equal(sum(x), 1, tolerance = .Machine$double.eps^0.25))) {
-    stop("vector `x` in `concstats_simpson` does not sum to 1")
-  }
 
 #' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
   if (sum(x, na.rm = TRUE) > 1) {
@@ -281,7 +276,14 @@ concstats_simpson <- function(x, na.rm = TRUE) {
     x
   }
 
-  simpson <- as.numeric(1 - (sum(x * (x - 1)) / (sum(x) * (sum(x - 1)))))
+#' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
+  # check sum of vector. Must sum to 1
+  if (!isTRUE(all.equal(sum(x), 1, tolerance = .Machine$double.eps^0.25))) {
+    stop("vector `x` in `concstats_simpson` does not sum to 1")
+  }
+
+
+  simpson <- as.numeric(1 - sum((x/sum(x))^2))
   return(simpson)
 }
 
