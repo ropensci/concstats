@@ -1,3 +1,17 @@
+# concstats 0.2.0
+
+-   added three more functions (concstats_top_df, concstats_top3_df,
+    concstats_top5_df)
+-   added a helper function to calculate shares if input are raw data and not
+    transformed to shares
+-   gave all functions a separate R script
+-   all functions have now their own test file
+-   corrected Simpson measure #3
+-   improved input behavior for integer vectors representing shares
+-   functions error on any negative value
+-   revisited and updated documentation and vignettes
+
+
 # concstats 0.1.6
 
 -   changed to version 0.1.6
