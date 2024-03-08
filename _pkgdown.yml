@@ -1,0 +1,43 @@
+title: concstats
+url: https://docs.ropensci.org/concstats/
+reference:
+- title: A first glance with a predefined set of measures
+  contents: concstats_concstats
+- title: Concentration measures
+  contents:
+  - concstats_comp
+  - concstats_hhi
+  - concstats_hhi_d
+  - concstats_hhi_min
+  - concstats_dom
+  - concstats_sten
+  - concstats_all_comp
+- title: Market structure measures
+  contents:
+  - concstats_mstruct
+  - concstats_firm
+  - concstats_nrs_eq
+  - concstats_top
+  - concstats_top3
+  - concstats_top5
+  - concstats_top_df
+  - concstats_top3_df
+  - concstats_top5_df
+  - concstats_all_mstruct
+- title: Inequality and Diversity Measures
+  contents:
+  - concstats_inequ
+  - concstats_entropy
+  - concstats_gini
+  - concstats_simpson
+  - concstats_palma
+  - concstats_grs
+  - concstats_all_inequ
+- title: Data
+  contents:
+  - creditcoops
+- title: Miscellaneous
+  contents:
+  - concstats_shares
+figures:
+  dpi: 300
