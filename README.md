@@ -51,7 +51,8 @@ Top3 or Top5 market shares.
 -`concstats_comp` is a wrapper for concentration measures, e.g. the
 Herfindahl Hirschman Index.  
 -`concstats_inequ` offers diversity or inequality measures, e.g. the
-Entropy or the Palma ratio.
+Entropy or the Palma ratio. -`concstats_shares` is a helper function
+converting numeric vectors into individual shares.
 
 ## Installation
 
@@ -79,17 +80,20 @@ install.packages("concstats", repos = "https://ropensci.r-universe.dev")
 
 ### `concstats_concstats`
 
-In general, `concstats` takes numeric vectors as input, that is,
-relative market shares in decimal format. `concstats_constats` has one
-main function which calculates a set of pre-selected measures in a
-one-step procedure.
+In general, all functions of the `concstats` package take numeric
+vectors as input, that is, ideally relative market shares in decimal
+format. However, the user can also use integers which are then converted
+to decimal form. `concstats_constats` has one main function which
+calculates a set of pre-selected measures in a one-step procedure.
 
 ### `concstats_mstruct`
 
 is a wrapper to calculate different structural measures. Within this
 group are measures like the number of firms, numbers equivalent,
 cumulative Top 3 and Top 5 market share. The measures might be
-calculated as a group or individually.
+calculated as a group or individually. The `concstats_top_df` functions
+also take a data frame as input, since the ranking of firms might be of
+interest.
 
 ### `concstats_comp`
 
@@ -114,6 +118,11 @@ library(concstats)
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, 0, 0)
 concstats_hhi(x) # the Herfindahl-Hirschman Index
 #> [1] 0.275
+
+## if you need to convert your data into shares
+x <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72)
+concstats_shares(x, digits = 5)
+#> [1] 0.59920 0.00054 0.18014 0.14329 0.07683
 
 concstats_dom(x) # the Dominance Index
 #> [1] 0.4127273
