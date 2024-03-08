@@ -1,7 +1,7 @@
 Type: Package
 Package: concstats
 Title: Market Structure, Concentration and Inequality Measures
-Version: 0.1.6
+Version: 0.2.0
 Authors@R: c(
     person(given = "Andreas",
            family = "Schneider",
@@ -37,9 +37,9 @@ Description: Based on individual market shares of all participants in a
     9.  Shannon, C. E. (1948). "A Mathematical Theory of Communication".
     10.  Simpson, E. H. (1949). "Measurement of Diversity"
     <doi:10.1038/163688a0>.
-License: GPL (>= 3)
+License: GPL (>= 3)   
 URL: https://github.com/ropensci/concstats/,
-    https://docs.ropensci.org/concstats/ (website)
+    https://docs.ropensci.org/concstats/(website)
 BugReports: https://github.com/ropensci/concstats/issues/
 Depends:
     R (>= 2.10)
@@ -59,5 +59,6 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Config/testthat/edition: 3
+
