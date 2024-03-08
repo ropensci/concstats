@@ -78,7 +78,10 @@ and the palma ratio.
 **nrs_eq** (Numbers equivalent), **top**, **top 3** and **top 5** market share,
 and **all** calculates all measures as a group. Each of the measures within a
 group can be accessed directly using the prefix **concstats_**, e.g.
-**concstats_firm**.
+**concstats_firm**. In practice, firm ranking might be of interest, and the user
+might prefer the **concstats_top_df** functions. In general, the user should
+provide individual markets shares, however, the helper function
+**concstats_shares** can be used.
 - **`concstats_comp()`** is a group wrapper for the following concentration
 measures: **hhi**, the **dual of the hhi**, the **min. of the hhi**, the
 **dominance index**, the **stenbacka index**, and finally **all** which

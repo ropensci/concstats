@@ -88,34 +88,46 @@ pass the additional argument ``digits`` to ``all``, which controls for the
 number of digits to be printed.  
 All individual functions can be accessed directly with the prefix "concstats_"
 (e.g. "concstats_firm" or "concstats_all_mstruct").
+The concstats_top_df functions also take a data frame as input, since the
+ranking of firms might be of interest.
 ```{r example-1}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_top5 <- concstats_top5(test_share) # top 5 market share in percentage
-test_share_top5
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+test_firm <- concstats_firm(x) # number of firms
+test_firm
 ```
 
 You should have noticed that the market shares are in decimal form. However, you
 can use integers or floating point numeric types to express market shares. All
 `concstats` functions will take care of this and convert theses vectors into
 decimal form. There are eight market participants, however, two have no market
-shares, by default `concstats` treats 0 as NA. The result is a top 5 market
-share of 96 %.  
+shares, by default `concstats` treats 0 as NA. The result is a cumulative top 5
+market share of 96 %.  
 You can also access each function through their respective argument in the 
 group wrapper:
 
 ```{r example-2}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_top <- concstats_mstruct(test_share, type = "top") # top market share
-test_share_top
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+test_share_top3 <- concstats_mstruct(x, type = "top3") # top3 market shares in %
+test_share_top3
 ```
+
+```{r example-top3-df}
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+id <- c("firm1", "firm2", "firm3", "firm4", "firm5", "firm6")
+test_df <- data.frame(id, x)
+concstats_top3_df(test_df, "x")
+```
+
+
 
 Or, just calculate all measures of the group wrapper, and store it in a named
 object.
-```{r examples-mstruct-all}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_mstruct <- concstats_mstruct(test_share, type = "all", digits = 3)
-test_share_mstruct
+
+```{r example-all_mastruct}
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+concstats_all_mstruct(x, na.rm = TRUE, digits = 3)
 ```
+
 
 The result is a data frame of market structure measures.
 
@@ -125,12 +137,12 @@ The inequality and diversity group has the following arguments: ```entropy```,
 be accessed as individual functions.
 
 ```{r examples-entropy, echo=TRUE}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-test_share_entropy <- concstats_entropy(test_share)
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
+test_share_entropy <- concstats_entropy(x)
 test_share_entropy
 
 # and as a non-normalized value
-test_share_entropy2 <- concstats_entropy(test_share, normalized = FALSE)
+test_share_entropy2 <- concstats_entropy(x, normalized = FALSE)
 test_share_entropy2
 ```
 
@@ -139,16 +151,16 @@ The group wrapper for competition measures includes the following arguments to
 calculate ``hhi``, ``hhi_d``, ``hhi_min``, ``dom``, ``sten``, and ``all``.
 
 ```{r examples-hhi, echo=TRUE}
-test_share <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
-test_share_hhi <- concstats_hhi(test_share)
+x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04, 0, 0)
+test_share_hhi <- concstats_hhi(x)
 test_share_hhi
 
 # a normalized value
-test_share_hhi2 <- concstats_hhi(test_share, normalized = TRUE)
+test_share_hhi2 <- concstats_hhi(x, normalized = TRUE)
 test_share_hhi2
 
 # the min average of the hhi
-test_share_hhi3 <- concstats_comp(test_share, type = "hhi_min")
+test_share_hhi3 <- concstats_comp(x, type = "hhi_min")
 test_share_hhi3
 ```
 
@@ -161,8 +173,8 @@ market share, numbers equivalent, the cumulative share of the top
 the palma ratio.
 
 ```{r examples-concstats, echo=TRUE}
-test_share <- c(0.2, 0.3, 0.5)
-test_share_conc <- concstats_concstats(test_share, digit = 2)
+x<- c(0.2, 0.3, 0.5)
+test_share_conc <- concstats_concstats(x, digit = 2)
 test_share_conc
 ```
 
@@ -264,5 +276,6 @@ df_shares_plot
 
 Having a look a the output, we see a box plot with paired values of the
 cooperatives and the evolution of their respective total loans over time for the
-two sample years 2016 and 2018.
+two sample years 2016 and 2018. It seems that most of the cooperatives have
+increased their amounts of total loans granted.
 
