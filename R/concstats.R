@@ -1,16 +1,12 @@
 #' @title A set of Market Structure, Concentration, and Inequality Measures
 #'
-#' @srrstats {G1.4} roxygen2 used to document functions
-#' @srrstats {EA1.2} scope of the package/ kind of questions the software is
-#'   intended to solve.
 #' @description A convenience function which calculates a selected set of
 #'  different market structure, inequality and concentration measures more or
 #'  less commonly used, e.g. k-firm ratios, Entropy, HHI, Palma ratio,
 #'  and others in a one step procedure to provide a first overview.
 #'
 #' @usage concstats_concstats(x, na.rm = TRUE, digits = NULL)
-#' @srrstats {G2.0, G2.0a, G2.1, G2.1a, EA1.1, EA1.3} accepted as input, length
-#'  and type
+#'
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. Defaults to
@@ -30,7 +26,8 @@
 #' @return A `data frame` of numeric measures with default settings.
 #'
 #' @note The vector of market shares should be in a decimal form corresponding
-#'  to the total share of individual firms/units. The vector should sum up to 1.
+#'  to the total share of individual firms/units. The vector should sum up to 1,
+#'  otherwise a numeric vector will be converted into decimal form.
 #'
 #' @seealso [concstats_mstruct()], [concstats_comp()], [concstats_inequ()]
 #'
@@ -41,21 +38,18 @@
 #' # measures
 #' concstats_concstats(x, digits = 2)
 #'
+#'
 #' @export
-#' @srrstats {G2.6, EA2.6} process vector data
 concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
-#' @srrstats {G5.8a} Zero-length data
-#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
   if (!is.numeric(x)) {
     stop("`x` in concstats_hhi must be a numeric vector\n",
          "You have provided an object of class:", class(x)[1])
   }
-#' @srrstats {G2.0, G2.1}
+
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
-    stop("`na.rm` in `concstats_hhi` must be either TRUE or FALSE")
+    stop("`na.rm` in `concstats_concstats` must be either TRUE or FALSE")
   }
 
-#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
   if (na.rm == TRUE) {
     x <- as.numeric(x[!is.na(x)])
   }
@@ -64,16 +58,17 @@ concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
 
   # check if x is a positive decimal vector
   if (as.logical(all(x < 0))) {
-    stop("x in `concstats_hhi` must be a positive vector")
+    stop("x in `concstats_concstats` must be a positive vector")
   }
 
-#' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
-  # check sum of vector. Must sum to 1
-  if (!isTRUE(all.equal(sum(x), 1, tolerance = .Machine$double.eps^0.25))) {
-    stop("vector `x` in `concstats_hhi` does not sum to 1")
+  # check sum of vector. Must sum to 1 if all x(market share) < 1
+  if (as.logical(all(x < 1) &&
+                 !isTRUE(all.equal(sum(x), 1,
+                                   tolerance = .Machine$double.eps^0.25)))) {
+    stop("vector `x` in `concstats_concstats` does not sum to 1")
   }
 
-#' @srrstats {G2.4, G2.4b} explicit conversion to continuous via `as.numeric()`
+  # explicit conversion to continuous via `as.numeric()`
   if (sum(x, na.rm = TRUE) > 1) {
     x <-  as.numeric(x / sum(x, na.rm = TRUE))
   } else {
@@ -105,8 +100,7 @@ concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
   palma_top <- sum(x[palma_cut > 9])
   concstats_palma <- as.numeric(palma_top / palma_bottom)
 
-#' @srrstats {EA4.0, EA4.1, EA4.2, EA5.2, EA5.4} Numeric control of screen-based
-#'  output.
+  # screen-based output
   results_all <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
                                        "Top3 (%)", "Top5 (%)", "HHI",
                                        "Entropy", "Palma ratio"),
@@ -123,5 +117,4 @@ concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
                                    justify = "right")))
 
   return(results_all)
-
 }

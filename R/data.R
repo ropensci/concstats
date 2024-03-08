@@ -1,5 +1,5 @@
 #' @title Creditcoops
-#' @srrstats {G1.4} roxygen2 used to document data set
+#'
 #' @description data set with 22 paired Paraguayan credit cooperatives
 #'  (2016, 2018)
 #' @format A data frame with 44 rows and 5 variables:
