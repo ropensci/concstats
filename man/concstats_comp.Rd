@@ -32,22 +32,29 @@ will use base R print option.  Significant digits defaults to 7.}
 A single numeric measure in decimal form or \verb{data frame}.
 }
 \description{
-A set of different concentration measures.
+A set of different concentration and competition measures.
 }
 \details{
-\code{concstats_comp} is a wrapper for the proposed concentration measures
-\code{\link[=concstats_hhi]{concstats_hhi()}}, \code{\link[=concstats_hhi_d]{concstats_hhi_d()}}, \code{\link[=concstats_dom]{concstats_dom()}},
-\code{\link[=concstats_hhi_min]{concstats_hhi_min()}}, \code{\link[=concstats_sten]{concstats_sten()}}, \code{\link[=concstats_all_comp]{concstats_all_comp()}}.
-If no measure is specified "hhi" will be the default.
+\itemize{
+\item \code{concstats_comp} is a wrapper for the proposed concentration measures.
+All measures can be accessed individually.
+\item \code{\link[=concstats_hhi]{concstats_hhi()}} returns the Herfindahl-Hirschman index (HHI).
 \code{concstats_hhi}, can be calculated individually as a normalized
 measure changing the default setting to \code{TRUE}.
-\code{concstats_all_comp} computes all measures in a one step procedure.
-For more details or references please see the help page of the respective
-function.
+\item \code{\link[=concstats_hhi_d]{concstats_hhi_d()}} returns the dual of the HHI.
+\item \code{\link[=concstats_hhi_min]{concstats_hhi_min()}} calculates the minimum of the HHI index.
+\item \code{\link[=concstats_dom]{concstats_dom()}} calculates the dominance index.
+\item \code{\link[=concstats_sten]{concstats_sten()}} calculates the stenbacka index.
+\item \code{\link[=concstats_all_comp]{concstats_all_comp()}} is a wrapper that computes all measures in a one
+step procedure. For more details or references please see the help page of
+the respective function.
+}
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
 to total shares of individual firms/units. The vector should sum up to 1.
+Alternatively, the user might use \code{\link[=concstats_shares]{concstats_shares()}} to converting raw
+variables, e.g. loans or sales into shares.
 }
 \examples{
 # a vector of market shares
@@ -62,4 +69,13 @@ concstats_comp(x, type = "all", digits = 2)
 }
 \seealso{
 \code{\link[=concstats_concstats]{concstats_concstats()}}, \code{\link[=concstats_mstruct]{concstats_mstruct()}}, \code{\link[=concstats_inequ]{concstats_inequ()}}
+
+Other Competition/Concentration measures: 
+\code{\link{concstats_all_comp}()},
+\code{\link{concstats_dom}()},
+\code{\link{concstats_hhi}()},
+\code{\link{concstats_hhi_d}()},
+\code{\link{concstats_hhi_min}()},
+\code{\link{concstats_sten}()}
 }
+\concept{Competition/Concentration measures}

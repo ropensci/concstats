@@ -38,7 +38,8 @@ in groups.
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
-to the total share of individual firms/units. The vector should sum up to 1.
+to the total share of individual firms/units. The vector should sum up to 1,
+otherwise a numeric vector will be converted into decimal form.
 }
 \examples{
 # a vector of market shares
@@ -46,6 +47,7 @@ x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 # a selected set of different structural, concentration, and inequality
 # measures
 concstats_concstats(x, digits = 2)
+
 
 }
 \seealso{

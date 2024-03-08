@@ -35,21 +35,20 @@ The calculated numeric measure or a \verb{data frame}
 A set of different inequality and diversity measures.
 }
 \details{
-\code{concstats_inequ} is a wrapper for the proposed inequality measures
-\code{\link[=concstats_entropy]{concstats_entropy()}}, \code{\link[=concstats_gini]{concstats_gini()}},\code{\link[=concstats_simpson]{concstats_simpson()}},
-\code{\link[=concstats_palma]{concstats_palma()}},\code{\link[=concstats_grs]{concstats_grs()}}, \code{\link[=concstats_all_inequ]{concstats_all_inequ()}}
-If no measure is specified, \code{concstats_entropy} is the default.
-\code{concstats_entropy} returns the Shannon Entropy (Shannon, 1948),
-\code{concstats_gini} is the Gini coefficient. You can normalize the
-Entropy and Gini measures by setting \code{normalized = TRUE}
-\code{concstats_palma} measures the ratio of inequality (normally used in
-the context of measuring income inequality) of the top 10 percent to the
-bottom 40 percent (Palma, 2006).
-\code{concstats_grs} is an alternative inequality measure (Ginevicius, 2009)
-and
-\code{concstats_all_inequ} returns all measures in a one step procedure.
+\itemize{
+\item \code{concstats_inequ} is a wrapper for the proposed inequality measures.
+All measures can be accessed individually.
+\item \code{\link[=concstats_entropy]{concstats_entropy()}} returns the Shannon entropy. \code{concstats_entropy}
+You can normalize the entropy measures by setting \code{normalized = TRUE}.
+\item \code{\link[=concstats_gini]{concstats_gini()}} calculates the gini coefficient. \code{concstats_gini}
+You can normalize the gini measures by setting \code{normalized = TRUE}.
+\item \code{\link[=concstats_simpson]{concstats_simpson()}} calculates the gini-simpson index.
+\item \code{\link[=concstats_palma]{concstats_palma()}} calculates the palma ratio of inequality.
+\item \code{\link[=concstats_grs]{concstats_grs()}} calculates an alternative concentration measure.
+\item \code{\link[=concstats_all_inequ]{concstats_all_inequ()}} returns all measures in a one step procedure.
 For more details or references please see the help page of the respective
 function.
+}
 }
 \examples{
 # a vector of market shares
@@ -64,4 +63,13 @@ concstats_inequ(x, type = "all", digits = 2)
 }
 \seealso{
 \code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_mstruct]{concstats_mstruct()}},\code{\link[=concstats_comp]{concstats_comp()}}
+
+Other Concentration and inequality measures: 
+\code{\link{concstats_all_inequ}()},
+\code{\link{concstats_entropy}()},
+\code{\link{concstats_gini}()},
+\code{\link{concstats_grs}()},
+\code{\link{concstats_palma}()},
+\code{\link{concstats_simpson}()}
 }
+\concept{Concentration and inequality measures}
