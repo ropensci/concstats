@@ -11,7 +11,7 @@ concstats_hhi(x, normalized = FALSE, na.rm = TRUE, digits = NULL)
 
 \item{normalized}{Logical. Argument specifying whether or not a normalized
 value is required. Must be either \code{TRUE} or \code{FALSE}. The default
- is \code{FALSE}.}
+is \code{FALSE}.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
@@ -31,9 +31,9 @@ A measure of industry concentration and widely used in merger control.
 }
 \details{
 \code{concstats_hhi} calculates the widely used Herfindahl-Hirschman
- Index (Herfindahl, 1950 and Hirschman, 1945). The index is calculated by
- squaring the market share of each firm competing in the market and then
- summing the resulting numbers.
+Index (Herfindahl, 1950 and Hirschman, 1945). The index is calculated by
+squaring the market share of each firm competing in the market and then
+summing the resulting numbers.
 }
 \examples{
 # a vector of market shares
@@ -47,10 +47,10 @@ concstats_hhi(x, na.rm = TRUE)
 }
 \references{
 Herfindahl, O. C. (1950), "Concentration in the steel industry"
- (PhD thesis), Columbia University.
+(PhD thesis), Columbia University.
 
 Hirschman, A. O. (1945), "National power and structure of
- foreign trade". Berkeley, CA: University of California Press.
+foreign trade". Berkeley, CA: University of California Press.
 }
 \seealso{
 Other Competition/Concentration measures: 

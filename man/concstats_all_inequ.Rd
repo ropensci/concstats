@@ -23,14 +23,14 @@ significant digits to be printed in values. The default is \code{NULL} and
 will use base R print option.}
 }
 \value{
-A `data.frame`.
+A \code{data.frame}.
 }
 \description{
 A wrapper for the proposed inequality measures
 }
 \details{
 \code{concstats_all_inequ} returns all proposed group measures in a one step
-  procedure with default settings if not otherwise specified.
+procedure with default settings if not otherwise specified.
 }
 \examples{
 # a vector of market shares
@@ -39,7 +39,7 @@ concstats_all_inequ(x, digits = 2)
 
 }
 \seealso{
-[concstats_all_mstruct()], [concstats_all_comp()]
+\code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}}, \code{\link[=concstats_all_comp]{concstats_all_comp()}}
 
 Other Concentration and inequality measures: 
 \code{\link{concstats_entropy}()},

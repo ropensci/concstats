@@ -21,15 +21,15 @@ will use base R print option.}
 }
 \value{
 A single numeric measure in decimal form or, if NAs are present,
- with a warning.
+with a warning.
 }
 \description{
 An alternative measure which can be used in case of mergers.
 }
 \details{
 \code{concstats_dom} calculates a dominance index, which measures the
-  concentration within the Herfindahl-Hirschman index, that is, the
-  concentration within the concentration.
+concentration within the Herfindahl-Hirschman index, that is, the
+concentration within the concentration.
 }
 \examples{
 # a vector of market shares
@@ -43,8 +43,8 @@ concstats_dom(x, digits = 2)
 }
 \references{
 Garcia Alba Idunate, P. (1994). "Un Indice de dominancia para el
- analisis de la estructura de los mercados". \emph{El Trimestre Economico},
- 61: 499-524.
+analisis de la estructura de los mercados". \emph{El Trimestre Economico},
+61: 499-524.
 }
 \seealso{
 Other Competition/Concentration measures: 

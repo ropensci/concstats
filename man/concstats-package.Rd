@@ -17,7 +17,7 @@ To learn more about how to use concstats, see the vignettes at
 \url{https://docs.ropensci.org/concstats/} or using the following
 code in your console:
 
-`browseVignettes(package = "concstats")`
+\code{browseVignettes(package = "concstats")}
 
 This package provides a set of functions for calculating measures to
 get insights of a given market. Measures are, e.g. the

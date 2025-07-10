@@ -39,8 +39,8 @@ concstats_grs(x, na.rm = FALSE)
 }
 \references{
 Ginevicius, R. and S. Cirba (2009). "Additive measurement of
- market concentration", \emph{Journal of Business Economics and Management},
- 10(3), 191-198.
+market concentration", \emph{Journal of Business Economics and Management},
+10(3), 191-198.
 }
 \seealso{
 Other Concentration and inequality measures: 

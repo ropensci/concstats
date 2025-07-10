@@ -21,7 +21,7 @@ will use base R print option.}
 }
 \value{
 A positive numeric value, which indicates the top market share in
- percent.
+percent.
 }
 \description{
 Top market share
@@ -38,8 +38,8 @@ Other Market structure measures:
 \code{\link{concstats_mstruct}()},
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top3}()},
-\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
-\code{\link{concstats_top5_df}()}
+\code{\link{concstats_top5_df}()},
+\code{\link{concstats_top_df}()}
 }
 \concept{Market structure measures}

@@ -28,8 +28,8 @@ participation.
 }
 \details{
 \code{concstats_hhi_d} is the dual of the HHI index, which indicates
- the percentage which represents the fraction of the banks that do not have
- market participation.
+the percentage which represents the fraction of the banks that do not have
+market participation.
 }
 \examples{
 # a vector of market shares
@@ -43,8 +43,8 @@ concstats_hhi_d(x, na.rm = TRUE, digits = 2)
 }
 \references{
 Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak,
- B. M. (2005) Banking concentration: the Brazilian case. \emph{In Financial
- Stability Report}. Brasilia: Banco Central do Brasil, 4: 109-129.
+B. M. (2005) Banking concentration: the Brazilian case. \emph{In Financial
+Stability Report}. Brasilia: Banco Central do Brasil, 4: 109-129.
 }
 \seealso{
 Other Competition/Concentration measures: 

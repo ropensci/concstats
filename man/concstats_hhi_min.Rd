@@ -27,7 +27,7 @@ Minimum of Herfindahl-Hirschman Index
 }
 \details{
 Calculates the minimum of the Herfindahl-Hirschman index, that is,
- the equivalent of all participants in the market with equal market shares.
+the equivalent of all participants in the market with equal market shares.
 }
 \examples{
 # a vector of market shares

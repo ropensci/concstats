@@ -27,9 +27,9 @@ Gini-Simpson Index
 }
 \details{
 \code{concstats_simpson} is the Gini-Simpson index, also known as
- the Gini impurity (Gini's diversity index) in Machine Learning, Gibbs-Martin
- index or Blau index in sociology and management studies. This index ranges
- from \{0, 1\}.
+the Gini impurity (Gini's diversity index) in Machine Learning, Gibbs-Martin
+index or Blau index in sociology and management studies. This index ranges
+from \{0, 1\}.
 }
 \examples{
 # a vector of market shares
@@ -45,10 +45,10 @@ concstats_simpson(x, na.rm = TRUE)
 }
 \references{
 Simpson, E. H. (1949). "Measurement of Diversity", \emph{Nature},
- 163, 688.
+163, 688.
 
 Jost, L. (2006). "Entropy and Diversity". \emph{Oikos}, 113(2),
- 363-375.
+363-375.
 }
 \seealso{
 Other Concentration and inequality measures: 

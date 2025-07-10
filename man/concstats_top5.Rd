@@ -21,7 +21,7 @@ will use base R print option.}
 }
 \value{
 A positive numeric value, which indicates the cumulative sum of the
- top 5 market shares as a percentage.
+top 5 market shares as a percentage.
 }
 \description{
 Top 5 market share
@@ -40,7 +40,7 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
-\code{\link{concstats_top3_df}()},
-\code{\link{concstats_top5_df}()}
+\code{\link{concstats_top5_df}()},
+\code{\link{concstats_top_df}()}
 }
 \concept{Market structure measures}

@@ -3,10 +3,6 @@
 #' @srrstats {G1.4} roxygen2 used to document functions
 #' @inheritParams concstats_top_df
 #'
-#' @family Market structure measures
-#' @rdname concstats_top_df
-#' @importFrom stats na.omit
-#'
 #' @examples
 #' x <- data.frame(
 #' firm = c("A", "B", "C", "D", "E"),

@@ -29,8 +29,8 @@ for larger vectors.
 }
 \details{
 \code{concstats_shares} is a helper function. The user can manually
- convert or provide numerical vectors of shares or use
- \code{constats_shares}.
+convert or provide numerical vectors of shares or use
+\code{constats_shares}.
 }
 \examples{
 # a vector of loans (without special characters, e.g. currency symbols)

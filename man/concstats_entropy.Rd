@@ -40,7 +40,7 @@ concstats_entropy(x, na.rm = TRUE, digits = 2)
 }
 \references{
 Shannon, C. E. (1948). "A Mathematical Theory of Communication",
- \emph{The Bell System Technical Journal} (Nokia Bell Labs).
+\emph{The Bell System Technical Journal} (Nokia Bell Labs).
 }
 \seealso{
 Other Concentration and inequality measures: 

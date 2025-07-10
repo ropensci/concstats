@@ -28,7 +28,7 @@ a dominant position and therefore assesses market dominance.
 }
 \details{
 \code{concstats_sten} calculates the Stenbacka index,
-  which indicates the market share of a dominant position.
+which indicates the market share of a dominant position.
 }
 \examples{
 # a vector of market shares
@@ -44,8 +44,8 @@ concstats_sten(x, na.rm = TRUE)
 }
 \references{
 Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing market
- dominance", \emph{Journal of Economic Behavior and Organization},
- 68: pp. 63-72.
+dominance", \emph{Journal of Economic Behavior and Organization},
+68: pp. 63-72.
 }
 \seealso{
 Other Competition/Concentration measures: 

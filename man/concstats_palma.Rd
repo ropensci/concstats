@@ -28,7 +28,7 @@ differences between those in the top and bottom income brackets.
 }
 \details{
 \code{concstats_palma} measures the ratio of inequality (normally used with
-  income inequality) of the top 10 percent to the bottom 40 percent.
+income inequality) of the top 10 percent to the bottom 40 percent.
 }
 \examples{
 # a vector of market shares
@@ -44,7 +44,7 @@ concstats_palma(x, na.rm = FALSE)
 }
 \references{
 Palma, J. G. (2006). "Globalizing Inequality: 'Centrifugal' and
- 'Centripetal' Forces at Work", DESA Working Paper No. 35.
+'Centripetal' Forces at Work", DESA Working Paper No. 35.
 }
 \seealso{
 Other Concentration and inequality measures: 

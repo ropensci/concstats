@@ -27,32 +27,34 @@ will use base R print option. Significant digits defaults to 7. Values are
 restricted between 1 and default value.}
 }
 \value{
-A single calculated numeric measure or `data frame`.
+A single calculated numeric measure or \verb{data frame}.
 }
 \description{
 Set of different market structure measures to reflect a given
- market structure.
+market structure.
 }
 \details{
-* \code{concstats_mstruct} is a wrapper for the proposed structural measures.
-* [concstats_firm()], returns the number of firms with a given market share.
-* [concstats_nrs_eq()] computes the reciprocal of the HHI, which indicates
- the equivalent number of firms of the same size.
-* [concstats_top()], [concstats_top3()], and [concstats_top5()]
- calculate the cumulative share of the top (top 3 and top 5) firm(s) and
- returns the value in percentage.
-* [concstats_all_mstruct()] computes all measures in a one step procedure.
- All measures can be computed individually.
-* [concstats_top_df()], [concstats_top3_df()], and [concstats_top5_df()] are
- slight variations. Firm id or ranking might be of interest. In this case an
- additional id or firm variable is needed. The functions will return a data
- frame. These functions are just individually accessible.
+\itemize{
+\item \code{concstats_mstruct} is a wrapper for the proposed structural measures.
+\item \code{\link[=concstats_firm]{concstats_firm()}}, returns the number of firms with a given market share.
+\item \code{\link[=concstats_nrs_eq]{concstats_nrs_eq()}} computes the reciprocal of the HHI, which indicates
+the equivalent number of firms of the same size.
+\item \code{\link[=concstats_top]{concstats_top()}}, \code{\link[=concstats_top3]{concstats_top3()}}, and \code{\link[=concstats_top5]{concstats_top5()}}
+calculate the cumulative share of the top (top 3 and top 5) firm(s) and
+returns the value in percentage.
+\item \code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}} computes all measures in a one step procedure.
+All measures can be computed individually.
+\item \code{\link[=concstats_top_df]{concstats_top_df()}}, \code{\link[=concstats_top3_df]{concstats_top3_df()}}, and \code{\link[=concstats_top5_df]{concstats_top5_df()}} are
+slight variations. Firm id or ranking might be of interest. In this case an
+additional id or firm variable is needed. The functions will return a data
+frame. These functions are just individually accessible.
+}
 }
 \note{
 The vector of market shares should be in a decimal form corresponding
- to total shares of individual firms/units.The sum of the vector should sum up
- to 1. Alternatively, the user might use [concstats_shares()] to converting
- raw variables, e.g. loans or sales into shares.
+to total shares of individual firms/units.The sum of the vector should sum up
+to 1. Alternatively, the user might use \code{\link[=concstats_shares]{concstats_shares()}} to converting
+raw variables, e.g. loans or sales into shares.
 }
 \examples{
 # a vector of market shares
@@ -64,7 +66,7 @@ concstats_mstruct(x, type = "all", digits = 2)
 
 }
 \seealso{
-[concstats_concstats()],[concstats_comp()],[concstats_inequ()]
+\code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_comp]{concstats_comp()}},\code{\link[=concstats_inequ]{concstats_inequ()}}
 
 Other Market structure measures: 
 \code{\link{concstats_all_mstruct}()},
@@ -72,8 +74,8 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
-\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
-\code{\link{concstats_top5_df}()}
+\code{\link{concstats_top5_df}()},
+\code{\link{concstats_top_df}()}
 }
 \concept{Market structure measures}

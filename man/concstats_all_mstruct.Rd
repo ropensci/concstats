@@ -20,14 +20,14 @@ significant digits to be printed in values. The default is \code{NULL} and
 will use base R print option.}
 }
 \value{
-A `data.frame`.
+A \code{data.frame}.
 }
 \description{
 A wrapper for the proposed structural measures
 }
 \details{
 \code{concstats_all_mstruct} returns all proposed group measures in a
-  one step procedure with default settings if not otherwise specified.
+one step procedure with default settings if not otherwise specified.
 }
 \examples{
 # a vector of market shares
@@ -36,7 +36,7 @@ concstats_all_mstruct(x, digits = 2)
 
 }
 \seealso{
-[concstats_all_comp()], [concstats_all_inequ()]
+\code{\link[=concstats_all_comp]{concstats_all_comp()}}, \code{\link[=concstats_all_inequ]{concstats_all_inequ()}}
 
 Other Market structure measures: 
 \code{\link{concstats_firm}()},
@@ -44,8 +44,8 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
-\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
-\code{\link{concstats_top5_df}()}
+\code{\link{concstats_top5_df}()},
+\code{\link{concstats_top_df}()}
 }
 \concept{Market structure measures}
