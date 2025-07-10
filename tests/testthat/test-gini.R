@@ -1,8 +1,6 @@
 ## concstats_gini
 
 test_that("concstats_gini function operates properly", {
-  #' @srrstats {G5.1} Data used to test, made generally available and run
-  #' examples.
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
   x1b <- c()
@@ -18,25 +16,27 @@ test_that("concstats_gini function operates properly", {
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_equal(concstats_gini(x2, na.rm = FALSE), NA_real_)
+  expect_message(concstats_gini(x2))
   expect_equal(sort(x), x3)
-  #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
-  #'  unsupported types
+
   expect_error(concstats_gini(xch, !is.numeric(xch)))
-  #' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
+
   expect_error(concstats_gini(x9, na.rm = TRUE))
   expect_error(concstats_gini(x8, na.rm = TRUE))
   expect_error(concstats_gini(x1b, na.rm = TRUE))
   expect_error(concstats_gini(x, na.rm = 0))
   expect_error(concstats_gini(x, normalized = 0))
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
+  # digits argument
+  expect_error(expect_int(x, digits = c(8, 0)))
+  # convert to continuous
   act <- concstats_gini(x)
   exp <- concstats_gini(x4 / sum(x4))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  # Adding trivial noise
   act <- concstats_gini(x)
   exp <- concstats_gini(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+  # test if sum x = 1
   expect_error(concstats_gini(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
 
 })
@@ -54,7 +54,6 @@ test_that("concstats_gini returns the gini measure", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_gini(share_2018, normalized = FALSE), share_2018_gini,
                tolerance = .Machine$double.eps^0.25)
   x <- sort(x)
@@ -65,7 +64,7 @@ test_that("concstats_gini returns the gini measure", {
   expect_equal(concstats_gini(x4, normalized = FALSE),
                2 * sum(x4 * seq_len(length(x4))
                        / length(x4) * sum(x4)) - 1 - (1 / length(x4)))
-  #' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_gini), label = "numeric values returned")
 })
 
@@ -82,7 +81,6 @@ test_that("concstats_gini returns the normalized gini measure", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_gini(share_2018, normalized = TRUE), share_2018_gini2,
                tolerance = .Machine$double.eps^0.25)
   x <- sort(x)
@@ -95,6 +93,7 @@ test_that("concstats_gini returns the normalized gini measure", {
                length(x4) / (length(x4) - 1) *
                  (2 * sum(x4 * seq_len(length(x4)) / length(x4) *
                             sum(x4)) - 1 - (1 / length(x4))))
-  #' @srrstats {EA6.0, EA6.0a} Return values
-  expect_true(is.numeric(share_2018_gini2), label = "numeric values returned")
+
+  checkmate::qexpect(concstats_gini(x),"N[0,)")
+
 })

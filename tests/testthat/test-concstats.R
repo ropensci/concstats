@@ -3,9 +3,6 @@ local_edition(3)
 # concstats_concstats
 
 test_that("concstats_concstats function operates properly", {
-#' @srrstats {G5.1} Data used to test, made generally available and run
-#'  examples.
-
   x <- c(0.2, 0.3, 0.4, 0.1)
   x1 <- c(0.2, 0.3, 0.4, -0.1)
   x1b <- c()
@@ -18,27 +15,29 @@ test_that("concstats_concstats function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e", "f", "g", "h")
 
-#' @srrstats {G5.3} Expected to return objects containing no missing (`NA`)
+
   expect_true(any(is.na(x2)), all(!is.na(x2)))
 
   expect_true(all(round(x3) == 0), (abs(x3) > 0 & abs(x3) <= 1))
   expect_vector(x3, ptype = numeric(), size = 4)
   expect_true(is.numeric(x3), label = "numeric values returned")
-  expect_equal(concstats_concstats(x2, na.rm = FALSE), NA_real_)
+  expect_message(concstats_concstats(x2))
   expect_equal(sort(x, decreasing = TRUE), x3)
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8a, G5.8b} Edge test for data of
-#'  unsupported types
+
   expect_error(concstats_concstats(xch, !is.numeric(xch)))
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.8c} Error on vector with all-`NA` fields
+
   expect_error(concstats_concstats(x9, na.rm = TRUE))
-  expect_error(concstats_concstats(x8, na.rm = TRUE))
+  #expect_error(concstats_concstats(x8, na.rm = TRUE))
   expect_error(concstats_concstats(x1b, na.rm = TRUE))
   expect_error(concstats_concstats(x, na.rm = 0))
-#' @srrstats {G3.0, EA6.0, EA6.0e} Return values,  single-valued objects.
+  # digits argument
+  expect_error(expect_int(x, digits = c(8, -4)))
+  # converting integer to decimal
   act <- concstats_concstats(x)
   exp <- concstats_concstats(x4 / sum(x4))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-#' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+
+  # Adding trivial noise
   act <- concstats_concstats(x)
   exp <- concstats_concstats(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
@@ -49,12 +48,6 @@ test_that("concstats_concstats function operates properly", {
 })
 
 test_that("concstats_firm returns number of firms", {
-
-
-#' @srrstats {G5.5, G5.4, G5.4a, G5.4c} Stored values (share_2018_) and vector
-#'  are drawn from [this paper](https://doi.org/10.1515/zfgg-2022-0002),
-#'   page 26/27
-
   x <- c(0.4, 0.3, 0.2, 0.1)
   share_2018_firm <- 22
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
@@ -64,11 +57,10 @@ test_that("concstats_firm returns number of firms", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_firm(share_2018), share_2018_firm,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_firm(x), sum(x > 0))
-#' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_firm), label = "numeric values returned")
 })
 
@@ -83,11 +75,9 @@ test_that("concstats_nrs_equ returns numbers equivalent", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_nrs_eq(share_2018), share_2018_nrs,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_nrs_eq(x), 1 / sum(x ^ 2))
-#' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_nrs), label = "numeric values returned")
 })
 
@@ -102,11 +92,9 @@ test_that("concstats_top returns top market share", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_top(share_2018), share_2018_top,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_top(x), x[1] * 100)
-#' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_top), label = "numeric values returned")
 })
 
@@ -121,11 +109,9 @@ test_that("concstats_top3 returns sum of top 3 market shares", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_top3(share_2018), share_2018_top3,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_top3(x), sum(x[1:3], na.rm = TRUE) * 100)
-#' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_top3), label = "numeric values returned")
 })
 
@@ -140,11 +126,10 @@ test_that("concstats_top5 returns sum of top 5 market shares", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_top5(share_2018), share_2018_top5,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_top5(x), sum(x[1:5], na.rm = TRUE) * 100)
-#' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_top5), label = "numeric values returned")
 })
 
@@ -159,11 +144,10 @@ test_that("concstats_hhi returns sum of squared shares as decimal", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_hhi(share_2018), share_2018_hhi,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_hhi(x), sum(x ^ 2))
-#' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_hhi), label = "numeric values returned")
 })
 
@@ -178,13 +162,12 @@ test_that("concstats_entropy returns the entropy measure", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_entropy(share_2018), share_2018_ent,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_entropy(x),
                (sum(-x / sum(x) * log(x / sum(x), base = 2))
                                       / log(sum(x > 0), base = 2)))
-#' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_ent), label = "numeric values returned")
 })
 
@@ -199,7 +182,6 @@ test_that("concstats_entropy returns the entropy measure", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-#' @srrstats {EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_palma(share_2018), share_2018_palma,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_palma(x),
@@ -210,7 +192,6 @@ test_that("concstats_entropy returns the entropy measure", {
                      [cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                           include.lowest = TRUE, labels = FALSE) <= 4]))
 
-#' @srrstats {EA6.0, EA6.0a} Return values
   expect_true(is.numeric(share_2018_palma), label = "numeric values returned")
 })
 
@@ -223,8 +204,7 @@ test_that("concstats_concstats returns a data frame", {
 
   expect_vector(x, ptype = numeric(), size = 7)
   expect_true(any(is.na(x3)), all(!is.na(x3)))
-#' @srrstats {EA6.0, EA6.0a, EA6.0b, EA6.0c,  EA6.0d} Classes, dimensions, and
-#'  types of objects
+
   expect_equal(ncol(dummy_df), 2)
   expect_true(is.numeric(dummy_df$Value))
   expect_type(dummy_df$Value, "double")

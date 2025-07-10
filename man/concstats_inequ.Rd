@@ -4,7 +4,7 @@
 \alias{concstats_inequ}
 \title{Inequality and Diversity Measures}
 \usage{
-concstats_inequ(x, normalized = FALSE, type = c("entropy", "gini",
+concstats_inequ(x, normalized = TRUE, type = c("entropy", "gini",
  "simpson", "palma", "grs", "all"), na.rm = TRUE, digits = NULL)
 }
 \arguments{
@@ -12,57 +12,59 @@ concstats_inequ(x, normalized = FALSE, type = c("entropy", "gini",
 
 \item{normalized}{Logical. Argument of the functions
 \code{concstats_entropy}, \code{concstats_gini} specifying whether or not a
-normalized value is required. Ranges from (0, 1) and often used for
-comparison over time. Must be either \code{TRUE} or \code{FALSE}. The
-default is \code{FALSE}.}
+ normalized value is required. Must be either \code{TRUE} or \code{FALSE}.
+ The default is \code{TRUE}.}
 
 \item{type}{A character string of the measure to be calculated, defaults to
-\code{concstats_entropy}. Input is not case-sensitive.}
+`concstats_entropy`. Input is not case-sensitive.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. If set to \code{FALSE} the computation yields \code{NA}
-if vector contains \code{NA} values.
-Must be either \code{TRUE} or \code{FALSE}. The default is \code{TRUE}.}
+be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
 
 \item{digits}{A non-null value for digits specifies the minimum number of
 significant digits to be printed in values. The default is \code{NULL} and
-will use base R print option. Significant digits defaults to 7.}
+will use base R print option. Significant digits defaults to 7. Values are
+restricted between 1 and default value.}
 }
 \value{
-The calculated numeric measure or a \verb{data frame}
+The calculated numeric measure or a `data frame`
 }
 \description{
 A set of different inequality and diversity measures.
 }
 \details{
-\itemize{
-\item \code{concstats_inequ} is a wrapper for the proposed inequality measures.
+* \code{concstats_inequ} is a wrapper for the proposed inequality measures.
 All measures can be accessed individually.
-\item \code{\link[=concstats_entropy]{concstats_entropy()}} returns the Shannon entropy. \code{concstats_entropy}
+* [concstats_entropy()] returns the Shannon entropy. \code{concstats_entropy}
 You can normalize the entropy measures by setting \code{normalized = TRUE}.
-\item \code{\link[=concstats_gini]{concstats_gini()}} calculates the gini coefficient. \code{concstats_gini}
+* [concstats_gini()] calculates the gini coefficient. \code{concstats_gini}
 You can normalize the gini measures by setting \code{normalized = TRUE}.
-\item \code{\link[=concstats_simpson]{concstats_simpson()}} calculates the gini-simpson index.
-\item \code{\link[=concstats_palma]{concstats_palma()}} calculates the palma ratio of inequality.
-\item \code{\link[=concstats_grs]{concstats_grs()}} calculates an alternative concentration measure.
-\item \code{\link[=concstats_all_inequ]{concstats_all_inequ()}} returns all measures in a one step procedure.
-For more details or references please see the help page of the respective
-function.
-}
+* [concstats_simpson()] calculates the gini-simpson index.
+* [concstats_palma()] calculates the palma ratio of inequality.
+* [concstats_grs()] calculates an alternative concentration measure.
+* [concstats_all_inequ()] returns all measures in a one step procedure.
+ For more details or references please see the help page of the respective
+ function.
 }
 \examples{
 # a vector of market shares
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
+
 # Calculate the Palma ratio
 concstats_inequ(x, type = "palma")
+
 # Calculate the entropy measure directly
-concstats_entropy(x, normalized = TRUE)
+concstats_inequ(x, normalized = TRUE, type = "entropy")
+
 # Calculate the group measures
 concstats_inequ(x, type = "all", digits = 2)
 
 }
 \seealso{
-\code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_mstruct]{concstats_mstruct()}},\code{\link[=concstats_comp]{concstats_comp()}}
+[concstats_concstats()],[concstats_mstruct()],[concstats_comp()]
 
 Other Concentration and inequality measures: 
 \code{\link{concstats_all_inequ}()},

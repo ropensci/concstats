@@ -4,19 +4,23 @@
 \alias{concstats_hhi_d}
 \title{Dual of the Herfindahl-Hirschman Index}
 \usage{
-concstats_hhi_d(x, na.rm = TRUE)
+concstats_hhi_d(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if the vector
-contains \code{NA} values.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
-A single numeric measure in decimal form.
+A single numeric value.
 }
 \description{
 The dual of the HHI reflects the fraction of participants that do have market
@@ -24,22 +28,23 @@ participation.
 }
 \details{
 \code{concstats_hhi_d} is the dual of the HHI index, which indicates
-the percentage which represents the fraction of the banks that do not have
-market participation.
+ the percentage which represents the fraction of the banks that do not have
+ market participation.
 }
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
 concstats_hhi_d(x)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
-concstats_hhi_d(x, na.rm = FALSE)
+concstats_hhi_d(x, na.rm = TRUE, digits = 2)
 
 }
 \references{
 Chang, E. J., Guerra, S. M., de Souza Penaloza, R. A. & Tabak,
-B. M. (2005) Banking concentration: the Brazilian case. \emph{In Financial
-Stability Report}. Brasilia: Banco Central do Brasil, 4: 109-129.
+ B. M. (2005) Banking concentration: the Brazilian case. \emph{In Financial
+ Stability Report}. Brasilia: Banco Central do Brasil, 4: 109-129.
 }
 \seealso{
 Other Competition/Concentration measures: 

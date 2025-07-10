@@ -4,31 +4,39 @@
 \alias{concstats_palma}
 \title{Palma ratio}
 \usage{
-concstats_palma(x, na.rm = TRUE)
+concstats_palma(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A single numeric measure.
 }
 \description{
-Palma ratio
+The Palma ratio is an alternative to the Gini index. The ratio focuses on the
+differences between those in the top and bottom income brackets.
 }
 \details{
 \code{concstats_palma} measures the ratio of inequality (normally used with
-income inequality) of the top 10 percent to the bottom 40 percent.
+  income inequality) of the top 10 percent to the bottom 40 percent.
 }
 \examples{
 # a vector of market shares
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 concstats_palma(x)
+
+concstats_palma(x, digits = 2)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
 concstats_palma(x, na.rm = FALSE)
@@ -36,7 +44,7 @@ concstats_palma(x, na.rm = FALSE)
 }
 \references{
 Palma, J. G. (2006). "Globalizing Inequality: 'Centrifugal' and
-'Centripetal' Forces at Work", DESA Working Paper No. 35.
+ 'Centripetal' Forces at Work", DESA Working Paper No. 35.
 }
 \seealso{
 Other Concentration and inequality measures: 

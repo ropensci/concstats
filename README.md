@@ -51,8 +51,9 @@ Top3 or Top5 market shares.
 -`concstats_comp` is a wrapper for concentration measures, e.g. the
 Herfindahl Hirschman Index.  
 -`concstats_inequ` offers diversity or inequality measures, e.g. the
-Entropy or the Palma ratio. -`concstats_shares` is a helper function
-converting numeric vectors into individual shares.
+Entropy or the Palma ratio.  
+-`concstats_shares` is a helper function converting numeric vectors into
+individual shares.
 
 ## Installation
 
@@ -132,7 +133,7 @@ x2 <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04) # market shares of each firm in
                                           # the market (should sum up to 1)
 
 ## Calculate a selected set of market structure and concentration measures
-concstats_concstats(x2, digits = 2) # calculates a selected set of measures
+concstats_concstats(x2, digits = 2) # calculates a pre-selected set of measures
 #>         Measures Values
 #> 1          Firms   6.00
 #> 2 Nrs_equivalent   3.33

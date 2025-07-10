@@ -7,7 +7,8 @@
 concstats_all_comp(x, normalized = FALSE, na.rm = TRUE, digits = NULL)
 }
 \arguments{
-\item{x}{A non-negative numeric vector.}
+\item{x}{A non-negative numeric vector. The computation yields \code{NA} if
+\code{NA} values are present.}
 
 \item{normalized}{Logical. Argument specifying whether or not a normalized
 value is required. Must be either \code{TRUE} or \code{FALSE}. Defaults to
@@ -15,23 +16,21 @@ value is required. Must be either \code{TRUE} or \code{FALSE}. Defaults to
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA}
+if vector contains \code{NA} values.}
 
-\item{digits}{A non-null value for digits specifies the minimum number of
-significant digits to be printed in values. The default is \code{NULL} and
-will use base R print option. Significant digits defaults to 7.}
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values.}
 }
 \value{
-A \code{data.frame}.
+A `data.frame`.
 }
 \description{
 A wrapper for the proposed concentration measures
 }
 \details{
 \code{concstats_all_comp} returns all proposed group measures in a one step
-procedure with default settings if not otherwise specified.
+  procedure with default settings if not otherwise specified.
 }
 \examples{
 # a vector of market shares
@@ -40,7 +39,7 @@ concstats_all_comp(x, digits = 2)
 
 }
 \seealso{
-\code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}}, \code{\link[=concstats_all_inequ]{concstats_all_inequ()}}
+[concstats_all_mstruct()], [concstats_all_inequ()]
 
 Other Competition/Concentration measures: 
 \code{\link{concstats_comp}()},

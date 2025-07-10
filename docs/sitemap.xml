@@ -1,105 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://docs.ropensci.org/concstats/404.html</loc>
   </url>
   <url>
-    <loc>/articles/concstats-intro.html</loc>
+    <loc>https://docs.ropensci.org/concstats/articles/concstats-intro.html</loc>
   </url>
   <url>
-    <loc>/articles/concstats-start.html</loc>
+    <loc>https://docs.ropensci.org/concstats/articles/concstats-start.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://docs.ropensci.org/concstats/articles/index.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://docs.ropensci.org/concstats/authors.html</loc>
   </url>
   <url>
-    <loc>/CONTRIBUTING.html</loc>
+    <loc>https://docs.ropensci.org/concstats/CONTRIBUTING.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://docs.ropensci.org/concstats/index.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://docs.ropensci.org/concstats/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://docs.ropensci.org/concstats/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://docs.ropensci.org/concstats/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_all_comp.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats-package.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_all_inequ.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_all_comp.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_all_mstruct.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_all_inequ.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_comp.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_all_mstruct.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_concstats.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_comp.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_dom.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_concstats.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_entropy.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_dom.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_firm.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_entropy.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_gini.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_firm.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_grs.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_gini.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_hhi.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_grs.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_hhi_d.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_hhi.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_hhi_min.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_hhi_d.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_inequ.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_hhi_min.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_mstruct.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_inequ.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_nrs_eq.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_mstruct.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_palma.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_nrs_eq.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_simpson.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_palma.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_sten.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_shares.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_top.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_simpson.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_top3.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_sten.html</loc>
   </url>
   <url>
-    <loc>/reference/concstats_top5.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top.html</loc>
   </url>
   <url>
-    <loc>/reference/creditcoops.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top3.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top3_df.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top5.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top5_df.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/concstats/reference/concstats_top_df.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/concstats/reference/creditcoops.html</loc>
+  </url>
+  <url>
+    <loc>https://docs.ropensci.org/concstats/reference/index.html</loc>
   </url>
 </urlset>

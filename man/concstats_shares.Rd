@@ -11,12 +11,13 @@ concstats_shares(x, na.rm = TRUE, digits = NULL)
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA} if
-\code{NA} values are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
 
-\item{digits}{Numeric. A non-null value for digits specifies the minimum
-number of significant digits to be rounded in values. The default is
-\code{NULL} and will use base R print option.}
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A numeric vector in decimal form.
@@ -28,15 +29,16 @@ for larger vectors.
 }
 \details{
 \code{concstats_shares} is a helper function. The user can manually
-convert or provide numerical vectors of shares or use
-\code{constats_shares}.
+ convert or provide numerical vectors of shares or use
+ \code{constats_shares}.
 }
 \examples{
 # a vector of loans (without special characters, e.g. currency symbols)
 x <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72)
-concstats_shares(x, digits = 5)
+concstats_shares(x)
+
 # a vector with NA values
 x2 <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72, NA)
-concstats_shares(x2, na.rm = FALSE, digits = 5)
+concstats_shares(x2, na.rm = TRUE, digits = 3)
 
 }

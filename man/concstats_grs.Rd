@@ -4,27 +4,34 @@
 \alias{concstats_grs}
 \title{GRS measure}
 \usage{
-concstats_grs(x, na.rm = TRUE)
+concstats_grs(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
-\item{na.rm}{a logical vector that indicates whether \code{NA} values should
+\item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if vector contains
-\code{NA} values.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
-A single numeric measure in decimal form.
+A single numeric value.
 }
 \description{
 GRS measure
 }
 \examples{
+
 # a vector of market shares
-x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
-concstats_grs(x)
+x <- c(0.4, 0.3, 0.2, 0.1)
+concstats_grs(x, digits = 3)
+#[1] 0.398
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
 concstats_grs(x, na.rm = FALSE)
@@ -32,8 +39,8 @@ concstats_grs(x, na.rm = FALSE)
 }
 \references{
 Ginevicius, R. and S. Cirba (2009). "Additive measurement of
-market concentration", \emph{Journal of Business Economics and Management},
-10(3), 191-198.
+ market concentration", \emph{Journal of Business Economics and Management},
+ 10(3), 191-198.
 }
 \seealso{
 Other Concentration and inequality measures: 

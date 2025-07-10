@@ -4,19 +4,24 @@
 \alias{concstats_gini}
 \title{Gini coefficient}
 \usage{
-concstats_gini(x, normalized = TRUE, na.rm = TRUE)
+concstats_gini(x, normalized = TRUE, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{normalized}{Logical. Argument specifying whether or not a normalized
 value is required. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{FALSE}.}
+is \code{TRUE}.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
 is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA}
-if vector contains \code{NA} values.}
+if \code{NA} values are present.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option. Significant digits defaults to 7. Values are
+restricted between 1 and default value.}
 }
 \value{
 A single numeric value.
@@ -28,9 +33,10 @@ Gini coefficient
 # a vector of market shares
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 concstats_gini(x, normalized = TRUE)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
-concstats_gini(x, na.rm = FALSE)
+concstats_gini(x, na.rm = TRUE, digits = 2)
 
 }
 \seealso{

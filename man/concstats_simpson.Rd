@@ -4,16 +4,20 @@
 \alias{concstats_simpson}
 \title{Gini-Simpson Index}
 \usage{
-concstats_simpson(x, na.rm = TRUE)
+concstats_simpson(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A single numeric value in decimal form.
@@ -23,25 +27,28 @@ Gini-Simpson Index
 }
 \details{
 \code{concstats_simpson} is the Gini-Simpson index, also known as
-the Gini impurity (Gini's diversity index) in Machine Learning, Gibbs-Martin
-index or Blau index in sociology and management studies. This index ranges
-from (0, 1).
+ the Gini impurity (Gini's diversity index) in Machine Learning, Gibbs-Martin
+ index or Blau index in sociology and management studies. This index ranges
+ from \{0, 1\}.
 }
 \examples{
 # a vector of market shares
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 concstats_simpson(x)
+
+concstats_simpson(x, digits = 2)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
-concstats_simpson(x, na.rm = FALSE)
+concstats_simpson(x, na.rm = TRUE)
 
 }
 \references{
 Simpson, E. H. (1949). "Measurement of Diversity", \emph{Nature},
-163, 688.
+ 163, 688.
 
 Jost, L. (2006). "Entropy and Diversity". \emph{Oikos}, 113(2),
-363-375.
+ 363-375.
 }
 \seealso{
 Other Concentration and inequality measures: 

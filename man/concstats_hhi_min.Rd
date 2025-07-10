@@ -4,16 +4,20 @@
 \alias{concstats_hhi_min}
 \title{Minimum of Herfindahl-Hirschman Index}
 \usage{
-concstats_hhi_min(x, na.rm = TRUE)
+concstats_hhi_min(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
-\item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if the vector
-contains \code{NA} values.}
+\item{na.rm}{A logical vector that indicates whether \code{NA} values
+should be excluded or not. Must be either \code{TRUE} or \code{FALSE}.
+The default is \code{TRUE}. If set to \code{FALSE} the computation
+yields a message if the vector contains \code{NA} values. NAs will
+be removed for further computations.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A single numeric measure in decimal form.
@@ -23,12 +27,13 @@ Minimum of Herfindahl-Hirschman Index
 }
 \details{
 Calculates the minimum of the Herfindahl-Hirschman index, that is,
-the equivalent of all participants in the market with equal market shares.
+ the equivalent of all participants in the market with equal market shares.
 }
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-concstats_hhi_min(x)
+concstats_hhi_min(x, digits = 2)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
 concstats_hhi_min(x, na.rm = FALSE)

@@ -1,17 +1,22 @@
 #' @title A wrapper for the proposed inequality measures
 #'
+#' @srrstats {G1.4} roxygen2 used to document functions
+#' @srrstats {EA1.3} Identify data to accept as input
+#' @usage
+#'  concstats_all_inequ(x, normalized = TRUE, na.rm = TRUE, digits = NULL)
+#'
 #' @param x A non-negative numeric vector.
 #' @param normalized Logical. Argument specifying whether or not a normalized
 #'  value is required. Must be either \code{TRUE} or \code{FALSE}. The default
 #'  is \code{FALSE}.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-#'  is \code{FALSE}.
-#'  If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-#'  are present.
-#' @param digits A non-null value for digits specifies the minimum number of
+#'  is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA}
+#'  if \code{NA} values are present.
+#' @srrstats {EA4.1}  control of numeric precision
+#' @param digits An optional value for digits. Specifies the minimum number of
 #'  significant digits to be printed in values. The default is \code{NULL} and
-#'  will use base R print option. Significant digits defaults to 7.
+#'  will use base R print option.
 #' @details
 #'  \code{concstats_all_inequ} returns all proposed group measures in a one step
 #'   procedure with default settings if not otherwise specified.
@@ -26,57 +31,46 @@
 #' concstats_all_inequ(x, digits = 2)
 #'
 #' @export
-concstats_all_inequ <- function(x, normalized = FALSE, na.rm = TRUE,
+concstats_all_inequ <- function(x, normalized = TRUE, na.rm = TRUE,
                                 digits = NULL) {
-  if (!is.numeric(x)) {
-    stop("`x` in concstats_all_inequ must be a numeric vector\n",
-         "You have provided an object of class:", class(x)[1])
-  }
+#' @srrstats {G2.1} Assertions on types of inputs
+  checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
+  checkmate::qassert(x, "n[0,)")
+#' @srrstats {G2.0} Implement assertions on lengths of inputs
+#' @srrstats {G2.14a} error on missing data
+#' @srrstats {G2.14b} ignore missing data with messages issued
 
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
     stop("`na.rm` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized))
-  {
-    stop("`normalized` in `concstats_all_inequ` must be either TRUE or
-            FALSE")
+  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+    stop("`normalized` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE) {
-    x <- as.numeric(x[!is.na(x)])
+  if (na.rm == TRUE && anyNA(x)) {
+    message("`x` has NA values. NAs have been removed for computation.")
+    x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (!na.rm && anyNA(x)) return(NA_real_)
 
-  # check if x is a positive decimal vector
-  if (as.logical(any(x < 0))) {
-    stop("x in `concstats_all_inequ` must be a positive vector")
-  }
-
-  # explicit conversion to continuous via `as.numeric()`
-  shares <- try(sum(x, na.rm = TRUE))
-  if (shares == 100 || shares == 1) {
-    x <-  as.numeric(x / sum(x, na.rm = TRUE))
-  }
+  x <- as.numeric(x / sum(x, na.rm = TRUE))
 
   # check sum of vector. Must sum to 1 if all x(market share) < 1
-  if (as.logical(all(x < 1) &&
-                 !isTRUE(all.equal(sum(x), 1,
-                                   tolerance = .Machine$double.eps^0.25)))) {
-    stop("vector `x` in `concstats_all_inequ` does not sum to 1")
+  if (!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                        1, tolerance = .Machine$double.eps^0.25))) {
+    stop("Your input vector `x` in `concstats_all_inequ` does not sum to 1")
   }
 
+  x <- as.numeric(x / sum(x, na.rm = TRUE))
+  entropy <- concstats_entropy(x)
+  gini <- concstats_gini(x)
+  simpson <- concstats_simpson(x)
+  palma <- concstats_palma(x)
+  grs <- concstats_grs(x)
 
-  x <- as.numeric(x)
-
-  entropy <- concstats_entropy(x, normalized = normalized, na.rm = TRUE)
-  gini <- concstats_gini(x, normalized = normalized, na.rm = TRUE)
-  simpson <- concstats_simpson(x, na.rm = TRUE)
-  palma <- concstats_palma(x, na.rm = TRUE)
-  grs <- concstats_grs(x, na.rm = TRUE)
-
-  # screen-based output.
+#' @srrstats {EA4.1, EA5.2} Screen-based with numeric formatting
   results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
                                           "Simpson Index", "Palma Ratio",
                                           "GRS"),
@@ -86,5 +80,5 @@ concstats_all_inequ <- function(x, normalized = FALSE, na.rm = TRUE,
                                                         digits = digits,
                                                         justify = "right")))
 
-  return(results_inequ)
+  return(as.data.frame(results_inequ))
 }

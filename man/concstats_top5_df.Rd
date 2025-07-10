@@ -4,31 +4,28 @@
 \alias{concstats_top5_df}
 \title{Top 5 market shares data frame}
 \usage{
-concstats_top5_df(x, y, na.rm = TRUE)
+concstats_top5_df(x, y, digits = NULL)
 }
 \arguments{
 \item{x}{A data frame.}
 
-\item{y}{A non-negative vector of shares.}
+\item{y}{A non-negative vector of shares. All integers (e.g. sales) are
+converted to relative decimal numbers.}
 
-\item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
-}
-\value{
-A data frame, which indicates an id or firm column and the top 5
-market shares in decimal form.
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option. Significant digits defaults to 7. Values are
+restricted between 1 and default value.}
 }
 \description{
 Top 5 market shares data frame
 }
 \examples{
-# some data
-id <- c(1, 2, 3, 4, 5)
-x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
-test_df <- data.frame(id, x)
+x <- data.frame(
+firm = c("A", "B", "C", "D", "E"),
+share = c(0.2,0.25,0.1,0.05,0.4)
+)
+concstats_top5_df(x, "share", digits = 2)
 
 }
 \seealso{
@@ -40,7 +37,6 @@ Other Market structure measures:
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
 \code{\link{concstats_top3_df}()},
-\code{\link{concstats_top5}()},
-\code{\link{concstats_top_df}()}
+\code{\link{concstats_top5}()}
 }
 \concept{Market structure measures}

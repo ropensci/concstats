@@ -3,8 +3,6 @@ local_edition(3)
 ## concstats_hhi_d
 
 test_that("concstats_hhi_d function operates properly", {
-  #' @srrstats {G5.1} Data used to test, made generally available and run
-  #'  examples.
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
   x1b <- c()
@@ -19,27 +17,27 @@ test_that("concstats_hhi_d function operates properly", {
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_equal(concstats_hhi_d(x2, na.rm = FALSE), NA_real_)
-  #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
-  #'  unsupported types
+  expect_message(concstats_hhi_d(x2))
+
   expect_error(concstats_hhi_d(xch, !is.numeric(xch)))
-  #' @srrstats {G5.0, G5.2, G5.2a, G5.2b, G5.8c} Error and error messages on
-  #'  vector with all-`NA` fields
+
   expect_error(concstats_hhi_d(x9, na.rm = TRUE))
   expect_error(concstats_hhi_d(x8, na.rm = TRUE))
   expect_error(concstats_hhi_d(x1b, na.rm = TRUE))
   expect_error(concstats_hhi_d(x, na.rm = 0))
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values single-valued objects.
+  expect_error(concstats_hhi_d(x1, any(x1 < 0)))
+  # digits argument
+  expect_error(expect_int(x, digits = c(8, 0)))
+  # convert to continuous
   act <- concstats_hhi_d(x)
   exp <- concstats_hhi_d(x4 / sum(x4))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  # adding trivial noise
   act <- concstats_hhi_d(x)
   exp <- concstats_hhi_d(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 
-  #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
-  #'  objects
+  # test if sum x = 1
   expect_error(concstats_hhi_d(sum(x1), 1,
                                tolerance = .Machine$double.eps^0.25))
 
@@ -57,14 +55,13 @@ test_that("concstats_hhi_d returns dual of hhi", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_hhi_d(share_2018), share_2018_hhi_d,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_hhi_d(x), 1 - 1 / (sum(x > 0) * sum(x ^ 2)))
-  #x4 <- x4 / sum(x4, na.rm = TRUE)
+
   expect_equal(concstats_hhi_d(x4),
                1 - 1 /sum(((x4/sum(x4,na.rm = TRUE)) > 0) *
                             sum((x4 / sum(x4, na.rm = TRUE))^ 2)))
-  #' @srrstats {EA6.0, EA6.0a} Return values
-  expect_true(is.numeric(share_2018_hhi_d), label = "numeric values returned")
+
+  checkmate::qexpect(concstats_hhi_d(x),"N[0,)")
 })

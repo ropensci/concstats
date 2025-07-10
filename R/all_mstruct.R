@@ -1,14 +1,18 @@
 #' @title A wrapper for the proposed structural measures
 #'
+#' @srrstats {G1.4} roxygen2 used to document functions
+#' @usage
+#'  concstats_all_mstruct(x, na.rm = TRUE, digits = NULL)
 #' @param x A non-negative numeric vector.
 #' @param na.rm A logical vector that indicates whether \code{NA} values should
 #'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
 #'  is \code{TRUE}.
 #'  If set to \code{FALSE} the computation yields \code{NA} if the vector
 #'  contains \code{NA} values.
-#' @param digits A non-null value for digits specifies the minimum number of
+#' @srrstats {EA4.1}  control of numeric precision
+#' @param digits An optional value for digits. Specifies the minimum number of
 #'  significant digits to be printed in values. The default is \code{NULL} and
-#'  will use base R print option. Significant digits defaults to 7.
+#'  will use base R print option.
 #' @details
 #'  \code{concstats_all_mstruct} returns all proposed group measures in a
 #'   one step procedure with default settings if not otherwise specified.
@@ -25,52 +29,51 @@
 #' concstats_all_mstruct(x, digits = 2)
 #'
 concstats_all_mstruct <- function(x, na.rm = TRUE, digits = NULL) {
-  if (!is.numeric(x)) {
-    stop("`x` in concstats_all_mstruct must be a numeric vector\n",
-         "You have provided an object of class:", class(x)[1])
-  }
+#' @srrstats {G2.1} Assertions on types of inputs
+#' @srrstats {EA1.3} Identify data to accept as input
 
+  checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
+  checkmate::qassert(x, "n[0,)")
+#' @srrstats {G2.0} Implement assertions on lengths of inputs
+#' @srrstats {G2.14a} error on missing data
+#' @srrstats {G2.14b} ignore missing data with messages issued
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
     stop("`na.rm` in `concstats_all_mstruct` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE) {
-    x <- as.numeric(x[!is.na(x)])
+  if (na.rm == TRUE && anyNA(x)) {
+    message("`x` has NA values. NAs have been removed for computation.")
+    x <- x[!is.na(x)]
   }
 
-  if (!na.rm && any(is.na(x))) return(NA_real_)
+  if (!na.rm && anyNA(x)) return(NA_real_)
 
-  # check if x is a positive decimal vector
-  if (as.logical(any(x < 0))) {
-    stop("x in `concstats_all_mstruct` must be a positive vector")
+  x <- as.numeric(x / sum(x, na.rm = TRUE))
+
+  # check sum of vector. Must sum to 1.
+  if (!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                        1, tolerance = .Machine$double.eps^0.25))) {
+    stop("Your input vector `x` in `concstats_all_mstruct` does not sum to 1")
   }
 
-  # explicit conversion to continuous via `as.numeric()`
-  if (sum(x, na.rm = TRUE) == 1 || sum(x, na.rm = TRUE) == 100) {
-    x <-  as.numeric(x / sum(x, na.rm = TRUE))
-  }
+  x <- as.numeric(x / sum(x, na.rm = TRUE))
 
-  # check sum of vector. Must sum to 1 if all x(market share) < 1
-  if (as.logical(all(x < 1) &&
-                 !isTRUE(all.equal(sum(x), 1,
-                                   tolerance = .Machine$double.eps^0.25)))) {
-    stop("vector `x` in `concstats_all_mstruct` does not sum to 1")
-  }
+  firm <- concstats_firm(x)
+  nrs_eq <- concstats_nrs_eq(x)
+  top <- concstats_top(x)
+  top3 <- concstats_top3(x)
+  top5 <- concstats_top5(x)
 
-  firm <- concstats_firm(x, na.rm = TRUE)
-  nrs_eq <- concstats_nrs_eq(x, na.rm = TRUE)
-  top <- concstats_top(x, na.rm = TRUE)
-  top3 <- concstats_top3(x, na.rm = TRUE)
-  top5 <- concstats_top5(x, na.rm = TRUE)
-
-  # screen-based output
+#' @srrstats {EA4.1, EA5.2} Screen-based with numeric formatting
   results_mstruct <- data.frame(Measure = c("Firms", "Nrs_equivalent",
-                                            "Top (%)", "Top3 (%)", "Top5 (%)"),
-                                Value = as.numeric(format(c(firm, nrs_eq, top,
-                                                            top3, top5),
-                                                          scientific = FALSE,
+                                            "Top (%)", "Top3 (%)",
+                                            "Top5 (%)"),
+                                Value = as.numeric(format(c(firm, nrs_eq,
+                                                            top, top3,
+                                                            top5),
+                                                          cientific = FALSE,
                                                           digits = digits,
                                                           justify = "right")))
 
-  return(results_mstruct)
+  return(as.data.frame(results_mstruct))
 }

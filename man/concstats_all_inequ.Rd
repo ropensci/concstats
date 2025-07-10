@@ -4,7 +4,7 @@
 \alias{concstats_all_inequ}
 \title{A wrapper for the proposed inequality measures}
 \usage{
-concstats_all_inequ(x, normalized = FALSE, na.rm = TRUE, digits = NULL)
+concstats_all_inequ(x, normalized = TRUE, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
@@ -15,23 +15,22 @@ is \code{FALSE}.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{FALSE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA}
+if \code{NA} values are present.}
 
-\item{digits}{A non-null value for digits specifies the minimum number of
+\item{digits}{An optional value for digits. Specifies the minimum number of
 significant digits to be printed in values. The default is \code{NULL} and
-will use base R print option. Significant digits defaults to 7.}
+will use base R print option.}
 }
 \value{
-A \code{data.frame}.
+A `data.frame`.
 }
 \description{
 A wrapper for the proposed inequality measures
 }
 \details{
 \code{concstats_all_inequ} returns all proposed group measures in a one step
-procedure with default settings if not otherwise specified.
+  procedure with default settings if not otherwise specified.
 }
 \examples{
 # a vector of market shares
@@ -40,7 +39,7 @@ concstats_all_inequ(x, digits = 2)
 
 }
 \seealso{
-\code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}}, \code{\link[=concstats_all_comp]{concstats_all_comp()}}
+[concstats_all_mstruct()], [concstats_all_comp()]
 
 Other Concentration and inequality measures: 
 \code{\link{concstats_entropy}()},

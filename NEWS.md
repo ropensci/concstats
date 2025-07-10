@@ -6,7 +6,7 @@
     transformed to shares
 -   gave all functions a separate R script
 -   all functions have now their own test file
--   corrected Simpson measure #3
+-   corrected Simpson measure #3 (thanks to @marberts)
 -   improved input behavior for integer vectors representing shares
 -   functions error on any negative value
 -   revisited and updated documentation and vignettes

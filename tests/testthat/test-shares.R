@@ -3,8 +3,6 @@ local_edition(3)
 ## concstats_shares
 
 test_that("concstats_shares function operates properly", {
-  #' @srrstats {G5.1} Data used to test, made generally available and run
-  #'  examples.
   x <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72)
   x1 <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, -69055940.72)
   x2 <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72, NA)
@@ -18,23 +16,25 @@ test_that("concstats_shares function operates properly", {
 
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_equal(concstats_shares(x2, na.rm = FALSE), NA_real_)
-  #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
-  #'  unsupported types
-  expect_error(concstats_shares(xch, !is.numeric(xch)))
-  #' @srrstats {G5.0, G5.2, G5.2a, G5.2b, G5.8c} Error and error messages on
-  #'  vector with all-`NA` fields
-  expect_error(concstats_shares(x9, na.rm = TRUE))
-  expect_error(concstats_shares(x, na.rm = 0))
+  expect_message(concstats_dom(x2))
+
+  expect_error(concstats_dom(xch, !is.numeric(xch)))
+
+  expect_error(concstats_dom(x9, na.rm = TRUE))
+  expect_error(concstats_dom(x8, na.rm = TRUE))
+  expect_error(concstats_dom(x1b, na.rm = TRUE))
+  expect_error(concstats_dom(x, na.rm = 0))
   expect_error(concstats_dom(x1, any(x1 < 0)))
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values single-valued objects.
+  # digits argument
+  expect_error(expect_int(x, digits = c(8, 0)))
+  # convert to decimal
   act <- concstats_shares(x, digits = NULL)
   exp <- concstats_shares(x7)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
   act <- concstats_shares(x, digits = NULL)
   exp <- concstats_shares(as.numeric(x / sum(x, na.rm = TRUE)))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  # Adding trivial noise
   act <- concstats_dom(x3)
   exp <- concstats_dom(x6)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
@@ -48,10 +48,9 @@ test_that("concstats_shares returns a vector of individual shares", {
   x <- c(538572286.08, 481096.77, 161914143.03, 128796268.59, 69055940.72)
   out <- c(0.59920, 0.00054, 0.18014, 0.14329, 0.07683)
 
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_shares(x, digits = 5), out,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_shares(x), x / sum(x, na.rm = TRUE))
-  #' @srrstats {EA6.0, EA6.0a} Return values
-  expect_true(is.numeric(out), label = "numeric values returned")
+
+  checkmate::qexpect(concstats_shares(x),"N[0,)")
 })

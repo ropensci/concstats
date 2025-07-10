@@ -4,20 +4,24 @@
 \alias{concstats_hhi}
 \title{Herfindahl-Hirschman Index}
 \usage{
-concstats_hhi(x, normalized = FALSE, na.rm = TRUE)
+concstats_hhi(x, normalized = FALSE, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{normalized}{Logical. Argument specifying whether or not a normalized
-value is required. Ranges from {0, 1} and often used for comparison over
-time. Must be either \code{TRUE} or \code{FALSE}. The default is
-\code{FALSE}.}
+value is required. Must be either \code{TRUE} or \code{FALSE}. The default
+ is \code{FALSE}.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}. If set to \code{FALSE} the computation yields \code{NA} if
-\code{NA} values are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{A non-null value for digits specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A single numeric measure in decimal form.
@@ -27,25 +31,26 @@ A measure of industry concentration and widely used in merger control.
 }
 \details{
 \code{concstats_hhi} calculates the widely used Herfindahl-Hirschman
-Index (Herfindahl, 1950 and Hirschman, 1945). The index is calculated by
-squaring the market share of each firm competing in the market and then
-summing the resulting numbers.
+ Index (Herfindahl, 1950 and Hirschman, 1945). The index is calculated by
+ squaring the market share of each firm competing in the market and then
+ summing the resulting numbers.
 }
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-concstats_hhi(x)
+concstats_hhi(x, digits = 2)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
-concstats_hhi(x, na.rm = FALSE)
+concstats_hhi(x, na.rm = TRUE)
 
 }
 \references{
 Herfindahl, O. C. (1950), "Concentration in the steel industry"
-(PhD thesis), Columbia University.
+ (PhD thesis), Columbia University.
 
 Hirschman, A. O. (1945), "National power and structure of
-foreign trade". Berkeley, CA: University of California Press.
+ foreign trade". Berkeley, CA: University of California Press.
 }
 \seealso{
 Other Competition/Concentration measures: 

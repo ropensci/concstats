@@ -3,8 +3,6 @@ local_edition(3)
 ## concstats_sten
 
 test_that("concstats_sten function operates properly", {
-  #' @srrstats {G5.1} Data used to test, made generally available and run
-  #'  examples.
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
   x1b <- c()
@@ -21,21 +19,21 @@ test_that("concstats_sten function operates properly", {
   expect_equal(sort(x, decreasing = TRUE), x3)
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_equal(concstats_sten(x2, na.rm = FALSE), NA_real_)
-  #' @srrstats {G5.2, G5.2a, G5.2b, G5.8, G5.8b} Edge test for data of
-  #'  unsupported types
+  expect_message(concstats_sten(x2))
+
   expect_error(concstats_sten(xch, !is.numeric(xch)))
-  #' @srrstats {G5.0, G5.2, G5.2a, G5.2b, G5.8c} Error and error messages on
-  #'  vector with all-`NA` fields
+
   expect_error(concstats_sten(x9, na.rm = TRUE))
   expect_error(concstats_sten(x8, na.rm = TRUE))
   expect_error(concstats_sten(x1b, na.rm = TRUE))
-  #expect_error(concstats_sten(x, na.rm = 0))
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values single-valued objects.
+  expect_error(concstats_sten(x, na.rm = 0))
+  # digits argument
+  expect_error(expect_int(x, digits = c(8, 0)))
+  # convert to continuous
   act <- concstats_sten(x)
   exp <- concstats_sten(x3)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  #' @srrstats {G3.0, G5.9, G5.9a} Adding trivial noise
+  # Adding trivial noise
   act <- concstats_sten(x)
   exp <- concstats_sten(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
@@ -43,8 +41,7 @@ test_that("concstats_sten function operates properly", {
   exp <- concstats_sten(x7)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 
-  #' @srrstats {G5.2, G5.2a, G5.2b, EA6.0, EA6.0e} Return values, single-valued
-  #'  objects
+  # test if sum x = 1
   expect_error(concstats_sten(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
 
 })
@@ -61,7 +58,6 @@ test_that("concstats_sten returns stenbacka index", {
                   0.016876624, 0.065780114, 0.053775553, 0.228519883,
                   0.030117841)
 
-  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   expect_equal(concstats_sten(share_2018), share_2018_sten,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_sten(x3), 0.5 * (1 - 1 * (x3[1] ^ 2 - x3[2] ^ 2)) * 100)
@@ -69,6 +65,6 @@ test_that("concstats_sten returns stenbacka index", {
   expect_equal(concstats_sten(x4),
                0.5 * (1 - 1 * ((x4 / sum(x4, na.rm = TRUE))[1] ^ 2 -
                                  (x4 / sum(x4, na.rm = TRUE))[2] ^ 2)) * 100)
-  #' @srrstats {EA6.0, EA6.0a} Return values
+
   expect_true(is.numeric(share_2018_sten), label = "numeric values returned")
 })

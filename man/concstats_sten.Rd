@@ -4,16 +4,20 @@
 \alias{concstats_sten}
 \title{Stenbacka Index}
 \usage{
-concstats_sten(x, na.rm = TRUE)
+concstats_sten(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
 \item{na.rm}{A logical vector that indicates whether \code{NA} values should
 be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}.
-If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
-are present.}
+is \code{TRUE}. If set to \code{FALSE} the computation yields a message
+if the vector contains \code{NA} values. NAs will be removed for further
+computations.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
 A single numeric measure in decimal form.
@@ -24,21 +28,24 @@ a dominant position and therefore assesses market dominance.
 }
 \details{
 \code{concstats_sten} calculates the Stenbacka index,
-which indicates the market share of a dominant position.
+  which indicates the market share of a dominant position.
 }
 \examples{
 # a vector of market shares
 x <- c(0.35, 0.4, 0.05, 0.1, 0.06, 0.04)
-concstats_sten(x)
+concstats_sten(x, digits = 2)
+
+concstats_sten(x, digits = 3)
+
 # a vector with NA values
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05, NA)
-concstats_sten(x, na.rm = FALSE)
+concstats_sten(x, na.rm = TRUE)
 
 }
 \references{
 Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing market
-dominance", \emph{Journal of Economic Behavior and Organization},
-68: pp. 63-72.
+ dominance", \emph{Journal of Economic Behavior and Organization},
+ 68: pp. 63-72.
 }
 \seealso{
 Other Competition/Concentration measures: 

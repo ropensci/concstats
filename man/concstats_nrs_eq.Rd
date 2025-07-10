@@ -4,7 +4,7 @@
 \alias{concstats_nrs_eq}
 \title{Numbers equivalent}
 \usage{
-concstats_nrs_eq(x, na.rm = TRUE)
+concstats_nrs_eq(x, na.rm = TRUE, digits = NULL)
 }
 \arguments{
 \item{x}{A non-negative numeric vector.}
@@ -14,9 +14,13 @@ be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
 is \code{TRUE}.
 If set to \code{FALSE} the computation yields \code{NA} if \code{NA} values
 are present.}
+
+\item{digits}{An optional value for digits. Specifies the minimum number of
+significant digits to be printed in values. The default is \code{NULL} and
+will use base R print option.}
 }
 \value{
-A positive numeric value.
+A positive numeric value, rounded to the second decimal place.
 }
 \description{
 Numbers equivalent
@@ -24,7 +28,7 @@ Numbers equivalent
 \examples{
 # a vector of market shares
 x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
-concstats_nrs_eq(x)
+concstats_nrs_eq(x, digits = 2)
 
 }
 \seealso{
@@ -36,7 +40,6 @@ Other Market structure measures:
 \code{\link{concstats_top3}()},
 \code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
-\code{\link{concstats_top5_df}()},
-\code{\link{concstats_top_df}()}
+\code{\link{concstats_top5_df}()}
 }
 \concept{Market structure measures}
