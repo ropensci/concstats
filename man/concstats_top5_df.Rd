@@ -17,6 +17,9 @@ significant digits to be printed in values. The default is \code{NULL} and
 will use base R print option. Significant digits defaults to 7. Values are
 restricted between 1 and default value.}
 }
+\value{
+A \verb{data frame}.
+}
 \description{
 Top 5 market shares data frame
 }
@@ -36,6 +39,7 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
+\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
 \code{\link{concstats_top_df}()}
 }

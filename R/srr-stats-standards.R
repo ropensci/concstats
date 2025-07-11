@@ -9,7 +9,6 @@
 #'
 #' @srrstatsVerbose TRUE
 #'
-#'
 #' @noRd
 NULL
 

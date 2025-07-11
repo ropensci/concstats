@@ -1,3 +1,8 @@
+local_edition(3)
+
+## concstats_all_mstruct
+
+
 test_that("concstats_all_mstruct returns a data frame", {
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)

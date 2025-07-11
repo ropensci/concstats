@@ -3,8 +3,8 @@
 #' @srrstats {G1.4} roxygen2 used to document functions
 #' @inheritParams concstats_top
 #'
-#' @return A positive numeric value, which indicates the cumulative sum of the
-#'  top 3 market shares as a percentage.
+#' @return A positive numeric value, which indicates the cumulative sum
+#' of the top 3 market shares as a percentage.
 #'
 #' @family Market structure measures
 #' @rdname concstats_top3

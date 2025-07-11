@@ -40,6 +40,7 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
+\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5_df}()},
 \code{\link{concstats_top_df}()}
 }

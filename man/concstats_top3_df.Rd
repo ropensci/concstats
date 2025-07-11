@@ -17,6 +17,9 @@ significant digits to be printed in values. The default is \code{NULL} and
 will use base R print option. Significant digits defaults to 7. Values are
 restricted between 1 and default value.}
 }
+\value{
+A \verb{data frame}.
+}
 \description{
 Top market share data frame
 }
@@ -28,3 +31,16 @@ share = c(0.2,0.25,0.1,0.05,0.4)
 concstats_top3_df(x, "share", digits = 2)
 
 }
+\seealso{
+Other Market structure measures: 
+\code{\link{concstats_all_mstruct}()},
+\code{\link{concstats_firm}()},
+\code{\link{concstats_mstruct}()},
+\code{\link{concstats_nrs_eq}()},
+\code{\link{concstats_top}()},
+\code{\link{concstats_top3}()},
+\code{\link{concstats_top5}()},
+\code{\link{concstats_top5_df}()},
+\code{\link{concstats_top_df}()}
+}
+\concept{Market structure measures}

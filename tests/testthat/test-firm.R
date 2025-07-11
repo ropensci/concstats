@@ -1,3 +1,5 @@
+local_edition(3)
+
 ## concstats_firm
 
 test_that("concstats_firm function operates properly", {

@@ -15,7 +15,7 @@ test_that("concstats_all_comp returns a data frame", {
   x9 <- c(NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e")
 
-#' @srrstatsTODO {G5.2b} testing of message, error behaviour
+#' @srrstats {G5.2b} testing of message, error behaviour
 #' @srrstats {EA6.0a} Classes and types of objects
 #' @srrstats {EA6.0b} Dimensions of tabular objects
 #' @srrstats {EA6.0c} Column names (or equivalent) of tabular objects

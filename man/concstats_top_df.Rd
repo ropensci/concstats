@@ -18,7 +18,7 @@ will use base R print option. Significant digits defaults to 7. Values are
 restricted between 1 and default value.}
 }
 \value{
-A data frame.
+A \verb{data frame}.
 }
 \description{
 Top market share data frame
@@ -39,6 +39,7 @@ Other Market structure measures:
 \code{\link{concstats_nrs_eq}()},
 \code{\link{concstats_top}()},
 \code{\link{concstats_top3}()},
+\code{\link{concstats_top3_df}()},
 \code{\link{concstats_top5}()},
 \code{\link{concstats_top5_df}()}
 }

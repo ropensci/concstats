@@ -38,7 +38,7 @@ concstats_all_comp <- function(x, normalized = FALSE, na.rm = TRUE,
   checkmate::qassert(x, "n[0,)")
 #' @srrstats {G2.0, G2.14a, G2.14b} Implement assertions on lengths of inputs
 #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
-#' @srrstatsTODO {G5.2. G5.2a} Appropiate error, warning, message behavior
+#' @srrstats {G5.2. G5.2a} Appropriate error, warning, message behavior
 
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
     stop("`na.rm` in `concstats_all_comp` must be either TRUE or FALSE")
