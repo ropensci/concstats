@@ -1,8 +1,10 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   concstats-intro: concstats-intro.html
   concstats-start: concstats-start.html
-last_built: 2023-03-16T13:42Z
-
+last_built: 2025-07-11T00:01Z
+urls:
+  reference: https://docs.ropensci.org/concstats/reference
+  article: https://docs.ropensci.org/concstats/articles
