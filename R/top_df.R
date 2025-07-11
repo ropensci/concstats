@@ -10,7 +10,7 @@
 #'  significant digits to be printed in values. The default is \code{NULL} and
 #'  will use base R print option. Significant digits defaults to 7. Values are
 #'  restricted between 1 and default value.
-#' @return A data frame.
+#' @return A `data frame`.
 #'
 #' @family Market structure measures
 #' @rdname concstats_top_df

@@ -2,7 +2,7 @@
 #'
 #' @srrstats {G1.4} roxygen2 used to document functions
 #' @inheritParams concstats_top_df
-#'
+#' @return A `data frame`.
 #' @family Market structure measures
 #' @rdname concstats_top5_df
 #'
@@ -15,9 +15,9 @@
 #'
 #' @export
 concstats_top5_df <- function(x, y, digits = NULL) {
-  #' @srrstats {G2.1} Assertions on types of inputs
-  #' @srrstats {G5.8a} Zero-length data
-  #' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+#' @srrstats {G2.1} Assertions on types of inputs
+#' @srrstats {G5.8a} Zero-length data
+#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
 
   checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
   checkmate::qassert(x[ ,y], "n[0,)")
@@ -26,7 +26,7 @@ concstats_top5_df <- function(x, y, digits = NULL) {
          "You have provided an object of class:", class(x)[1])
   }
 
-  #' @srrstats {G2.0, G2.14a, G2.14b} Implement assertions on lengths of inputs
+#' @srrstats {G2.0, G2.14a, G2.14b} Implement assertions on lengths of inputs
   if (anyNA(x)) {
     message(paste(
       "NA values have been removed before the calculation for the following variable: ", y))
