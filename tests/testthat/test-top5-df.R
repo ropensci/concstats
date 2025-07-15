@@ -40,7 +40,7 @@ test_that("concstats_top5_df function operates properly", {
   expect_error(concstats_top5_df(test_df, na.rm = 0))
   expect_error(concstats_top5_df(test_df1, as.logical(any(x < 0))))
   # digits argument
-  expect_error(expect_int(x, digits = c(8, -4)))
+  expect_error(expect_int(x, digits = c(8, 0)))
   # Adding trivial noise
   expect_equal(sum(test_df5$x5), sum(test_df$x),
                tolerance = .Machine$double.eps^0.25 )
