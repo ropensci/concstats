@@ -50,7 +50,8 @@
 
 
 ## usethis namespace: start
-#' @importFrom stats complete.cases na.omit
+#' @importFrom stats na.omit
+#' @importFrom tibble as_tibble
 #' @importFrom utils browseVignettes
 ## usethis namespace: end
 NULL

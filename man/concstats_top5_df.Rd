@@ -7,7 +7,7 @@
 concstats_top5_df(x, y, digits = NULL)
 }
 \arguments{
-\item{x}{A data frame.}
+\item{x}{A data frame or tibble.}
 
 \item{y}{A non-negative vector of shares. All integers (e.g. sales) are
 converted to relative decimal numbers.}
