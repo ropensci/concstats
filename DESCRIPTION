@@ -45,7 +45,8 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     checkmate,
-    stats
+    stats,
+    tibble
 Suggests: 
     rmarkdown,
     knitr,
