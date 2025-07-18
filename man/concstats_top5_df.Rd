@@ -23,6 +23,10 @@ A \verb{data frame}.
 \description{
 Top 5 market shares data frame
 }
+\note{
+Note that the first column in your data frame will be the index
+and values should be unique.
+}
 \examples{
 x <- data.frame(
 firm = c("A", "B", "C", "D", "E"),

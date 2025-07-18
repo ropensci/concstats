@@ -34,7 +34,7 @@
 #' @srrstats {G1.2} implemented in CONTRIBUTING file
 #' @srrstats {G2.0, G2.0a, G2.1, G2.1a, G2.2, G2.3, G2.3a, G2.3b}
 #'   Input types are asserted and appropriately restricted and tested
-#' @srrstats {G2.7. G2.8} `data.frame` and its extensions are supported.
+#' @srrstats {G2.7, G2.8} `data.frame` and its extensions are supported.
 #'   Input types are well defined and asserted.
 #' @srrstats {G2.15} Functions never assume non-missingness.
 #' @srrstats {G5.4c} Values used from published paper are used as an

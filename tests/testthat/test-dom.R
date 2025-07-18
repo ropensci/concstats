@@ -20,7 +20,7 @@ test_that("concstats_dom function operates properly", {
   expect_message(concstats_dom(x2))
 
   expect_error(concstats_dom(xch, !is.numeric(xch)))
-
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.3, G5.8, G5.8c}
   expect_error(concstats_dom(x9, na.rm = TRUE))
   expect_error(concstats_dom(x8, na.rm = TRUE))
   expect_error(concstats_dom(x1b, na.rm = TRUE))

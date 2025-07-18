@@ -37,6 +37,7 @@ NULL
 #' @srrstatsNA {G5.11} No extended test(s) are included
 #' @srrstatsNA {G5.11a} No extended test(s) are included
 #' @srrstatsNA {G5.12} No extended test(s) are included
+#' @srrstatsNA {EA2.2a} No class system used
 #' @srrstatsNA {EA2.3} No table joins for this pkg are required
 #' @srrstatsNA {EA2.4} No multi-tabular input allowed
 #' @srrstatsNA {EA2.5} No multi-tabular input allowed

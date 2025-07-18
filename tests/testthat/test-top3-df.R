@@ -34,11 +34,10 @@ test_that("concstats_top3_df function operates properly", {
   expect_true(all(round(test_df5$x5) == 0), (abs(test_df5$x5) > 0 &
                                               abs(test_df5$x5) <= 1))
 
-  expect_error(concstats_top3_df(test_df2, na.rm = FALSE))
+  expect_error(concstats_top3_df(test_df2))
   expect_equal(ncol(test_df), 2)
 
   expect_error(concstats_top3_df(test_df9, na.rm = TRUE, class = data.frame()))
-  expect_error(concstats_top3_df(test_df2, na.rm = FALSE|TRUE))
   expect_error(concstats_top3_df(test_df, na.rm = 0))
   expect_error(concstats_top3_df(test_df1, as.logical(any(x < 0))))
   # digits argument
@@ -46,10 +45,6 @@ test_that("concstats_top3_df function operates properly", {
   # Adding trivial noise
   expect_equal(sum(test_df5$x5), sum(test_df$x),
                tolerance = .Machine$double.eps^0.25 )
-
-  # test if sum x = 1
-  expect_error(concstats_top3_df(sum(test_df1[ ,y]), 1,
-                             tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -70,4 +65,26 @@ test_that("concstats_top3_df returns top 3 market share", {
   expect_equal(dim(top3_df), c(3,2))
 
   expect_true(is.data.frame(test_df4), label = "dataframe returned")
+})
+
+test_that("concstats_top3_df returns messages", {
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.3}
+  id <- c(1, 2, 3, 4, 5)
+  id2 <- c(1, 2, 3, 4, 4)
+  x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
+  x2 <- c(0.2, 0.3, 0.4, 0.1, NA)
+  x4 <- c(20, 25, 40, 10, 5)
+
+  test_df <- data.frame(id2, x4)
+  test_df1 <- data.frame(id, x1)
+  test_df2 <- data.frame(id, x2)
+
+  # unique index values
+  expect_error(concstats_top3_df(test_df, anyDuplicated(test_df)))
+  # test if sum x = 1
+  expect_error(concstats_top3_df(sum(test_df1[ ,y]), 1,
+                                tolerance = .Machine$double.eps^0.25))
+
+  expect_message(concstats_top3_df(test_df2, "x2"))
+
 })
