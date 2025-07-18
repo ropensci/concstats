@@ -3,6 +3,8 @@
 #' @srrstats {G1.4} roxygen2 used to document functions
 #' @inheritParams concstats_top_df
 #' @return A `data frame`.
+#' @note Note that the first column in your data frame will be the index
+#' and values should be unique.
 #' @family Market structure measures
 #' @rdname concstats_top5_df
 #'
@@ -15,10 +17,10 @@
 #'
 #' @export
 concstats_top5_df <- function(x, y, digits = NULL) {
-  #' @srrstats {G2.1} Assertions on types of inputs
-  #' @srrstats {G5.8a} Zero-length data
-  #' @srrstats {G2.2, G2.6, G2.7, G2.16} Checking class, type, NaN handling
-  #' @srrstats {EA2.6}
+#' @srrstats {G2.1} Assertions on types of inputs
+#' @srrstats {G5.8a} Zero-length data
+#' @srrstats {G2.2, G2.6, G2.7, G2.16} Checking class, type, NaN handling
+#' @srrstats {EA2.6}
   # Checking if an argument is a data frame with specific column names
   checkmate::assert_data_frame(x, types = c("numeric", "character"),
                                col.names = "unique",
@@ -28,7 +30,13 @@ concstats_top5_df <- function(x, y, digits = NULL) {
 
   x <- tibble::as_tibble(x)
 
-  #' @srrstats {G2.10, G2.11, G2.12} data frame pre-processing
+#' @srrstats {EA2.0, EA2.1, EA2.2, EA2.2b}
+  attr(x, "index") <- x[[1]]
+  if (anyDuplicated(x[[1]])) {
+    stop("Your first column has duplicated values")
+  }
+
+#' @srrstats {G2.10, G2.11, G2.12} data frame pre-processing
   if (anyNA(x)) {
     message(paste("NA values have been removed before the calculation for the following variable: ", y))
   }

@@ -12,6 +12,9 @@
 #'  restricted between 1 and default value.
 #' @return A `data frame`.
 #'
+#' @note Note that the first column in your data frame will be the index
+#' and values should be unique.
+#'
 #' @family Market structure measures
 #' @rdname concstats_top_df
 #' @importFrom stats na.omit
@@ -39,6 +42,12 @@ concstats_top_df <- function(x, y, digits = NULL) {
   checkmate::qassert(x[ ,y], "n[0,)")
 
   x <- tibble::as_tibble(x)
+
+#' @srrstats {EA2.0, EA2.1, EA2.2, EA2.2b}
+  attr(x, "index") <- x[[1]]
+  if (anyDuplicated(x[[1]])) {
+    stop("Your first column has duplicated values")
+  }
 
 #' @srrstats {G2.10, G2.11, G2.12} data frame pre-processing
   if (anyNA(x)) {
