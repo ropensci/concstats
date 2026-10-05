@@ -1,15 +1,18 @@
 # concstats 0.2.1
 
--   added three more functions (concstats_top_df, concstats_top3_df,
-    concstats_top5_df)
--   added a helper function to calculate shares if input are raw data and not
-    transformed to shares
--   all functions have a separate R script
--   all functions have now their own test file
--   corrected Simpson measure #3 (thanks to @marberts)
--   improved input behavior for integer vectors representing shares
--   functions error on any negative value
--   revisited and updated documentation and vignettes
+- added three more functions (concstats_top_df, concstats_top3_df,
+  concstats_top5_df)
+- added a helper function to calculate shares if input are raw data and not
+  transformed to shares
+- all functions have a separate R script
+- all functions have now their own test file
+- corrected Simpson measure #3 (thanks to @marberts)
+- improved input behavior for integer vectors representing shares
+- functions error on any negative value
+- revisited and updated documentation and vignettes
+- added a new rhub.yaml for the new R-hub v2 using a) rhub::rhub_setup(),
+  rhub::rhub_doctor() to check if the setup was correct, and finally
+  rhub::rhub_check() to check the package
 
 
 # concstats 0.1.6
