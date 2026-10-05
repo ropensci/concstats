@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   concstats-intro: concstats-intro.html
   concstats-start: concstats-start.html
-last_built: 2026-10-05T21:42Z
+last_built: 2026-10-05T21:57Z
 urls:
   reference: https://docs.ropensci.org/concstats/reference
   article: https://docs.ropensci.org/concstats/articles
