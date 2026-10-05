@@ -90,7 +90,7 @@ You can install the latest development version from
 devtools::install_github("ropensci/concstats")
 ```
 ```{r eval = FALSE}
-install.packages("concstats", repos = "https://ropensci.r-universe.dev")
+install.packages("concstats", repos = "https://ropensci.r-universe.dev/concstats")
 ```
 ## How to use `concstats`
 

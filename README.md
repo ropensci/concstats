@@ -74,7 +74,7 @@ devtools::install_github("ropensci/concstats")
 ```
 
 ``` r
-install.packages("concstats", repos = "https://ropensci.r-universe.dev")
+install.packages("concstats", repos = "https://ropensci.r-universe.dev/concstats")
 ```
 
 ## How to use `concstats`
