@@ -6,13 +6,10 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  # Manually trigger the Action under Actions/pkgcheck
+  workflow_run:
+    workflows: ["R-CMD-check"]
+    types: [completed]
   workflow_dispatch:
-  # Run on every push to main
-  push:
-    branches:
-      - main
-      - master
 
 jobs:
   pkgcheck:
