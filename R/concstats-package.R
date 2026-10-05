@@ -29,7 +29,6 @@
 #' @author Andreas Schneider \email{schneiderconsultingpy@@gmail.com}
 #' @keywords internal
 #'
-#' @srrstats {G1.3} All statistical terminology is defined and explained.
 #' @srrstats {G1.4, G1.4a} Roxygen is used for all documentation.
 #' @srrstats {G1.2} implemented in CONTRIBUTING file
 #' @srrstats {G2.0, G2.0a, G2.1, G2.1a, G2.2, G2.3, G2.3a, G2.3b}

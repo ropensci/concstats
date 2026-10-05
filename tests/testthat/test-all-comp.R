@@ -15,14 +15,12 @@ test_that("concstats_all_comp returns a data frame", {
   x9 <- c(NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e")
 
-#' @srrstats {G5.2b} testing of message, error behaviour
-#' @srrstats {EA6.0a} Classes and types of objects
-#' @srrstats {EA6.0b} Dimensions of tabular objects
-#' @srrstats {EA6.0c} Column names (or equivalent) of tabular objects
-#' @srrstats {EA6.0d} Classes or types of all columns contained within
-#'  `data.frame`-type tabular objects
-#' @srrstats {G5.3, G5.8b, G5.8c} Testing for absence of NAs in return objects
-
+  #' @srrstats {EA6.0a} Classes and types of objects
+  #' @srrstats {EA6.0b} Dimensions of tabular objects
+  #' @srrstats {EA6.0c} Column names (or equivalent) of tabular objects
+  #' @srrstats {EA6.0d} Classes or types of all columns contained within
+  #'  `data.frame`-type tabular objects
+  #' @srrstats {G5.3, G5.8b, G5.8c} Testing for absence of NAs in return objects
 
   dummy_df <- data.frame(Measure = rep(letters[1:5]), Value = c(1, 2, 3, 4, 5))
   expect_equal(ncol(dummy_df), 2)
@@ -32,27 +30,28 @@ test_that("concstats_all_comp returns a data frame", {
   expect_identical(names(dummy_df), c("Measure", "Value"))
 
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_true(any(is.na(x2)), all(!is.na(x2)))
+  expect_true(anyNA(x2), all(!is.na(x2)))
   expect_equal(x, as.numeric(x4 / sum(x4)))
-
-
   expect_true(is.data.frame(concstats_all_comp(x)), "data.frame")
+
+  #' @srrstats {G5.2b} testing of message, error behaviour
   expect_error(concstats_all_comp(xch, !is.numeric(xch)))
   expect_error(concstats_all_comp(x9, na.rm = TRUE))
+  expect_error(concstats_all_comp(anyNA(x2), na.rm = FALSE))
   expect_error(concstats_all_comp(x8, na.rm = TRUE))
   expect_error(concstats_all_comp(x1b, na.rm = TRUE))
   expect_error(concstats_all_comp(x, na.rm = 0))
   expect_error(concstats_all_comp(x, normalized = 0))
+  expect_identical(concstats_all_comp(c(1, 2, NA, 4), na.rm = FALSE), NA_real_)
+  expect_false(identical(
+    concstats_all_comp(c(1, 2, 3, 4), na.rm = FALSE),
+    NA_real_
+  ))
+  expect_message(concstats_all_comp(x2, na.rm = TRUE))
 
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
-
-#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for `numeric` values
-#'  either using `testthat::expect_equal()` or equivalent with a defined value
-#'  for the `tolerance` parameter
-  # test that sum of x=1
-  expect_error(concstats_all_comp(sum(x1), 1,
-                                  tolerance = .Machine$double.eps^0.25))
+  expect_error(expect_int(x, digits = 0))
 
   # test if order of values matter (should not)
   act <- concstats_all_comp(as.numeric(x))
@@ -66,6 +65,19 @@ test_that("concstats_all_comp returns a data frame", {
   act <- concstats_all_comp(as.numeric(x))
   exp <- concstats_all_comp(as.numeric(x5))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-
 })
 
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_all_comp(
+    !isTRUE(all.equal(sum(x, na.rm = TRUE), 1, tolerance)),
+    "vector `x` in `concstats_all_comp`
+                                  does not sum to 1"
+  ))
+})

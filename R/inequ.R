@@ -56,9 +56,9 @@
 #' concstats_inequ(x, type = "all", digits = 2)
 #'
 #' @export concstats_inequ
-concstats_inequ <- function(x, normalized = TRUE, type = c("entropy", "gini",
-                                                          "simpson", "palma",
-                                                          "grs", "all"),
+concstats_inequ <- function(x, normalized = TRUE,
+                            type = c("entropy", "gini", "simpson",
+                                     "palma", "grs", "all"),
                             na.rm = TRUE, digits = NULL) {
   type <- tolower(as.character(type))
 #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
@@ -68,7 +68,8 @@ concstats_inequ <- function(x, normalized = TRUE, type = c("entropy", "gini",
 
   checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
   checkmate::qassert(x, "n[0,)")
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+  if (!is.logical(normalized) || !length(normalized) == 1 ||
+      is.na(normalized)) {
     stop("`normalized` in `concstats_inequ` must be either TRUE or FALSE")
   }
 

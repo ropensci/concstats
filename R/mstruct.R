@@ -12,17 +12,17 @@
 #' @param type A character string of the measure to be calculated,
 #'  can be abbreviated with the first letter. Defaults to "firm". Input is not
 #'  case-sensitive.
-#' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-#'  is \code{TRUE}. If set to \code{TRUE} the computation yields a message
-#'  if the vector contains \code{NA} values. NAs will be removed for further
-#'  computations. If set to \code{FALSE} with NAs present the computation
-#'  yield \code{NA}.
+#' @param na.rm A logical vector that indicates whether \code{NA} values
+#' should be excluded or not. Must be either \code{TRUE} or \code{FALSE}.
+#' The default is \code{TRUE}. If set to \code{TRUE} the computation
+#' yields a message if the vector contains \code{NA} values. NAs will be
+#' removed for further computations. If set to \code{FALSE} with NAs
+#' present the computation yield \code{NA}.
 #' @srrstats {EA4.1}  control of numeric precision
-#' @param digits A non-null value for digits specifies the minimum number of
-#'  significant digits to be printed in values. The default is \code{NULL} and
-#'  will use base R print option. Significant digits defaults to 7. Values are
-#'  restricted between 1 and default value.
+#' @param digits A non-null value for digits specifies the minimum number
+#' of significant digits to be printed in values. The default is
+#' \code{NULL} and will use base R print option. Significant digits
+#' defaults to 7. Values are restricted between 1 and default value.
 #' @details
 #' * \code{concstats_mstruct} is a wrapper for the proposed structural measures.
 #' * [concstats_firm()], returns the number of firms with a given market share.
@@ -39,10 +39,11 @@
 #'  frame. These functions are just individually accessible.
 #'
 #' @return A single calculated numeric measure or `data frame`.
-#' @note The vector of market shares should be in a decimal form corresponding
-#'  to total shares of individual firms/units.The sum of the vector should sum up
-#'  to 1. Alternatively, the user might use [concstats_shares()] to converting
-#'  raw variables, e.g. loans or sales into shares.
+#' @note The vector of market shares should be in a decimal form
+#' corresponding to total shares of individual firms/units. The sum of
+#' the vector should sum up to 1. Alternatively, the user might use
+#' [concstats_shares()] to converting raw variables, e.g. loans or sales
+#' into shares.
 #'
 #' @seealso [concstats_concstats()],[concstats_comp()],[concstats_inequ()]
 #'
@@ -62,7 +63,8 @@ concstats_mstruct <- function(x,
                                        "top5", "all"),
                               na.rm = TRUE, digits = NULL) {
   type <- tolower(as.character(type))
-#' @srrstats {G2.4, G2.4c} explicit conversion to character via as.character()
+#' @srrstats {G2.4, G2.4c} explicit conversion to character via
+#'  as.character()
 #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
 #' @srrstats {G2.0, G2.1} Assertions on types of inputs
 

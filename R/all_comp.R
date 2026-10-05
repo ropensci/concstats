@@ -44,7 +44,8 @@ concstats_all_comp <- function(x, normalized = FALSE, na.rm = TRUE,
     stop("`na.rm` in `concstats_all_comp` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+  if (!is.logical(normalized) || !length(normalized) == 1 ||
+      is.na(normalized)) {
     stop("`normlized` in `concstats_all_comp` must be either TRUE or FALSE")
   }
 
@@ -57,7 +58,8 @@ concstats_all_comp <- function(x, normalized = FALSE, na.rm = TRUE,
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
 
-#' @srrstats {G3.0, G5.9, G5.9a, EA6.0, EA6.0e} Return values, single-valued objects.
+#' @srrstats {G3.0, G5.9, G5.9a, EA6.0, EA6.0e} Return values,
+#'  single-valued objects.
   # check sum of vector. Must sum to 1
   if (!isTRUE(all.equal(sum(x, na.rm = TRUE), 1,
                         tolerance = .Machine$double.eps^0.25))) {

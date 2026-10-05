@@ -63,5 +63,5 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE, roclets = c ("collate", "namespace", "rd", "srr::srr_stats_roclet"))
-RoxygenNote: 7.3.2
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

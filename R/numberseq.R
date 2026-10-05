@@ -52,6 +52,7 @@ concstats_nrs_eq <- function(x, na.rm = TRUE, digits = NULL) {
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
   nrs_eq <- as.numeric(1 / sum(x ^ 2))
-  if (!is.null(digits)) nrs_eq <- as.numeric(round(nrs_eq, digits = digits))
+  if (!is.null(digits)) nrs_eq <- as.numeric(round(nrs_eq,
+                                                   digits = digits))
   return(as.numeric(nrs_eq))
 }

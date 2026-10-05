@@ -20,7 +20,8 @@ test_that("concstats_mstruct function operates / switches properly", {
   expect_equal(concstats_mstruct(x, type = "firm"), concstats_firm(x))
   expect_equal(concstats_mstruct(x, type = "FIRM"), concstats_firm(x))
   expect_equal(concstats_mstruct(x, type = "nrs_eq"), concstats_nrs_eq(x))
-  expect_equal(concstats_mstruct(x, type = "top"), concstats_top(x, na.rm = FALSE))
+  expect_equal(concstats_mstruct(x, type = "top"),
+               concstats_top(x, na.rm = FALSE))
   expect_equal(concstats_mstruct(x, type = "Top"), concstats_top(x))
   expect_equal(concstats_mstruct(x, type = "top3"), concstats_top3(x))
   expect_equal(concstats_mstruct(x, type = "Top3"), concstats_top3(x))
@@ -28,13 +29,21 @@ test_that("concstats_mstruct function operates / switches properly", {
   expect_equal(concstats_mstruct(x, type = "Top5"), concstats_top5(x))
   expect_equal(concstats_mstruct(x, type = "Firm"), concstats_firm(x))
   expect_equal(concstats_mstruct(x, type = "FiRm"), concstats_firm(x))
-  expect_equal(concstats_mstruct(x, type = "all"), concstats_all_mstruct(x))
+  expect_equal(concstats_mstruct(x, type = "all"),
+               concstats_all_mstruct(x))
 
   expect_error(concstats_mstruct(x1b, na.rm = TRUE))
   expect_error(concstats_mstruct(x, na.rm = 0))
   expect_message(concstats_mstruct(x2))
+  expect_error(concstats_mstruct(anyNA(x2), na.rm = FALSE))
+  expect_identical(concstats_mstruct(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_mstruct(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # Adding trivial noise
   act <- concstats_mstruct(x, type = "firm")
   exp <- concstats_mstruct(x5)
@@ -43,5 +52,21 @@ test_that("concstats_mstruct function operates / switches properly", {
 
 
 test_that("concstats_mstruct returns a data frame if type=all",{
-  expect_true(is.data.frame(concstats_mstruct(x, type = "all")), "data.frame")
+  x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
+  expect_true(is.data.frame(concstats_mstruct(x, type = "all")),
+              "data.frame")
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_mstruct(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_mstruct`
+                                  does not sum to 1"))
+
 })

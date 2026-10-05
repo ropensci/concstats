@@ -2,27 +2,27 @@
 #'
 #' @srrstats {G1.4} roxygen2 used to document functions
 #' @description
-#' The measure suggests an approach that classifies when an individual firm has
-#' a dominant position and therefore assesses market dominance.
+#' The measure suggests an approach that classifies when an individual
+#' firm has a dominant position and therefore assesses market dominance.
 #' @usage
 #'  concstats_sten(x, na.rm = TRUE, digits = NULL)
 #' @srrstats {G1.1} First implementation in R
 #' @param x A non-negative numeric vector.
-#' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-#'  is \code{TRUE}. If set to \code{FALSE} the computation yields a message
-#'  if the vector contains \code{NA} values. NAs will be removed for further
-#'  computations.
+#' @param na.rm A logical vector that indicates whether \code{NA} values
+#' should be excluded or not. Must be either \code{TRUE} or \code{FALSE}.
+#' The default is \code{TRUE}. If set to \code{FALSE} the computation
+#' yields a message if the vector contains \code{NA} values. NAs will be
+#' removed for further computations.
 #' @srrstats {EA4.1}  control of numeric precision
-#' @param digits An optional value for digits. Specifies the minimum number of
-#'  significant digits to be printed in values. The default is \code{NULL} and
-#'  will use base R print option.
+#' @param digits An optional value for digits. Specifies the minimum
+#' number of significant digits to be printed in values. The default is
+#' \code{NULL} and will use base R print option.
 #' @details
 #'  \code{concstats_sten} calculates the Stenbacka index,
 #'   which indicates the market share of a dominant position.
 #' @return A single numeric measure in decimal form.
-#' @references Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing market
-#'  dominance", \emph{Journal of Economic Behavior and Organization},
+#' @references Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing
+#' market dominance", \emph{Journal of Economic Behavior and Organization},
 #'  68: pp. 63-72.
 #' @srrstats {G1.0} Primary reference
 #' @family Competition/Concentration measures

@@ -26,6 +26,10 @@ test_that("concstats_firm function operates properly", {
   expect_error(concstats_firm(x1b, na.rm = TRUE))
   expect_error(concstats_firm(x, na.rm = 0))
   expect_error(concstats_firm(x1, any(x1 < 0)))
+  expect_identical(concstats_firm(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_firm(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
   # convert to continuous
   act <- concstats_firm(x)
   exp <- concstats_firm(x4 / sum(x4))
@@ -38,9 +42,6 @@ test_that("concstats_firm function operates properly", {
   exp <- concstats_firm(x)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 
-  # test if sum x = 1
-  expect_error(concstats_firm(sum(x1), 1,
-                                tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -62,5 +63,19 @@ test_that("concstats_firm returns numbers equivalent", {
   expect_equal(concstats_firm(x4), sum(x4 > 0, na.rm = TRUE))
 
   checkmate::qexpect(concstats_firm(x),"i1")
+
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_firm(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_firm`
+                                  does not sum to 1"))
 
 })

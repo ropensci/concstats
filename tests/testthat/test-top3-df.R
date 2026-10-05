@@ -33,11 +33,12 @@ test_that("concstats_top3_df function operates properly", {
   expect_true(any(is.na(test_df2)), all(!is.na(test_df2)))
   expect_true(all(round(test_df5$x5) == 0), (abs(test_df5$x5) > 0 &
                                               abs(test_df5$x5) <= 1))
-
+  expect_true(is.numeric(test_df[[2]]))
   expect_error(concstats_top3_df(test_df2))
   expect_equal(ncol(test_df), 2)
 
-  expect_error(concstats_top3_df(test_df9, na.rm = TRUE, class = data.frame()))
+  expect_error(concstats_top3_df(test_df9, na.rm = TRUE,
+                                 class = data.frame()))
   expect_error(concstats_top3_df(test_df, na.rm = 0))
   expect_error(concstats_top3_df(test_df1, as.logical(any(x < 0))))
   # digits argument
@@ -57,18 +58,18 @@ test_that("concstats_top3_df returns top 3 market share", {
   share_2018_top <- 22.85199
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
 
   expect_equal(dim(top3_df), c(3,2))
 
   expect_true(is.data.frame(test_df4), label = "dataframe returned")
 })
 
-test_that("concstats_top3_df returns messages", {
 #' @srrstats {G5.2, G5.2a, G5.2b, G5.3}
+test_that("concstats_top3_df returns messages", {
   id <- c(1, 2, 3, 4, 5)
   id2 <- c(1, 2, 3, 4, 4)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
@@ -81,10 +82,25 @@ test_that("concstats_top3_df returns messages", {
 
   # unique index values
   expect_error(concstats_top3_df(test_df, anyDuplicated(test_df)))
-  # test if sum x = 1
-  expect_error(concstats_top3_df(sum(test_df1[ ,y]), 1,
-                                tolerance = .Machine$double.eps^0.25))
 
   expect_message(concstats_top3_df(test_df2, "x2"))
+
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  id <- c(1, 2, 3, 4, 5)
+  x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
+  test_df1 <- data.frame(id, x1)
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_top3_df(!isTRUE(all.equal(sum(test_df1[, y],
+                                                      na.rm = TRUE),
+                                                  1, tolerance)),
+                                "vector `x` in `concstats_top3_df`
+                                does not sum to 1"))
 
 })

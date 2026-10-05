@@ -5,25 +5,25 @@
 #'  concstats_simpson(x, na.rm = TRUE, digits = NULL)
 #'
 #' @param x A non-negative numeric vector.
-#' @param na.rm A logical vector that indicates whether \code{NA} values should
-#'  be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-#'  is \code{TRUE}. If set to \code{FALSE} the computation yields a message
-#'  if the vector contains \code{NA} values. NAs will be removed for further
-#'  computations.
+#' @param na.rm A logical vector that indicates whether \code{NA} values
+#' should be excluded or not. Must be either \code{TRUE} or \code{FALSE}.
+#' The default is \code{TRUE}. If set to \code{FALSE} the computation
+#' yields a message if the vector contains \code{NA} values. NAs will be
+#' removed for further computations.
 #' @srrstats {EA4.1}  control of numeric precision
-#' @param digits An optional value for digits. Specifies the minimum number of
-#'  significant digits to be printed in values. The default is \code{NULL} and
-#'  will use base R print option.
-#' @details \code{concstats_simpson} is the Gini-Simpson index, also known as
-#'  the Gini impurity (Gini's diversity index) in Machine Learning, Gibbs-Martin
-#'  index or Blau index in sociology and management studies. This index ranges
-#'  from \{0, 1\}.
+#' @param digits An optional value for digits. Specifies the minimum
+#' number of significant digits to be printed in values. The default is
+#' \code{NULL} and will use base R print option.
+#' @details \code{concstats_simpson} is the Gini-Simpson index, also
+#' known as the Gini impurity (Gini's diversity index) in Machine
+#' Learning, Gibbs-Martin index or Blau index in sociology and management
+#' studies. This index ranges from \{0, 1\}.
 #' @return A single numeric value in decimal form.
 #'
-#' @references Simpson, E. H. (1949). "Measurement of Diversity", \emph{Nature},
-#'  163, 688.
-#' @references Jost, L. (2006). "Entropy and Diversity". \emph{Oikos}, 113(2),
-#'  363-375.
+#' @references Simpson, E. H. (1949). "Measurement of Diversity",
+#' \emph{Nature}, 163, 688.
+#' @references Jost, L. (2006). "Entropy and Diversity". \emph{Oikos},
+#' 113(2), 363-375.
 #' @srrstats {G1.0} Primary reference
 #' @family Concentration and inequality measures
 #' @rdname concstats_simpson
@@ -68,6 +68,7 @@ concstats_simpson <- function(x, na.rm = TRUE, digits = NULL) {
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
   simpson <- as.numeric(1 - sum((x / sum(x, na.rm = TRUE))^2))
-  if (!is.null(digits)) simpson <- as.numeric(round(simpson, digits = digits))
+  if (!is.null(digits)) simpson <- as.numeric(round(simpson,
+                                                    digits = digits))
   return(as.numeric(simpson))
 }

@@ -46,7 +46,8 @@ concstats_entropy <- function(x, normalized = TRUE, na.rm = TRUE,
     stop("`na.rm` in `concstats_entropy` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+  if (!is.logical(normalized) || !length(normalized) == 1 ||
+      is.na(normalized)) {
     stop("`normalized` in `concstats_entropy` must be either TRUE or FALSE")
   }
 
@@ -71,6 +72,7 @@ concstats_entropy <- function(x, normalized = TRUE, na.rm = TRUE,
   if (normalized == FALSE) entropy <- as.numeric(
     sum(-x / sum(x) * log(x / sum(x), base = 2))
   )
-  if (!is.null(digits)) entropy <- as.numeric(round(entropy, digits = digits))
+  if (!is.null(digits)) entropy <- as.numeric(round(entropy,
+                                                    digits = digits))
   return(as.numeric(entropy))
 }

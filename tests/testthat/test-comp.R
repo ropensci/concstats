@@ -35,14 +35,41 @@ test_that("concstats_comp function operates / switches properly", {
   expect_true(is.data.frame(concstats_comp(x, type = "all")), "data.frame")
   expect_error(concstats_comp(x1b, na.rm = TRUE))
   expect_error(concstats_comp(x, na.rm = 0))
+  expect_error(concstats_comp(x, normalized = 0))
+  expect_identical(concstats_comp(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_comp(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
   expect_message(concstats_comp(x2))
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
-
+  expect_error(expect_int(x, digits = 0))
   # Adding trivial noise
   act <- concstats_comp(x, type = "hhi")
   exp <- concstats_comp(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
+})
+
+
+test_that("concstats_comp returns a data frame if type = all", {
+  x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
+  expect_true(is.data.frame(concstats_comp(x, type = "all")),
+              "data.frame")
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_comp(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_comp`
+                                  does not sum to 1"))
+
 })
 
 

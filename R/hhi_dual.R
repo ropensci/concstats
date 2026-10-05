@@ -68,6 +68,7 @@ concstats_hhi_d <- function(x, na.rm = TRUE, digits = NULL) {
   x <- as.numeric(x / sum(x, na.rm = TRUE))
   hhi <- as.numeric(sum(x ^ 2))
   hhi_d <- as.numeric(1 - 1 / (sum(x > 0) * hhi))
-  if (!is.null(digits)) hhi_d <- as.numeric(round(hhi_d, digits = digits))
+  if (!is.null(digits)) hhi_d <- as.numeric(round(hhi_d,
+                                                  digits = digits))
   return(as.numeric(hhi_d))
 }

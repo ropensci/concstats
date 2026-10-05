@@ -59,6 +59,7 @@ concstats_hhi_min <- function(x, na.rm = TRUE, digits = NULL) {
 
   x <- as.numeric(x[!is.na(x)] / sum(x[!is.na(x)]))
   hhi_min <- as.numeric(1 / sum(x > 0))
-  if (!is.null(digits)) hhi_min <- as.numeric(round(hhi_min, digits = digits))
+  if (!is.null(digits)) hhi_min <- as.numeric(round(hhi_min,
+                                                    digits = digits))
   return(as.numeric(hhi_min))
 }

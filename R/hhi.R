@@ -42,7 +42,8 @@
 #' concstats_hhi(x, na.rm = TRUE)
 #'
 #' @export
-concstats_hhi <- function(x, normalized = FALSE, na.rm = TRUE, digits = NULL) {
+concstats_hhi <- function(x, normalized = FALSE, na.rm = TRUE,
+                          digits = NULL) {
 #' @srrstats {G5.8a} Zero-length data
 #' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
 
@@ -54,7 +55,8 @@ concstats_hhi <- function(x, normalized = FALSE, na.rm = TRUE, digits = NULL) {
     stop("`na.rm` in `concstats_hhi` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+  if (!is.logical(normalized) || !length(normalized) == 1 ||
+      is.na(normalized)) {
     stop("`normalized` in `concstats_hhi` must be either TRUE or FALSE")
   }
 

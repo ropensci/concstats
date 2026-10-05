@@ -2,6 +2,7 @@ local_edition(3)
 
 ## concstats_dom
 
+#' @srrstats {G5.2, G5.2a, G5.2b, G5.3, G5.8, G5.8c}
 test_that("concstats_dom function operates properly", {
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
@@ -20,14 +21,18 @@ test_that("concstats_dom function operates properly", {
   expect_message(concstats_dom(x2))
 
   expect_error(concstats_dom(xch, !is.numeric(xch)))
-#' @srrstats {G5.2, G5.2a, G5.2b, G5.3, G5.8, G5.8c}
   expect_error(concstats_dom(x9, na.rm = TRUE))
   expect_error(concstats_dom(x8, na.rm = TRUE))
   expect_error(concstats_dom(x1b, na.rm = TRUE))
   expect_error(concstats_dom(x, na.rm = 0))
   expect_error(concstats_dom(x1, any(x1 < 0)))
+  expect_error(concstats_dom(anyNA(x2), na.rm = FALSE))
+  expect_identical(concstats_dom(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # convert to continuous
   act <- concstats_dom(x)
   exp <- concstats_dom(x4 / sum(x4))
@@ -39,8 +44,6 @@ test_that("concstats_dom function operates properly", {
   act <- concstats_dom(x7)
   exp <- concstats_dom(x)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  # test for sum of x = 1
-  expect_error(concstats_dom(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -62,5 +65,19 @@ test_that("concstats_dom returns dominance index", {
   expect_equal(concstats_dom(x4), sum((x4 ^ 2 / (sum(x4 ^ 2))) ^ 2))
 
   checkmate::qexpect(concstats_dom(x),"N[0,)")
+
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_dom(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_dom`
+                                  does not sum to 1"))
 
 })

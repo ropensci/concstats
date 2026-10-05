@@ -33,18 +33,21 @@ concstats_top5_df <- function(x, y, digits = NULL) {
 #' @srrstats {EA2.0, EA2.1, EA2.2, EA2.2b}
   attr(x, "index") <- x[[1]]
   if (anyDuplicated(x[[1]])) {
-    stop("Your first column has duplicated values")
+    stop("Your first input column in `concstats_top5_df` has duplicated
+         values")
   }
 
 #' @srrstats {G2.10, G2.11, G2.12} data frame pre-processing
   if (anyNA(x)) {
-    message(paste("NA values have been removed before the calculation for the following variable: ", y))
+    message(paste("NA values have been removed before the calculation
+                  for the following variable: ", y))
   }
   # check sum of vector. Must sum to 1 if all x(market share) < 1
   if (as.logical(all(na.omit(x[[2]] < 1))) &&
       !isTRUE(all.equal(sum(na.omit(x[[2]])), 1,
                         tolerance = .Machine$double.eps^0.25))) {
-    stop(paste("The following vector in `concstats_top5_df` does not sum to 1: ", y))
+    stop(paste("The following vector in `concstats_top5_df` does not
+               sum to 1: ", y))
   }
   x[[2]] <- x[[2]] / sum(x[[2]], na.rm = TRUE)
   x <- x[order(x[[2]], decreasing = TRUE),]

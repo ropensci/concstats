@@ -28,8 +28,12 @@ test_that("concstats_top5 function operates properly", {
   expect_error(concstats_top5(x1b, na.rm = TRUE))
   expect_error(concstats_top5(x, na.rm = 0))
   expect_error(concstats_top5(x1, as.logical(any(x < 0))))
+  expect_error(concstats_top5(anyNA(x2), na.rm = FALSE))
+
   # digits argument
+  expect_error(expect_int(x, digits = 0))
   expect_error(expect_int(x, digits = c(8, 0)))
+
   act <- concstats_top5(x)
   exp <- concstats_top5(x4 / sum(x4))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
@@ -39,9 +43,7 @@ test_that("concstats_top5 function operates properly", {
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
   act <- concstats_top5(x)
   exp <- concstats_top5(x7)
-  #test if sum x = 1
-  expect_error(concstats_top5(sum(x1), 1,
-                              tolerance = .Machine$double.eps^0.25))
+
 
 })
 
@@ -53,10 +55,10 @@ test_that("concstats_top5 returns sum of top 5 market shares", {
   share_2018_top5 <- 67.56739
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
 
   expect_equal(concstats_top5(share_2018), share_2018_top5,
                tolerance = .Machine$double.eps^0.25)
@@ -66,4 +68,19 @@ test_that("concstats_top5 returns sum of top 5 market shares", {
   expect_equal(concstats_top5(x4), as.numeric(sum(x4[1:5], na.rm = TRUE) *100))
 
   checkmate::qexpect(concstats_top5(x4),"N[0,)")
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_top5(!isTRUE(all.equal(sum(x1, na.rm = TRUE),
+                                               1, tolerance)),
+                             "vector `x` in `concstats_top5`
+                                  does not sum to 1"))
+
 })

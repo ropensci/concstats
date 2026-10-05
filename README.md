@@ -9,7 +9,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ropensci/concstats/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/concstats/actions)
+[![R-CMD-check](https://github.com/ropensci/concstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/concstats/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
 [![runiverse](https://ropensci.r-universe.dev/badges/concstats)](http://ropensci.r-universe.dev/ui/#package:concstats)
 [![Project Status: Active - The project has reached a stable, usable
@@ -45,13 +45,13 @@ market situation. Various functions or groups of functions are available
 to achieve the desired goal.
 
 \-`concstats_concstats` calculates a set of pre-selected concentration
-and diversity measures in a one-step procedure.  
+and diversity measures in a one-step procedure.\
 -`concstats_mstruct` offers market structure measures, e.g. the sum of
-Top3 or Top5 market shares.  
+Top3 or Top5 market shares.\
 -`concstats_comp` is a wrapper for concentration measures, e.g. the
-Herfindahl Hirschman Index.  
+Herfindahl Hirschman Index.\
 -`concstats_inequ` offers diversity or inequality measures, e.g. the
-Entropy or the Palma ratio.  
+Entropy or the Palma ratio.\
 -`concstats_shares` is a helper function converting numeric vectors into
 individual shares.
 

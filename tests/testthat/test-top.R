@@ -18,18 +18,20 @@ test_that("concstats_top function operates properly", {
   expect_true(any(is.na(x2)), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
-  expect_message(concstats_top3(x2))
+  expect_message(concstats_top(x2))
   expect_equal(sort(x, decreasing = TRUE), sort(x3, decreasing = TRUE))
 
   expect_error(concstats_top(xch, !is.numeric(xch)))
-
   expect_error(concstats_top(x9, na.rm = TRUE))
   expect_error(concstats_top(x8, na.rm = TRUE))
   expect_error(concstats_top(x1b, na.rm = TRUE))
   expect_error(concstats_top(x, na.rm = 0))
   expect_error(concstats_top(x1, as.logical(any(x < 0))))
+  expect_error(concstats_top(anyNA(x2), na.rm = FALSE))
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # convert to continuous
   act <- concstats_top(x)
   exp <- concstats_top(x4 / sum(x4))
@@ -41,9 +43,6 @@ test_that("concstats_top function operates properly", {
   act <- concstats_top(x7)
   exp <- concstats_top(x)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  # test if sum x = 1
-  expect_error(concstats_top(sum(x1), 1,
-                             tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -54,10 +53,10 @@ test_that("concstats_top returns top market share", {
   share_2018_top <- 22.85199
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
 
   expect_equal(concstats_top(share_2018), share_2018_top,
                tolerance = .Machine$double.eps^0.25)
@@ -66,4 +65,19 @@ test_that("concstats_top returns top market share", {
   expect_equal(concstats_top(x4), as.numeric(x4[1] *100))
 
   checkmate::qexpect(concstats_top(x4),"N[0,)")
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  x1 <- c(0.2, 0.3, 0.25, 0.05, -0.2)
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_top(!isTRUE(all.equal(sum(x1, na.rm = TRUE),
+                                                   1, tolerance)),
+                                 "vector `x` in `concstats_top`
+                                  does not sum to 1"))
+
 })

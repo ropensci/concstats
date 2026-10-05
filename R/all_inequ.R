@@ -44,7 +44,8 @@ concstats_all_inequ <- function(x, normalized = TRUE, na.rm = TRUE,
     stop("`na.rm` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)) {
+  if (!is.logical(normalized) || !length(normalized) == 1 ||
+      is.na(normalized)) {
     stop("`normalized` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
@@ -75,7 +76,8 @@ concstats_all_inequ <- function(x, normalized = TRUE, na.rm = TRUE,
                                           "Simpson Index", "Palma Ratio",
                                           "GRS"),
                               Value = as.numeric(format(c(entropy, gini,
-                                                          simpson, palma, grs),
+                                                          simpson,
+                                                          palma, grs),
                                                         scientific = FALSE,
                                                         digits = digits,
                                                         justify = "right")))

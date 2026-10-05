@@ -28,8 +28,16 @@ test_that("concstats_hhi function operates properly", {
   expect_error(concstats_hhi(x, na.rm = 0))
   expect_error(concstats_hhi(x, normalized = 0))
   expect_error(concstats_hhi(x1, as.logical(any(x < 0))))
+  expect_message(concstats_hhi(x2, na.rm = TRUE))
+  expect_error(concstats_hhi(anyNA(x2), na.rm = FALSE))
+  expect_identical(concstats_hhi(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_hhi(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # convert to continuous
   act <- concstats_hhi(x)
   exp <- concstats_hhi(x4 / sum(x4))
@@ -42,9 +50,6 @@ test_that("concstats_hhi function operates properly", {
   exp <- concstats_hhi(x7)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
 
-  # test if sum x = 1
-  expect_error(concstats_hhi(sum(x1), 1, tolerance = .Machine$double.eps^0.25))
-
 })
 
 test_that("concstats_hhi returns sum of squared shares as decimal", {
@@ -53,10 +58,10 @@ test_that("concstats_hhi returns sum of squared shares as decimal", {
   share_2018_hhi <- 0.1234614
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
 
   act <- concstats_hhi(share_2018)
   exp <- share_2018_hhi
@@ -86,27 +91,41 @@ test_that("concstats_hhi returns normalized hhi", {
   share_2018_hhi2 <- 0.08172152
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
   expect_equal(concstats_hhi(share_2018, normalized = TRUE), share_2018_hhi2,
                tolerance = .Machine$double.eps^0.25)
   expect_equal(concstats_hhi(x, normalized = TRUE),
                (sum(x ^ 2) - (1 / sum(x > 0))) / (1 - (1 / sum(x > 0))))
   expect_equal(concstats_hhi(x4, normalized = TRUE),
-               as.numeric(sum((x4/sum(x4,na.rm = TRUE))^2) - (1 / sum(x4 > 0))) /
-                            +                (1 - (1 / sum(x4 > 0))))
+               as.numeric(sum((x4/sum(x4,na.rm = TRUE))^2) -
+                            (1 / sum(x4 > 0))) / (1 - (1 / sum(x4 > 0))))
 
   checkmate::qexpect(concstats_hhi(x),"N[0,)")
 })
 
-# loans_2018 <- c(3931577688408.00, 3512006440.00, 1181973244136.00, 940212760717.00,
-#                 504108367226.00, 553126599129.00, 10349042811855.00, 85453595503.00,
-#                 112921714388.00, 1080798333076.00, 994455032421.00, 1747108722293.00,
-#                 868778394702.00, 430724585523.00, 636935285927.00, 776207212859.00,
-#                 99060073546.00, 110683978608.00, 267147638455.00, 4250655893824.00,
-#                 920406175495.00, 409127381045.00, 2096325112491.00, 760860195590.00,
-#                 363222923884.00, 3511443628715.00, 3023084817958.00, 601839961663.00,
-#                 12092000652237.00, 2036893637665.82)
+# test vector
+# loans_2018 <- c(3931577688408.00, 3512006440.00, 1181973244136.00,
+# 940212760717.00, 504108367226.00, 553126599129.00, 10349042811855.00,
+# 85453595503.00, 112921714388.00, 1080798333076.00, 994455032421.00,
+# 1747108722293.00, 868778394702.00, 430724585523.00, 636935285927.00,
+# 776207212859.00, 99060073546.00, 110683978608.00, 267147638455.00,
+# 4250655893824.00, 920406175495.00, 409127381045.00, 2096325112491.00,
+# 760860195590.00, 363222923884.00, 3511443628715.00, 3023084817958.00,
+# 601839961663.00, 12092000652237.00, 2036893637665.82)
 
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_hhi(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_hhi`
+                                  does not sum to 1"))
+
+})

@@ -27,8 +27,13 @@ test_that("concstats_entropy function operates properly", {
   expect_error(concstats_entropy(x1b, na.rm = TRUE))
   expect_error(concstats_entropy(x2, na.rm = 0))
   expect_error(concstats_entropy(x2, normalized = 0))
+  expect_identical(concstats_entropy(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_entropy(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # convert to contiuous
   act <- concstats_entropy(x)
   exp <- concstats_entropy(x4 / sum(x4))
@@ -37,9 +42,6 @@ test_that("concstats_entropy function operates properly", {
   act <- concstats_entropy(x)
   exp <- concstats_entropy(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  # test if sum x = 1
-  expect_error(concstats_entropy(sum(x1), 1,
-                                 tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -91,5 +93,19 @@ test_that("concstats_entropy returns the biased entropy measure ", {
                sum(-x4 / sum(x4) * log(x4 / sum(x4), base = 2)))
 
   checkmate::qexpect(concstats_entropy(x),"N[0,)")
+
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_entropy(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                    1, tolerance)),
+                                  "vector `x` in `concstats_entropy`
+                                  does not sum to 1"))
 
 })

@@ -71,10 +71,12 @@ concstats_palma <- function(x, na.rm = TRUE, digits = NULL) {
   x <- sort(x)
   x_cut <-  cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
                 include.lowest = TRUE, labels = FALSE)
-#' @srrstats {G2.15} Functions should never assume non-missingness for base routine sum()
+#' @srrstats {G2.15} Functions should never assume non-missingness for
+#'  base routine sum()
   x_bottom <- sum(x[x_cut <= 4], na.rm = TRUE)
   x_top <- sum(x[x_cut > 9], na.rm = TRUE)
   palma <- as.numeric(x_top / x_bottom)
-  if (!is.null(digits)) palma <- as.numeric(round(palma, digits = digits))
+  if (!is.null(digits)) palma <- as.numeric(round(palma,
+                                                  digits = digits))
   return(as.numeric(palma))
 }

@@ -27,20 +27,25 @@ test_that("concstats_palma function operates properly", {
   expect_error(concstats_palma(x8, na.rm = TRUE))
   expect_error(concstats_palma(x1b, na.rm = TRUE))
   expect_error(concstats_palma(x, na.rm = 0))
-  expect_error(concstats_dom(x1, any(x1 < 0)))
+  expect_error(concstats_palma(x1, any(x1 < 0)))
+  expect_message(concstats_palma(x2))
+  expect_error(concstats_palma(anyNA(x2), na.rm = FALSE))
+  expect_identical(concstats_palma(c(1, 2, NA, 4), na.rm = FALSE),
+                   NA_real_)
+  expect_false(identical(concstats_palma(c(1, 2, 3, 4),
+                                           na.rm = FALSE), NA_real_))
+
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
+  expect_error(expect_int(x, digits = 0))
   # convert to continuous
-  act <- concstats_simpson(x)
-  exp <- concstats_simpson(x4 / sum(x4))
+  act <- concstats_palma(x)
+  exp <- concstats_palma(x4 / sum(x4))
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
   # Adding trivial noise
-  act <- concstats_simpson(x)
-  exp <- concstats_simpson(x5)
+  act <- concstats_palma(x)
+  exp <- concstats_palma(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-  # test if sum x = 1
-  expect_error(concstats_palma(sum(x1), 1,
-                               tolerance = .Machine$double.eps^0.25))
 
 })
 
@@ -52,10 +57,10 @@ test_that("concstats_palma returns the alternative palma inequality measure", {
   share_2018_palma <- 6.174089
   share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
                   0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+                  0.012787201, 0.013071539, 0.046268385, 0.006580823,
+                  0.009102, 0.00760554, 0.047173998, 0.034356881,
+                  0.137813902, 0.016876624, 0.065780114, 0.053775553,
+                  0.228519883, 0.030117841)
 
   expect_equal(concstats_palma(share_2018), share_2018_palma,
                tolerance = .Machine$double.eps^0.25)
@@ -76,5 +81,19 @@ test_that("concstats_palma returns the alternative palma inequality measure", {
                      [cut(x4, stats::quantile(x4, probs = seq(0, 1, 0.1)),
                           include.lowest = TRUE, labels = FALSE) <= 4]))
 
-  checkmate::qexpect(concstats_dom(x),"N[0,)")
+  checkmate::qexpect(concstats_palma(x),"N[0,)")
+})
+
+#' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
+#'  `numeric` values either using `testthat::expect_equal()` or
+#'   equivalent with a defined value for the `tolerance` parameter
+
+# test that sum of x=1
+test_that("function throws error when vector outside tolerance", {
+  tolerance <- .Machine$double.eps^0.25
+  expect_error(concstats_palma(!isTRUE(all.equal(sum(x, na.rm = TRUE),
+                                                   1, tolerance)),
+                                 "vector `x` in `concstats_palma`
+                                  does not sum to 1"))
+
 })
