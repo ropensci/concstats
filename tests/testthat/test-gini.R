@@ -85,7 +85,7 @@ test_that("concstats_gini returns the gini measure", {
   x <- sort(x)
   expect_equal(
     concstats_gini(x, normalized = FALSE),
-    2 * sum(x * seq_alongn(x) / length(x) * sum(x)) - 1 - (1 / length(x))
+    2 * sum(x * seq_along(x) / length(x) * sum(x)) - 1 - (1 / length(x))
   )
   x4 <- sort(x4 / sum(x4))
   expect_equal(
