@@ -32,7 +32,7 @@ the user might use a helper function to convert variables to shares.
 Useful links:
 \itemize{
   \item \url{https://github.com/ropensci/concstats/}
-  \item \url{https://docs.ropensci.org/concstats/ (website)}
+  \item \url{https://docs.ropensci.org/concstats/} (website)
   \item Report bugs at \url{https://github.com/ropensci/concstats/issues/}
 }
 

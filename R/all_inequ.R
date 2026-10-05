@@ -31,36 +31,48 @@
 #' concstats_all_inequ(x, digits = 2)
 #'
 #' @export
-concstats_all_inequ <- function(x, normalized = TRUE, na.rm = TRUE,
-                                digits = NULL) {
-#' @srrstats {G2.1} Assertions on types of inputs
+concstats_all_inequ <- function(
+  x,
+  normalized = TRUE,
+  na.rm = TRUE,
+  digits = NULL
+) {
+  #' @srrstats {G2.1} Assertions on types of inputs
   checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
   checkmate::qassert(x, "n[0,)")
-#' @srrstats {G2.0} Implement assertions on lengths of inputs
-#' @srrstats {G2.14a} error on missing data
-#' @srrstats {G2.14b} ignore missing data with messages issued
+  #' @srrstats {G2.0} Implement assertions on lengths of inputs
+  #' @srrstats {G2.14a} error on missing data
+  #' @srrstats {G2.14b} ignore missing data with messages issued
 
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
     stop("`na.rm` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
-  if (!is.logical(normalized) || !length(normalized) == 1 ||
-      is.na(normalized)) {
+  if (
+    !is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)
+  ) {
     stop("`normalized` in `concstats_all_inequ` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE && anyNA(x)) {
+  if (na.rm && anyNA(x)) {
     message("`x` has NA values. NAs have been removed for computation.")
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && anyNA(x)) return(NA_real_)
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
+  }
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
 
   # check sum of vector. Must sum to 1 if all x(market share) < 1
-  if (!isTRUE(all.equal(sum(x, na.rm = TRUE),
-                        1, tolerance = .Machine$double.eps^0.25))) {
+  if (
+    !isTRUE(all.equal(
+      sum(x, na.rm = TRUE),
+      1,
+      tolerance = .Machine$double.eps^0.25
+    ))
+  ) {
     stop("Your input vector `x` in `concstats_all_inequ` does not sum to 1")
   }
 
@@ -71,16 +83,16 @@ concstats_all_inequ <- function(x, normalized = TRUE, na.rm = TRUE,
   palma <- concstats_palma(x)
   grs <- concstats_grs(x)
 
-#' @srrstats {EA4.1, EA5.2} Screen-based with numeric formatting
-  results_inequ <- data.frame(Measure = c("Entropy", "Gini Index",
-                                          "Simpson Index", "Palma Ratio",
-                                          "GRS"),
-                              Value = as.numeric(format(c(entropy, gini,
-                                                          simpson,
-                                                          palma, grs),
-                                                        scientific = FALSE,
-                                                        digits = digits,
-                                                        justify = "right")))
+  #' @srrstats {EA4.1, EA5.2} Screen-based with numeric formatting
+  results_inequ <- data.frame(
+    Measure = c("Entropy", "Gini Index", "Simpson Index", "Palma Ratio", "GRS"),
+    Value = as.numeric(format(
+      c(entropy, gini, simpson, palma, grs),
+      scientific = FALSE,
+      digits = digits,
+      justify = "right"
+    ))
+  )
 
   return(as.data.frame(results_inequ))
 }

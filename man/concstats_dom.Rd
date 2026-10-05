@@ -47,12 +47,12 @@ analisis de la estructura de los mercados". \emph{El Trimestre Economico},
 61: 499-524.
 }
 \seealso{
-Other Competition/Concentration measures: 
-\code{\link{concstats_all_comp}()},
-\code{\link{concstats_comp}()},
-\code{\link{concstats_hhi}()},
-\code{\link{concstats_hhi_d}()},
-\code{\link{concstats_hhi_min}()},
-\code{\link{concstats_sten}()}
+Other Competition/Concentration measures:
+\code{\link[=concstats_all_comp]{concstats_all_comp()}},
+\code{\link[=concstats_comp]{concstats_comp()}},
+\code{\link[=concstats_hhi]{concstats_hhi()}},
+\code{\link[=concstats_hhi_d]{concstats_hhi_d()}},
+\code{\link[=concstats_hhi_min]{concstats_hhi_min()}},
+\code{\link[=concstats_sten]{concstats_sten()}}
 }
 \concept{Competition/Concentration measures}

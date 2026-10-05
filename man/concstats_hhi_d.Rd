@@ -47,12 +47,12 @@ B. M. (2005) Banking concentration: the Brazilian case. \emph{In Financial
 Stability Report}. Brasilia: Banco Central do Brasil, 4: 109-129.
 }
 \seealso{
-Other Competition/Concentration measures: 
-\code{\link{concstats_all_comp}()},
-\code{\link{concstats_comp}()},
-\code{\link{concstats_dom}()},
-\code{\link{concstats_hhi}()},
-\code{\link{concstats_hhi_min}()},
-\code{\link{concstats_sten}()}
+Other Competition/Concentration measures:
+\code{\link[=concstats_all_comp]{concstats_all_comp()}},
+\code{\link[=concstats_comp]{concstats_comp()}},
+\code{\link[=concstats_dom]{concstats_dom()}},
+\code{\link[=concstats_hhi]{concstats_hhi()}},
+\code{\link[=concstats_hhi_min]{concstats_hhi_min()}},
+\code{\link[=concstats_sten]{concstats_sten()}}
 }
 \concept{Competition/Concentration measures}

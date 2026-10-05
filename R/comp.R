@@ -61,34 +61,49 @@
 #' concstats_comp(x, type = "all", digits = 2)
 #'
 #' @export concstats_comp
-concstats_comp <- function(x, normalized = FALSE,
-                           type = c("hhi", "hhi_d", "hhi_min", "dom",
-                                    "sten", "all"), na.rm = TRUE,
-                           digits = NULL) {
-
+concstats_comp <- function(
+  x,
+  normalized = FALSE,
+  type = c("hhi", "hhi_d", "hhi_min", "dom", "sten", "all"),
+  na.rm = TRUE,
+  digits = NULL
+) {
   type <- tolower(as.character(type))
-#' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
-#' @srrstats {G5.8a} Zero-length data
-#' @srrstats {G2.1} Assertions on types of inputs
-#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  #' @srrstats {G2.3, G2.3b, G2.4c} used `tolower()`
+  #' @srrstats {G5.8a} Zero-length data
+  #' @srrstats {G2.1} Assertions on types of inputs
+  #' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
   checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
   checkmate::qassert(x, "n[0,)")
 
-  if (!is.logical(normalized) || !length(normalized) == 1 ||
-      is.na(normalized)) {
+  if (
+    !is.logical(normalized) || !length(normalized) == 1 || is.na(normalized)
+  ) {
     stop("`na.rm` in `concstats_comp` must be either TRUE or FALSE")
   }
 
-  if (!na.rm && anyNA(x)) return(NA_real_)
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
+  }
 
-#' @srrstats {G2.3, G2.3a} Used `match.arg()`
-  switch(match.arg(type),
-         hhi = concstats_hhi(x, normalized = normalized, na.rm = na.rm,
-                             digits = digits),
-         hhi_d = concstats_hhi_d(x, na.rm = na.rm, digits = digits),
-         hhi_min = concstats_hhi_min(x, na.rm = na.rm, digits = digits),
-         dom = concstats_dom(x, na.rm = na.rm, digits = digits),
-         sten = concstats_sten(x, na.rm = na.rm, digits = digits),
-         all = concstats_all_comp(x, normalized = normalized, na.rm = na.rm,
-                                  digits = digits))
+  #' @srrstats {G2.3, G2.3a} Used `match.arg()`
+  switch(
+    match.arg(type),
+    hhi = concstats_hhi(
+      x,
+      normalized = normalized,
+      na.rm = na.rm,
+      digits = digits
+    ),
+    hhi_d = concstats_hhi_d(x, na.rm = na.rm, digits = digits),
+    hhi_min = concstats_hhi_min(x, na.rm = na.rm, digits = digits),
+    dom = concstats_dom(x, na.rm = na.rm, digits = digits),
+    sten = concstats_sten(x, na.rm = na.rm, digits = digits),
+    all = concstats_all_comp(
+      x,
+      normalized = normalized,
+      na.rm = na.rm,
+      digits = digits
+    )
+  )
 }

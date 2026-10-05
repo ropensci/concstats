@@ -66,7 +66,7 @@ install.packages("concstats") # Market structure, concentration and inequality
 
 You can install the latest development version from
 [GitHub](https://github.com/ropensci/concstats) or
-[R-universe](http://ropensci.r-universe.dev/ui/#package:concstats).
+[R-universe](https://ropensci.r-universe.dev/concstats).
 
 ``` r
 # install.packages("devtools")

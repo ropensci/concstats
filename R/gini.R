@@ -53,7 +53,7 @@ concstats_gini <- function(x, normalized = TRUE, na.rm = TRUE, digits = NULL) {
     stop("`normalized` in `concstats_gini` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE && anyNA(x)) {
+  if (na.rm && anyNA(x)) {
     message("`x` has NA values. NAs have been removed for computation.")
     x <- x[!is.na(x)]
   }

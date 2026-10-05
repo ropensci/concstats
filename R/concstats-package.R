@@ -37,7 +37,7 @@
 #'   Input types are well defined and asserted.
 #' @srrstats {G2.15} Functions never assume non-missingness.
 #' @srrstats {G5.4c} Values used from published paper are used as an
-#'  example in concstats-intro vignete.
+#'  example in concstats-intro vignette.
 #'
 #' @srrstats {EA1.0} Target audience in README line#56 - 61
 #' @srrstats {EA1.1} Kind of questions: in README line#55/56

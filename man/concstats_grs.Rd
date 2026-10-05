@@ -43,12 +43,12 @@ market concentration", \emph{Journal of Business Economics and Management},
 10(3), 191-198.
 }
 \seealso{
-Other Concentration and inequality measures: 
-\code{\link{concstats_all_inequ}()},
-\code{\link{concstats_entropy}()},
-\code{\link{concstats_gini}()},
-\code{\link{concstats_inequ}()},
-\code{\link{concstats_palma}()},
-\code{\link{concstats_simpson}()}
+Other Concentration and inequality measures:
+\code{\link[=concstats_all_inequ]{concstats_all_inequ()}},
+\code{\link[=concstats_entropy]{concstats_entropy()}},
+\code{\link[=concstats_gini]{concstats_gini()}},
+\code{\link[=concstats_inequ]{concstats_inequ()}},
+\code{\link[=concstats_palma]{concstats_palma()}},
+\code{\link[=concstats_simpson]{concstats_simpson()}}
 }
 \concept{Concentration and inequality measures}

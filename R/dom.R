@@ -48,28 +48,36 @@ concstats_dom <- function(x, na.rm = TRUE, digits = NULL) {
     stop("`na.rm` in `concstats_dom` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE && anyNA(x)) {
+  if (na.rm && anyNA(x)) {
     message("`x` has NA values. NAs have been removed for computation.")
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && anyNA(x)) return(NA_real_)
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
+  }
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
 
   # check sum of vector. Must sum to 1 if all x(market share) < 1
-  if (!isTRUE(all.equal(sum(x, na.rm = TRUE),
-                        1, tolerance = .Machine$double.eps^0.25))) {
-    stop(" Your input vector `x` in `concstats_dom` does not sum to 1")
+  if (
+    !isTRUE(all.equal(
+      sum(x, na.rm = TRUE),
+      1,
+      tolerance = .Machine$double.eps^0.25
+    ))
+  ) {
+    stop("Your input vector `x` in `concstats_dom` does not sum to 1")
   }
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
-  hhi_1 <- x ^ 2
-  hhi <- sum(x ^ 2, na.rm = TRUE)
-  dom <- (hhi_1 / hhi) ^ 2
-#' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
+  hhi_1 <- x^2
+  hhi <- sum(x^2, na.rm = TRUE)
+  dom <- (hhi_1 / hhi)^2
+  #' @srrstats {G3.0, EA6.0, EA6.0e} Return values, single-valued objects.
   dom <- as.numeric(sum(dom, na.rm = TRUE))
-  if (!is.null(digits)) dom <- as.numeric(round(dom, digits = digits))
+  if (!is.null(digits)) {
+    dom <- as.numeric(round(dom, digits = digits))
+  }
   return(as.numeric(dom))
-
 }

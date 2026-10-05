@@ -17,7 +17,7 @@
 #' @keywords datasets
 #' @name creditcoops
 #' @usage data(creditcoops)
-#' @source \url{http://www.incoop.gov.py/v2/}
+#' @source \url{http://www.incoop.gov.py}
 #' @author Andreas Schneider
 #'
 #' @note real names of the cooperatives have been purposely omitted, but

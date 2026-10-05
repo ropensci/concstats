@@ -14,7 +14,7 @@ test_that("concstats_entropy function operates properly", {
   x9 <- c(NA, NA, NA, NA, NA)
   xch <- c("a", "b", "c", "d", "e")
 
-  expect_true(any(is.na(x2)), all(!is.na(x2)))
+  expect_true(anyNA(x2), all(!is.na(x2)))
 
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
@@ -27,10 +27,11 @@ test_that("concstats_entropy function operates properly", {
   expect_error(concstats_entropy(x1b, na.rm = TRUE))
   expect_error(concstats_entropy(x2, na.rm = 0))
   expect_error(concstats_entropy(x2, normalized = 0))
-  expect_identical(concstats_entropy(c(1, 2, NA, 4), na.rm = FALSE),
-                   NA_real_)
-  expect_false(identical(concstats_entropy(c(1, 2, 3, 4),
-                                           na.rm = FALSE), NA_real_))
+  expect_identical(concstats_entropy(c(1, 2, NA, 4), na.rm = FALSE), NA_real_)
+  expect_false(identical(
+    concstats_entropy(c(1, 2, 3, 4), na.rm = FALSE),
+    NA_real_
+  ))
   # digits argument
   expect_error(expect_int(x, digits = c(8, 0)))
   expect_error(expect_int(x, digits = 0))
@@ -42,58 +43,102 @@ test_that("concstats_entropy function operates properly", {
   act <- concstats_entropy(x)
   exp <- concstats_entropy(x5)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-
 })
 
 test_that("concstats_entropy returns the unbiased entropy measure ", {
-
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x3 <- c(0.4, 0.25, 0.2, 0.1, 0.05)
   x4 <- c(20, 25, 40, 10, 5)
   share_2018_ent <- 0.8024276
-  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
-                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+  share_2018 <- c(
+    0.012663407,
+    0.029367501,
+    0.014456455,
+    0.012046011,
+    0.007477799,
+    0.189784408,
+    0.008738591,
+    0.015635544,
+    0.012787201,
+    0.013071539,
+    0.046268385,
+    0.006580823,
+    0.009102,
+    0.00760554,
+    0.047173998,
+    0.034356881,
+    0.137813902,
+    0.016876624,
+    0.065780114,
+    0.053775553,
+    0.228519883,
+    0.030117841
+  )
 
-  expect_equal(concstats_entropy(share_2018), share_2018_ent,
-               tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_entropy(x),
-               (sum(-x / sum(x) * log(x / sum(x), base = 2))
-                / log(sum(x > 0), base = 2)))
+  expect_equal(
+    concstats_entropy(share_2018),
+    share_2018_ent,
+    tolerance = .Machine$double.eps^0.25
+  )
+  expect_equal(
+    concstats_entropy(x),
+    (sum(-x / sum(x) * log(x / sum(x), base = 2)) / log(sum(x > 0), base = 2))
+  )
   x4 <- x4 / sum(x4)
-  expect_equal(concstats_entropy(x4),
-               (sum(-x4 / sum(x4) * log(x4 / sum(x4), base = 2))
-                / log(sum(x4 > 0), base = 2)))
-  expect_true(is.numeric(share_2018_ent),
-              label = "numeric values returned")
+  expect_equal(
+    concstats_entropy(x4),
+    (sum(-x4 / sum(x4) * log(x4 / sum(x4), base = 2)) /
+      log(sum(x4 > 0), base = 2))
+  )
+  expect_true(is.numeric(share_2018_ent), label = "numeric values returned")
 })
 
 test_that("concstats_entropy returns the biased entropy measure ", {
-
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x3 <- c(0.4, 0.25, 0.2, 0.1, 0.05)
   x4 <- c(20, 25, 40, 10, 5)
   share_2018_ent2 <- 3.578371
-  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
-                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+  share_2018 <- c(
+    0.012663407,
+    0.029367501,
+    0.014456455,
+    0.012046011,
+    0.007477799,
+    0.189784408,
+    0.008738591,
+    0.015635544,
+    0.012787201,
+    0.013071539,
+    0.046268385,
+    0.006580823,
+    0.009102,
+    0.00760554,
+    0.047173998,
+    0.034356881,
+    0.137813902,
+    0.016876624,
+    0.065780114,
+    0.053775553,
+    0.228519883,
+    0.030117841
+  )
 
-  expect_equal(concstats_entropy(share_2018, normalized = FALSE),
-               share_2018_ent2, tolerance = .Machine$double.eps^0.25)
-  expect_equal(concstats_entropy(x, normalized = FALSE),
-               sum(-x / sum(x) * log(x / sum(x), base = 2)))
+  expect_equal(
+    concstats_entropy(share_2018, normalized = FALSE),
+    share_2018_ent2,
+    tolerance = .Machine$double.eps^0.25
+  )
+  expect_equal(
+    concstats_entropy(x, normalized = FALSE),
+    sum(-x / sum(x) * log(x / sum(x), base = 2))
+  )
   x4 <- x4 / sum(x4)
-  expect_equal(concstats_entropy(x4, normalized = FALSE),
-               sum(-x4 / sum(x4) * log(x4 / sum(x4), base = 2)))
+  expect_equal(
+    concstats_entropy(x4, normalized = FALSE),
+    sum(-x4 / sum(x4) * log(x4 / sum(x4), base = 2))
+  )
 
-  checkmate::qexpect(concstats_entropy(x),"N[0,)")
-
+  checkmate::qexpect(concstats_entropy(x), "N[0,)")
 })
 
 #' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
@@ -103,9 +148,9 @@ test_that("concstats_entropy returns the biased entropy measure ", {
 # test that sum of x=1
 test_that("function throws error when vector outside tolerance", {
   tolerance <- .Machine$double.eps^0.25
-  expect_error(concstats_entropy(!isTRUE(all.equal(sum(x, na.rm = TRUE),
-                                                    1, tolerance)),
-                                  "vector `x` in `concstats_entropy`
-                                  does not sum to 1"))
-
+  expect_error(concstats_entropy(
+    !isTRUE(all.equal(sum(x, na.rm = TRUE), 1, tolerance)),
+    "vector `x` in `concstats_entropy`
+                                  does not sum to 1"
+  ))
 })

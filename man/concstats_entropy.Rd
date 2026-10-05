@@ -43,12 +43,12 @@ Shannon, C. E. (1948). "A Mathematical Theory of Communication",
 \emph{The Bell System Technical Journal} (Nokia Bell Labs).
 }
 \seealso{
-Other Concentration and inequality measures: 
-\code{\link{concstats_all_inequ}()},
-\code{\link{concstats_gini}()},
-\code{\link{concstats_grs}()},
-\code{\link{concstats_inequ}()},
-\code{\link{concstats_palma}()},
-\code{\link{concstats_simpson}()}
+Other Concentration and inequality measures:
+\code{\link[=concstats_all_inequ]{concstats_all_inequ()}},
+\code{\link[=concstats_gini]{concstats_gini()}},
+\code{\link[=concstats_grs]{concstats_grs()}},
+\code{\link[=concstats_inequ]{concstats_inequ()}},
+\code{\link[=concstats_palma]{concstats_palma()}},
+\code{\link[=concstats_simpson]{concstats_simpson()}}
 }
 \concept{Concentration and inequality measures}

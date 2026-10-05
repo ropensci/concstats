@@ -68,12 +68,12 @@ concstats_inequ(x, type = "all", digits = 2)
 \seealso{
 \code{\link[=concstats_concstats]{concstats_concstats()}},\code{\link[=concstats_mstruct]{concstats_mstruct()}},\code{\link[=concstats_comp]{concstats_comp()}}
 
-Other Concentration and inequality measures: 
-\code{\link{concstats_all_inequ}()},
-\code{\link{concstats_entropy}()},
-\code{\link{concstats_gini}()},
-\code{\link{concstats_grs}()},
-\code{\link{concstats_palma}()},
-\code{\link{concstats_simpson}()}
+Other Concentration and inequality measures:
+\code{\link[=concstats_all_inequ]{concstats_all_inequ()}},
+\code{\link[=concstats_entropy]{concstats_entropy()}},
+\code{\link[=concstats_gini]{concstats_gini()}},
+\code{\link[=concstats_grs]{concstats_grs()}},
+\code{\link[=concstats_palma]{concstats_palma()}},
+\code{\link[=concstats_simpson]{concstats_simpson()}}
 }
 \concept{Concentration and inequality measures}

@@ -9,22 +9,22 @@ concstats_sten(x, na.rm = TRUE, digits = NULL)
 \arguments{
 \item{x}{A non-negative numeric vector.}
 
-\item{na.rm}{A logical vector that indicates whether \code{NA} values should
-be excluded or not. Must be either \code{TRUE} or \code{FALSE}. The default
-is \code{TRUE}. If set to \code{FALSE} the computation yields a message
-if the vector contains \code{NA} values. NAs will be removed for further
-computations.}
+\item{na.rm}{A logical vector that indicates whether \code{NA} values
+should be excluded or not. Must be either \code{TRUE} or \code{FALSE}.
+The default is \code{TRUE}. If set to \code{FALSE} the computation
+yields a message if the vector contains \code{NA} values. NAs will be
+removed for further computations.}
 
-\item{digits}{An optional value for digits. Specifies the minimum number of
-significant digits to be printed in values. The default is \code{NULL} and
-will use base R print option.}
+\item{digits}{An optional value for digits. Specifies the minimum
+number of significant digits to be printed in values. The default is
+\code{NULL} and will use base R print option.}
 }
 \value{
 A single numeric measure in decimal form.
 }
 \description{
-The measure suggests an approach that classifies when an individual firm has
-a dominant position and therefore assesses market dominance.
+The measure suggests an approach that classifies when an individual
+firm has a dominant position and therefore assesses market dominance.
 }
 \details{
 \code{concstats_sten} calculates the Stenbacka index,
@@ -43,17 +43,17 @@ concstats_sten(x, na.rm = TRUE)
 
 }
 \references{
-Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing market
-dominance", \emph{Journal of Economic Behavior and Organization},
+Melnik, A., Shy, Oz, Stenbacka, R., (2008), "Assessing
+market dominance", \emph{Journal of Economic Behavior and Organization},
 68: pp. 63-72.
 }
 \seealso{
-Other Competition/Concentration measures: 
-\code{\link{concstats_all_comp}()},
-\code{\link{concstats_comp}()},
-\code{\link{concstats_dom}()},
-\code{\link{concstats_hhi}()},
-\code{\link{concstats_hhi_d}()},
-\code{\link{concstats_hhi_min}()}
+Other Competition/Concentration measures:
+\code{\link[=concstats_all_comp]{concstats_all_comp()}},
+\code{\link[=concstats_comp]{concstats_comp()}},
+\code{\link[=concstats_dom]{concstats_dom()}},
+\code{\link[=concstats_hhi]{concstats_hhi()}},
+\code{\link[=concstats_hhi_d]{concstats_hhi_d()}},
+\code{\link[=concstats_hhi_min]{concstats_hhi_min()}}
 }
 \concept{Competition/Concentration measures}

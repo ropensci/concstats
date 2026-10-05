@@ -14,7 +14,7 @@ test_that("concstats_firm function operates properly", {
   x8 <- c(-0.2, -0.3, -0.4, -0.100001)
   x9 <- c(NA, NA, NA, NA, NA, NA, NA, NA)
 
-  expect_true(any(is.na(x2)), all(!is.na(x2)))
+  expect_true(anyNA(x2), all(!is.na(x2)))
   expect_true(all(round(x) == 0), (abs(x) > 0 & abs(x) <= 1))
   expect_vector(x, ptype = numeric(), size = 5)
   expect_message(concstats_firm(x2))
@@ -26,10 +26,11 @@ test_that("concstats_firm function operates properly", {
   expect_error(concstats_firm(x1b, na.rm = TRUE))
   expect_error(concstats_firm(x, na.rm = 0))
   expect_error(concstats_firm(x1, any(x1 < 0)))
-  expect_identical(concstats_firm(c(1, 2, NA, 4), na.rm = FALSE),
-                   NA_real_)
-  expect_false(identical(concstats_firm(c(1, 2, 3, 4),
-                                           na.rm = FALSE), NA_real_))
+  expect_identical(concstats_firm(c(1, 2, NA, 4), na.rm = FALSE), NA_real_)
+  expect_false(identical(
+    concstats_firm(c(1, 2, 3, 4), na.rm = FALSE),
+    NA_real_
+  ))
   # convert to continuous
   act <- concstats_firm(x)
   exp <- concstats_firm(x4 / sum(x4))
@@ -41,29 +42,46 @@ test_that("concstats_firm function operates properly", {
   act <- concstats_firm(x7)
   exp <- concstats_firm(x)
   expect_equal(act, exp, tolerance = .Machine$double.eps^0.25)
-
-
 })
 
 test_that("concstats_firm returns numbers equivalent", {
-
   x <- c(0.2, 0.25, 0.4, 0.1, 0.05)
   x4 <- c(20, 25, 40, 10, 5)
   share_2018_firm <- 22
-  share_2018 <- c(0.012663407, 0.029367501, 0.014456455, 0.012046011,
-                  0.007477799, 0.189784408, 0.008738591, 0.015635544,
-                  0.012787201, 0.013071539, 0.046268385, 0.006580823, 0.009102,
-                  0.00760554, 0.047173998, 0.034356881, 0.137813902,
-                  0.016876624, 0.065780114, 0.053775553, 0.228519883,
-                  0.030117841)
+  share_2018 <- c(
+    0.012663407,
+    0.029367501,
+    0.014456455,
+    0.012046011,
+    0.007477799,
+    0.189784408,
+    0.008738591,
+    0.015635544,
+    0.012787201,
+    0.013071539,
+    0.046268385,
+    0.006580823,
+    0.009102,
+    0.00760554,
+    0.047173998,
+    0.034356881,
+    0.137813902,
+    0.016876624,
+    0.065780114,
+    0.053775553,
+    0.228519883,
+    0.030117841
+  )
 
-  expect_equal(concstats_firm(share_2018), share_2018_firm,
-               tolerance = .Machine$double.eps^0.25)
+  expect_equal(
+    concstats_firm(share_2018),
+    share_2018_firm,
+    tolerance = .Machine$double.eps^0.25
+  )
   expect_equal(concstats_firm(x), sum(x > 0, na.rm = TRUE))
   expect_equal(concstats_firm(x4), sum(x4 > 0, na.rm = TRUE))
 
-  checkmate::qexpect(concstats_firm(x),"i1")
-
+  checkmate::qexpect(concstats_firm(x), "i1")
 })
 
 #' @srrstats {EA6.0, EA6.0e, EA5.8} Values of single-valued objects; for
@@ -73,9 +91,9 @@ test_that("concstats_firm returns numbers equivalent", {
 # test that sum of x=1
 test_that("function throws error when vector outside tolerance", {
   tolerance <- .Machine$double.eps^0.25
-  expect_error(concstats_firm(!isTRUE(all.equal(sum(x, na.rm = TRUE),
-                                                    1, tolerance)),
-                                  "vector `x` in `concstats_firm`
-                                  does not sum to 1"))
-
+  expect_error(concstats_firm(
+    !isTRUE(all.equal(sum(x, na.rm = TRUE), 1, tolerance)),
+    "vector `x` in `concstats_firm`
+                                  does not sum to 1"
+  ))
 })

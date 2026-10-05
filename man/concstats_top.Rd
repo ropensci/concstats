@@ -32,15 +32,15 @@ x <- c(0.4, 0.2, 0.25, 0.1, 0.05)
 concstats_top(x, digits = 2)
 }
 \seealso{
-Other Market structure measures: 
-\code{\link{concstats_all_mstruct}()},
-\code{\link{concstats_firm}()},
-\code{\link{concstats_mstruct}()},
-\code{\link{concstats_nrs_eq}()},
-\code{\link{concstats_top3}()},
-\code{\link{concstats_top3_df}()},
-\code{\link{concstats_top5}()},
-\code{\link{concstats_top5_df}()},
-\code{\link{concstats_top_df}()}
+Other Market structure measures:
+\code{\link[=concstats_all_mstruct]{concstats_all_mstruct()}},
+\code{\link[=concstats_firm]{concstats_firm()}},
+\code{\link[=concstats_mstruct]{concstats_mstruct()}},
+\code{\link[=concstats_nrs_eq]{concstats_nrs_eq()}},
+\code{\link[=concstats_top3]{concstats_top3()}},
+\code{\link[=concstats_top3_df]{concstats_top3_df()}},
+\code{\link[=concstats_top5]{concstats_top5()}},
+\code{\link[=concstats_top5_df]{concstats_top5_df()}},
+\code{\link[=concstats_top_df]{concstats_top_df()}}
 }
 \concept{Market structure measures}

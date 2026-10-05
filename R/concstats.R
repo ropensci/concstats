@@ -43,31 +43,38 @@
 #'
 #' @export
 concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
-#' @srrstats {G2.1} Assertions on types of inputs
-#' @srrstats {G5.8a} Zero-length data
-#' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
+  #' @srrstats {G2.1} Assertions on types of inputs
+  #' @srrstats {G5.8a} Zero-length data
+  #' @srrstats {G2.2, G2.6, G2.16} Checking class, type, NaN handling
 
   checkmate::assert_int(x = digits, lower = 1, null.ok = TRUE)
   checkmate::qassert(x, "n[0,)")
 
-#' @srrstats {G2.0, G2.14a, G2.14b} Implement assertions on lengths of inputs
-#' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
+  #' @srrstats {G2.0, G2.14a, G2.14b} Implement assertions on lengths of inputs
+  #' @srrstats {G2.13, G2.14, G2.14a, G2.14b, G2.15} Handling of missing values
   if (!is.logical(na.rm) || !length(na.rm) == 1 || is.na(na.rm)) {
     stop("`na.rm` in `concstats_dom` must be either TRUE or FALSE")
   }
 
-  if (na.rm == TRUE && anyNA(x)) {
+  if (na.rm && anyNA(x)) {
     message("`x` has NA values. NAs have been removed for computation.")
     x <- x[!is.na(x)]
   }
 
-  if (!na.rm && anyNA(x)) return(NA_real_)
+  if (!na.rm && anyNA(x)) {
+    return(NA_real_)
+  }
 
   x <- as.numeric(x / sum(x, na.rm = TRUE))
 
   # check sum of vector. Must sum to 1 if all x(market share) < 1
-  if (!isTRUE(all.equal(sum(x, na.rm = TRUE),
-                        1, tolerance = .Machine$double.eps^0.25))) {
+  if (
+    !isTRUE(all.equal(
+      sum(x, na.rm = TRUE),
+      1,
+      tolerance = .Machine$double.eps^0.25
+    ))
+  ) {
     stop(" Your input vector `x` in `concstats_dom` does not sum to 1")
   }
 
@@ -76,7 +83,7 @@ concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
 
   concstats_firm <- as.numeric(sum(x > 0), na.rm = TRUE)
 
-  concstats_nrs_eq <- as.numeric(1 / sum(x ^ 2), na.rm = TRUE)
+  concstats_nrs_eq <- as.numeric(1 / sum(x^2), na.rm = TRUE)
 
   concstats_top <- as.numeric(x[1] * 100)
 
@@ -84,33 +91,51 @@ concstats_concstats <- function(x, na.rm = TRUE, digits = NULL) {
 
   concstats_top5 <- as.numeric(sum(x[1:5], na.rm = TRUE) * 100)
 
-  concstats_hhi <- as.numeric(sum(x ^ 2), normalized = FALSE, na.rm = TRUE)
+  concstats_hhi <- as.numeric(sum(x^2), normalized = FALSE, na.rm = TRUE)
 
-  concstats_entropy <- as.numeric((sum(-x / sum(x) * log(x / sum(x), base = 2))
-    / log(sum(x > 0), base = 2)))
+  concstats_entropy <- as.numeric(
+    (sum(-x / sum(x) * log(x / sum(x), base = 2)) / log(sum(x > 0), base = 2))
+  )
 
   palma <- as.numeric(stats::na.omit(sort(x)))
-  palma_cut <- cut(x, stats::quantile(x, probs = seq(0, 1, 0.1)),
-                   include.lowest = TRUE, labels = FALSE)
+  palma_cut <- cut(
+    x,
+    stats::quantile(x, probs = seq(0, 1, 0.1)),
+    include.lowest = TRUE,
+    labels = FALSE
+  )
   palma_bottom <- sum(x[palma_cut <= 4])
   palma_top <- sum(x[palma_cut > 9])
   concstats_palma <- as.numeric(palma_top / palma_bottom)
 
   # screen-based output
-  results_all <- data.frame(Measure = c("Firms", "Nrs_equivalent", "Top (%)",
-                                        "Top3 (%)", "Top5 (%)", "HHI",
-                                        "Entropy", "Palma ratio"),
-                            Value = as.numeric(format(c(concstats_firm,
-                                                        concstats_nrs_eq,
-                                                        concstats_top,
-                                                        concstats_top3,
-                                                        concstats_top5,
-                                                        concstats_hhi,
-                                                        concstats_entropy,
-                                                        concstats_palma),
-                                                      scientific = FALSE,
-                                                      digits = digits,
-                                                      justify = "right")))
+  results_all <- data.frame(
+    Measure = c(
+      "Firms",
+      "Nrs_equivalent",
+      "Top (%)",
+      "Top3 (%)",
+      "Top5 (%)",
+      "HHI",
+      "Entropy",
+      "Palma ratio"
+    ),
+    Value = as.numeric(format(
+      c(
+        concstats_firm,
+        concstats_nrs_eq,
+        concstats_top,
+        concstats_top3,
+        concstats_top5,
+        concstats_hhi,
+        concstats_entropy,
+        concstats_palma
+      ),
+      scientific = FALSE,
+      digits = digits,
+      justify = "right"
+    ))
+  )
 
   return(as.data.frame(results_all))
 }

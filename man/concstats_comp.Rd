@@ -75,12 +75,12 @@ concstats_comp(x, type = "all", digits = 2)
 \seealso{
 \code{\link[=concstats_concstats]{concstats_concstats()}}, \code{\link[=concstats_mstruct]{concstats_mstruct()}}, \code{\link[=concstats_inequ]{concstats_inequ()}}
 
-Other Competition/Concentration measures: 
-\code{\link{concstats_all_comp}()},
-\code{\link{concstats_dom}()},
-\code{\link{concstats_hhi}()},
-\code{\link{concstats_hhi_d}()},
-\code{\link{concstats_hhi_min}()},
-\code{\link{concstats_sten}()}
+Other Competition/Concentration measures:
+\code{\link[=concstats_all_comp]{concstats_all_comp()}},
+\code{\link[=concstats_dom]{concstats_dom()}},
+\code{\link[=concstats_hhi]{concstats_hhi()}},
+\code{\link[=concstats_hhi_d]{concstats_hhi_d()}},
+\code{\link[=concstats_hhi_min]{concstats_hhi_min()}},
+\code{\link[=concstats_sten]{concstats_sten()}}
 }
 \concept{Competition/Concentration measures}

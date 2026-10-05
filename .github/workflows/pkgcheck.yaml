@@ -16,7 +16,7 @@ on:
 
 jobs:
   pkgcheck:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: ropensci-review-tools/pkgcheck-action@main
         with:

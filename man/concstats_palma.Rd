@@ -47,12 +47,12 @@ Palma, J. G. (2006). "Globalizing Inequality: 'Centrifugal' and
 'Centripetal' Forces at Work", DESA Working Paper No. 35.
 }
 \seealso{
-Other Concentration and inequality measures: 
-\code{\link{concstats_all_inequ}()},
-\code{\link{concstats_entropy}()},
-\code{\link{concstats_gini}()},
-\code{\link{concstats_grs}()},
-\code{\link{concstats_inequ}()},
-\code{\link{concstats_simpson}()}
+Other Concentration and inequality measures:
+\code{\link[=concstats_all_inequ]{concstats_all_inequ()}},
+\code{\link[=concstats_entropy]{concstats_entropy()}},
+\code{\link[=concstats_gini]{concstats_gini()}},
+\code{\link[=concstats_grs]{concstats_grs()}},
+\code{\link[=concstats_inequ]{concstats_inequ()}},
+\code{\link[=concstats_simpson]{concstats_simpson()}}
 }
 \concept{Concentration and inequality measures}
