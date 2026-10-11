@@ -88,6 +88,6 @@ concstats_top_df <- function(x, y, digits = NULL) {
   if (!is.null(digits)) {
     top_df[, -1] <- as.numeric(round(top_df[[2]], digits = digits))
   }
-  #' @srrstats {EA4.0, EA4.2, EA5.3, EA5.4} output type same as input type
+  #' @srrstats {EA4.0, EA4.2, EA5.4} output type same as input type
   return(top_df)
 }

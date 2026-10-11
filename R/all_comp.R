@@ -96,6 +96,6 @@ concstats_all_comp <- function(
       justify = "right"
     ))
   )
-  #' @srrstats {EA4.0, EA4.2, EA5.3, EA5.4}
+  #' @srrstats {EA4.0, EA4.2, EA5.4}
   return(as.data.frame(results_comp))
 }
