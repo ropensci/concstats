@@ -16,7 +16,7 @@ cooperative}
 }
 }
 \source{
-\url{http://www.incoop.gov.py/v2/}
+\url{http://www.incoop.gov.py}
 }
 \usage{
 data(creditcoops)
