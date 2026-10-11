@@ -74,7 +74,7 @@ devtools::install_github("ropensci/concstats")
 ```
 
 ``` r
-install.packages("concstats", repos = "https://ropensci.r-universe.dev/concstats")
+install.packages("concstats", repos = "https://ropensci.r-universe.dev/concstats/")
 ```
 
 ## How to use `concstats`
@@ -209,9 +209,6 @@ Index.
 ## Credits
 
 The hexagon sticker is created by myself with the `hexsticker` package.
-A good overview and a lot of inspiration (adding badges, how to create a
-webpage and testing the package) comes from [Cosima Meyer and Dennis
-Hammerschmidt](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/r-package/).
 
 ## Contact and Issues
 
