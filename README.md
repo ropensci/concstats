@@ -11,7 +11,7 @@
 
 [![R-CMD-check](https://github.com/ropensci/concstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/concstats/actions/workflows/R-CMD-check.yaml)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/concstats)](https://cran.r-project.org/package=concstats)
-[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](http://ropensci.r-universe.dev/ui/#package:concstats)
+[![runiverse](https://ropensci.r-universe.dev/badges/concstats)](https://ropensci.r-universe.dev/concstats)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
